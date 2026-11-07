@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>European SME — Homepage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,500;1,8..60,600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#0E1525;text-decoration:none}
+a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
+</style>
+</helmet>
+<div style="font-family: 'Inter', system-ui, sans-serif; color: #0E1525; background: #FFFFFF; min-height: 100vh">
+
+<header>
+<div style="background: #071C4A; color: #C9D3EA; font-size: 13px">
+<div style="max-width: 1240px; margin: 0 auto; padding: 8px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px">
+<span>The independent magazine for Europe's small and medium-sized businesses</span>
+<nav aria-label="Utility" style="display: flex; flex-wrap: wrap; gap: 20px">
+<a href="#" style="color: #C9D3EA">About</a>
+<a href="#" style="color: #C9D3EA">Advertise</a>
+<a href="#" style="color: #C9D3EA">Write for us</a>
+<a href="#" style="color: #C9D3EA">Contact</a>
+</nav>
+</div>
+</div>
+
+<div style="background: {{brand}}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 20px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<button type="button" aria-label="Search" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.35); background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+</button>
+<a href="#" aria-label="European SME home" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<svg aria-hidden="true" viewBox="0 0 200 200" style="width: 46px; height: 46px; fill: #FFC72C"><path transform="translate(180.0 100.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(169.3 140.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(140.0 169.3) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(100.0 180.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(60.0 169.3) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(30.7 140.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(20.0 100.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(30.7 60.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(60.0 30.7) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(100.0 20.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(140.0 30.7) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(169.3 60.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path></svg>
+<span style="font-size: 30px; font-weight: 800; letter-spacing: 0.01em; color: #FFFFFF; line-height: 1">EUROPEAN <span style="color: #FFC72C">SME</span></span>
+</a>
+<a href="#newsletter" style="background: #FFC72C; color: #071C4A; font-weight: 700; font-size: 14px; padding: 13px 22px; border-radius: 999px; text-decoration: none">Subscribe free</a>
+</div>
+</div>
+
+<nav aria-label="Sections" style="background: #FFFFFF; border-bottom: 1px solid #DDE2EA">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 22px">
+<a href="FundingFinder.dc.html" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Funding</a>
+<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Growth</a>
+<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Money</a>
+<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Marketing</a>
+<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Hiring &amp; Talent</a>
+<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Trade &amp; Export</a>
+<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Tech &amp; AI</a>
+<a href="Compliance.dc.html" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">EU Policy</a>
+<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Startups</a>
+<a href="CountryHub.dc.html" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Countries</a>
+<a href="Tools.dc.html" style="margin-left: 6px; padding: 8px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 700; color: #0B2A6B; border: 1px solid #0B2A6B">Tools</a>
+</div>
+</nav>
+</header>
+
+<main>
+<section aria-label="Top stories" style="max-width: 1240px; margin: 0 auto; padding: 40px 32px 56px; display: flex; flex-wrap: wrap; gap: 48px">
+<article style="flex: 7 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<a href="ArticleAIAct.dc.html" aria-label="AI Act deadlines pushed back" style="display: block"><dc-import name="VisualAIAct" radius="8px" hint-size="100%,400px"></dc-import></a>
+<span style="margin-top: 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #2F5BB7">Cover story · Tech &amp; AI</span>
+<h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 50px; line-height: 1.08; font-weight: 600; letter-spacing: -0.015em"><a href="ArticleAIAct.dc.html">AI Act deadlines pushed back: what the Digital Omnibus means for your business</a></h1>
+<p style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; line-height: 1.5; color: #4A5568">The EU has given companies until December 2027 to meet its strictest AI rules. But some obligations already apply — and most small businesses have homework to do now.</p>
+<p style="margin: 4px 0 0; font-size: 14px; color: #4A5568">By <strong style="color: #0E1525; font-weight: 600">European SME Editorial Team</strong> · 7 November 2026</p>
+</article>
+
+<aside aria-label="More top stories" style="flex: 5 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<article style="display: flex; flex-direction: column; gap: 12px; padding-bottom: 24px; border-bottom: 1px solid #DDE2EA">
+<a href="ArticleEInvoicing.dc.html" aria-label="E-invoicing goes mandatory" style="display: block"><dc-import name="VisualEInvoice" radius="8px" hint-size="100%,240px"></dc-import></a>
+<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #2F5BB7">Money &amp; Cash Flow</span>
+<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 23px; line-height: 1.2; font-weight: 600"><a href="ArticleEInvoicing.dc.html">E-invoicing goes mandatory: where European SMEs must comply in 2026 and 2027</a></h2>
+<span style="font-size: 13px; color: #4A5568">7 November 2026</span>
+</article>
+<article style="display: flex; gap: 18px; align-items: flex-start; padding-bottom: 24px; border-bottom: 1px solid #DDE2EA">
+<a href="ArticleEUInc.dc.html" aria-label="EU Inc. explained" style="display: block; flex: 0 0 190px"><dc-import name="VisualEUInc" radius="6px" hint-size="190px,107px"></dc-import></a>
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #2F5BB7">Startups &amp; Scale-ups</span>
+<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; line-height: 1.22; font-weight: 600"><a href="ArticleEUInc.dc.html">EU Inc. explained: what the proposed “28th regime” could mean for small businesses</a></h2>
+<span style="font-size: 13px; color: #4A5568">7 November 2026</span>
+</div>
+</article>
+
+<div>
+<div style="border-top: 3px solid #0E1525; padding-top: 12px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Latest</h2>
+<a href="#" style="font-size: 13px; font-weight: 600; color: #2F5BB7">All stories</a>
+</div>
+<sc-for list="{{latest}}" as="l" hint-placeholder-count="5">
+<div style="display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid #DDE2EA">
+<span style="flex: 0 0 64px; font-size: 12px; font-weight: 600; color: #4A5568; padding-top: 3px">{{l.short}}</span>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #2F5BB7">{{l.cat}}</span>
+<a href="#" style="font-size: 16px; font-weight: 600; line-height: 1.35">{{l.title}}</a>
+</div>
+</div>
+</sc-for>
+</div>
+</aside>
+</section>
+
+<section id="newsletter" aria-label="Newsletter" style="background: {{brand}}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 52px 32px; display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">The Weekly Briefing</span>
+<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 36px; line-height: 1.15; font-weight: 600; color: #FFFFFF">Europe's small-business week, in one email.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #C9D3EA">EU funding calls, rule changes and practical playbooks for founders and managers across the Union.</p>
+</div>
+<form style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 10px">
+<label for="nl-email" style="font-size: 14px; font-weight: 600; color: #FFFFFF">Work email</label>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<input id="nl-email" type="email" placeholder="name@company.eu" style="flex: 1 1 240px; height: 52px; padding: 0 16px; border-radius: 8px; border: none; font-size: 16px; font-family: inherit">
+<button type="button" style="height: 52px; padding: 0 26px; border-radius: 8px; border: none; background: #FFC72C; color: #071C4A; font-weight: 700; font-size: 15px; font-family: inherit; cursor: pointer">Subscribe</button>
+</div>
+<p style="margin: 0; font-size: 13px; color: #C9D3EA">Free. Unsubscribe at any time. Read our <a href="#" style="color: #FFFFFF; text-decoration: underline">privacy policy</a>.</p>
+</form>
+</div>
+</section>
+
+<section aria-label="Tools for SMEs" style="max-width: 1240px; margin: 0 auto; padding: 64px 32px 0">
+<div style="border-top: 3px solid #0E1525; padding-top: 14px; margin-bottom: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 32px; font-weight: 600">Tools for SMEs</h2>
+<p style="margin: 0; font-size: 15px; color: #4A5568">Free, checked monthly by our compliance desk.</p>
+</div>
+<a href="Tools.dc.html" style="font-size: 14px; font-weight: 600; color: #2F5BB7">All tools</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="4">
+<a href="{{t.href}}" style="display: flex; gap: 16px; align-items: flex-start; padding: 20px; border: 1px solid #DDE2EA; border-radius: 12px; text-decoration: none">
+<span aria-hidden="true" style="flex: 0 0 48px; width: 48px; height: 48px; border-radius: 10px; background: {{t.bg}}; color: {{t.fg}}; display: flex; align-items: center; justify-content: center; font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-weight: 600; font-size: 19px">{{t.glyph}}</span>
+<span style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 16px; font-weight: 700; color: #0E1525">{{t.name}}</span>
+<span style="font-size: 14px; line-height: 1.5; color: #4A5568">{{t.desc}}</span>
+</span>
+</a>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="EU Policy and Compliance" style="max-width: 1240px; margin: 0 auto; padding: 64px 32px 24px">
+<div style="border-top: 3px solid #0E1525; padding-top: 14px; margin-bottom: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 32px; font-weight: 600">EU Policy &amp; Compliance</h2>
+<p style="margin: 0; font-size: 15px; color: #4A5568">The rules that shape how Europe's small businesses trade, hire and grow.</p>
+</div>
+<a href="#" style="font-size: 14px; font-weight: 600; color: #2F5BB7">See all in EU Policy</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 32px 28px">
+<sc-for list="{{policy}}" as="p" hint-placeholder-count="4">
+<article style="display: flex; flex-direction: column; gap: 10px">
+<dc-import name="Cover" bg="{{p.bg}}" fg="{{p.fg}}" ring="{{p.ring}}" glyph="{{p.glyph}}" size="{{p.size}}" ratio="4 / 3" hint-size="100%,200px"></dc-import>
+<span style="margin-top: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #2F5BB7">{{p.cat}}</span>
+<h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; line-height: 1.25; font-weight: 600"><a href="#">{{p.title}}</a></h3>
+<span style="font-size: 13px; color: #4A5568">{{p.date}}</span>
+</article>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="Sections" style="max-width: 1240px; margin: 0 auto; padding: 48px 32px 24px; display: flex; flex-wrap: wrap; gap: 48px 40px">
+<sc-for list="{{columns}}" as="c" hint-placeholder-count="3">
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column">
+<div style="border-top: 3px solid #0E1525; padding-top: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; font-weight: 600">{{c.name}}</h2>
+<a href="#" style="font-size: 13px; font-weight: 600; color: #2F5BB7">More</a>
+</div>
+<article style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 20px; border-bottom: 1px solid #DDE2EA">
+<dc-import name="Cover" bg="{{c.lead.bg}}" fg="{{c.lead.fg}}" ring="{{c.lead.ring}}" glyph="{{c.lead.glyph}}" size="{{c.lead.size}}" ratio="16 / 10" hint-size="100%,220px"></dc-import>
+<h3 style="margin: 8px 0 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 23px; line-height: 1.22; font-weight: 600"><a href="#">{{c.lead.title}}</a></h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4A5568">{{c.lead.dek}}</p>
+<span style="font-size: 13px; color: #4A5568">{{c.lead.date}}</span>
+</article>
+<sc-for list="{{c.more}}" as="m" hint-placeholder-count="2">
+<a href="#" style="display: block; padding: 14px 0; border-bottom: 1px solid #DDE2EA; font-size: 16px; font-weight: 600; line-height: 1.35">{{m.title}}</a>
+</sc-for>
+</div>
+</sc-for>
+</section>
+
+<section aria-label="People, technology and most read" style="max-width: 1240px; margin: 0 auto; padding: 48px 32px 72px; display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 8 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 40px">
+<sc-for list="{{duo}}" as="d" hint-placeholder-count="2">
+<div>
+<div style="border-top: 3px solid #0E1525; padding-top: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; font-weight: 600">{{d.name}}</h2>
+<a href="#" style="font-size: 13px; font-weight: 600; color: #2F5BB7">More</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px">
+<sc-for list="{{d.items}}" as="i" hint-placeholder-count="2">
+<article style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+<div style="flex: 0 0 220px">
+<dc-import name="Cover" bg="{{i.bg}}" fg="{{i.fg}}" ring="{{i.ring}}" glyph="{{i.glyph}}" size="{{i.size}}" ratio="16 / 10" hint-size="220px,138px"></dc-import>
+</div>
+<div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; line-height: 1.22; font-weight: 600"><a href="#">{{i.title}}</a></h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4A5568">{{i.dek}}</p>
+<span style="font-size: 13px; color: #4A5568">{{i.date}}</span>
+</div>
+</article>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+
+<aside aria-label="Most read" style="flex: 4 1 300px; min-width: 0">
+<div style="background: #F4F6FA; border-radius: 10px; padding: 28px">
+<h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Most read</h2>
+<ol style="list-style: none; margin: 0; padding: 0">
+<sc-for list="{{mostRead}}" as="r" hint-placeholder-count="5">
+<li style="display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid #DDE2EA">
+<span aria-hidden="true" style="flex: 0 0 28px; font-family: 'Source Serif 4', Georgia, serif; font-size: 30px; font-weight: 600; line-height: 1; color: #2F5BB7">{{r.n}}</span>
+<a href="{{r.href}}" style="font-size: 16px; font-weight: 600; line-height: 1.35">{{r.title}}</a>
+</li>
+</sc-for>
+</ol>
+</div>
+</aside>
+</section>
+</main>
+
+<footer style="background: #071C4A; color: #C9D3EA">
+<div style="max-width: 1240px; margin: 0 auto; padding: 56px 32px 28px">
+<div style="display: flex; flex-wrap: wrap; gap: 40px 56px; justify-content: space-between">
+<div style="flex: 2 1 320px; display: flex; flex-direction: column; gap: 16px">
+<span style="font-size: 24px; font-weight: 800; color: #FFFFFF">EUROPEAN <span style="color: #FFC72C">SME</span></span>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; max-width: 380px">Ideas, innovation and leadership shaping small and medium-sized businesses across Europe — written for founders, operators and the people who back them.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px">
+<a href="#" style="color: #FFFFFF">LinkedIn</a>
+<a href="#" style="color: #FFFFFF">X</a>
+<a href="#" style="color: #FFFFFF">Instagram</a>
+<a href="#" style="color: #FFFFFF">YouTube</a>
+<a href="#" style="color: #FFFFFF">Facebook</a>
+</div>
+</div>
+<nav aria-label="Sections" style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">Sections</span>
+<a href="#" style="color: #C9D3EA">Funding &amp; Grants</a>
+<a href="#" style="color: #C9D3EA">Growth &amp; Strategy</a>
+<a href="#" style="color: #C9D3EA">Money &amp; Cash Flow</a>
+<a href="#" style="color: #C9D3EA">Marketing &amp; Brand</a>
+<a href="#" style="color: #C9D3EA">People &amp; Leadership</a>
+<a href="#" style="color: #C9D3EA">Tech &amp; AI</a>
+<a href="#" style="color: #C9D3EA">EU Policy &amp; Compliance</a>
+</nav>
+<nav aria-label="Magazine" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">Magazine</span>
+<a href="#" style="color: #C9D3EA">About us</a>
+<a href="#" style="color: #C9D3EA">Write for us</a>
+<a href="#" style="color: #C9D3EA">Advertise</a>
+<a href="#" style="color: #C9D3EA">Newsletter</a>
+<a href="#" style="color: #C9D3EA">Contact</a>
+</nav>
+<nav aria-label="Legal" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">Legal</span>
+<a href="#" style="color: #C9D3EA">Privacy policy</a>
+<a href="#" style="color: #C9D3EA">Cookie policy</a>
+<a href="#" style="color: #C9D3EA">Imprint</a>
+<a href="#" style="color: #C9D3EA">Terms of use</a>
+<a href="#" style="color: #C9D3EA">Cookie settings</a>
+</nav>
+</div>
+<div style="margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(201,211,234,0.25); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px">
+<span>© 2026 European SME · [PUBLISHER LEGAL NAME, REGISTERED ADDRESS]</span>
+<span>Made for Europe's 27 member states</span>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#0B2A6B","options":["#0B2A6B","#003399","#14213D","#1E3A8A"]},"$preview":{"width":1440,"height":4000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const T = {
+      navy: { bg: '#0B2A6B', fg: '#FFFFFF', ring: '#FFC72C' },
+      blue: { bg: '#2F5BB7', fg: '#FFFFFF', ring: '#FFC72C' },
+      pale: { bg: '#E6ECF7', fg: '#0B2A6B', ring: '#2F5BB7' },
+      ink:  { bg: '#0E1525', fg: '#FFFFFF', ring: '#FFC72C' }
+    };
+    const date = '13 April 2026';
+    const s = (title, cat, tone, glyph, size, dek) => Object.assign({ title, cat, glyph, size, dek: dek || '', date }, T[tone]);
+    return {
+      brand: this.props.brand ?? '#0B2A6B',
+      tools: [
+        { name: 'EU Funding Finder', desc: 'Grants, loans and equity, with every deadline.', glyph: '€', bg: '#0B2A6B', fg: '#FFFFFF', href: 'FundingFinder.dc.html' },
+        { name: 'Compliance Calendar', desc: 'AI Act, e-invoicing and more, by country.', glyph: '31', bg: '#0E1525', fg: '#FFFFFF', href: 'Compliance.dc.html' },
+        { name: 'Am I an SME?', desc: 'Check the EU definition in 30 seconds.', glyph: 'SME', bg: '#E6ECF7', fg: '#0B2A6B', href: 'Checkers.dc.html' },
+        { name: 'VAT & late-payment calculators', desc: 'Quick sums for selling and getting paid.', glyph: '%', bg: '#2F5BB7', fg: '#FFFFFF', href: 'Calculators.dc.html' }
+      ],
+      secondary: [
+        s('VAT Across EU Borders: What Every SME Needs to Know', 'EU Policy & Compliance', 'pale', 'VAT', '30cqw'),
+        s('Writing EU Grant Applications That Actually Win', 'Funding & Grants', 'blue', 'Apply', '24cqw')
+      ],
+      latest: [
+        { short: '13 Apr', cat: 'Funding & Grants', title: 'How to Access EU Grants and Funding for Your SME' },
+        { short: '13 Apr', cat: 'Money & Cash Flow', title: 'SEPA Direct Debit: The Cash Flow Tool Most SMEs Are Not Using' },
+        { short: '13 Apr', cat: 'Growth & Strategy', title: 'Franchising in Europe: Opportunities and Pitfalls' },
+        { short: '13 Apr', cat: 'Marketing & Brand', title: 'Building a Brand Identity That Does Commercial Work' },
+        { short: '13 Apr', cat: 'People & Leadership', title: 'Mental Health in Business: Looking After Yourself and Your Team' }
+      ],
+      policy: [
+        s('The European Accessibility Act: What SMEs Must Do Now', 'Accessibility', 'navy', 'EAA', '28cqw'),
+        s('GDPR in Practice: A Clear Guide for European SMEs', 'Data protection', 'ink', 'GDPR', '24cqw'),
+        s('EU State Aid Rules: A Practical Guide for SMEs', 'State aid', 'blue', '§', '42cqw'),
+        s('EU Competition Law: What SMEs Must Know to Stay Compliant', 'Competition', 'pale', 'Rules', '24cqw')
+      ],
+      columns: [
+        { name: 'Growth & Strategy',
+          lead: s('Exporting Within the EU Single Market: Your Step-by-Step Guide', '', 'navy', 'Export', '22cqw', 'The world’s largest free-trade area: 440 million consumers and no tariffs. How to start selling into it.'),
+          more: [ { title: 'Internationalisation: A Rigorous Approach to Taking Your SME Global' }, { title: 'Strategic Partnerships That Accelerate Growth' } ] },
+        { name: 'Money & Cash Flow',
+          lead: s('Cash Flow Management: The Discipline That Keeps Businesses Alive', '', 'ink', 'Cash', '26cqw', 'More businesses fail from cash flow problems than from lack of profit. The habits that keep money moving.'),
+          more: [ { title: 'Beyond the Bank Loan: Financing Options for Growing SMEs' }, { title: 'Cross-Border Payments: Managing Money Efficiently Across Europe' } ] },
+        { name: 'Marketing & Brand',
+          lead: s('LinkedIn for European SMEs: A Growth Strategy That Actually Works', '', 'pale', 'Reach', '24cqw', 'Europe’s most important professional platform — and the one most small businesses underuse.'),
+          more: [ { title: 'Email Marketing That Actually Drives Revenue' }, { title: 'Pricing Strategy: How to Charge What Your Business Is Actually Worth' } ] }
+      ],
+      duo: [
+        { name: 'People & Leadership', items: [
+          s('Hiring Across EU Borders Without the Legal Headaches', '', 'blue', 'Hire', '26cqw', 'Freedom of movement is one of the most powerful tools an SME employer has — in theory. How to make it work in practice.'),
+          s('Managing Teams Across Multiple EU Time Zones', '', 'navy', 'CET', '28cqw', 'The EU spans three time zones. A modest spread, but one that creates real coordination costs.')
+        ] },
+        { name: 'Tech & AI', items: [
+          s('AI Tools for SMEs: Where to Start and What to Expect', '', 'ink', 'AI', '34cqw', 'AI moved from competitive advantage to necessity faster than expected. Where a small business should begin.'),
+          s('Cybersecurity for SMEs: The Essentials That Actually Protect You', '', 'pale', 'Cyber', '24cqw', 'Small businesses are not too small to be targeted — only too small to defend themselves without a plan.')
+        ] }
+      ],
+      mostRead: [
+        { n: '1', title: 'How to Write a Business Plan That Actually Gets Funded', href: 'Article.dc.html' },
+        { n: '2', title: 'Digital Transformation on a Budget: A Practical Playbook for SMEs', href: '#' },
+        { n: '3', title: 'Managing Hybrid and Remote Teams: Leadership in a Distributed World', href: '#' },
+        { n: '4', title: 'Hiring Your First Senior Leaders: Getting the Transition Right', href: '#' },
+        { n: '5', title: 'Going Green: How Sustainability Can Cut Costs and Win Business', href: '#' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
