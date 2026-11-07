@@ -192,7 +192,11 @@
       var name = n.attrs[k][0], raw = n.attrs[k][1];
       if (/^on[A-Z]/.test(name)) {
         var fn = attrValue(raw, scope);
-        if (typeof fn === 'function') el.addEventListener(name.slice(2).toLowerCase(), fn);
+        if (typeof fn === 'function') {
+          var type = name.slice(2).toLowerCase();
+          el.addEventListener(type, fn);
+          (el.__dcH || (el.__dcH = {}))[type] = fn;
+        }
         continue;
       }
       var val = attrValue(raw, scope);
@@ -206,8 +210,50 @@
     }
     if (n.raw !== undefined) el.textContent = n.raw;
     else renderNodes(n.children, scope, el, isSvg && lower !== 'foreignobject');
-    if (deferredValue !== undefined) el.value = deferredValue;
+    if (deferredValue !== undefined) { el.value = deferredValue; el.__dcV = deferredValue; }
     parent.appendChild(el);
+  }
+
+  // ---------- in-place DOM update ----------
+  function sameKind(a, b) {
+    if (a.nodeType !== b.nodeType) return false;
+    if (a.nodeType !== 1) return true;
+    return a.tagName === b.tagName && a.namespaceURI === b.namespaceURI &&
+      (a.getAttribute('id') || '') === (b.getAttribute('id') || '');
+  }
+
+  function syncElement(o, n) {
+    var i, attr;
+    for (i = o.attributes.length - 1; i >= 0; i--) {
+      attr = o.attributes[i].name;
+      if (!n.hasAttribute(attr)) o.removeAttribute(attr);
+    }
+    for (i = 0; i < n.attributes.length; i++) {
+      attr = n.attributes[i];
+      if (o.getAttribute(attr.name) !== attr.value) o.setAttribute(attr.name, attr.value);
+    }
+    var oh = o.__dcH || {}, nh = n.__dcH || {}, t;
+    for (t in oh) o.removeEventListener(t, oh[t]);
+    for (t in nh) o.addEventListener(t, nh[t]);
+    o.__dcH = n.__dcH;
+    morph(o, n);
+    if (n.__dcV !== undefined) {
+      o.__dcV = n.__dcV;
+      if (o.value !== n.__dcV && document.activeElement !== o) o.value = n.__dcV;
+      if (o.tagName === 'SELECT' && o.value !== n.__dcV) o.value = n.__dcV;
+    }
+  }
+
+  function morph(oldParent, newParent) {
+    var incoming = Array.prototype.slice.call(newParent.childNodes);
+    for (var i = 0; i < incoming.length; i++) {
+      var nn = incoming[i], on = oldParent.childNodes[i];
+      if (!on) { oldParent.appendChild(nn); continue; }
+      if (!sameKind(on, nn)) { oldParent.replaceChild(nn, on); continue; }
+      if (on.nodeType === 1) syncElement(on, nn);
+      else if (on.nodeValue !== nn.nodeValue) on.nodeValue = nn.nodeValue;
+    }
+    while (oldParent.childNodes.length > incoming.length) oldParent.removeChild(oldParent.lastChild);
   }
 
   function mount() {
@@ -226,18 +272,11 @@
         document.body.insertBefore(root, document.body.firstChild);
         var inst = new def.Cls({});
         var draw = function () {
-          var active = document.activeElement, id = active && root.contains(active) ? active.id : null, sel = null;
-          if (id) { try { sel = [active.selectionStart, active.selectionEnd]; } catch (e) { sel = null; } }
-          var frag = document.createDocumentFragment();
-          renderNodes(def.nodes, inst.renderVals() || {}, frag, false);
-          root.replaceChildren(frag);
-          if (id) {
-            var again = document.getElementById(id);
-            if (again) {
-              again.focus({ preventScroll: true });
-              if (sel && sel[0] != null) { try { again.setSelectionRange(sel[0], sel[1]); } catch (e) { /* number inputs */ } }
-            }
-          }
+          // Build the new tree off-screen, then update the live page in
+          // place, so fields being typed in keep their caret and focus.
+          var next = document.createElement('div');
+          renderNodes(def.nodes, inst.renderVals() || {}, next, false);
+          morph(root, next);
         };
         inst._rerender = draw;
         if (inst.componentWillMount) inst.componentWillMount();
