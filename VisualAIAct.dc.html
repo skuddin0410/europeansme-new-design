@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Act timeline graphic</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,500;1,8..60,600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<figure role="img" aria-label="Timeline of EU AI Act obligations: prohibitions February 2025, general-purpose AI August 2025, transparency duties August 2026, high-risk systems December 2027 (moved from August 2026), high-risk AI in products August 2028." style="margin: 0; width: 100%; aspect-ratio: 16 / 9; container-type: inline-size; background: #0B2A6B; border-radius: {{radius}}; overflow: hidden; position: relative; font-family: 'Inter', system-ui, sans-serif; color: #FFFFFF; box-sizing: border-box">
+<div style="width: 100%; height: 100%; box-sizing: border-box; padding: 5cqw 5cqw 4cqw; display: flex; flex-direction: column; gap: 0">
+<span style="font-size: 1.5cqw; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">EU AI Act</span>
+<span style="margin-top: 1cqw; font-family: 'Source Serif 4', Georgia, serif; font-size: 4.4cqw; line-height: 1.1; font-weight: 600">The new timeline</span>
+<div style="flex: 1 1 auto; position: relative; display: flex; align-items: center">
+<div style="position: relative; width: 100%; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.5cqw">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 1.55cqw; height: 0.3cqw; background: rgba(201,211,234,0.35)"></div>
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+<div style="display: flex; flex-direction: column; gap: 1cqw; padding-top: {{s.pad}}">
+<span aria-hidden="true" style="position: relative; z-index: 1; width: 2.4cqw; height: 2.4cqw; border-radius: 50%; background: {{s.dot}}; border: 0.4cqw solid #0B2A6B; box-shadow: 0 0 0 0.3cqw {{s.dot}}"></span>
+<span style="font-size: 2.3cqw; font-weight: 800; color: {{s.dateColor}}">{{s.date}}</span>
+<span style="font-size: 1.6cqw; line-height: 1.35; color: #DCE3F2">{{s.label}}</span>
+<span style="font-size: 1.3cqw; font-weight: 700; color: #FFC72C">{{s.tag}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<span style="font-size: 1.25cqw; color: #A9B7D6">Source: Regulation (EU) 2024/1689 as amended by Regulation (EU) 2026/1744 (Digital Omnibus on AI)</span>
+</div>
+</figure>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"radius":{"editor":"text","default":"8px"},"$preview":{"width":960,"height":540}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const past = { dot: '#A9B7D6', dateColor: '#C9D3EA', pad: '0' };
+    const now = { dot: '#FFFFFF', dateColor: '#FFFFFF', pad: '0' };
+    const moved = { dot: '#FFC72C', dateColor: '#FFC72C', pad: '0' };
+    return {
+      radius: this.props.radius ?? '8px',
+      steps: [
+        Object.assign({ date: 'Feb 2025', label: 'Banned practices and AI literacy duty', tag: 'In force' }, past),
+        Object.assign({ date: 'Aug 2025', label: 'General-purpose AI model rules', tag: 'In force' }, past),
+        Object.assign({ date: 'Aug 2026', label: 'Transparency duties, e.g. chatbots and AI content', tag: 'In force' }, now),
+        Object.assign({ date: 'Dec 2027', label: 'High-risk AI: hiring, credit scoring, education', tag: 'Moved from Aug 2026' }, moved),
+        Object.assign({ date: 'Aug 2028', label: 'High-risk AI inside regulated products', tag: 'Moved from Aug 2027' }, moved)
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
