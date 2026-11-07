@@ -41,20 +41,19 @@ a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
 </nav>
 </header>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"active":{"editor":"enum","options":["none","Funding","Growth","Money","Marketing","Hiring","Trade","Tech","Policy","Startups","Countries","Tools"],"default":"none"},"$preview":{"width":1440,"height":200}}'>
+<script type="text/x-dc" data-dc-script data-props='{"active":{"editor":"enum","options":["none","Articles","Funding","Growth","Money","Marketing","Hiring","Tech","Policy","Countries","Tools"],"default":"none"},"$preview":{"width":1440,"height":200}}'>
 class Component extends DCLogic {
   renderVals() {
     const active = this.props.active ?? 'none';
     const list = [
-      ['Funding', 'Funding', 'FundingFinder.dc.html'],
-      ['Growth', 'Growth', '#'],
-      ['Money', 'Money', '#'],
-      ['Marketing', 'Marketing', '#'],
-      ['Hiring', 'Hiring & Talent', '#'],
-      ['Trade', 'Trade & Export', '#'],
-      ['Tech', 'Tech & AI', '#'],
-      ['Policy', 'EU Policy', 'Compliance.dc.html'],
-      ['Startups', 'Startups', '#'],
+      ['Articles', 'All articles', 'Articles.dc.html'],
+      ['Funding', 'Funding', 'Articles.dc.html?section=funding'],
+      ['Growth', 'Growth', 'Articles.dc.html?section=growth'],
+      ['Money', 'Money', 'Articles.dc.html?section=money'],
+      ['Marketing', 'Marketing', 'Articles.dc.html?section=marketing'],
+      ['Hiring', 'People', 'Articles.dc.html?section=people'],
+      ['Tech', 'Tech & AI', 'Articles.dc.html?section=tech'],
+      ['Policy', 'EU Policy', 'Articles.dc.html?section=policy'],
       ['Countries', 'Countries', 'CountryHub.dc.html']
     ];
     return {

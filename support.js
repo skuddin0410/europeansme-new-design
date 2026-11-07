@@ -133,6 +133,11 @@
       .then(function (src) {
         var def = extract(src);
         defs[name] = def;
+        // Child component styles (hover states etc.) go into the page once.
+        if (def.helmet && /<style/i.test(def.helmet)) {
+          var styles = def.helmet.match(/<style[\s\S]*?<\/style>/gi) || [];
+          document.head.insertAdjacentHTML('beforeend', styles.join(''));
+        }
         return Promise.all(importsIn(def.source).map(loadDef)).then(function () { return def; });
       });
     return defs[name];
@@ -187,7 +192,7 @@
 
     var isSvg = svg || lower === 'svg';
     var el = isSvg ? document.createElementNS(SVG_NS, tag) : document.createElement(tag);
-    var deferredValue;
+    var deferredValue, deferredHtml;
     for (k = 0; k < n.attrs.length; k++) {
       var name = n.attrs[k][0], raw = n.attrs[k][1];
       if (/^on[A-Z]/.test(name)) {
@@ -200,6 +205,10 @@
         continue;
       }
       var val = attrValue(raw, scope);
+      if (name === 'dc-html') {
+        deferredHtml = val == null ? '' : String(val);
+        continue;
+      }
       if (name === 'value' && (lower === 'input' || lower === 'select' || lower === 'textarea')) {
         deferredValue = val == null ? '' : String(val);
         if (lower === 'input') el.setAttribute('value', deferredValue);
@@ -209,6 +218,7 @@
       el.setAttribute(name, val === true ? '' : String(val));
     }
     if (n.raw !== undefined) el.textContent = n.raw;
+    else if (deferredHtml !== undefined) el.innerHTML = deferredHtml;
     else renderNodes(n.children, scope, el, isSvg && lower !== 'foreignobject');
     if (deferredValue !== undefined) { el.value = deferredValue; el.__dcV = deferredValue; }
     parent.appendChild(el);
@@ -291,6 +301,102 @@
         document.body.insertAdjacentHTML('afterbegin', '<p style="font:16px sans-serif;padding:24px">This page could not be loaded. (' + String(err) + ')</p>');
       });
   }
+
+  // ---------- live articles from europeansme.eu ----------
+  var API = 'https://europeansme.eu/wp-json/wp/v2/posts?per_page=100&_embed=wp:featuredmedia,wp:term,author';
+  var SECTIONS = {
+    funding: { label: 'Funding & Grants', color: '#B07A00' },
+    growth: { label: 'Growth & Strategy', color: '#2F5BB7' },
+    money: { label: 'Money & Cash Flow', color: '#0F7B6C' },
+    marketing: { label: 'Marketing & Brand', color: '#8A3FB8' },
+    people: { label: 'People & Leadership', color: '#C2410C' },
+    tech: { label: 'Tech & AI', color: '#4338CA' },
+    policy: { label: 'EU Policy', color: '#0B2A6B' }
+  };
+  var CAT_MAP = {
+    funding: 'funding', 'eu-grant': 'funding', investment: 'funding', finance: 'funding',
+    'business-growth': 'growth', 'business-planning': 'growth', 'export': 'growth', franchise: 'growth', advisory: 'growth',
+    economic: 'growth', pricing: 'growth', sales: 'growth', supply: 'growth', sustainability: 'growth',
+    'cash-flow': 'money', payments: 'money', 'electronic-invoicing': 'money', tax: 'money', insurance: 'money',
+    marketing: 'marketing', brand: 'marketing', 'e-commerce': 'marketing',
+    hiring: 'people', leadership: 'people', remote: 'people', 'eu-time-zones': 'people', 'eu-employment-law': 'people',
+    'digital-transformation': 'tech', cybersecurity: 'tech', 'artificial-intelligence': 'tech',
+    law: 'policy'
+  };
+  var POLICY_RE = /\bVAT\b|\bTax|GDPR|\bLaw\b|\bAct\b|State Aid|Competition|Procurement|Compliance|Regulat/i;
+  function plain(html) { return decode(String(html || '').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim(); }
+  function clean(html) {
+    return String(html || '')
+      .replace(/<script[\s\S]*?<\/script>/gi, '')
+      .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*')/gi, '');
+  }
+  function mapPost(p) {
+    var emb = p._embedded || {};
+    var media = (emb['wp:featuredmedia'] || [])[0] || {};
+    var sizes = (media.media_details && media.media_details.sizes) || {};
+    var pickSize = function (names) {
+      for (var i = 0; i < names.length; i++) if (sizes[names[i]]) return sizes[names[i]].source_url;
+      return media.source_url || '';
+    };
+    var cats = ((emb['wp:term'] || [])[0] || []);
+    var catSlug = cats.length ? cats[0].slug : '';
+    var title = plain(p.title && p.title.rendered);
+    var section = CAT_MAP[catSlug] || (POLICY_RE.test(title) ? 'policy' : 'growth');
+    var text = plain(p.content && p.content.rendered);
+    var words = (text.match(/\S+/g) || []).length;
+    var excerpt = plain(p.excerpt && p.excerpt.rendered).replace(/\s*\[…\]\s*$|\s*\[&hellip;\]\s*$/, '');
+    if (excerpt.length > 220) excerpt = excerpt.slice(0, 217).replace(/\s+\S*$/, '') + '…';
+    var d = new Date(p.date);
+    return {
+      id: p.id, slug: p.slug, link: p.link, title: title, excerpt: excerpt,
+      date: d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
+      shortDate: d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+      mins: Math.max(1, Math.round(words / 220)),
+      img: pickSize(['medium_large', 'large', 'bunyad-768', 'full']),
+      imgLarge: pickSize(['full', 'large', 'medium_large']),
+      thumb: pickSize(['bunyad-small', 'medium', 'thumbnail', 'medium_large']),
+      alt: media.alt_text || title,
+      section: section, sectionLabel: SECTIONS[section].label, color: SECTIONS[section].color,
+      category: cats.length ? plain(cats[0].name) : '',
+      author: ((emb.author || [])[0] || {}).name || 'European SME',
+      href: 'Post.dc.html?slug=' + encodeURIComponent(p.slug),
+      content: clean(p.content && p.content.rendered)
+    };
+  }
+  var postsPromise = null;
+  window.ESME = {
+    sections: SECTIONS,
+    loadPosts: function () {
+      if (postsPromise) return postsPromise;
+      var KEY = 'esme-posts-v2';
+      try {
+        var cached = JSON.parse(sessionStorage.getItem(KEY) || 'null');
+        if (cached && cached.at > Date.now() - 15 * 60 * 1000) { postsPromise = Promise.resolve(cached.posts); return postsPromise; }
+      } catch (e) { /* storage unavailable */ }
+      postsPromise = fetch(API).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).then(function (list) {
+        var posts = list.map(mapPost);
+        try { sessionStorage.setItem(KEY, JSON.stringify({ at: Date.now(), posts: posts })); } catch (e) { /* too large or blocked */ }
+        return posts;
+      });
+      postsPromise.catch(function () { postsPromise = null; });
+      return postsPromise;
+    },
+    // Take up to n posts matching test, never reusing one already in `used`.
+    take: function (posts, test, n, used) {
+      var out = [];
+      for (var i = 0; i < posts.length && out.length < n; i++) {
+        var p = posts[i];
+        if (used[p.id] || (test && !test(p))) continue;
+        used[p.id] = true;
+        out.push(p);
+      }
+      return out;
+    },
+    param: function (name) { return new URLSearchParams(location.search).get(name); }
+  };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount);
   else mount();

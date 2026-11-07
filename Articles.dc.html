@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Articles — European SME</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,500;1,8..60,600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#0E1525;text-decoration:none}
+a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
+.esme-chipbtn{transition:background .15s ease, border-color .15s ease}
+.esme-chipbtn:hover{border-color:#0B2A6B}
+.esme-skel{background:linear-gradient(90deg,#EEF1F5 25%,#F6F8FB 50%,#EEF1F5 75%);background-size:200% 100%;animation:esme-sh 1.2s infinite linear;border-radius:12px}
+@keyframes esme-sh{from{background-position:200% 0}to{background-position:-200% 0}}
+</style>
+</helmet>
+<div style="font-family: 'Inter', system-ui, sans-serif; color: #0E1525; background: #FFFFFF">
+<dc-import name="SiteHeader" active="{{navActive}}" hint-size="100%,124px"></dc-import>
+
+<main>
+<section aria-label="Introduction" style="background: #F4F6FA; border-bottom: 1px solid #DDE2EA">
+<div style="max-width: 1240px; margin: 0 auto; padding: 44px 32px 32px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 720px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #2F5BB7">{{eyebrow}}</span>
+<h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(36px, 5vw, 52px); line-height: 1.05; font-weight: 600; letter-spacing: -0.015em">{{heading}}</h1>
+<p style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 19px; line-height: 1.5; color: #4A5568">{{intro}}</p>
+</div>
+<div style="flex: 0 1 360px; display: flex; flex-direction: column; gap: 6px">
+<label for="art-search" style="font-size: 13px; font-weight: 700">Search articles</label>
+<input id="art-search" type="search" placeholder="e.g. VAT, hiring, cash flow" value="{{q}}" onInput="{{setQ}}" style="height: 48px; padding: 0 16px; border-radius: 10px; border: 1px solid #C7CFDC; font-size: 16px; font-family: inherit; background: #FFFFFF">
+</div>
+</div>
+<div role="group" aria-label="Sections" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="8">
+<button type="button" class="esme-chipbtn" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="min-height: 42px; padding: 0 16px; border-radius: 999px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.border}}">
+<span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: {{c.dot}}"></span>{{c.label}}<span style="font-size: 12px; font-weight: 700; opacity: 0.7">{{c.count}}</span>
+</button>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section aria-label="Articles" style="max-width: 1240px; margin: 0 auto; padding: 36px 32px 72px">
+<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px 28px">
+<sc-for list="{{skeletons}}" as="s" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="esme-skel" style="aspect-ratio: 16 / 10"></div><div class="esme-skel" style="height: 14px; width: 40%"></div><div class="esme-skel" style="height: 22px"></div><div class="esme-skel" style="height: 22px; width: 80%"></div></div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{failed}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 32px; border: 1px solid #DDE2EA; border-radius: 12px; font-size: 16px; color: #4A5568">We couldn't load articles from europeansme.eu right now. Please refresh the page.</div>
+</sc-if>
+
+<sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 24px">
+<h2 style="margin: 0; font-size: 15px; font-weight: 700; color: #4A5568">{{countLabel}}</h2>
+<label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #4A5568">Sort
+<select id="art-sort" value="{{sort}}" onChange="{{setSort}}" style="height: 40px; padding: 0 10px; border-radius: 8px; border: 1px solid #C7CFDC; font-size: 14px; font-family: inherit; background: #FFFFFF">
+<option value="latest">Latest</option>
+<option value="quick">Quickest reads</option>
+<option value="az">A–Z</option>
+</select>
+</label>
+</div>
+
+<sc-if value="{{hasLead}}" hint-placeholder-val="{{ true }}">
+<div style="margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid #DDE2EA">
+<dc-import name="Card" post="{{lead}}" variant="row" hint-size="100%,220px"></dc-import>
+</div>
+</sc-if>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 44px 28px">
+<sc-for list="{{shown}}" as="p" hint-placeholder-count="9">
+<dc-import name="Card" post="{{p}}" variant="standard" hint-size="100%,420px"></dc-import>
+</sc-for>
+</div>
+
+<sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 40px; border: 1px dashed #C7CFDC; border-radius: 12px; text-align: center; font-size: 16px; color: #4A5568">No articles match “{{q}}”. Try another word or section.</div>
+</sc-if>
+
+<sc-if value="{{hasMore}}" hint-placeholder-val="{{ false }}">
+<div style="margin-top: 48px; display: flex; justify-content: center">
+<button type="button" onClick="{{more}}" style="min-height: 50px; padding: 0 28px; border-radius: 999px; border: 1px solid #0B2A6B; background: #FFFFFF; color: #0B2A6B; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer">Load more articles ({{remaining}})</button>
+</div>
+</sc-if>
+</sc-if>
+</section>
+
+<section aria-label="Newsletter" style="background: #0B2A6B">
+<div style="max-width: 1240px; margin: 0 auto; padding: 48px 32px; display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">The Weekly Briefing</span>
+<span style="font-family: 'Source Serif 4', Georgia, serif; font-size: 30px; line-height: 1.2; font-weight: 600; color: #FFFFFF">New guides like these, once a week.</span>
+</div>
+<form style="flex: 1 1 420px; display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end">
+<label for="nl-arch" style="flex: 1 1 100%; font-size: 14px; font-weight: 600; color: #FFFFFF">Work email</label>
+<input id="nl-arch" type="email" placeholder="name@company.eu" style="flex: 1 1 240px; height: 50px; padding: 0 14px; border-radius: 8px; border: none; font-size: 16px; font-family: inherit">
+<button type="button" style="height: 50px; padding: 0 24px; border-radius: 8px; border: none; background: #FFC72C; color: #071C4A; font-weight: 700; font-size: 15px; font-family: inherit; cursor: pointer">Subscribe</button>
+</form>
+</div>
+</section>
+</main>
+
+<footer style="background: #071C4A; color: #C9D3EA">
+<div style="max-width: 1240px; margin: 0 auto; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px">
+<span>© 2026 European SME · Articles load live from europeansme.eu</span>
+<nav aria-label="Footer" style="display: flex; gap: 20px"><a href="Main.dc.html" style="color: #C9D3EA">Home</a><a href="Tools.dc.html" style="color: #C9D3EA">Tools</a><a href="#" style="color: #C9D3EA">Privacy policy</a></nav>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const s = window.ESME && ESME.param('section');
+    this.state = { posts: null, failed: false, section: s && ESME.sections[s] ? s : 'all', q: ESME.param('q') || '', sort: 'latest', limit: 12 };
+  }
+  componentDidMount() {
+    ESME.loadPosts().then((posts) => this.setState({ posts })).catch(() => this.setState({ failed: true }));
+  }
+  renderVals() {
+    const { posts, failed, section, q, sort, limit } = this.state;
+    const S = ESME.sections;
+    const navKey = { funding: 'Funding', growth: 'Growth', money: 'Money', marketing: 'Marketing', people: 'Hiring', tech: 'Tech', policy: 'Policy' };
+    const all = posts || [];
+    const needle = q.trim().toLowerCase();
+    const matchQ = (p) => !needle || (p.title + ' ' + p.excerpt + ' ' + p.category).toLowerCase().includes(needle);
+    let list = all.filter((p) => (section === 'all' || p.section === section) && matchQ(p));
+    if (sort === 'az') list = list.slice().sort((a, b) => a.title.localeCompare(b.title));
+    if (sort === 'quick') list = list.slice().sort((a, b) => a.mins - b.mins);
+    const useLead = list.length > 3 && !needle && sort === 'latest';
+    const lead = useLead ? list[0] : null;
+    const rest = useLead ? list.slice(1) : list;
+    const shown = rest.slice(0, limit);
+    const count = (key) => all.filter((p) => (key === 'all' || p.section === key) && matchQ(p)).length;
+    const chipKeys = ['all'].concat(Object.keys(S));
+    const pickSection = (key) => {
+      this.setState({ section: key, limit: 12 });
+      const url = new URL(location.href);
+      if (key === 'all') url.searchParams.delete('section'); else url.searchParams.set('section', key);
+      history.replaceState(null, '', url);
+    };
+    const sec = section === 'all' ? null : S[section];
+    return {
+      navActive: section === 'all' ? 'Articles' : navKey[section],
+      eyebrow: sec ? 'Section' : 'Library',
+      heading: sec ? sec.label : 'All articles',
+      intro: sec ? 'Practical guides from European SME on ' + sec.label.toLowerCase() + ' for small and medium-sized businesses.' : 'Every guide we have published for Europe’s small and medium-sized businesses, in one place.',
+      chips: chipKeys.map((key) => {
+        const on = key === section;
+        return {
+          label: key === 'all' ? 'All' : S[key].label,
+          dot: key === 'all' ? '#FFC72C' : S[key].color,
+          count: posts ? String(count(key)) : '',
+          on: on ? 'true' : 'false',
+          bg: on ? '#0B2A6B' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0E1525', border: on ? '#0B2A6B' : '#C7CFDC',
+          pick: () => pickSection(key)
+        };
+      }),
+      q, setQ: (e) => this.setState({ q: e.target.value, limit: 12 }),
+      sort, setSort: (e) => this.setState({ sort: e.target.value }),
+      loading: !posts && !failed, failed, ready: !!posts,
+      skeletons: [1, 2, 3, 4, 5, 6],
+      countLabel: list.length === 1 ? '1 article' : list.length + ' articles',
+      hasLead: !!lead, lead,
+      shown,
+      empty: !!posts && list.length === 0,
+      hasMore: rest.length > shown.length,
+      remaining: String(rest.length - shown.length),
+      more: () => this.setState({ limit: limit + 12 })
+    };
+  }
+}
+</script>
+</body>
+</html>

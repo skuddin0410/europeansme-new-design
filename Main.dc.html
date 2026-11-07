@@ -14,52 +14,13 @@
 body{margin:0;background:#FFFFFF}
 a{color:#0E1525;text-decoration:none}
 a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
+.esme-skel{background:linear-gradient(90deg,#EEF1F5 25%,#F6F8FB 50%,#EEF1F5 75%);background-size:200% 100%;animation:esme-sh 1.2s infinite linear;border-radius:12px}
+@keyframes esme-sh{from{background-position:200% 0}to{background-position:-200% 0}}
 </style>
 </helmet>
 <div style="font-family: 'Inter', system-ui, sans-serif; color: #0E1525; background: #FFFFFF; min-height: 100vh">
 
-<header>
-<div style="background: #071C4A; color: #C9D3EA; font-size: 13px">
-<div style="max-width: 1240px; margin: 0 auto; padding: 8px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px">
-<span>The independent magazine for Europe's small and medium-sized businesses</span>
-<nav aria-label="Utility" style="display: flex; flex-wrap: wrap; gap: 20px">
-<a href="#" style="color: #C9D3EA">About</a>
-<a href="#" style="color: #C9D3EA">Advertise</a>
-<a href="#" style="color: #C9D3EA">Write for us</a>
-<a href="#" style="color: #C9D3EA">Contact</a>
-</nav>
-</div>
-</div>
-
-<div style="background: {{brand}}">
-<div style="max-width: 1240px; margin: 0 auto; padding: 20px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
-<button type="button" aria-label="Search" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.35); background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
-<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
-</button>
-<a href="#" aria-label="European SME home" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
-<svg aria-hidden="true" viewBox="0 0 200 200" style="width: 46px; height: 46px; fill: #FFC72C"><path transform="translate(180.0 100.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(169.3 140.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(140.0 169.3) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(100.0 180.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(60.0 169.3) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(30.7 140.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(20.0 100.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(30.7 60.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(60.0 30.7) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(100.0 20.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(140.0 30.7) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(169.3 60.0) scale(2.2)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path></svg>
-<span style="font-size: 30px; font-weight: 800; letter-spacing: 0.01em; color: #FFFFFF; line-height: 1">EUROPEAN <span style="color: #FFC72C">SME</span></span>
-</a>
-<a href="#newsletter" style="background: #FFC72C; color: #071C4A; font-weight: 700; font-size: 14px; padding: 13px 22px; border-radius: 999px; text-decoration: none">Subscribe free</a>
-</div>
-</div>
-
-<nav aria-label="Sections" style="background: #FFFFFF; border-bottom: 1px solid #DDE2EA">
-<div style="max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 22px">
-<a href="FundingFinder.dc.html" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Funding</a>
-<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Growth</a>
-<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Money</a>
-<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Marketing</a>
-<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Hiring &amp; Talent</a>
-<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Trade &amp; Export</a>
-<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Tech &amp; AI</a>
-<a href="Compliance.dc.html" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">EU Policy</a>
-<a href="#" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Startups</a>
-<a href="CountryHub.dc.html" style="padding: 16px 0; font-size: 13.5px; font-weight: 600">Countries</a>
-<a href="Tools.dc.html" style="margin-left: 6px; padding: 8px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 700; color: #0B2A6B; border: 1px solid #0B2A6B">Tools</a>
-</div>
-</nav>
-</header>
+<dc-import name="SiteHeader" active="none" hint-size="100%,124px"></dc-import>
 
 <main>
 <section aria-label="Top stories" style="max-width: 1240px; margin: 0 auto; padding: 40px 32px 56px; display: flex; flex-wrap: wrap; gap: 48px">
@@ -90,16 +51,10 @@ a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
 <div>
 <div style="border-top: 3px solid #0E1525; padding-top: 12px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: baseline">
 <h2 style="margin: 0; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Latest</h2>
-<a href="#" style="font-size: 13px; font-weight: 600; color: #2F5BB7">All stories</a>
+<a href="Articles.dc.html" style="font-size: 13px; font-weight: 600; color: #2F5BB7">All stories</a>
 </div>
 <sc-for list="{{latest}}" as="l" hint-placeholder-count="5">
-<div style="display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid #DDE2EA">
-<span style="flex: 0 0 64px; font-size: 12px; font-weight: 600; color: #4A5568; padding-top: 3px">{{l.short}}</span>
-<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
-<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #2F5BB7">{{l.cat}}</span>
-<a href="#" style="font-size: 16px; font-weight: 600; line-height: 1.35">{{l.title}}</a>
-</div>
-</div>
+<div style="border-bottom: 1px solid #DDE2EA"><dc-import name="Card" post="{{l}}" variant="compact" hint-size="100%,94px"></dc-import></div>
 </sc-for>
 </div>
 </aside>
@@ -144,86 +99,102 @@ a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
 </div>
 </section>
 
-<section aria-label="EU Policy and Compliance" style="max-width: 1240px; margin: 0 auto; padding: 64px 32px 24px">
+
+<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 64px 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 28px">
+<sc-for list="{{skeletons}}" as="k" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="esme-skel" style="aspect-ratio: 16 / 10"></div><div class="esme-skel" style="height: 18px; width: 60%"></div><div class="esme-skel" style="height: 22px"></div></div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{failed}}" hint-placeholder-val="{{ false }}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 48px 32px; font-size: 16px; color: #4A5568">Live articles from europeansme.eu could not be loaded right now. Please refresh, or <a href="Articles.dc.html" style="color: #2F5BB7; text-decoration: underline">browse all articles</a>.</div>
+</sc-if>
+<sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+<section aria-label="Editor's picks from europeansme.eu" style="max-width: 1240px; margin: 0 auto; padding: 64px 32px 24px">
+<div style="border-top: 3px solid #0E1525; padding-top: 14px; margin-bottom: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 32px; font-weight: 600">From the magazine</h2>
+<p style="margin: 0; font-size: 15px; color: #4A5568">The newest guides published on europeansme.eu.</p>
+</div>
+<a href="Articles.dc.html" style="font-size: 14px; font-weight: 600; color: #2F5BB7">All articles →</a>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 7 1 560px; min-width: 0"><dc-import name="Card" post="{{feature}}" variant="feature" hint-size="100%,640px"></dc-import></div>
+<div style="flex: 5 1 340px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 32px 24px; align-content: start">
+<sc-for list="{{featureSide}}" as="f" hint-placeholder-count="4">
+<dc-import name="Card" post="{{f}}" variant="standard" hint-size="100%,300px"></dc-import>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section aria-label="EU Policy and Compliance" style="background: #F4F6FA; margin-top: 48px">
+<div style="max-width: 1240px; margin: 0 auto; padding: 64px 32px">
 <div style="border-top: 3px solid #0E1525; padding-top: 14px; margin-bottom: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
 <div style="display: flex; flex-direction: column; gap: 4px">
 <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 32px; font-weight: 600">EU Policy &amp; Compliance</h2>
-<p style="margin: 0; font-size: 15px; color: #4A5568">The rules that shape how Europe's small businesses trade, hire and grow.</p>
+<p style="margin: 0; font-size: 15px; color: #4A5568">The rules that shape how Europe’s small businesses trade, hire and grow.</p>
 </div>
-<a href="#" style="font-size: 14px; font-weight: 600; color: #2F5BB7">See all in EU Policy</a>
+<a href="Articles.dc.html?section=policy" style="font-size: 14px; font-weight: 600; color: #2F5BB7">See all in EU Policy →</a>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 32px 28px">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 40px 28px">
 <sc-for list="{{policy}}" as="p" hint-placeholder-count="4">
-<article style="display: flex; flex-direction: column; gap: 10px">
-<dc-import name="Cover" bg="{{p.bg}}" fg="{{p.fg}}" ring="{{p.ring}}" glyph="{{p.glyph}}" size="{{p.size}}" ratio="4 / 3" hint-size="100%,200px"></dc-import>
-<span style="margin-top: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #2F5BB7">{{p.cat}}</span>
-<h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; line-height: 1.25; font-weight: 600"><a href="#">{{p.title}}</a></h3>
-<span style="font-size: 13px; color: #4A5568">{{p.date}}</span>
-</article>
+<dc-import name="Card" post="{{p}}" variant="standard" hint-size="100%,400px"></dc-import>
 </sc-for>
+</div>
 </div>
 </section>
 
-<section aria-label="Sections" style="max-width: 1240px; margin: 0 auto; padding: 48px 32px 24px; display: flex; flex-wrap: wrap; gap: 48px 40px">
+<section aria-label="Sections" style="max-width: 1240px; margin: 0 auto; padding: 64px 32px 24px; display: flex; flex-wrap: wrap; gap: 48px 40px">
 <sc-for list="{{columns}}" as="c" hint-placeholder-count="3">
-<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column">
-<div style="border-top: 3px solid #0E1525; padding-top: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: baseline">
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<div style="border-top: 3px solid {{c.color}}; padding-top: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: baseline">
 <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; font-weight: 600">{{c.name}}</h2>
-<a href="#" style="font-size: 13px; font-weight: 600; color: #2F5BB7">More</a>
+<a href="{{c.href}}" style="font-size: 13px; font-weight: 600; color: #2F5BB7">More →</a>
 </div>
-<article style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 20px; border-bottom: 1px solid #DDE2EA">
-<dc-import name="Cover" bg="{{c.lead.bg}}" fg="{{c.lead.fg}}" ring="{{c.lead.ring}}" glyph="{{c.lead.glyph}}" size="{{c.lead.size}}" ratio="16 / 10" hint-size="100%,220px"></dc-import>
-<h3 style="margin: 8px 0 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 23px; line-height: 1.22; font-weight: 600"><a href="#">{{c.lead.title}}</a></h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4A5568">{{c.lead.dek}}</p>
-<span style="font-size: 13px; color: #4A5568">{{c.lead.date}}</span>
-</article>
+<dc-import name="Card" post="{{c.lead}}" variant="standard" hint-size="100%,400px"></dc-import>
+<div style="margin-top: 12px; border-top: 1px solid #DDE2EA">
 <sc-for list="{{c.more}}" as="m" hint-placeholder-count="2">
-<a href="#" style="display: block; padding: 14px 0; border-bottom: 1px solid #DDE2EA; font-size: 16px; font-weight: 600; line-height: 1.35">{{m.title}}</a>
+<div style="border-bottom: 1px solid #DDE2EA"><dc-import name="Card" post="{{m}}" variant="compact" hint-size="100%,94px"></dc-import></div>
 </sc-for>
+</div>
 </div>
 </sc-for>
 </section>
 
-<section aria-label="People, technology and most read" style="max-width: 1240px; margin: 0 auto; padding: 48px 32px 72px; display: flex; flex-wrap: wrap; gap: 48px">
-<div style="flex: 8 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 40px">
+<section aria-label="People, technology and most read" style="max-width: 1240px; margin: 0 auto; padding: 48px 32px 40px; display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 8 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 48px">
 <sc-for list="{{duo}}" as="d" hint-placeholder-count="2">
 <div>
-<div style="border-top: 3px solid #0E1525; padding-top: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: baseline">
+<div style="border-top: 3px solid {{d.color}}; padding-top: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: baseline">
 <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; font-weight: 600">{{d.name}}</h2>
-<a href="#" style="font-size: 13px; font-weight: 600; color: #2F5BB7">More</a>
+<a href="{{d.href}}" style="font-size: 13px; font-weight: 600; color: #2F5BB7">More →</a>
 </div>
-<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 28px">
 <sc-for list="{{d.items}}" as="i" hint-placeholder-count="2">
-<article style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
-<div style="flex: 0 0 220px">
-<dc-import name="Cover" bg="{{i.bg}}" fg="{{i.fg}}" ring="{{i.ring}}" glyph="{{i.glyph}}" size="{{i.size}}" ratio="16 / 10" hint-size="220px,138px"></dc-import>
-</div>
-<div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
-<h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; line-height: 1.22; font-weight: 600"><a href="#">{{i.title}}</a></h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4A5568">{{i.dek}}</p>
-<span style="font-size: 13px; color: #4A5568">{{i.date}}</span>
-</div>
-</article>
+<dc-import name="Card" post="{{i}}" variant="row" hint-size="100%,200px"></dc-import>
 </sc-for>
 </div>
 </div>
 </sc-for>
 </div>
-
-<aside aria-label="Most read" style="flex: 4 1 300px; min-width: 0">
-<div style="background: #F4F6FA; border-radius: 10px; padding: 28px">
-<h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Most read</h2>
+<aside aria-label="Popular" style="flex: 4 1 300px; min-width: 0">
+<div style="background: #F4F6FA; border-radius: 14px; padding: 24px 24px 8px">
+<h2 style="margin: 0 0 4px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Popular this month</h2>
 <ol style="list-style: none; margin: 0; padding: 0">
-<sc-for list="{{mostRead}}" as="r" hint-placeholder-count="5">
-<li style="display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid #DDE2EA">
-<span aria-hidden="true" style="flex: 0 0 28px; font-family: 'Source Serif 4', Georgia, serif; font-size: 30px; font-weight: 600; line-height: 1; color: #2F5BB7">{{r.n}}</span>
-<a href="{{r.href}}" style="font-size: 16px; font-weight: 600; line-height: 1.35">{{r.title}}</a>
-</li>
+<sc-for list="{{popular}}" as="r" hint-placeholder-count="5">
+<li style="border-bottom: 1px solid #DDE2EA"><dc-import name="Card" post="{{r.post}}" variant="compact" rank="{{r.n}}" hint-size="100%,94px"></dc-import></li>
 </sc-for>
 </ol>
 </div>
 </aside>
 </section>
+
+<div style="max-width: 1240px; margin: 0 auto; padding: 8px 32px 80px; display: flex; justify-content: center">
+<a href="Articles.dc.html" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; border-radius: 999px; background: #0B2A6B; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none">Browse all {{total}} articles <span aria-hidden="true">→</span></a>
+</div>
+</sc-if>
 </main>
 
 <footer style="background: #071C4A; color: #C9D3EA">
@@ -242,13 +213,13 @@ a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
 </div>
 <nav aria-label="Sections" style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
 <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">Sections</span>
-<a href="#" style="color: #C9D3EA">Funding &amp; Grants</a>
-<a href="#" style="color: #C9D3EA">Growth &amp; Strategy</a>
-<a href="#" style="color: #C9D3EA">Money &amp; Cash Flow</a>
-<a href="#" style="color: #C9D3EA">Marketing &amp; Brand</a>
-<a href="#" style="color: #C9D3EA">People &amp; Leadership</a>
-<a href="#" style="color: #C9D3EA">Tech &amp; AI</a>
-<a href="#" style="color: #C9D3EA">EU Policy &amp; Compliance</a>
+<a href="Articles.dc.html?section=funding" style="color: #C9D3EA">Funding &amp; Grants</a>
+<a href="Articles.dc.html?section=growth" style="color: #C9D3EA">Growth &amp; Strategy</a>
+<a href="Articles.dc.html?section=money" style="color: #C9D3EA">Money &amp; Cash Flow</a>
+<a href="Articles.dc.html?section=marketing" style="color: #C9D3EA">Marketing &amp; Brand</a>
+<a href="Articles.dc.html?section=people" style="color: #C9D3EA">People &amp; Leadership</a>
+<a href="Articles.dc.html?section=tech" style="color: #C9D3EA">Tech &amp; AI</a>
+<a href="Articles.dc.html?section=policy" style="color: #C9D3EA">EU Policy &amp; Compliance</a>
 </nav>
 <nav aria-label="Magazine" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
 <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">Magazine</span>
@@ -278,16 +249,13 @@ a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#0B2A6B","options":["#0B2A6B","#003399","#14213D","#1E3A8A"]},"$preview":{"width":1440,"height":4000}}'>
 class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { posts: null, failed: false }; }
+  componentDidMount() {
+    ESME.loadPosts().then((posts) => this.setState({ posts })).catch(() => this.setState({ failed: true }));
+  }
   renderVals() {
-    const T = {
-      navy: { bg: '#0B2A6B', fg: '#FFFFFF', ring: '#FFC72C' },
-      blue: { bg: '#2F5BB7', fg: '#FFFFFF', ring: '#FFC72C' },
-      pale: { bg: '#E6ECF7', fg: '#0B2A6B', ring: '#2F5BB7' },
-      ink:  { bg: '#0E1525', fg: '#FFFFFF', ring: '#FFC72C' }
-    };
-    const date = '13 April 2026';
-    const s = (title, cat, tone, glyph, size, dek) => Object.assign({ title, cat, glyph, size, dek: dek || '', date }, T[tone]);
-    return {
+    const { posts, failed } = this.state;
+    const base = {
       brand: this.props.brand ?? '#0B2A6B',
       tools: [
         { name: 'EU Funding Finder', desc: 'Grants, loans and equity, with every deadline.', glyph: '€', bg: '#0B2A6B', fg: '#FFFFFF', href: 'FundingFinder.dc.html' },
@@ -295,52 +263,25 @@ class Component extends DCLogic {
         { name: 'Am I an SME?', desc: 'Check the EU definition in 30 seconds.', glyph: 'SME', bg: '#E6ECF7', fg: '#0B2A6B', href: 'Checkers.dc.html' },
         { name: 'VAT & late-payment calculators', desc: 'Quick sums for selling and getting paid.', glyph: '%', bg: '#2F5BB7', fg: '#FFFFFF', href: 'Calculators.dc.html' }
       ],
-      secondary: [
-        s('VAT Across EU Borders: What Every SME Needs to Know', 'EU Policy & Compliance', 'pale', 'VAT', '30cqw'),
-        s('Writing EU Grant Applications That Actually Win', 'Funding & Grants', 'blue', 'Apply', '24cqw')
-      ],
-      latest: [
-        { short: '13 Apr', cat: 'Funding & Grants', title: 'How to Access EU Grants and Funding for Your SME' },
-        { short: '13 Apr', cat: 'Money & Cash Flow', title: 'SEPA Direct Debit: The Cash Flow Tool Most SMEs Are Not Using' },
-        { short: '13 Apr', cat: 'Growth & Strategy', title: 'Franchising in Europe: Opportunities and Pitfalls' },
-        { short: '13 Apr', cat: 'Marketing & Brand', title: 'Building a Brand Identity That Does Commercial Work' },
-        { short: '13 Apr', cat: 'People & Leadership', title: 'Mental Health in Business: Looking After Yourself and Your Team' }
-      ],
-      policy: [
-        s('The European Accessibility Act: What SMEs Must Do Now', 'Accessibility', 'navy', 'EAA', '28cqw'),
-        s('GDPR in Practice: A Clear Guide for European SMEs', 'Data protection', 'ink', 'GDPR', '24cqw'),
-        s('EU State Aid Rules: A Practical Guide for SMEs', 'State aid', 'blue', '§', '42cqw'),
-        s('EU Competition Law: What SMEs Must Know to Stay Compliant', 'Competition', 'pale', 'Rules', '24cqw')
-      ],
-      columns: [
-        { name: 'Growth & Strategy',
-          lead: s('Exporting Within the EU Single Market: Your Step-by-Step Guide', '', 'navy', 'Export', '22cqw', 'The world’s largest free-trade area: 440 million consumers and no tariffs. How to start selling into it.'),
-          more: [ { title: 'Internationalisation: A Rigorous Approach to Taking Your SME Global' }, { title: 'Strategic Partnerships That Accelerate Growth' } ] },
-        { name: 'Money & Cash Flow',
-          lead: s('Cash Flow Management: The Discipline That Keeps Businesses Alive', '', 'ink', 'Cash', '26cqw', 'More businesses fail from cash flow problems than from lack of profit. The habits that keep money moving.'),
-          more: [ { title: 'Beyond the Bank Loan: Financing Options for Growing SMEs' }, { title: 'Cross-Border Payments: Managing Money Efficiently Across Europe' } ] },
-        { name: 'Marketing & Brand',
-          lead: s('LinkedIn for European SMEs: A Growth Strategy That Actually Works', '', 'pale', 'Reach', '24cqw', 'Europe’s most important professional platform — and the one most small businesses underuse.'),
-          more: [ { title: 'Email Marketing That Actually Drives Revenue' }, { title: 'Pricing Strategy: How to Charge What Your Business Is Actually Worth' } ] }
-      ],
-      duo: [
-        { name: 'People & Leadership', items: [
-          s('Hiring Across EU Borders Without the Legal Headaches', '', 'blue', 'Hire', '26cqw', 'Freedom of movement is one of the most powerful tools an SME employer has — in theory. How to make it work in practice.'),
-          s('Managing Teams Across Multiple EU Time Zones', '', 'navy', 'CET', '28cqw', 'The EU spans three time zones. A modest spread, but one that creates real coordination costs.')
-        ] },
-        { name: 'Tech & AI', items: [
-          s('AI Tools for SMEs: Where to Start and What to Expect', '', 'ink', 'AI', '34cqw', 'AI moved from competitive advantage to necessity faster than expected. Where a small business should begin.'),
-          s('Cybersecurity for SMEs: The Essentials That Actually Protect You', '', 'pale', 'Cyber', '24cqw', 'Small businesses are not too small to be targeted — only too small to defend themselves without a plan.')
-        ] }
-      ],
-      mostRead: [
-        { n: '1', title: 'How to Write a Business Plan That Actually Gets Funded', href: 'Article.dc.html' },
-        { n: '2', title: 'Digital Transformation on a Budget: A Practical Playbook for SMEs', href: '#' },
-        { n: '3', title: 'Managing Hybrid and Remote Teams: Leadership in a Distributed World', href: '#' },
-        { n: '4', title: 'Hiring Your First Senior Leaders: Getting the Transition Right', href: '#' },
-        { n: '5', title: 'Going Green: How Sustainability Can Cut Costs and Win Business', href: '#' }
-      ]
+      loading: !posts && !failed, failed, ready: !!posts,
+      skeletons: [1, 2, 3, 4], latest: []
     };
+    if (!posts) return base;
+    const S = ESME.sections;
+    const used = {};
+    const sec = (k) => (p) => p.section === k;
+    const latest = posts.slice(0, 5);
+    const feature = ESME.take(posts, (p) => !!p.imgLarge, 1, used)[0];
+    const featureSide = ESME.take(posts, null, 4, used);
+    const policy = ESME.take(posts, sec('policy'), 4, used);
+    const col = (k) => {
+      const items = ESME.take(posts, sec(k), 3, used);
+      return { name: S[k].label, color: S[k].color, href: 'Articles.dc.html?section=' + k, lead: items[0], more: items.slice(1) };
+    };
+    const columns = ['growth', 'money', 'marketing'].map(col).filter((c) => c.lead);
+    const duo = ['people', 'tech'].map((k) => ({ name: S[k].label, color: S[k].color, href: 'Articles.dc.html?section=' + k, items: ESME.take(posts, sec(k), 2, used) })).filter((d) => d.items.length);
+    const popular = ESME.take(posts, sec('funding'), 2, used).concat(ESME.take(posts, null, 5, used)).slice(0, 5).map((post, i) => ({ n: String(i + 1), post }));
+    return Object.assign(base, { latest, feature, featureSide, policy, columns, duo, popular, total: posts.length });
   }
 }
 </script>
