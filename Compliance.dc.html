@@ -67,7 +67,7 @@ a:hover{color:#1E4FA8}
 <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #1A2233"><strong style="font-weight: 700">What to do: </strong>{{e.todo}}</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
 <span style="font-size: 12px; color: #5A6470">Source: {{e.source}}</span>
-<button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1px solid #0B2A6B; background: #FFFFFF; color: #0B2A6B; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer">Add to calendar</button>
+<sc-if value="{{e.hasDate}}" hint-placeholder-val="{{ true }}"><a href="{{e.ics}}" download="{{e.file}}" style="min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1px solid #0B2A6B; background: #FFFFFF; color: #0B2A6B; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none">Add to calendar</a></sc-if><sc-if value="{{e.noDate}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; font-weight: 600; color: #5A6470">Date to be confirmed</span></sc-if>
 </div>
 </div>
 </li>
@@ -88,12 +88,12 @@ a:hover{color:#1E4FA8}
 </div>
 </sc-for>
 </div>
-<div style="background: #0B2A6B; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<form action="https://europeansme.eu/subscription/" method="get" target="_blank" style="background: #0B2A6B; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
 <span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; line-height: 1.25; font-weight: 600; color: #FFFFFF">Get a reminder 30 days before each deadline.</span>
 <label for="cc-email" style="font-size: 13px; font-weight: 600; color: #C9D3EA">Work email</label>
-<input id="cc-email" type="email" placeholder="name@company.eu" style="height: 48px; padding: 0 14px; border-radius: 8px; border: none; font-size: 16px; font-family: inherit">
-<button type="button" style="height: 48px; border-radius: 8px; border: none; background: #FFC72C; color: #101828; font-weight: 700; font-size: 15px; font-family: inherit; cursor: pointer">Get compliance alerts</button>
-</div>
+<input id="cc-email" name="email" type="email" required placeholder="name@company.eu" style="height: 48px; padding: 0 14px; border-radius: 8px; border: none; font-size: 16px; font-family: inherit">
+<button type="submit" style="height: 48px; border-radius: 8px; border: none; background: #FFC72C; color: #101828; font-weight: 700; font-size: 15px; font-family: inherit; cursor: pointer">Get compliance alerts</button>
+</form>
 <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #5A6470">General guidance, not legal advice. Dates can move — the AI Act's high-risk deadlines were postponed in July 2026 — so always check the source.</p>
 </aside>
 </div>
@@ -127,6 +127,18 @@ class Component extends DCLogic {
       { day: '2', month: 'Aug 2028', p: 'EU', where: 'EU-wide', t: 'ai', topicLabel: 'AI Act', title: 'High-risk AI in regulated products (machinery, medical devices) applies', todo: 'Manufacturers: align AI conformity work with your existing CE-marking process.', source: 'Regulation (EU) 2026/1744' },
       { day: '1', month: 'Jul 2030', p: 'EU', where: 'EU-wide', t: 'einv', topicLabel: 'VAT in the Digital Age', title: 'Cross-border B2B e-invoicing and digital reporting become mandatory', todo: 'Plan now: any business selling to other member states will need structured e-invoices.', source: 'ViDA package (Council Directive)' }
     ];
+    const MON = { Jan: '01', Feb: '02', Mar: '03', Apr: '04', May: '05', Jun: '06', Jul: '07', Aug: '08', Sep: '09', Oct: '10', Nov: '11', Dec: '12' };
+    ev.forEach((e, i) => {
+      const m = /^([A-Z][a-z]{2}) (\d{4})$/.exec(e.month);
+      e.hasDate = /^\d+$/.test(e.day) && !!m;
+      e.noDate = !e.hasDate;
+      if (e.hasDate) {
+        const d = m[2] + MON[m[1]] + String(e.day).padStart(2, '0');
+        const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//European SME//Compliance Calendar//EN', 'BEGIN:VEVENT', 'UID:esme-' + d + '-' + i + '@europeansme.eu', 'DTSTAMP:20261109T000000Z', 'DTSTART;VALUE=DATE:' + d, 'SUMMARY:' + e.title.replace(/[,;]/g, ' '), 'DESCRIPTION:' + ('What to do: ' + e.todo + ' Source: ' + e.source).replace(/[,;]/g, ' '), 'BEGIN:VALARM', 'TRIGGER:-P30D', 'ACTION:DISPLAY', 'DESCRIPTION:Reminder', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+        e.ics = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+        e.file = 'european-sme-' + d + '.ics';
+      }
+    });
     const events = ev.filter((e) => (place === 'all' || e.p === place) && (topic === 'all' || e.t === topic));
     return {
       placeChips: places.map(([k, l]) => chip(k, l, place, 'place')),
