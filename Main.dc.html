@@ -9,136 +9,134 @@
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,500;1,8..60,600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
 <style>
 body{margin:0;background:#FFFFFF}
-a{color:#0E1525;text-decoration:none}
-a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
-.esme-skel{background:linear-gradient(90deg,#EEF1F5 25%,#F6F8FB 50%,#EEF1F5 75%);background-size:200% 100%;animation:esme-sh 1.2s infinite linear;border-radius:12px}
-@keyframes esme-sh{from{background-position:200% 0}to{background-position:-200% 0}}
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
+.esme-herocard{transition:background-color .2s ease,border-color .2s ease,transform .2s ease}
+.esme-herocard:hover{background:rgba(255,255,255,.09) !important;border-color:rgba(255,199,44,.5) !important;transform:translateY(-2px);color:#FFFFFF !important;text-decoration:none}
+.esme-ticker::-webkit-scrollbar{display:none}
+.esme-ticker a:hover span{color:#FFC72C}
+.esme-toolcard{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.esme-toolcard:hover{transform:translateY(-4px);border-color:#D0D5DD !important;color:#14181D !important;text-decoration:none}
+.esme-flink:hover{color:#FFFFFF !important}
 </style>
 </helmet>
-<div style="font-family: 'Inter', system-ui, sans-serif; color: #0E1525; background: #FFFFFF; min-height: 100vh">
-
-<dc-import name="SiteHeader" active="none" hint-size="100%,124px"></dc-import>
+<div style="color: #14181D; background: #FFFFFF; min-height: 100vh">
+<dc-import name="SiteHeader" active="none" hint-size="100%,118px"></dc-import>
 
 <main>
-<section aria-label="Top stories" style="max-width: 1240px; margin: 0 auto; padding: 40px 32px 56px; display: flex; flex-wrap: wrap; gap: 48px">
-<article style="flex: 7 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
-<a href="ArticleAIAct.dc.html" aria-label="AI Act deadlines pushed back" style="display: block"><dc-import name="VisualAIAct" radius="8px" hint-size="100%,400px"></dc-import></a>
-<span style="margin-top: 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #2F5BB7">Cover story · Tech &amp; AI</span>
-<h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 50px; line-height: 1.08; font-weight: 600; letter-spacing: -0.015em"><a href="ArticleAIAct.dc.html">AI Act deadlines pushed back: what the Digital Omnibus means for your business</a></h1>
-<p style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; line-height: 1.5; color: #4A5568">The EU has given companies until December 2027 to meet its strictest AI rules. But some obligations already apply — and most small businesses have homework to do now.</p>
-<p style="margin: 4px 0 0; font-size: 14px; color: #4A5568">By <strong style="color: #0E1525; font-weight: 600">European SME Editorial Team</strong> · 7 November 2026</p>
-</article>
-
-<aside aria-label="More top stories" style="flex: 5 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
-<article style="display: flex; flex-direction: column; gap: 12px; padding-bottom: 24px; border-bottom: 1px solid #DDE2EA">
-<a href="ArticleEInvoicing.dc.html" aria-label="E-invoicing goes mandatory" style="display: block"><dc-import name="VisualEInvoice" radius="8px" hint-size="100%,240px"></dc-import></a>
-<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #2F5BB7">Money &amp; Cash Flow</span>
-<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 23px; line-height: 1.2; font-weight: 600"><a href="ArticleEInvoicing.dc.html">E-invoicing goes mandatory: where European SMEs must comply in 2026 and 2027</a></h2>
-<span style="font-size: 13px; color: #4A5568">7 November 2026</span>
-</article>
-<article style="display: flex; gap: 18px; align-items: flex-start; padding-bottom: 24px; border-bottom: 1px solid #DDE2EA">
-<a href="ArticleEUInc.dc.html" aria-label="EU Inc. explained" style="display: block; flex: 0 0 190px"><dc-import name="VisualEUInc" radius="6px" hint-size="190px,107px"></dc-import></a>
-<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
-<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #2F5BB7">Startups &amp; Scale-ups</span>
-<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; line-height: 1.22; font-weight: 600"><a href="ArticleEUInc.dc.html">EU Inc. explained: what the proposed “28th regime” could mean for small businesses</a></h2>
-<span style="font-size: 13px; color: #4A5568">7 November 2026</span>
+<section aria-label="Cover story" style="position: relative; overflow: hidden; color: #FFFFFF; background: radial-gradient(900px 520px at 88% 8%, rgba(255,199,44,.16), transparent 62%), radial-gradient(900px 640px at 0% 100%, rgba(30,79,168,.55), transparent 62%), linear-gradient(135deg, #0B1B33 0%, #0B2A6B 100%)">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 64px; padding-bottom: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px">
+<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<p class="esme-eyebrow is-dark">Cover story · Tech &amp; AI</p>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(38px, 4.6vw, 60px); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; color: #FFFFFF"><a href="ArticleAIAct.dc.html" style="color: inherit; text-decoration: none">AI Act deadlines <span style="color: #FFC72C">pushed back</span>: what the Digital Omnibus means for your business</a></h1>
+<span aria-hidden="true" style="width: 56px; height: 3px; border-radius: 2px; background: #FFC72C"></span>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.82); max-width: 560px">The EU has given companies until December 2027 to meet its strictest AI rules. But some obligations already apply — and most small businesses have homework to do now.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 4px">
+<a class="esme-btn esme-btn--gold esme-btn--lg" href="ArticleAIAct.dc.html">Read the story <span aria-hidden="true">→</span></a>
+<a class="esme-btn esme-btn--ghost esme-btn--lg" href="Articles.dc.html">All articles</a>
 </div>
-</article>
-
-<div>
-<div style="border-top: 3px solid #0E1525; padding-top: 12px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: baseline">
-<h2 style="margin: 0; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Latest</h2>
-<a href="Articles.dc.html" style="font-size: 13px; font-weight: 600; color: #2F5BB7">All stories</a>
 </div>
-<sc-for list="{{latest}}" as="l" hint-placeholder-count="5">
-<div style="border-bottom: 1px solid #DDE2EA"><dc-import name="Card" post="{{l}}" variant="compact" hint-size="100%,94px"></dc-import></div>
-</sc-for>
+<a href="ArticleAIAct.dc.html" aria-label="AI Act deadlines pushed back" style="flex: 1 1 480px; min-width: 0; display: block; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.12)"><dc-import name="VisualAIAct" radius="0px" hint-size="100%,330px"></dc-import></a>
 </div>
-</aside>
-</section>
-
-<section id="newsletter" aria-label="Newsletter" style="background: {{brand}}">
-<div style="max-width: 1240px; margin: 0 auto; padding: 52px 32px; display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: center; justify-content: space-between">
-<div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 12px">
-<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">The Weekly Briefing</span>
-<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 36px; line-height: 1.15; font-weight: 600; color: #FFFFFF">Europe's small-business week, in one email.</h2>
-<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #C9D3EA">EU funding calls, rule changes and practical playbooks for founders and managers across the Union.</p>
-</div>
-<form style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 10px">
-<label for="nl-email" style="font-size: 14px; font-weight: 600; color: #FFFFFF">Work email</label>
-<div style="display: flex; flex-wrap: wrap; gap: 12px">
-<input id="nl-email" type="email" placeholder="name@company.eu" style="flex: 1 1 240px; height: 52px; padding: 0 16px; border-radius: 8px; border: none; font-size: 16px; font-family: inherit">
-<button type="button" style="height: 52px; padding: 0 26px; border-radius: 8px; border: none; background: #FFC72C; color: #071C4A; font-weight: 700; font-size: 15px; font-family: inherit; cursor: pointer">Subscribe</button>
-</div>
-<p style="margin: 0; font-size: 13px; color: #C9D3EA">Free. Unsubscribe at any time. Read our <a href="#" style="color: #FFFFFF; text-decoration: underline">privacy policy</a>.</p>
-</form>
-</div>
-</section>
-
-<section aria-label="Tools for SMEs" style="max-width: 1240px; margin: 0 auto; padding: 64px 32px 0">
-<div style="border-top: 3px solid #0E1525; padding-top: 14px; margin-bottom: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
-<div style="display: flex; flex-direction: column; gap: 4px">
-<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 32px; font-weight: 600">Tools for SMEs</h2>
-<p style="margin: 0; font-size: 15px; color: #4A5568">Free, checked monthly by our compliance desk.</p>
-</div>
-<a href="Tools.dc.html" style="font-size: 14px; font-weight: 600; color: #2F5BB7">All tools</a>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px">
-<sc-for list="{{tools}}" as="t" hint-placeholder-count="4">
-<a href="{{t.href}}" style="display: flex; gap: 16px; align-items: flex-start; padding: 20px; border: 1px solid #DDE2EA; border-radius: 12px; text-decoration: none">
-<span aria-hidden="true" style="flex: 0 0 48px; width: 48px; height: 48px; border-radius: 10px; background: {{t.bg}}; color: {{t.fg}}; display: flex; align-items: center; justify-content: center; font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-weight: 600; font-size: 19px">{{t.glyph}}</span>
-<span style="display: flex; flex-direction: column; gap: 4px">
-<span style="font-size: 16px; font-weight: 700; color: #0E1525">{{t.name}}</span>
-<span style="font-size: 14px; line-height: 1.5; color: #4A5568">{{t.desc}}</span>
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-bottom: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 20px">
+<a href="ArticleEInvoicing.dc.html" class="esme-herocard" style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; padding: 12px; border-radius: 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); color: #FFFFFF; text-decoration: none">
+<span style="flex: 0 0 200px; max-width: 100%; border-radius: 9px; overflow: hidden; display: block"><dc-import name="VisualEInvoice" radius="0px" hint-size="200px,112px"></dc-import></span>
+<span style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 9px">
+<span class="esme-tag esme-tag--gold" style="align-self: flex-start">Explainer</span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; line-height: 1.3; font-weight: 700">E-invoicing goes mandatory: where European SMEs must comply in 2026 and 2027</span>
+<span style="font-size: 12.5px; color: rgba(255,255,255,.7)">Money &amp; Cash Flow · 7 min read</span>
 </span>
+</a>
+<a href="ArticleEUInc.dc.html" class="esme-herocard" style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; padding: 12px; border-radius: 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); color: #FFFFFF; text-decoration: none">
+<span style="flex: 0 0 200px; max-width: 100%; border-radius: 9px; overflow: hidden; display: block"><dc-import name="VisualEUInc" radius="0px" hint-size="200px,112px"></dc-import></span>
+<span style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 9px">
+<span class="esme-tag esme-tag--gold" style="align-self: flex-start">Exclusive</span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; line-height: 1.3; font-weight: 700">EU Inc. explained: what the proposed “28th regime” could mean for small businesses</span>
+<span style="font-size: 12.5px; color: rgba(255,255,255,.7)">Startups &amp; Scale-ups · 6 min read</span>
+</span>
+</a>
+</div>
+</section>
+
+<sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+<section aria-label="Latest news" style="background: #101828; color: #FFFFFF">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 18px; padding-bottom: 18px; display: flex; align-items: center; gap: 24px">
+<span style="flex: none; display: inline-flex; align-items: center; gap: 8px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: rgba(255,255,255,.75)"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #FFC72C; box-shadow: 0 0 0 4px rgba(255,199,44,.18)"></span>LATEST NEWS</span>
+<div class="esme-ticker" style="flex: 1 1 auto; min-width: 0; display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none">
+<sc-for list="{{latest}}" as="l" hint-placeholder-count="5">
+<a href="{{l.href}}" style="flex: 0 0 300px; display: flex; gap: 12px; align-items: center; color: #FFFFFF; text-decoration: none">
+<img src="{{l.thumb}}" alt="" loading="lazy" style="width: 64px; height: 46px; object-fit: cover; border-radius: 6px; flex: none; background: #1D2939">
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13.5px; font-weight: 600; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden">{{l.title}}</span>
 </a>
 </sc-for>
 </div>
+</div>
 </section>
-
+</sc-if>
 
 <sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
-<div style="max-width: 1240px; margin: 0 auto; padding: 64px 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 28px">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 72px; padding-bottom: 72px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px">
 <sc-for list="{{skeletons}}" as="k" hint-placeholder-count="4">
 <div style="display: flex; flex-direction: column; gap: 12px"><div class="esme-skel" style="aspect-ratio: 16 / 10"></div><div class="esme-skel" style="height: 18px; width: 60%"></div><div class="esme-skel" style="height: 22px"></div></div>
 </sc-for>
 </div>
 </sc-if>
 <sc-if value="{{failed}}" hint-placeholder-val="{{ false }}">
-<div style="max-width: 1240px; margin: 0 auto; padding: 48px 32px; font-size: 16px; color: #4A5568">Live articles from europeansme.eu could not be loaded right now. Please refresh, or <a href="Articles.dc.html" style="color: #2F5BB7; text-decoration: underline">browse all articles</a>.</div>
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 48px; padding-bottom: 48px; font-size: 16px; color: #5A6470">Live articles from europeansme.eu could not be loaded right now. Please refresh, or <a href="Articles.dc.html" style="color: #1E4FA8; text-decoration: underline">browse all articles</a>.</div>
 </sc-if>
+
 <sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
-<section aria-label="Editor's picks from europeansme.eu" style="max-width: 1240px; margin: 0 auto; padding: 64px 32px 24px">
-<div style="border-top: 3px solid #0E1525; padding-top: 14px; margin-bottom: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
-<div style="display: flex; flex-direction: column; gap: 4px">
-<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 32px; font-weight: 600">From the magazine</h2>
-<p style="margin: 0; font-size: 15px; color: #4A5568">The newest guides published on europeansme.eu.</p>
+<section aria-label="Featured stories" style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 80px; padding-bottom: 24px">
+<div class="esme-sechead">
+<div><p class="esme-eyebrow">Editor’s picks</p><h2 class="esme-h2">Featured stories</h2><p class="esme-sub">Picked by our editors for Europe’s small-business community.</p></div>
+
 </div>
-<a href="Articles.dc.html" style="font-size: 14px; font-weight: 600; color: #2F5BB7">All articles →</a>
-</div>
-<div style="display: flex; flex-wrap: wrap; gap: 40px">
-<div style="flex: 7 1 560px; min-width: 0"><dc-import name="Card" post="{{feature}}" variant="feature" hint-size="100%,640px"></dc-import></div>
-<div style="flex: 5 1 340px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 32px 24px; align-content: start">
+<nav aria-label="Browse by section" style="display: flex; flex-wrap: wrap; gap: 8px; margin: -6px 0 30px">
+<a class="esme-chipf is-on" href="Articles.dc.html">All</a>
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="7">
+<a class="esme-chipf" href="{{c.href}}">{{c.label}}</a>
+</sc-for>
+</nav>
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 6 1 520px; min-width: 0"><dc-import name="Card" post="{{feature}}" variant="feature" hint-size="100%,640px"></dc-import></div>
+<div style="flex: 6 1 420px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px">
 <sc-for list="{{featureSide}}" as="f" hint-placeholder-count="4">
-<dc-import name="Card" post="{{f}}" variant="standard" hint-size="100%,300px"></dc-import>
+<dc-import name="Card" post="{{f}}" variant="standard" hint-size="100%,330px"></dc-import>
 </sc-for>
 </div>
 </div>
 </section>
+</sc-if>
 
-<section aria-label="EU Policy and Compliance" style="background: #F4F6FA; margin-top: 48px">
-<div style="max-width: 1240px; margin: 0 auto; padding: 64px 32px">
-<div style="border-top: 3px solid #0E1525; padding-top: 14px; margin-bottom: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
-<div style="display: flex; flex-direction: column; gap: 4px">
-<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 32px; font-weight: 600">EU Policy &amp; Compliance</h2>
-<p style="margin: 0; font-size: 15px; color: #4A5568">The rules that shape how Europe’s small businesses trade, hire and grow.</p>
+<section aria-label="Tools for SMEs" style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 72px; padding-bottom: 8px">
+<div class="esme-sechead">
+<div><p class="esme-eyebrow">Free tools</p><h2 class="esme-h2">Tools for European SMEs</h2><p class="esme-sub">Find funding, track deadlines and run the numbers — checked monthly by our compliance desk.</p></div>
+<a class="esme-btn esme-btn--blue" href="Tools.dc.html">All tools <span aria-hidden="true">→</span></a>
 </div>
-<a href="Articles.dc.html?section=policy" style="font-size: 14px; font-weight: 600; color: #2F5BB7">See all in EU Policy →</a>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="4">
+<a href="{{t.href}}" class="esme-toolcard" style="display: flex; flex-direction: column; gap: 14px; padding: 22px; background: #FFFFFF; border: 1px solid #EAECF0; border-radius: 14px; box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px -16px rgba(16,24,40,.18); color: #14181D; text-decoration: none">
+<span aria-hidden="true" style="width: 48px; height: 48px; border-radius: 12px; background: {{t.bg}}; color: {{t.fg}}; display: flex; align-items: center; justify-content: center; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 17px">{{t.glyph}}</span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; font-weight: 700">{{t.name}}</span>
+<span style="font-size: 14px; line-height: 1.55; color: #5A6470">{{t.desc}}</span>
+<span style="margin-top: auto; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; color: #1E4FA8">Open tool →</span>
+</a>
+</sc-for>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 40px 28px">
+</section>
+
+<sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+<section aria-label="EU Policy and Compliance" style="background: #F5F7FA; margin-top: 72px; border-top: 1px solid #EAECF0; border-bottom: 1px solid #EAECF0">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 72px; padding-bottom: 72px">
+<div class="esme-sechead">
+<div><p class="esme-eyebrow">EU Policy &amp; Compliance</p><h2 class="esme-h2">The rules that shape your business</h2><p class="esme-sub">How Europe’s rules on trade, data, tax and hiring affect small and medium-sized businesses.</p></div>
+<a class="esme-btn esme-btn--blue" href="Articles.dc.html?section=policy">View all policy articles <span aria-hidden="true">→</span></a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px">
 <sc-for list="{{policy}}" as="p" hint-placeholder-count="4">
 <dc-import name="Card" post="{{p}}" variant="standard" hint-size="100%,400px"></dc-import>
 </sc-for>
@@ -146,105 +144,103 @@ a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
 </div>
 </section>
 
-<section aria-label="Sections" style="max-width: 1240px; margin: 0 auto; padding: 64px 32px 24px; display: flex; flex-wrap: wrap; gap: 48px 40px">
+<section aria-label="Sections" style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 80px; padding-bottom: 16px">
+<div class="esme-sechead">
+<div><p class="esme-eyebrow">By topic</p><h2 class="esme-h2">Grow, fund and market your business</h2></div>
+
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 40px 28px">
 <sc-for list="{{columns}}" as="c" hint-placeholder-count="3">
-<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
-<div style="border-top: 3px solid {{c.color}}; padding-top: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: baseline">
-<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; font-weight: 600">{{c.name}}</h2>
-<a href="{{c.href}}" style="font-size: 13px; font-weight: 600; color: #2F5BB7">More →</a>
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid {{c.color}}">
+<h3 style="margin: 0; display: flex; align-items: center; gap: 9px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 20px; font-weight: 700"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: {{c.color}}"></span>{{c.name}}</h3>
+<a href="{{c.href}}" style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; color: #1E4FA8">More →</a>
 </div>
 <dc-import name="Card" post="{{c.lead}}" variant="standard" hint-size="100%,400px"></dc-import>
-<div style="margin-top: 12px; border-top: 1px solid #DDE2EA">
+<div>
 <sc-for list="{{c.more}}" as="m" hint-placeholder-count="2">
-<div style="border-bottom: 1px solid #DDE2EA"><dc-import name="Card" post="{{m}}" variant="compact" hint-size="100%,94px"></dc-import></div>
+<div style="border-bottom: 1px solid #EAECF0"><dc-import name="Card" post="{{m}}" variant="compact" hint-size="100%,92px"></dc-import></div>
 </sc-for>
 </div>
 </div>
 </sc-for>
+</div>
 </section>
 
-<section aria-label="People, technology and most read" style="max-width: 1240px; margin: 0 auto; padding: 48px 32px 40px; display: flex; flex-wrap: wrap; gap: 48px">
-<div style="flex: 8 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 48px">
+<section aria-label="People, technology and most read" style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 64px; padding-bottom: 32px; display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 8 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 56px">
 <sc-for list="{{duo}}" as="d" hint-placeholder-count="2">
 <div>
-<div style="border-top: 3px solid {{d.color}}; padding-top: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: baseline">
-<h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; font-weight: 600">{{d.name}}</h2>
-<a href="{{d.href}}" style="font-size: 13px; font-weight: 600; color: #2F5BB7">More →</a>
+<div class="esme-sechead" style="margin-bottom: 22px">
+<div><p class="esme-eyebrow">{{d.eyebrow}}</p><h2 class="esme-h2" style="font-size: 30px">{{d.name}}</h2></div>
+<a class="esme-btn esme-btn--line" href="{{d.href}}">More in {{d.name}} <span aria-hidden="true">→</span></a>
 </div>
-<div style="display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 18px">
 <sc-for list="{{d.items}}" as="i" hint-placeholder-count="2">
-<dc-import name="Card" post="{{i}}" variant="row" hint-size="100%,200px"></dc-import>
+<dc-import name="Card" post="{{i}}" variant="row" hint-size="100%,210px"></dc-import>
 </sc-for>
 </div>
 </div>
 </sc-for>
 </div>
 <aside aria-label="Popular" style="flex: 4 1 300px; min-width: 0">
-<div style="background: #F4F6FA; border-radius: 14px; padding: 24px 24px 8px">
-<h2 style="margin: 0 0 4px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Popular this month</h2>
+<div style="position: sticky; top: 104px; background: #FFFFFF; border: 1px solid #EAECF0; border-radius: 14px; padding: 24px 22px 10px; box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px -16px rgba(16,24,40,.18)">
+<p class="esme-eyebrow">Most read</p>
+<h2 style="margin: 10px 0 6px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.01em">Popular this month</h2>
 <ol style="list-style: none; margin: 0; padding: 0">
 <sc-for list="{{popular}}" as="r" hint-placeholder-count="5">
-<li style="border-bottom: 1px solid #DDE2EA"><dc-import name="Card" post="{{r.post}}" variant="compact" rank="{{r.n}}" hint-size="100%,94px"></dc-import></li>
+<li style="border-bottom: 1px solid #EAECF0"><dc-import name="Card" post="{{r.post}}" variant="compact" rank="{{r.n}}" hint-size="100%,92px"></dc-import></li>
 </sc-for>
 </ol>
 </div>
 </aside>
 </section>
 
-<div style="max-width: 1240px; margin: 0 auto; padding: 8px 32px 80px; display: flex; justify-content: center">
-<a href="Articles.dc.html" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; border-radius: 999px; background: #0B2A6B; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none">Browse all {{total}} articles <span aria-hidden="true">→</span></a>
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 16px; padding-bottom: 88px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid #EAECF0; margin-top: 24px">
+<p style="margin: 24px 0 0; font-size: 15px; color: #5A6470">More practical guides for <strong style="color: #14181D">Europe’s founders and business owners</strong>.</p>
+<a class="esme-btn esme-btn--blue esme-btn--lg" href="Articles.dc.html" style="margin-top: 24px">Browse all {{total}} articles <span aria-hidden="true">→</span></a>
 </div>
 </sc-if>
+
+<section id="newsletter" aria-label="Newsletter" style="color: #FFFFFF; background: radial-gradient(800px 500px at 100% 0%, rgba(255,199,44,.14), transparent 60%), linear-gradient(135deg, #0B1B33 0%, #0B2A6B 100%)">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 72px; padding-bottom: 72px; display: flex; flex-wrap: wrap; gap: 40px 72px; align-items: center">
+<div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 14px">
+<p class="esme-eyebrow is-dark">Free for European business owners</p>
+<h2 class="esme-h2 is-dark" style="margin-top: 4px">Get the Weekly Briefing</h2>
+<p class="esme-sub is-dark" style="font-size: 16px">EU funding calls, rule changes and practical playbooks for founders and managers across the Union — every Tuesday.</p>
+</div>
+<form style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 16px; background: #FFFFFF; color: #14181D; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6)">
+<label for="nl-email" style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 600">Email address</label>
+<input id="nl-email" type="email" placeholder="you@yourbusiness.eu" style="height: 48px; padding: 0 14px; border-radius: 8px; border: 1px solid #D0D5DD; font-size: 15px; color: #14181D">
+<button type="button" class="esme-btn esme-btn--gold esme-btn--lg" style="width: 100%">Subscribe free</button>
+<p style="margin: 0; font-size: 12.5px; color: #5A6470">No spam. Unsubscribe any time. See our <a href="#" style="color: #1E4FA8; text-decoration: underline">privacy policy</a>.</p>
+</form>
+</div>
+</section>
 </main>
 
-<footer style="background: #071C4A; color: #C9D3EA">
-<div style="max-width: 1240px; margin: 0 auto; padding: 56px 32px 28px">
-<div style="display: flex; flex-wrap: wrap; gap: 40px 56px; justify-content: space-between">
-<div style="flex: 2 1 320px; display: flex; flex-direction: column; gap: 16px">
-<span style="font-size: 24px; font-weight: 800; color: #FFFFFF">EUROPEAN <span style="color: #FFC72C">SME</span></span>
-<p style="margin: 0; font-size: 15px; line-height: 1.6; max-width: 380px">Ideas, innovation and leadership shaping small and medium-sized businesses across Europe — written for founders, operators and the people who back them.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px">
-<a href="#" style="color: #FFFFFF">LinkedIn</a>
-<a href="#" style="color: #FFFFFF">X</a>
-<a href="#" style="color: #FFFFFF">Instagram</a>
-<a href="#" style="color: #FFFFFF">YouTube</a>
-<a href="#" style="color: #FFFFFF">Facebook</a>
+<footer style="background: #101828; color: #C8CDD6">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 64px; padding-bottom: 28px">
+<div style="display: flex; flex-wrap: wrap; gap: 40px 48px; justify-content: space-between">
+<div style="flex: 2 1 300px; display: flex; flex-direction: column; gap: 16px">
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; color: #FFFFFF; letter-spacing: -0.01em"><span style="font-weight: 500">EUROPEAN</span><span style="font-weight: 700; color: #FFC72C">SME</span></span>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.65; max-width: 340px">Europe’s magazine for small business owners: practical news, guides and stories to help you start, run and grow across the 27 member states.</p>
 </div>
+<sc-for list="{{footCols}}" as="fc" hint-placeholder-count="4">
+<nav aria-label="{{fc.title}}" style="flex: 1 1 150px; display: flex; flex-direction: column; gap: 11px; font-size: 14px">
+<h3 style="margin: 0 0 4px; font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">{{fc.title}}</h3>
+<sc-for list="{{fc.links}}" as="fl" hint-placeholder-count="4">
+<a href="{{fl.href}}" class="esme-flink" style="color: #C8CDD6; text-decoration: none">{{fl.label}}</a>
+</sc-for>
+</nav>
+</sc-for>
 </div>
-<nav aria-label="Sections" style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
-<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">Sections</span>
-<a href="Articles.dc.html?section=funding" style="color: #C9D3EA">Funding &amp; Grants</a>
-<a href="Articles.dc.html?section=growth" style="color: #C9D3EA">Growth &amp; Strategy</a>
-<a href="Articles.dc.html?section=money" style="color: #C9D3EA">Money &amp; Cash Flow</a>
-<a href="Articles.dc.html?section=marketing" style="color: #C9D3EA">Marketing &amp; Brand</a>
-<a href="Articles.dc.html?section=people" style="color: #C9D3EA">People &amp; Leadership</a>
-<a href="Articles.dc.html?section=tech" style="color: #C9D3EA">Tech &amp; AI</a>
-<a href="Articles.dc.html?section=policy" style="color: #C9D3EA">EU Policy &amp; Compliance</a>
-</nav>
-<nav aria-label="Magazine" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
-<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">Magazine</span>
-<a href="#" style="color: #C9D3EA">About us</a>
-<a href="#" style="color: #C9D3EA">Write for us</a>
-<a href="#" style="color: #C9D3EA">Advertise</a>
-<a href="#" style="color: #C9D3EA">Newsletter</a>
-<a href="#" style="color: #C9D3EA">Contact</a>
-</nav>
-<nav aria-label="Legal" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
-<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">Legal</span>
-<a href="#" style="color: #C9D3EA">Privacy policy</a>
-<a href="#" style="color: #C9D3EA">Cookie policy</a>
-<a href="#" style="color: #C9D3EA">Imprint</a>
-<a href="#" style="color: #C9D3EA">Terms of use</a>
-<a href="#" style="color: #C9D3EA">Cookie settings</a>
-</nav>
-</div>
-<div style="margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(201,211,234,0.25); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px">
-<span>© 2026 European SME · [PUBLISHER LEGAL NAME, REGISTERED ADDRESS]</span>
-<span>Made for Europe's 27 member states</span>
+<div style="margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(200,205,214,.18); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 13px">
+<span>© 2026 European SME Business Magazine. All rights reserved.</span>
+<span style="display: flex; gap: 18px"><a href="#" class="esme-flink" style="color: #C8CDD6">Privacy Policy</a><a href="#" class="esme-flink" style="color: #C8CDD6">Terms and Conditions</a><a href="#" class="esme-flink" style="color: #C8CDD6">Cookie settings</a></span>
 </div>
 </div>
 </footer>
-
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#0B2A6B","options":["#0B2A6B","#003399","#14213D","#1E3A8A"]},"$preview":{"width":1440,"height":4000}}'>
@@ -259,9 +255,15 @@ class Component extends DCLogic {
       brand: this.props.brand ?? '#0B2A6B',
       tools: [
         { name: 'EU Funding Finder', desc: 'Grants, loans and equity, with every deadline.', glyph: '€', bg: '#0B2A6B', fg: '#FFFFFF', href: 'FundingFinder.dc.html' },
-        { name: 'Compliance Calendar', desc: 'AI Act, e-invoicing and more, by country.', glyph: '31', bg: '#0E1525', fg: '#FFFFFF', href: 'Compliance.dc.html' },
+        { name: 'Compliance Calendar', desc: 'AI Act, e-invoicing and more, by country.', glyph: '31', bg: '#14181D', fg: '#FFFFFF', href: 'Compliance.dc.html' },
         { name: 'Am I an SME?', desc: 'Check the EU definition in 30 seconds.', glyph: 'SME', bg: '#E6ECF7', fg: '#0B2A6B', href: 'Checkers.dc.html' },
-        { name: 'VAT & late-payment calculators', desc: 'Quick sums for selling and getting paid.', glyph: '%', bg: '#2F5BB7', fg: '#FFFFFF', href: 'Calculators.dc.html' }
+        { name: 'VAT & late-payment calculators', desc: 'Quick sums for selling and getting paid.', glyph: '%', bg: '#1E4FA8', fg: '#FFFFFF', href: 'Calculators.dc.html' }
+      ],
+      footCols: [
+        { title: 'Explore', links: [{ label: 'Latest articles', href: 'Articles.dc.html' }, { label: 'SME tools', href: 'Tools.dc.html' }, { label: 'Country guides', href: 'CountryHub.dc.html' }, { label: 'Compliance calendar', href: 'Compliance.dc.html' }, { label: 'Newsletter', href: '#newsletter' }] },
+        { title: 'Sections', links: Object.keys(ESME.sections).map((k) => ({ label: ESME.sections[k].label, href: 'Articles.dc.html?section=' + k })) },
+        { title: 'Company', links: [{ label: 'About European SME', href: '#' }, { label: 'Contributors', href: '#' }, { label: 'Contact us', href: '#' }] },
+        { title: 'Work with us', links: [{ label: 'Advertise with us', href: '#advertise' }, { label: 'Become a partner', href: '#' }, { label: 'Sponsored content', href: '#' }, { label: 'Submit a story', href: '#' }] }
       ],
       loading: !posts && !failed, failed, ready: !!posts,
       skeletons: [1, 2, 3, 4], latest: []
@@ -279,9 +281,10 @@ class Component extends DCLogic {
       return { name: S[k].label, color: S[k].color, href: 'Articles.dc.html?section=' + k, lead: items[0], more: items.slice(1) };
     };
     const columns = ['growth', 'money', 'marketing'].map(col).filter((c) => c.lead);
-    const duo = ['people', 'tech'].map((k) => ({ name: S[k].label, color: S[k].color, href: 'Articles.dc.html?section=' + k, items: ESME.take(posts, sec(k), 2, used) })).filter((d) => d.items.length);
+    const duo = ['people', 'tech'].map((k) => ({ eyebrow: k === 'people' ? 'Leadership' : 'Digital', name: S[k].label, color: S[k].color, href: 'Articles.dc.html?section=' + k, items: ESME.take(posts, sec(k), 2, used) })).filter((d) => d.items.length);
+    const chips = Object.keys(S).map((k) => ({ label: S[k].label, href: 'Articles.dc.html?section=' + k }));
     const popular = ESME.take(posts, sec('funding'), 2, used).concat(ESME.take(posts, null, 5, used)).slice(0, 5).map((post, i) => ({ n: String(i + 1), post }));
-    return Object.assign(base, { latest, feature, featureSide, policy, columns, duo, popular, total: posts.length });
+    return Object.assign(base, { chips, latest, feature, featureSide, policy, columns, duo, popular, total: posts.length });
   }
 }
 </script>

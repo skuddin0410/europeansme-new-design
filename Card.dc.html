@@ -9,80 +9,82 @@
 <x-dc>
 <helmet>
 <style>
-.esme-card{display:flex;color:#0E1525;text-decoration:none;border-radius:14px;transition:transform .2s ease}
-.esme-card:hover{text-decoration:none;color:#0E1525;transform:translateY(-3px)}
-.esme-card:focus-visible{outline:3px solid #2F5BB7;outline-offset:4px}
-.esme-img{position:relative;overflow:hidden;border-radius:12px;background:#E6ECF7;flex:none}
-.esme-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
-.esme-card:hover .esme-img img{transform:scale(1.05)}
-.esme-card:hover .esme-title{color:#2F5BB7}
-.esme-card:hover .esme-more{gap:10px}
-.esme-title{transition:color .2s ease}
-.esme-more{display:inline-flex;align-items:center;gap:6px;transition:gap .2s ease}
-.esme-chip{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:7px;padding:6px 11px 6px 9px;border-radius:999px;background:rgba(255,255,255,.95);color:#0E1525;font-size:12px;font-weight:700;letter-spacing:.02em;box-shadow:0 1px 3px rgba(14,21,37,.12)}
-.esme-dot{width:8px;height:8px;border-radius:50%;flex:none}
+.esme-card{position:relative;display:flex;color:#14181D;text-decoration:none;background:#FFFFFF;border:1px solid #EAECF0;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px -16px rgba(16,24,40,.18);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.esme-card:hover{color:#14181D;text-decoration:none;transform:translateY(-4px);border-color:#D0D5DD;box-shadow:0 2px 4px rgba(16,24,40,.05),0 20px 36px -18px rgba(16,24,40,.35)}
+.esme-card:focus-visible{outline:3px solid #1E4FA8;outline-offset:3px}
+.esme-img{position:relative;background:#E6ECF7;flex:none}
+.esme-imgc{position:absolute;inset:0;overflow:hidden}
+.esme-imgc img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.esme-card:hover .esme-imgc img{transform:scale(1.05)}
+.esme-card:hover .esme-title{color:#1E4FA8}
+.esme-title{margin:0;font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-weight:700;color:#14181D;transition:color .2s ease}
+.esme-pill{position:absolute;left:16px;bottom:0;transform:translateY(50%);z-index:2;display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:#FFFFFF;color:#101828;font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:600;line-height:1;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 4px 12px -2px rgba(16,24,40,.16);white-space:nowrap}
+.esme-dot{width:7px;height:7px;border-radius:50%;flex:none}
 .esme-c2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .esme-c3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.esme-meta{display:flex;align-items:center;gap:8px;font-size:13px;color:#4A5568}
-.esme-meta i{width:3px;height:3px;border-radius:50%;background:#A0AEC0;display:inline-block}
+.esme-ex{margin:0;font-size:14px;line-height:1.6;color:#5A6470}
+.esme-foot{margin-top:auto;padding-top:14px;border-top:1px solid #EAECF0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.esme-meta{font-size:12.5px;font-weight:500;color:#5A6470;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.esme-read{flex:none;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;background:#FFC72C;color:#101828;font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-size:12.5px;font-weight:700;box-shadow:0 1px 2px rgba(233,168,0,.4);transition:background-color .15s ease}
+.esme-card:hover .esme-read{background:#FFD24F}
+.esme-card--plain{border:none;box-shadow:none;background:transparent;border-radius:10px}
+.esme-card--plain:hover{transform:none;box-shadow:none}
 </style>
 </helmet>
 
 <sc-if value="{{isFeature}}" hint-placeholder-val="{{ false }}">
-<a class="esme-card" href="{{p.href}}" style="flex-direction: column; gap: 18px">
-<div class="esme-img" style="aspect-ratio: 16 / 9; border-radius: 14px">
-<img src="{{p.imgLarge}}" alt="{{p.alt}}">
-<span class="esme-chip" style="left: 16px; top: 16px; font-size: 13px"><span class="esme-dot" style="background: {{p.color}}"></span>{{p.sectionLabel}}</span>
+<a class="esme-card" href="{{p.href}}" style="flex-direction: column; height: 100%">
+<div class="esme-img" style="aspect-ratio: 16 / 9">
+<div class="esme-imgc"><img src="{{p.imgLarge}}" alt="{{p.alt}}"></div>
+<span class="esme-pill" style="left: 24px"><span class="esme-dot" style="background: {{p.color}}"></span>{{p.sectionLabel}}</span>
 </div>
-<div style="display: flex; flex-direction: column; gap: 12px">
-<span class="esme-meta">{{p.date}}<i></i>{{p.mins}} min read</span>
-<h3 class="esme-title" style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(28px, 3.2vw, 40px); line-height: 1.12; font-weight: 600; letter-spacing: -0.01em">{{p.title}}</h3>
-<p class="esme-c3" style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 19px; line-height: 1.55; color: #4A5568">{{p.excerpt}}</p>
-<span class="esme-more" style="font-size: 15px; font-weight: 700; color: #2F5BB7">Read the article <span aria-hidden="true">→</span></span>
+<div style="padding: 34px 26px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1 1 auto">
+<h3 class="esme-title" style="font-size: clamp(24px, 2.5vw, 32px); line-height: 1.2; letter-spacing: -0.015em">{{p.title}}</h3>
+<p class="esme-ex esme-c3" style="font-size: 16px">{{p.excerpt}}</p>
+<div class="esme-foot" style="margin-top: 8px"><span class="esme-meta">By {{p.author}} · {{p.date}} · {{p.mins}} min read</span><span class="esme-read" style="padding: 9px 18px; font-size: 13px">Read the story</span></div>
 </div>
 </a>
 </sc-if>
 
 <sc-if value="{{isStandard}}" hint-placeholder-val="{{ true }}">
-<a class="esme-card" href="{{p.href}}" style="flex-direction: column; gap: 14px; height: 100%">
+<a class="esme-card" href="{{p.href}}" style="flex-direction: column; height: 100%">
 <div class="esme-img" style="aspect-ratio: 16 / 10">
-<img src="{{p.img}}" alt="{{p.alt}}" loading="lazy">
-<span class="esme-chip"><span class="esme-dot" style="background: {{p.color}}"></span>{{p.sectionLabel}}</span>
+<div class="esme-imgc"><img src="{{p.img}}" alt="{{p.alt}}" loading="lazy"></div>
+<span class="esme-pill"><span class="esme-dot" style="background: {{p.color}}"></span>{{p.sectionLabel}}</span>
 </div>
-<div style="display: flex; flex-direction: column; gap: 8px; flex: 1 1 auto">
-<span class="esme-meta">{{p.date}}<i></i>{{p.mins}} min read</span>
-<h3 class="esme-title esme-c3" style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; line-height: 1.25; font-weight: 600">{{p.title}}</h3>
-<p class="esme-c2" style="margin: 0; font-size: 15px; line-height: 1.55; color: #4A5568">{{p.excerpt}}</p>
-<span class="esme-more" style="margin-top: auto; padding-top: 4px; font-size: 14px; font-weight: 700; color: #2F5BB7">Read <span aria-hidden="true">→</span></span>
+<div style="padding: 28px 16px 16px; display: flex; flex-direction: column; gap: 9px; flex: 1 1 auto">
+<h3 class="esme-title esme-c3" style="font-size: 17.5px; line-height: 1.3">{{p.title}}</h3>
+<p class="esme-ex esme-c2">{{p.excerpt}}</p>
+<div class="esme-foot"><span class="esme-meta">{{p.date}} · {{p.mins}} min</span><span class="esme-read">Read</span></div>
 </div>
 </a>
 </sc-if>
 
 <sc-if value="{{isRow}}" hint-placeholder-val="{{ false }}">
-<a class="esme-card" href="{{p.href}}" style="flex-direction: row; flex-wrap: wrap; gap: 22px; align-items: center">
-<div class="esme-img" style="flex: 0 0 min(260px, 100%); aspect-ratio: 4 / 3">
-<img src="{{p.img}}" alt="{{p.alt}}" loading="lazy">
-<span class="esme-chip"><span class="esme-dot" style="background: {{p.color}}"></span>{{p.sectionLabel}}</span>
+<a class="esme-card" href="{{p.href}}" style="flex-direction: row; flex-wrap: wrap; gap: 20px; padding: 10px; align-items: stretch">
+<div class="esme-img" style="flex: 0 0 min(250px, 100%); aspect-ratio: 4 / 3; border-radius: 9px; overflow: hidden">
+<div class="esme-imgc"><img src="{{p.img}}" alt="{{p.alt}}" loading="lazy"></div>
 </div>
-<div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
-<span class="esme-meta">{{p.date}}<i></i>{{p.mins}} min read</span>
-<h3 class="esme-title" style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 23px; line-height: 1.22; font-weight: 600">{{p.title}}</h3>
-<p class="esme-c2" style="margin: 0; font-size: 15px; line-height: 1.55; color: #4A5568">{{p.excerpt}}</p>
+<div style="flex: 1 1 240px; min-width: 0; padding: 6px 8px 4px 0; display: flex; flex-direction: column; gap: 9px">
+<span style="display: inline-flex; align-items: center; gap: 7px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #344054"><span class="esme-dot" style="background: {{p.color}}"></span>{{p.sectionLabel}}</span>
+<h3 class="esme-title" style="font-size: 19px; line-height: 1.3">{{p.title}}</h3>
+<p class="esme-ex esme-c2">{{p.excerpt}}</p>
+<div class="esme-foot"><span class="esme-meta">{{p.date}} · {{p.mins}} min read</span><span class="esme-read">Read</span></div>
 </div>
 </a>
 </sc-if>
 
 <sc-if value="{{isCompact}}" hint-placeholder-val="{{ false }}">
-<a class="esme-card" href="{{p.href}}" style="flex-direction: row; gap: 14px; align-items: center; padding: 12px 0; border-radius: 10px">
+<a class="esme-card esme-card--plain" href="{{p.href}}" style="flex-direction: row; gap: 14px; align-items: center; padding: 12px 0">
 <sc-if value="{{hasRank}}" hint-placeholder-val="{{ false }}">
-<span aria-hidden="true" style="flex: 0 0 34px; font-family: 'Source Serif 4', Georgia, serif; font-size: 34px; font-weight: 600; line-height: 1; color: {{p.color}}">{{rank}}</span>
+<span aria-hidden="true" style="flex: 0 0 30px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 30px; font-weight: 800; line-height: 1; color: #D0D5DD">{{rank}}</span>
 </sc-if>
-<div class="esme-img" style="width: 92px; height: 70px; border-radius: 9px">
-<img src="{{p.thumb}}" alt="" loading="lazy">
+<div class="esme-img" style="width: 92px; height: 68px; border-radius: 8px; overflow: hidden">
+<div class="esme-imgc"><img src="{{p.thumb}}" alt="" loading="lazy"></div>
 </div>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 5px">
-<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4A5568"><span class="esme-dot" style="background: {{p.color}}"></span>{{p.sectionLabel}}</span>
-<span class="esme-title esme-c2" style="font-size: 15.5px; font-weight: 650; line-height: 1.35">{{p.title}}</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #5A6470"><span class="esme-dot" style="background: {{p.color}}"></span>{{p.sectionLabel}}</span>
+<span class="esme-title esme-c2" style="font-size: 14.5px; font-weight: 600; line-height: 1.35">{{p.title}}</span>
 </div>
 </a>
 </sc-if>
@@ -93,7 +95,7 @@ class Component extends DCLogic {
     const v = this.props.variant || 'standard';
     const p = this.props.post || {
       href: '#', img: '', imgLarge: '', thumb: '', alt: '', title: 'Article title', excerpt: 'Short summary of the article.',
-      date: '13 April 2026', mins: 3, sectionLabel: 'Growth & Strategy', color: '#2F5BB7'
+      date: '13 April 2026', mins: 3, author: 'European SME', sectionLabel: 'Growth & Strategy', color: '#1E4FA8'
     };
     return {
       p,

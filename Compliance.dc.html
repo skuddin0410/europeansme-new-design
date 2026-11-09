@@ -9,22 +9,23 @@
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,500;1,8..60,600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
 <style>
 body{margin:0;background:#FFFFFF}
-a{color:#0E1525;text-decoration:none}
-a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
 </style>
 </helmet>
-<div style="font-family: 'Inter', system-ui, sans-serif; color: #0E1525; background: #FFFFFF">
-<dc-import name="SiteHeader" active="Policy" hint-size="100%,124px"></dc-import>
+<div style="font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; color: #14181D; background: #FFFFFF">
+<dc-import name="SiteHeader" active="Policy" hint-size="100%,118px"></dc-import>
 
 <main>
-<section aria-label="Introduction" style="background: #0E1525; color: #FFFFFF">
+<section aria-label="Introduction" style="background: #14181D; color: #FFFFFF">
 <div style="max-width: 1240px; margin: 0 auto; padding: 48px 32px 44px; display: flex; flex-wrap: wrap; gap: 24px 48px; justify-content: space-between; align-items: flex-end">
 <div style="flex: 1 1 560px; display: flex; flex-direction: column; gap: 14px">
 <nav aria-label="Breadcrumb" style="font-size: 13px; color: #C9D3EA; display: flex; gap: 8px"><a href="Tools.dc.html" style="color: #C9D3EA">Tools</a><span aria-hidden="true">/</span><span>EU Compliance Calendar</span></nav>
-<h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 48px; line-height: 1.08; font-weight: 600">EU Compliance Calendar</h1>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 48px; line-height: 1.08; font-weight: 600">EU Compliance Calendar</h1>
 <p style="margin: 0; font-size: 18px; line-height: 1.55; color: #C9D3EA; max-width: 680px">The rule changes coming for small businesses, in date order. Filter to the countries you trade in and add deadlines to your own calendar.</p>
 </div>
 <div style="flex: 0 1 320px; border: 1px solid rgba(201,211,234,0.3); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px">
@@ -52,20 +53,20 @@ a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
 <h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Coming up · {{countLabel}}</h2>
 <ol style="list-style: none; margin: 0; padding: 0">
 <sc-for list="{{events}}" as="e" hint-placeholder-count="6">
-<li style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #DDE2EA">
+<li style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E4E7EC">
 <div style="flex: 0 0 96px; display: flex; flex-direction: column; gap: 2px">
-<span style="font-family: 'Source Serif 4', Georgia, serif; font-size: 30px; font-weight: 600; line-height: 1; color: #0B2A6B">{{e.day}}</span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 30px; font-weight: 600; line-height: 1; color: #0B2A6B">{{e.day}}</span>
 <span style="font-size: 14px; font-weight: 700">{{e.month}}</span>
 </div>
 <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 8px">
 <div style="display: flex; flex-wrap: wrap; gap: 6px">
 <span style="font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #E6ECF7; color: #0B2A6B">{{e.where}}</span>
-<span style="font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #F4F6FA; color: #1A2233">{{e.topicLabel}}</span>
+<span style="font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #F5F7FA; color: #1A2233">{{e.topicLabel}}</span>
 </div>
-<h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; line-height: 1.25; font-weight: 600">{{e.title}}</h3>
+<h3 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; line-height: 1.25; font-weight: 600">{{e.title}}</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #1A2233"><strong style="font-weight: 700">What to do: </strong>{{e.todo}}</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
-<span style="font-size: 12px; color: #4A5568">Source: {{e.source}} · Verified [DATE]</span>
+<span style="font-size: 12px; color: #5A6470">Source: {{e.source}} · Verified [DATE]</span>
 <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1px solid #0B2A6B; background: #FFFFFF; color: #0B2A6B; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer">Add to calendar</button>
 </div>
 </div>
@@ -73,32 +74,32 @@ a:hover{color:#2F5BB7;text-decoration:underline;text-underline-offset:3px}
 </sc-for>
 </ol>
 <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
-<div style="margin-top: 16px; padding: 28px; border: 1px dashed #C7CFDC; border-radius: 12px; text-align: center; color: #4A5568; font-size: 15px">No upcoming deadlines for this filter. See “Already in force” for rules that apply now.</div>
+<div style="margin-top: 16px; padding: 28px; border: 1px dashed #C7CFDC; border-radius: 12px; text-align: center; color: #5A6470; font-size: 15px">No upcoming deadlines for this filter. See “Already in force” for rules that apply now.</div>
 </sc-if>
 </section>
 
 <aside aria-label="Already in force" style="flex: 0 1 360px; min-width: 280px; display: flex; flex-direction: column; gap: 24px">
-<div style="background: #F4F6FA; border-radius: 12px; padding: 24px">
+<div style="background: #F5F7FA; border-radius: 12px; padding: 24px">
 <h2 style="margin: 0 0 6px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Already in force</h2>
 <sc-for list="{{inForce}}" as="f" hint-placeholder-count="5">
-<div style="padding: 14px 0; border-bottom: 1px solid #DDE2EA; display: flex; flex-direction: column; gap: 4px">
-<span style="font-size: 12px; font-weight: 700; color: #2F5BB7">{{f.since}}</span>
+<div style="padding: 14px 0; border-bottom: 1px solid #E4E7EC; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; font-weight: 700; color: #1E4FA8">{{f.since}}</span>
 <span style="font-size: 15px; font-weight: 600; line-height: 1.4">{{f.title}}</span>
 </div>
 </sc-for>
 </div>
 <div style="background: #0B2A6B; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
-<span style="font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; line-height: 1.25; font-weight: 600; color: #FFFFFF">Get a reminder 30 days before each deadline.</span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; line-height: 1.25; font-weight: 600; color: #FFFFFF">Get a reminder 30 days before each deadline.</span>
 <label for="cc-email" style="font-size: 13px; font-weight: 600; color: #C9D3EA">Work email</label>
 <input id="cc-email" type="email" placeholder="name@company.eu" style="height: 48px; padding: 0 14px; border-radius: 8px; border: none; font-size: 16px; font-family: inherit">
-<button type="button" style="height: 48px; border-radius: 8px; border: none; background: #FFC72C; color: #071C4A; font-weight: 700; font-size: 15px; font-family: inherit; cursor: pointer">Get compliance alerts</button>
+<button type="button" style="height: 48px; border-radius: 8px; border: none; background: #FFC72C; color: #101828; font-weight: 700; font-size: 15px; font-family: inherit; cursor: pointer">Get compliance alerts</button>
 </div>
-<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #4A5568">General guidance, not legal advice. Dates can move — the AI Act's high-risk deadlines were postponed in July 2026 — so always check the source.</p>
+<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #5A6470">General guidance, not legal advice. Dates can move — the AI Act's high-risk deadlines were postponed in July 2026 — so always check the source.</p>
 </aside>
 </div>
 </main>
 
-<footer style="background: #071C4A; color: #C9D3EA">
+<footer style="background: #101828; color: #C9D3EA">
 <div style="max-width: 1240px; margin: 0 auto; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px">
 <span>© 2026 European SME · Spotted an outdated date? <a href="#" style="color: #FFFFFF; text-decoration: underline">Tell our editor</a></span>
 <a href="Tools.dc.html" style="color: #FFFFFF; font-weight: 600">All tools</a>
@@ -115,7 +116,7 @@ class Component extends DCLogic {
     const topics = [['all', 'All topics'], ['einv', 'E-invoicing & VAT'], ['ai', 'AI Act']];
     const chip = (key, label, current, field) => {
       const on = key === current;
-      return { label, on: on ? 'true' : 'false', bg: on ? '#0B2A6B' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0E1525', border: on ? '#0B2A6B' : '#C7CFDC', pick: () => this.setState({ [field]: key }) };
+      return { label, on: on ? 'true' : 'false', bg: on ? '#0B2A6B' : '#FFFFFF', fg: on ? '#FFFFFF' : '#14181D', border: on ? '#0B2A6B' : '#C7CFDC', pick: () => this.setState({ [field]: key }) };
     };
     const ev = [
       { day: '1', month: 'Jan 2027', p: 'PL', where: 'Poland', t: 'einv', topicLabel: 'E-invoicing', title: 'Micro-enterprises join Poland’s KSeF e-invoicing system', todo: 'If you are a Polish micro-business, choose KSeF-ready invoicing software and test it before year end.', source: 'Ministry of Finance (KSeF)' },

@@ -1,0 +1,56 @@
+/* European SME — shared styles, modelled on the canadiansme.ca design system.
+   Headings, nav, labels and buttons: Sora. Body text: IBM Plex Sans. */
+:root{
+  --esme-ink:#101828; --esme-text:#14181D; --esme-muted:#5A6470; --esme-label:#344054;
+  --esme-line:#E4E7EC; --esme-line2:#EAECF0; --esme-surface:#F5F7FA;
+  --esme-navy:#0B2A6B; --esme-deep:#0B1B33; --esme-blue:#1E4FA8; --esme-gold:#FFC72C; --esme-gold-d:#E9A800;
+  --esme-sora:'Sora','Helvetica Neue',Arial,sans-serif;
+  --esme-plex:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;
+}
+body{margin:0;background:#FFFFFF;font-family:var(--esme-plex);color:var(--esme-text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:var(--esme-sora)}
+input,button,select,textarea{font-family:inherit}
+
+/* Section heading: small spaced label with a gold rule, then a bold Sora title */
+.esme-eyebrow{display:flex;align-items:center;gap:14px;margin:0;font-family:var(--esme-sora);font-size:12px;font-weight:600;line-height:1;letter-spacing:.24em;text-transform:uppercase;color:var(--esme-label)}
+.esme-eyebrow::after{content:"";width:46px;height:2px;background:var(--esme-gold-d)}
+.esme-eyebrow.is-dark{color:rgba(255,255,255,.82)}
+.esme-eyebrow.is-dark::after{background:var(--esme-gold)}
+.esme-h2{margin:12px 0 0;font-family:var(--esme-sora);font-size:36px;line-height:1.15;font-weight:700;letter-spacing:-.02em;color:var(--esme-ink)}
+.esme-h2.is-dark{color:#FFFFFF}
+.esme-h2::after{content:"";display:block;width:34px;height:3px;margin-top:12px;background:var(--esme-gold-d);border-radius:2px}
+.esme-h2.no-bar::after{display:none}
+.esme-sub{margin:10px 0 0;font-size:15px;line-height:1.55;color:var(--esme-muted);max-width:640px}
+.esme-sub.is-dark{color:rgba(255,255,255,.78)}
+.esme-sechead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:30px}
+
+/* Older pages: the heavy black rule becomes a short gold bar */
+.esme-rule{position:relative;padding-top:18px !important}
+.esme-rule::before{content:"";position:absolute;left:0;top:0;width:46px;height:3px;border-radius:2px;background:var(--esme-gold-d)}
+
+/* Buttons */
+.esme-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 18px;border-radius:8px;border:1px solid transparent;font-family:var(--esme-sora);font-size:13px;font-weight:700;line-height:1.25;white-space:nowrap;cursor:pointer;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,background-color .15s ease}
+.esme-btn:hover{text-decoration:none;transform:translateY(-1px)}
+.esme-btn:focus-visible{outline:3px solid var(--esme-blue);outline-offset:2px}
+.esme-btn--gold,.esme-btn--gold:hover{background:var(--esme-gold);color:var(--esme-ink);box-shadow:0 1px 2px rgba(233,168,0,.4)}
+.esme-btn--gold:hover{background:#FFD24F}
+.esme-btn--blue,.esme-btn--blue:hover{background:var(--esme-blue);color:#FFFFFF}
+.esme-btn--blue:hover{background:#2459BA}
+.esme-btn--navy,.esme-btn--navy:hover{background:var(--esme-navy);color:#FFFFFF}
+.esme-btn--ghost,.esme-btn--ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.4);color:#FFFFFF}
+.esme-btn--line,.esme-btn--line:hover{background:#FFFFFF;border-color:#D0D5DD;color:var(--esme-ink)}
+.esme-btn--lg{padding:13px 22px;font-size:14px}
+
+/* Filter chips */
+.esme-chipf{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border-radius:999px;border:1px solid #D0D5DD;background:#FFFFFF;color:var(--esme-ink);font-family:var(--esme-sora);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:border-color .15s ease}
+.esme-chipf:hover{border-color:var(--esme-ink);color:var(--esme-ink);text-decoration:none}
+.esme-chipf.is-on,.esme-chipf.is-on:hover{background:var(--esme-deep);border-color:var(--esme-deep);color:#FFFFFF}
+
+/* Labels such as EXCLUSIVE / SPONSORED */
+.esme-tag{display:inline-flex;align-items:center;padding:4px 8px;border-radius:4px;font-family:var(--esme-sora);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1}
+.esme-tag--gold{background:var(--esme-gold);color:var(--esme-ink)}
+.esme-tag--outline{border:1px solid rgba(255,255,255,.45);color:#FFFFFF}
+
+.esme-skel{background:linear-gradient(90deg,#EEF1F5 25%,#F6F8FB 50%,#EEF1F5 75%);background-size:200% 100%;animation:esme-sh 1.2s infinite linear;border-radius:12px}
+@keyframes esme-sh{from{background-position:200% 0}to{background-position:-200% 0}}
+@media (max-width: 720px){.esme-h2{font-size:28px}}
