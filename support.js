@@ -305,13 +305,13 @@
   // ---------- live articles from europeansme.eu ----------
   var API = 'https://europeansme.eu/wp-json/wp/v2/posts?per_page=100&_embed=wp:featuredmedia,wp:term,author';
   var SECTIONS = {
-    funding: { label: 'Funding & Grants', color: '#B07A00' },
-    growth: { label: 'Growth & Strategy', color: '#2F5BB7' },
-    money: { label: 'Money & Cash Flow', color: '#0F7B6C' },
-    marketing: { label: 'Marketing & Brand', color: '#8A3FB8' },
-    people: { label: 'People & Leadership', color: '#C2410C' },
-    tech: { label: 'Tech & AI', color: '#4338CA' },
-    policy: { label: 'EU Policy', color: '#0B2A6B' }
+    funding: { desc: 'Grants, loans and investors', label: 'Funding & Grants', color: '#B07A00' },
+    growth: { desc: 'Strategy, exporting, scaling up', label: 'Growth & Strategy', color: '#2F5BB7' },
+    money: { desc: 'Cash flow, payments, tax', label: 'Money & Cash Flow', color: '#0F7B6C' },
+    marketing: { desc: 'Brand, digital, sales', label: 'Marketing & Brand', color: '#8A3FB8' },
+    people: { desc: 'Hiring, teams, leadership', label: 'People & Leadership', color: '#C2410C' },
+    tech: { desc: 'AI, cyber security, digital tools', label: 'Tech & AI', color: '#4338CA' },
+    policy: { desc: 'EU rules and compliance', label: 'EU Policy', color: '#0B2A6B' }
   };
   var CAT_MAP = {
     funding: 'funding', 'eu-grant': 'funding', investment: 'funding', finance: 'funding',
@@ -363,9 +363,49 @@
       content: clean(p.content && p.content.rendered)
     };
   }
+
+  // Line icons (24px grid, stroke = currentColor), used by menus, tool cards and tool pages.
+  var ICONS = {
+    funding: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5a4.5 4.5 0 1 0 0 7M7 11h6M7 13.5h6"/>',
+    growth: '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
+    money: '<path d="M4 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z"/><path d="M4 7l11-3v3"/><path d="M16 13.5h.01"/>',
+    marketing: '<path d="M4 10v4a1 1 0 0 0 1 1h3l6 4V5L8 9H5a1 1 0 0 0-1 1z"/><path d="M17.5 9a3.5 3.5 0 0 1 0 6"/>',
+    people: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"/>',
+    tech: '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M10 10h4v4h-4zM9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
+    policy: '<path d="M3 21h18M5 21V10M19 21V10M9.5 21V10M14.5 21V10"/><path d="M12 3l9 5H3l9-5z"/>',
+    search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+    calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h2M14 14h2M8 17h2"/>',
+    calculator: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v3M8 18h4"/>',
+    check: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/>',
+    invoice: '<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h5"/>',
+    percent: '<path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+    shield: '<path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+    hire: '<circle cx="10" cy="8" r="3.5"/><path d="M3.5 20a6.5 6.5 0 0 1 13 0M19 8v6M16 11h6"/>',
+    ai: '<path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3z"/><path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15z"/>',
+    leaf: '<path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15"/><path d="M5 19l7-7"/>',
+    grid: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
+    arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>'
+  };
+  function icon(name, size, width) {
+    return '<svg aria-hidden="true" width="' + (size || 20) + '" height="' + (size || 20) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (width || 1.9) + '" stroke-linecap="round" stroke-linejoin="round" style="display:block">' + (ICONS[name] || ICONS.grid) + '</svg>';
+  }
+  // Every tool on the site, in one list, so the header menu, homepage and Tools page stay in step.
+  var TOOLS = [
+    { key: 'funding', name: 'EU Funding Finder', short: 'Grants, loans and equity by country', icon: 'search', href: 'FundingFinder.dc.html', tone: '#0B2A6B' },
+    { key: 'compliance', name: 'Compliance Calendar', short: 'Every EU deadline that applies to you', icon: 'calendar', href: 'Compliance.dc.html', tone: '#14181D' },
+    { key: 'vat-route', name: 'Cross-border VAT route finder', short: 'Selling to another EU country? See which VAT route fits', icon: 'globe', href: 'VATRoute.dc.html', tone: '#0F7B6C', isNew: true },
+    { key: 'cyber', name: 'Cyber & AI readiness check', short: '10 questions, a score and your next steps', icon: 'shield', href: 'CyberCheck.dc.html', tone: '#4338CA', isNew: true },
+    { key: 'hiring', name: 'Hiring across the EU', short: 'Checklist for hiring abroad or from outside the EU', icon: 'hire', href: 'HiringKit.dc.html', tone: '#C2410C', isNew: true },
+    { key: 'calculators', name: 'VAT & late-payment calculators', short: 'Add or remove VAT, claim interest on late invoices', icon: 'calculator', href: 'Calculators.dc.html', tone: '#1E4FA8' },
+    { key: 'checkers', name: 'Checkers', short: 'Am I an SME? Do I need e-invoicing?', icon: 'check', href: 'Checkers.dc.html', tone: '#8A3FB8' }
+  ];
   var postsPromise = null;
   window.ESME = {
     sections: SECTIONS,
+    icons: ICONS, icon: icon, tools: TOOLS,
+    sectionIcon: function (k) { return icon(k, 18); },
     loadPosts: function () {
       if (postsPromise) return postsPromise;
       var KEY = 'esme-posts-v2';

@@ -19,6 +19,8 @@ a:hover{color:#1E4FA8}
 .esme-herocard:hover{background:rgba(255,255,255,.09) !important;border-color:rgba(255,199,44,.5) !important;transform:translateY(-2px);color:#FFFFFF !important;text-decoration:none}
 .esme-ticker::-webkit-scrollbar{display:none}
 .esme-ticker a:hover span{color:#FFC72C}
+.esme-tic{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;transition:transform .2s ease}
+.esme-toolcard:hover .esme-tic{transform:rotate(-6deg) scale(1.06)}
 .esme-toolcard{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .esme-toolcard:hover{transform:translateY(-4px);border-color:#D0D5DD !important;color:#14181D !important;text-decoration:none}
 .esme-flink:hover{color:#FFFFFF !important}
@@ -118,11 +120,11 @@ a:hover{color:#1E4FA8}
 <a class="esme-btn esme-btn--blue" href="Tools.dc.html">All tools <span aria-hidden="true">→</span></a>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px">
-<sc-for list="{{tools}}" as="t" hint-placeholder-count="4">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="7">
 <a href="{{t.href}}" class="esme-toolcard" style="display: flex; flex-direction: column; gap: 14px; padding: 22px; background: #FFFFFF; border: 1px solid #EAECF0; border-radius: 14px; box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px -16px rgba(16,24,40,.18); color: #14181D; text-decoration: none">
-<span aria-hidden="true" style="width: 48px; height: 48px; border-radius: 12px; background: {{t.bg}}; color: {{t.fg}}; display: flex; align-items: center; justify-content: center; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 17px">{{t.glyph}}</span>
+<span style="display: flex; justify-content: space-between; align-items: flex-start"><span class="esme-tic" style="color: {{t.tone}}; background: {{t.tint}}" dc-html="{{t.iconSvg}}"></span><sc-if value="{{t.isNew}}" hint-placeholder-val="{{ false }}"><span class="esme-tag esme-tag--gold">New</span></sc-if></span>
 <span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; font-weight: 700">{{t.name}}</span>
-<span style="font-size: 14px; line-height: 1.55; color: #5A6470">{{t.desc}}</span>
+<span style="font-size: 14px; line-height: 1.55; color: #5A6470">{{t.short}}</span>
 <span style="margin-top: auto; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; color: #1E4FA8">Open tool →</span>
 </a>
 </sc-for>
@@ -209,11 +211,11 @@ a:hover{color:#1E4FA8}
 <h2 class="esme-h2 is-dark" style="margin-top: 4px">Get the Weekly Briefing</h2>
 <p class="esme-sub is-dark" style="font-size: 16px">EU funding calls, rule changes and practical playbooks for founders and managers across the Union — every Tuesday.</p>
 </div>
-<form style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 16px; background: #FFFFFF; color: #14181D; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6)">
+<form action="https://europeansme.eu/subscription/" method="get" target="_blank" style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 16px; background: #FFFFFF; color: #14181D; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6)">
 <label for="nl-email" style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 600">Email address</label>
 <input id="nl-email" type="email" placeholder="you@yourbusiness.eu" style="height: 48px; padding: 0 14px; border-radius: 8px; border: 1px solid #D0D5DD; font-size: 15px; color: #14181D">
-<button type="button" class="esme-btn esme-btn--gold esme-btn--lg" style="width: 100%">Subscribe free</button>
-<p style="margin: 0; font-size: 12.5px; color: #5A6470">No spam. Unsubscribe any time. See our <a href="#" style="color: #1E4FA8; text-decoration: underline">privacy policy</a>.</p>
+<button type="submit" class="esme-btn esme-btn--gold esme-btn--lg" style="width: 100%">Subscribe free</button>
+<p style="margin: 0; font-size: 12.5px; color: #5A6470">No spam. Unsubscribe any time. Opens our subscription page on europeansme.eu.</p>
 </form>
 </div>
 </section>
@@ -237,7 +239,7 @@ a:hover{color:#1E4FA8}
 </div>
 <div style="margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(200,205,214,.18); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 13px">
 <span>© 2026 European SME Business Magazine. All rights reserved.</span>
-<span style="display: flex; gap: 18px"><a href="#" class="esme-flink" style="color: #C8CDD6">Privacy Policy</a><a href="#" class="esme-flink" style="color: #C8CDD6">Terms and Conditions</a><a href="#" class="esme-flink" style="color: #C8CDD6">Cookie settings</a></span>
+<span style="display: flex; gap: 18px"><a href="https://europeansme.eu/about-us/" class="esme-flink" style="color: #C8CDD6">About</a><a href="https://europeansme.eu/contact-us/" class="esme-flink" style="color: #C8CDD6">Contact</a><a href="https://europeansme.eu/subscription/" class="esme-flink" style="color: #C8CDD6">Subscribe</a></span>
 </div>
 </div>
 </footer>
@@ -253,17 +255,12 @@ class Component extends DCLogic {
     const { posts, failed } = this.state;
     const base = {
       brand: this.props.brand ?? '#0B2A6B',
-      tools: [
-        { name: 'EU Funding Finder', desc: 'Grants, loans and equity, with every deadline.', glyph: '€', bg: '#0B2A6B', fg: '#FFFFFF', href: 'FundingFinder.dc.html' },
-        { name: 'Compliance Calendar', desc: 'AI Act, e-invoicing and more, by country.', glyph: '31', bg: '#14181D', fg: '#FFFFFF', href: 'Compliance.dc.html' },
-        { name: 'Am I an SME?', desc: 'Check the EU definition in 30 seconds.', glyph: 'SME', bg: '#E6ECF7', fg: '#0B2A6B', href: 'Checkers.dc.html' },
-        { name: 'VAT & late-payment calculators', desc: 'Quick sums for selling and getting paid.', glyph: '%', bg: '#1E4FA8', fg: '#FFFFFF', href: 'Calculators.dc.html' }
-      ],
+      tools: ESME.tools.map((t) => Object.assign({}, t, { iconSvg: ESME.icon(t.icon, 24), tint: t.tone + '14', isNew: !!t.isNew })),
       footCols: [
         { title: 'Explore', links: [{ label: 'Latest articles', href: 'Articles.dc.html' }, { label: 'SME tools', href: 'Tools.dc.html' }, { label: 'Country guides', href: 'CountryHub.dc.html' }, { label: 'Compliance calendar', href: 'Compliance.dc.html' }, { label: 'Newsletter', href: '#newsletter' }] },
         { title: 'Sections', links: Object.keys(ESME.sections).map((k) => ({ label: ESME.sections[k].label, href: 'Articles.dc.html?section=' + k })) },
-        { title: 'Company', links: [{ label: 'About European SME', href: '#' }, { label: 'Contributors', href: '#' }, { label: 'Contact us', href: '#' }] },
-        { title: 'Work with us', links: [{ label: 'Advertise with us', href: '#advertise' }, { label: 'Become a partner', href: '#' }, { label: 'Sponsored content', href: '#' }, { label: 'Submit a story', href: '#' }] }
+        { title: 'Company', links: [{ label: 'About European SME', href: 'https://europeansme.eu/about-us/' }, { label: 'Our authors', href: 'https://europeansme.eu/our-authors/' }, { label: 'Contact us', href: 'https://europeansme.eu/contact-us/' }] },
+        { title: 'Work with us', links: [{ label: 'Advertise with us', href: 'https://europeansme.eu/contact-us/' }, { label: 'Become a partner', href: 'https://europeansme.eu/contact-us/' }, { label: 'Submit a story', href: 'https://europeansme.eu/contact-us/' }, { label: 'Subscribe', href: 'https://europeansme.eu/subscription/' }] }
       ],
       loading: !posts && !failed, failed, ready: !!posts,
       skeletons: [1, 2, 3, 4], latest: []

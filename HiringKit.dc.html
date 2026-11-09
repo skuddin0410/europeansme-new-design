@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hiring across the EU — European SME</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<style>
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
+.hk-tab{display:flex;align-items:center;gap:12px;width:100%;padding:16px;border-radius:12px;border:1.5px solid #EAECF0;background:#FFFFFF;text-align:left;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;color:#14181D;transition:border-color .15s ease,background-color .15s ease}
+.hk-tab:hover{border-color:#D0D5DD}
+.hk-tab[aria-pressed="true"]{border-color:#C2410C;background:#FFF5EF}
+.hk-ic{flex:none;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FDEBDF;color:#C2410C}
+.hk-item{display:flex;gap:14px;align-items:flex-start;width:100%;padding:16px 4px;border:none;border-bottom:1px solid #EAECF0;background:none;text-align:left;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;color:#14181D}
+.hk-box{flex:none;width:22px;height:22px;margin-top:1px;border-radius:6px;border:2px solid #98A2B3;display:flex;align-items:center;justify-content:center;transition:background-color .15s ease,border-color .15s ease}
+.hk-item[aria-pressed="true"] .hk-box{background:#0F7B6C;border-color:#0F7B6C}
+.hk-item[aria-pressed="true"] .hk-box::after{content:"";width:6px;height:11px;border:solid #FFFFFF;border-width:0 2.5px 2.5px 0;transform:translateY(-1px) rotate(45deg)}
+.hk-item[aria-pressed="true"] .hk-t{color:#5A6470;text-decoration:line-through;text-decoration-color:#98A2B3}
+</style>
+</helmet>
+<div style="color: #14181D; background: #FFFFFF">
+<dc-import name="SiteHeader" active="Tools" hint-size="100%,118px"></dc-import>
+
+<main>
+<section aria-label="Introduction" style="background: radial-gradient(800px 420px at 100% 0%, rgba(194,65,12,.14), transparent 60%), #F5F7FA; border-bottom: 1px solid #E4E7EC">
+<div style="max-width: 1232px; margin: 0 auto; padding: 48px 32px 40px; display: flex; flex-direction: column; gap: 14px">
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #5A6470"><a href="Tools.dc.html" style="color: #5A6470">Tools</a> / Hiring across the EU</nav>
+<span style="display: flex; align-items: center; gap: 12px"><span style="width: 48px; height: 48px; border-radius: 12px; background: #C2410C; color: #FFFFFF; display: flex; align-items: center; justify-content: center" dc-html="{{hire}}"></span><span class="esme-tag esme-tag--gold">New tool</span></span>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(32px, 4.2vw, 46px); line-height: 1.1; font-weight: 700; letter-spacing: -0.03em">Hiring across the EU: your checklist</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #5A6470; max-width: 680px">Finding skilled staff is the top problem European SMEs report. Hiring beyond your own country widens the pool — pick your situation and work through the steps.</p>
+</div>
+</section>
+
+<section aria-label="Checklist" style="max-width: 1232px; margin: 0 auto; padding: 36px 32px 72px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<div role="group" aria-label="Choose your situation" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; position: sticky; top: 104px">
+<p class="esme-eyebrow" style="margin-bottom: 6px">Your situation</p>
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+<button type="button" class="hk-tab" aria-pressed="{{t.on}}" onClick="{{t.pick}}"><span class="hk-ic" dc-html="{{t.icon}}"></span><span style="display: flex; flex-direction: column; gap: 3px"><strong style="font-family: 'Sora', sans-serif; font-size: 14.5px; font-weight: 700">{{t.title}}</strong><span style="font-size: 13px; line-height: 1.45; color: #5A6470">{{t.sub}}</span></span></button>
+</sc-for>
+</div>
+
+<div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.01em">{{current.title}}</h2>
+<span style="font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 700; color: #0F7B6C">{{done}} of {{total}} done</span>
+</div>
+<div aria-hidden="true" style="height: 8px; border-radius: 999px; background: #EAECF0; overflow: hidden; margin: 6px 0 4px"><span style="display: block; height: 100%; width: {{pct}}%; background: #0F7B6C; border-radius: 999px; transition: width .3s ease"></span></div>
+<sc-for list="{{items}}" as="i" hint-placeholder-count="6">
+<button type="button" class="hk-item" aria-pressed="{{i.on}}" onClick="{{i.toggle}}"><span class="hk-box" aria-hidden="true"></span><span style="display: flex; flex-direction: column; gap: 4px"><span class="hk-t" style="font-size: 15.5px; font-weight: 600; line-height: 1.45">{{i.title}}</span><span style="font-size: 14px; line-height: 1.55; color: #5A6470">{{i.note}}</span></span></button>
+</sc-for>
+<div style="margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px">
+<sc-for list="{{current.links}}" as="l" hint-placeholder-count="2">
+<a href="{{l.href}}" target="{{l.target}}" rel="noopener" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid #EAECF0; border-radius: 12px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(16,24,40,.04)"><strong style="font-family: 'Sora', sans-serif; font-size: 14.5px; font-weight: 700; color: #1E4FA8">{{l.label}}</strong><span style="font-size: 13px; line-height: 1.5; color: #5A6470">{{l.note}}</span></a>
+</sc-for>
+</div>
+<p style="margin: 18px 0 0; font-size: 12.5px; line-height: 1.6; color: #5A6470">General guidance on EU rules, not legal advice. National rules on contracts, payroll and permits vary — check with the authority in the country concerned or an employment adviser.</p>
+</div>
+</section>
+</main>
+
+<footer style="background: #101828; color: #C8CDD6">
+<div style="max-width: 1232px; margin: 0 auto; padding: 28px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px">
+<span>© 2026 European SME Business Magazine</span>
+<nav aria-label="Footer" style="display: flex; gap: 20px"><a href="Main.dc.html" style="color: #C8CDD6">Home</a><a href="Articles.dc.html" style="color: #C8CDD6">Articles</a><a href="Tools.dc.html" style="color: #C8CDD6">Tools</a><a href="https://europeansme.eu/contact-us/" style="color: #C8CDD6">Contact</a></nav>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'abroad', done: {} }; }
+  renderVals() {
+    const { tab, done } = this.state;
+    const ext = (label, href, note) => ({ label: label + ' ↗', href, note, target: '_blank' });
+    const own = (label, slug, note) => ({ label: label + ' →', href: 'Post.dc.html?slug=' + slug, note, target: '_self' });
+    const T = {
+      abroad: { title: 'Hiring someone who lives in another EU country', sub: 'A remote employee or a team member based abroad', icon: 'globe',
+        items: [
+          ['Work out which country’s employment law applies', 'Usually the law of the country where the person habitually works, whatever the contract says — check minimum wage, notice and leave there.'],
+          ['Confirm which social security system covers them', 'Only one country’s system applies at a time — normally where the person works. Cross-border remote work can change this.'],
+          ['Check the cross-border telework agreement', 'If both countries have signed the EU framework agreement, someone working from home abroad for less than half their time can stay in your system — apply for an A1 certificate.'],
+          ['Decide how you will run payroll there', 'Register as an employer in that country, use a local payroll provider, or work through an employer-of-record service.'],
+          ['Give written terms of employment', 'EU rules require key terms in writing at the start — pay, hours, place of work, notice and probation.'],
+          ['Handle their personal data under GDPR', 'Tell them what you collect and why, and keep HR data secure — this applies to every employee in the EU.']
+        ],
+        links: [ext('Your Europe — employing staff', 'https://youreurope.europa.eu/business/', 'Official rules on contracts and social security'), own('Our guide to cross-border hiring', 'hiring-across-eu-borders-without-the-legal-headaches', 'Avoid the most common legal mistakes')] },
+      posting: { title: 'Sending an employee to work in another EU country', sub: 'A temporary assignment or project abroad', icon: 'arrow',
+        items: [
+          ['Apply for an A1 certificate before they travel', 'It proves the worker stays covered by your home social security system during the posting (normally up to 24 months).'],
+          ['Notify the host country before the work starts', 'Most member states require a posting declaration through their online portal.'],
+          ['Apply the host country’s core pay and conditions', 'Under the Posting of Workers Directive, the host country’s rules on pay, working time and holidays apply.'],
+          ['Keep documents ready for inspection', 'Contract, payslips, timesheets and the A1 should be available — some countries require a local contact person.'],
+          ['Check tax residence for longer postings', 'Long stays can create tax obligations in the host country for the employee and, sometimes, for your business.']
+        ],
+        links: [ext('Posting workers — Your Europe', 'https://youreurope.europa.eu/business/', 'Declarations, A1 forms and host-country rules'), own('EU employment law for growing SMEs', 'eu-employment-law-for-growing-smes-what-you-must-get-right', 'What you must get right as you grow')] },
+      nonEu: { title: 'Recruiting from outside the EU', sub: 'Bringing in talent from a third country', icon: 'hire',
+        items: [
+          ['Search the EU job market first', 'Some countries require a labour-market test; advertising on EURES reaches candidates in every member state.'],
+          ['Pick the right permit route', 'Most countries issue a single combined work and residence permit. Highly qualified staff may qualify for an EU Blue Card.'],
+          ['Start early — permits take time', 'Processing times vary by country and permit type, so build them into your hiring plan.'],
+          ['Check salary thresholds', 'Blue Cards and many national permits set a minimum salary the job must pay.'],
+          ['Plan relocation and onboarding', 'Housing, registration with local authorities and language support help new hires stay.']
+        ],
+        links: [ext('EURES — the European job mobility portal', 'https://eures.europa.eu/', 'Advertise jobs and find candidates across the EU'), ext('EU immigration rules', 'https://home-affairs.ec.europa.eu/', 'Official information on work permits and the Blue Card')] }
+    };
+    const order = ['abroad', 'posting', 'nonEu'];
+    const cur = T[tab];
+    const items = cur.items.map(([title, note], i) => {
+      const id = tab + i;
+      return { title, note, on: done[id] ? 'true' : 'false', toggle: () => this.setState({ done: Object.assign({}, done, { [id]: !done[id] }) }) };
+    });
+    const doneCount = items.filter((i) => i.on === 'true').length;
+    return {
+      hire: ESME.icon('hire', 26),
+      tabs: order.map((k) => ({ title: T[k].title, sub: T[k].sub, icon: ESME.icon(T[k].icon, 20), on: k === tab ? 'true' : 'false', pick: () => this.setState({ tab: k }) })),
+      current: cur, items, done: doneCount, total: items.length, pct: Math.round(doneCount / items.length * 100)
+    };
+  }
+}
+</script>
+</body>
+</html>

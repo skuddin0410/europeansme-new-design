@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cross-border VAT route finder — European SME</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<style>
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
+.vr-opt{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border-radius:10px;border:1.5px solid #D0D5DD;background:#FFFFFF;color:#14181D;font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:500;text-align:left;cursor:pointer;transition:border-color .15s ease,background-color .15s ease}
+.vr-opt:hover{border-color:#101828}
+.vr-opt[aria-pressed="true"]{border-color:#0F7B6C;background:#ECF7F4}
+.vr-radio{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid #98A2B3;display:flex;align-items:center;justify-content:center}
+.vr-opt[aria-pressed="true"] .vr-radio{border-color:#0F7B6C}
+.vr-opt[aria-pressed="true"] .vr-radio::after{content:"";width:8px;height:8px;border-radius:50%;background:#0F7B6C}
+.vr-card{background:#FFFFFF;border:1px solid #EAECF0;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px -16px rgba(16,24,40,.18);display:flex;flex-direction:column;gap:10px}
+.vr-card ol{margin:4px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.55;color:#344054}
+</style>
+</helmet>
+<div style="color: #14181D; background: #FFFFFF">
+<dc-import name="SiteHeader" active="Tools" hint-size="100%,118px"></dc-import>
+
+<main>
+<section aria-label="Introduction" style="background: radial-gradient(800px 420px at 100% 0%, rgba(15,123,108,.18), transparent 60%), #F5F7FA; border-bottom: 1px solid #E4E7EC">
+<div style="max-width: 1232px; margin: 0 auto; padding: 48px 32px 40px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between">
+<div style="flex: 1 1 560px; display: flex; flex-direction: column; gap: 14px">
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #5A6470"><a href="Tools.dc.html" style="color: #5A6470">Tools</a> / Cross-border VAT</nav>
+<span style="display: flex; align-items: center; gap: 12px"><span style="width: 48px; height: 48px; border-radius: 12px; background: #0F7B6C; color: #FFFFFF; display: flex; align-items: center; justify-content: center" dc-html="{{globe}}"></span><span class="esme-tag esme-tag--gold">New tool</span></span>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(32px, 4.2vw, 46px); line-height: 1.1; font-weight: 700; letter-spacing: -0.03em">Cross-border VAT route finder</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #5A6470; max-width: 640px">VAT rules are the most-cited barrier to selling in other EU countries. Answer four questions to see which route applies — reverse charge, the One-Stop Shop (OSS), home-country VAT or the new cross-border SME exemption.</p>
+</div>
+</div>
+</section>
+
+<section aria-label="Route finder" style="max-width: 1232px; margin: 0 auto; padding: 40px 32px 24px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 26px">
+<sc-for list="{{questions}}" as="q" hint-placeholder-count="4">
+<fieldset style="margin: 0; padding: 0; border: none; display: flex; flex-direction: column; gap: 10px">
+<legend style="padding: 0; margin-bottom: 10px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 16px; font-weight: 700"><span style="color: #0F7B6C">{{q.n}}.</span> {{q.text}}</legend>
+<sc-if value="{{q.hasHint}}" hint-placeholder-val="{{ false }}"><p style="margin: -6px 0 4px; font-size: 13.5px; line-height: 1.5; color: #5A6470">{{q.hint}}</p></sc-if>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px">
+<sc-for list="{{q.options}}" as="o" hint-placeholder-count="3">
+<button type="button" class="vr-opt" aria-pressed="{{o.on}}" onClick="{{o.pick}}"><span class="vr-radio" aria-hidden="true"></span>{{o.label}}</button>
+</sc-for>
+</div>
+</fieldset>
+</sc-for>
+<button type="button" class="esme-btn esme-btn--line" onClick="{{reset}}" style="align-self: flex-start">Start again</button>
+</div>
+
+<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 16px; position: sticky; top: 104px">
+<p class="esme-eyebrow">Your VAT routes</p>
+<sc-if value="{{waiting}}" hint-placeholder-val="{{ true }}">
+<div class="vr-card" style="background: #F5F7FA; box-shadow: none"><span style="font-size: 15px; line-height: 1.6; color: #5A6470">Answer the questions on the left. Your routes appear here as soon as there is enough to go on.</span></div>
+</sc-if>
+<sc-for list="{{routes}}" as="r" hint-placeholder-count="2">
+<div class="vr-card" style="border-left: 4px solid {{r.color}}">
+<span style="display: flex; align-items: center; justify-content: space-between; gap: 10px"><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: {{r.color}}">{{r.kind}}</span></span>
+<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 20px; line-height: 1.3; font-weight: 700">{{r.title}}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #344054">{{r.body}}</p>
+<ol><sc-for list="{{r.steps}}" as="s" hint-placeholder-count="3"><li>{{s}}</li></sc-for></ol>
+<a href="{{r.link}}" target="_blank" rel="noopener" style="align-self: flex-start; margin-top: 4px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; color: #1E4FA8">{{r.linkLabel}} ↗</a>
+</div>
+</sc-for>
+<p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: #5A6470">General guidance on EU VAT rules, not tax advice. Special rules apply to some services (for example land, events and passenger transport) and some goods. Confirm with your tax authority or adviser.</p>
+</div>
+</section>
+
+<section aria-label="Read more" style="max-width: 1232px; margin: 0 auto; padding: 32px 32px 72px">
+<div style="padding: 24px; border-radius: 14px; background: #0B1B33; color: #FFFFFF; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between">
+<span style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: 700">Read the full guide: VAT across EU borders</span><span style="font-size: 14px; color: rgba(255,255,255,.75)">What every SME needs to know before invoicing a customer in another member state.</span></span>
+<a class="esme-btn esme-btn--gold" href="Post.dc.html?slug=vat-across-eu-borders-what-every-sme-needs-to-know">Read the guide →</a>
+</div>
+</section>
+</main>
+
+<footer style="background: #101828; color: #C8CDD6">
+<div style="max-width: 1232px; margin: 0 auto; padding: 28px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px">
+<span>© 2026 European SME Business Magazine</span>
+<nav aria-label="Footer" style="display: flex; gap: 20px"><a href="Main.dc.html" style="color: #C8CDD6">Home</a><a href="Articles.dc.html" style="color: #C8CDD6">Articles</a><a href="Tools.dc.html" style="color: #C8CDD6">Tools</a><a href="https://europeansme.eu/contact-us/" style="color: #C8CDD6">Contact</a></nav>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1600}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { who: '', what: '', over10k: '', under100k: '' }; }
+  renderVals() {
+    const st = this.state;
+    const set = (k, v) => () => this.setState({ [k]: v });
+    const Q = [
+      { key: 'who', text: 'Who are your customers in other EU countries?', options: [['b2b', 'Businesses (VAT-registered)'], ['b2c', 'Consumers'], ['both', 'Both']] },
+      { key: 'what', text: 'What do you sell to them?', options: [['goods', 'Physical goods'], ['digital', 'Digital or e-services'], ['services', 'Other services']] },
+      { key: 'over10k', text: 'Do your sales to consumers in other EU countries exceed €10,000 a year in total?', hint: 'Count goods shipped and digital services sold to private customers across all other EU countries together.', options: [['yes', 'Yes, over €10,000'], ['no', 'No, €10,000 or less'], ['na', 'No consumer sales']] },
+      { key: 'under100k', text: 'Is your total annual turnover across the EU €100,000 or less?', options: [['yes', 'Yes, €100,000 or less'], ['no', 'No, more than €100,000']] }
+    ];
+    const questions = Q.map((q, i) => ({
+      n: i + 1, text: q.text, hint: q.hint || '', hasHint: !!q.hint,
+      options: q.options.map(([v, label]) => ({ label, on: st[q.key] === v ? 'true' : 'false', pick: set(q.key, v) }))
+    }));
+    const routes = [];
+    const b2b = st.who === 'b2b' || st.who === 'both';
+    const b2c = st.who === 'b2c' || st.who === 'both';
+    if (b2b && st.what) {
+      routes.push({ kind: 'Business customers', color: '#1E4FA8', title: st.what === 'goods' ? 'Zero-rated intra-EU supply — your customer accounts for VAT' : 'Reverse charge — your customer accounts for VAT',
+        body: 'For sales to VAT-registered businesses in another EU country you normally invoice without VAT and your customer declares it in their own country.',
+        steps: ['Check your customer’s VAT number in VIES before invoicing.', 'Show both VAT numbers on the invoice and note that the reverse charge applies (or that it is an intra-EU supply for goods).', 'Report these sales in your recapitulative statement (EC Sales List) and VAT return.'],
+        link: 'https://ec.europa.eu/taxation_customs/vies/', linkLabel: 'Check a VAT number in VIES' });
+    }
+    if (b2c && st.what) {
+      if (st.what === 'services') {
+        routes.push({ kind: 'Consumers · other services', color: '#0F7B6C', title: 'Usually charge your home-country VAT',
+          body: 'For most services sold to private customers, VAT is due where your business is established — so you charge your own country’s rate. Some services are exceptions and are taxed where they take place.',
+          steps: ['Check whether your service is an exception (for example land-related services, events, passenger transport, restaurant services).', 'If it is an exception, you may need to charge the customer country’s VAT — the OSS can cover this.', 'Otherwise, charge and declare VAT at home as normal.'],
+          link: 'https://taxation-customs.ec.europa.eu/taxation/vat/vat-special-schemes_en', linkLabel: 'EU VAT special schemes' });
+      } else if (st.over10k === 'yes') {
+        routes.push({ kind: 'Consumers · ' + (st.what === 'goods' ? 'goods' : 'digital services'), color: '#0F7B6C', title: 'Charge your customer’s country VAT and use the One-Stop Shop',
+          body: 'Above the €10,000 EU-wide threshold, VAT on cross-border sales of goods and digital services to consumers is due in the customer’s country. The OSS lets you declare and pay it all through one quarterly return at home.',
+          steps: ['Register for the OSS Union scheme with your own tax authority.', 'Charge each customer the VAT rate of their country.', 'File one OSS return each quarter and keep records for 10 years.'],
+          link: 'https://vat-one-stop-shop.ec.europa.eu/', linkLabel: 'VAT One-Stop Shop portal' });
+      } else if (st.over10k === 'no') {
+        routes.push({ kind: 'Consumers · ' + (st.what === 'goods' ? 'goods' : 'digital services'), color: '#0F7B6C', title: 'Below €10,000 — you can keep charging your home VAT',
+          body: 'While your cross-border consumer sales stay at or under €10,000 a year in total, you may charge your own country’s VAT. You can still opt into the OSS voluntarily.',
+          steps: ['Track cross-border consumer sales across all EU countries together.', 'The moment you pass €10,000, switch to the customer country’s VAT for that sale and every sale after it.', 'Register for the OSS before you cross the threshold so you are ready.'],
+          link: 'https://vat-one-stop-shop.ec.europa.eu/', linkLabel: 'VAT One-Stop Shop portal' });
+      }
+    }
+    if (st.under100k === 'yes' && (b2c || st.who === 'b2b')) {
+      routes.push({ kind: 'Small business option', color: '#B07A00', title: 'You may qualify for the cross-border SME VAT exemption',
+        body: 'Since 1 January 2025, a small business with EU turnover of €100,000 or less can apply its VAT exemption in other member states that offer one, as long as its sales there stay under that country’s own threshold.',
+        steps: ['Check that the countries you sell into run an SME exemption, and their national thresholds.', 'Notify your own tax authority — you receive an identification number with an “EX” suffix.', 'Report your turnover quarterly; the exemption ends as soon as you pass €100,000.'],
+        link: 'https://taxation-customs.ec.europa.eu/taxation/vat/vat-special-schemes_en', linkLabel: 'SME scheme on the Commission site' });
+    }
+    return {
+      globe: ESME.icon('globe', 26), questions, routes, waiting: routes.length === 0,
+      reset: () => this.setState({ who: '', what: '', over10k: '', under100k: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -25,8 +25,13 @@
 .esme-ddm{display:none;position:absolute;left:0;top:100%;padding-top:8px;z-index:60}
 .esme-dd:hover .esme-ddm,.esme-dd:focus-within .esme-ddm{display:block}
 .esme-ddp{min-width:250px;background:#FFFFFF;border:1px solid #EAECF0;border-radius:12px;box-shadow:0 12px 32px -12px rgba(16,24,40,.25);padding:8px}
-.esme-ddi{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:500;color:#14181D;text-decoration:none}
+.esme-ddi{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:8px;font-size:14px;font-weight:500;color:#14181D;text-decoration:none}
 .esme-ddi:hover{background:#F5F7FA;color:#1E4FA8;text-decoration:none}
+.esme-ict{flex:none;width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;transition:transform .15s ease}
+.esme-ddi:hover .esme-ict{transform:scale(1.06)}
+.esme-new{display:inline-block;margin-left:8px;padding:2px 6px;border-radius:4px;background:#FFC72C;color:#101828;font-family:'Sora',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;vertical-align:2px}
+.esme-ddall{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;padding:11px;border-top:1px solid #EAECF0;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;color:#1E4FA8;text-decoration:none;border-radius:0 0 8px 8px}
+.esme-ddall:hover{background:#F5F7FA;text-decoration:none}
 .esme-ddi small{display:block;font-size:12.5px;font-weight:400;color:#5A6470;margin-top:2px}
 .esme-search{display:flex;align-items:center;gap:8px;height:40px;width:170px;padding:0 12px;border:1px solid #D0D5DD;border-radius:8px;background:#F9FAFB;color:#667085}
 .esme-search:focus-within{border-color:#1E4FA8;background:#FFFFFF;box-shadow:0 0 0 3px rgba(30,79,168,.12)}
@@ -42,12 +47,7 @@
 <div class="esme-top" style="background: #101828; color: #C8CDD6; font-size: 12.5px">
 <div style="max-width: 1232px; height: 37px; box-sizing: border-box; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
 <span style="display: flex; align-items: center; gap: 14px; white-space: nowrap; overflow: hidden"><strong style="color: #FFFFFF; font-weight: 600">{{today}}</strong><span aria-hidden="true" style="width: 1px; height: 14px; background: rgba(255,255,255,.25)"></span><span>Europe’s platform for small-business insight</span></span>
-<span style="display: flex; align-items: center; gap: 14px">
-<a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.1 1.43-2.1 2.9V21H9z"></path></svg></a>
-<a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.02V8.98L15.5 12z"></path></svg></a>
-<a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"></circle></svg></a>
-<a href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.3h3.4l-7.4 8.4 8.7 11.5h-6.8l-5.3-7-6.1 7H1.3l7.9-9L.8 2.3h7l4.8 6.4zm-1.2 17.9h1.9L7 4.2H5z"></path></svg></a>
-</span>
+<a href="https://europeansme.eu/" style="color: #C8CDD6; font-weight: 500">europeansme.eu ↗</a>
 </div>
 </div>
 <div class="esme-bar">
@@ -63,18 +63,19 @@
 <a class="esme-nl {{latestOn}}" href="Articles.dc.html">Latest</a>
 <div class="esme-dd">
 <button type="button" class="esme-nl {{sectionsOn}}" aria-haspopup="true">Sections <span class="esme-caret"></span></button>
-<div class="esme-ddm"><div class="esme-ddp">
+<div class="esme-ddm"><div class="esme-ddp" style="min-width: 300px">
 <sc-for list="{{sections}}" as="s" hint-placeholder-count="7">
-<a class="esme-ddi" href="{{s.href}}"><span aria-hidden="true" style="width: 9px; height: 9px; border-radius: 50%; background: {{s.color}}; flex: none"></span>{{s.label}}</a>
+<a class="esme-ddi" href="{{s.href}}"><span class="esme-ict" style="color: {{s.color}}; background: {{s.tint}}" dc-html="{{s.icon}}"></span><span><strong style="font-weight: 600">{{s.label}}</strong><small>{{s.desc}}</small></span></a>
 </sc-for>
 </div></div>
 </div>
 <div class="esme-dd">
 <button type="button" class="esme-nl {{toolsOn}}" aria-haspopup="true">Tools <span class="esme-caret"></span></button>
-<div class="esme-ddm"><div class="esme-ddp" style="min-width: 290px">
+<div class="esme-ddm"><div class="esme-ddp" style="min-width: 360px">
 <sc-for list="{{tools}}" as="t" hint-placeholder-count="5">
-<a class="esme-ddi" href="{{t.href}}"><span><strong style="font-weight: 600">{{t.label}}</strong><small>{{t.desc}}</small></span></a>
+<a class="esme-ddi" href="{{t.href}}"><span class="esme-ict" style="color: {{t.tone}}; background: {{t.tint}}" dc-html="{{t.icon}}"></span><span style="flex: 1 1 auto"><strong style="font-weight: 600">{{t.name}}</strong><sc-if value="{{t.isNew}}" hint-placeholder-val="{{ false }}"><span class="esme-new">New</span></sc-if><small>{{t.short}}</small></span></a>
 </sc-for>
+<a class="esme-ddall" href="Tools.dc.html"><span dc-html="{{gridIcon}}"></span>See all tools</a>
 </div></div>
 </div>
 <a class="esme-nl {{countriesOn}}" href="CountryHub.dc.html">Countries</a>
@@ -86,7 +87,7 @@
 <label for="hdr-q" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search articles</label>
 <input id="hdr-q" name="q" type="search" placeholder="Search the site">
 </form>
-<a class="esme-btn esme-btn--blue esme-adv" href="#advertise">Advertise With Us</a>
+<a class="esme-btn esme-btn--blue esme-adv" href="https://europeansme.eu/contact-us/">Advertise With Us</a>
 <a class="esme-btn esme-btn--gold" href="Main.dc.html#newsletter">Subscribe Free</a>
 </div>
 </div>
@@ -96,19 +97,15 @@
 class Component extends DCLogic {
   renderVals() {
     const active = this.props.active ?? 'none';
-    const S = (typeof ESME !== 'undefined' && ESME.sections) || {};
-    const sections = Object.keys(S).map((k) => ({ label: S[k].label, color: S[k].color, href: 'Articles.dc.html?section=' + k }));
+    const E = typeof ESME !== 'undefined' ? ESME : null;
+    const S = (E && E.sections) || {};
+    const sections = Object.keys(S).map((k) => ({ label: S[k].label, desc: S[k].desc, color: S[k].color, tint: S[k].color + '1A', icon: E.icon(k, 18), href: 'Articles.dc.html?section=' + k }));
     const inSection = ['Funding', 'Growth', 'Money', 'Marketing', 'Hiring', 'Tech'].indexOf(active) > -1;
     return {
       today: new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }),
       sections,
-      tools: [
-        { label: 'EU Funding Finder', desc: 'Grants, loans and equity by country', href: 'FundingFinder.dc.html' },
-        { label: 'Compliance Calendar', desc: 'Every EU deadline that applies to you', href: 'Compliance.dc.html' },
-        { label: 'Calculators', desc: 'VAT and late-payment interest', href: 'Calculators.dc.html' },
-        { label: 'Checkers', desc: 'Am I an SME? Do I need e-invoicing?', href: 'Checkers.dc.html' },
-        { label: 'All tools', desc: 'The full SME toolkit', href: 'Tools.dc.html' }
-      ],
+      tools: E ? E.tools.map((t) => Object.assign({}, t, { icon: E.icon(t.icon, 18), tint: t.tone + '14', isNew: !!t.isNew })) : [],
+      gridIcon: E ? E.icon('grid', 15) : '',
       latestOn: active === 'Articles' ? 'is-on' : '',
       sectionsOn: inSection ? 'is-on' : '',
       toolsOn: active === 'Tools' ? 'is-on' : '',
