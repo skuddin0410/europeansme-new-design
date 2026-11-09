@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Country hub — European SME</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<style>
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
+.ch-h2{margin:0;display:flex;align-items:center;gap:10px;font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-size:21px;font-weight:700;letter-spacing:-.01em}
+.ch-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;padding-bottom:10px;border-bottom:2px solid #101828}
+.ch-day{font-family:'Sora',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#344054}
+.ch-tab{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 7px;border-radius:999px;border:1px solid #D0D5DD;background:#FFFFFF;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#14181D;cursor:pointer;transition:border-color .15s ease}
+.ch-tab:hover{border-color:#101828}
+.ch-tab .t{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--tint);color:var(--c)}
+.ch-tab .t svg{width:17px;height:17px}
+.ch-tab[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#FFFFFF}
+.ch-tab[aria-pressed="true"] .t{background:rgba(255,255,255,.2);color:#FFFFFF}
+.ch-rank{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #EAECF0}
+.ch-rank:hover .ch-rt{color:#1E4FA8}
+.ch-tool{display:flex;gap:14px;align-items:center;padding:16px;background:#FFFFFF;border:1px solid #EAECF0;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04);transition:transform .2s ease,border-color .2s ease}
+.ch-tool:hover{transform:translateY(-3px);border-color:#D0D5DD;text-decoration:none;color:#14181D}
+.ch-ti{flex:none;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.ch-demo{padding:10px 14px;border-radius:10px;background:#FFF8E6;border:1px solid #F5DFA3;font-size:13px;line-height:1.5;color:#6B4E00}
+.ch-switch{height:40px;padding:0 12px;border-radius:9px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:#FFFFFF;font-family:'Sora',sans-serif;font-size:13.5px;font-weight:600;cursor:pointer}
+.ch-switch option{color:#14181D}
+</style>
+</helmet>
+<div style="color: #14181D; background: #FFFFFF">
+<dc-import name="SiteHeader" active="Countries" hint-size="100%,118px"></dc-import>
+<main>
+<section aria-label="Country" style="background: radial-gradient(800px 420px at 100% 0%, rgba(255,199,44,.16), transparent 60%), linear-gradient(135deg, #0B1B33, #0B2A6B); color: #FFFFFF">
+<div style="max-width: 1232px; margin: 0 auto; padding: 44px 32px 40px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap">
+<img src="{{c.flag}}" alt="" width="96" height="64" style="width: 96px; height: 64px; object-fit: cover; border-radius: 10px; box-shadow: 0 0 0 1px rgba(255,255,255,.25), 0 16px 30px -16px rgba(0,0,0,.6)">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: rgba(255,255,255,.7)"><a href="Countries.dc.html" style="color: rgba(255,255,255,.75)">Countries</a> / {{c.name}}</nav>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(34px, 4.6vw, 52px); line-height: 1.04; font-weight: 700; letter-spacing: -0.03em; color: #FFFFFF">{{c.name}}</h1>
+<span style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,.8)"><span class="esme-tag esme-tag--gold">{{c.tierLabel}}</span>Daily SME news, rules and funding<sc-if value="{{fromGeo}}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; gap: 5px; color: #9FE1CB"><span dc-html="{{pinIcon}}"></span>{{geoNote}}</span></sc-if></span>
+</div>
+</div>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; color: rgba(255,255,255,.7)">Switch country
+<select class="ch-switch" value="{{c.code}}" onChange="{{switchTo}}">
+<sc-for list="{{countries}}" as="o" hint-placeholder-count="27"><option value="{{o.code}}">{{o.name}}</option></sc-for>
+</select>
+</label>
+</div>
+</section>
+
+<div style="max-width: 1232px; margin: 0 auto; padding: 24px 32px 0">
+<div class="ch-demo"><strong>Sample data.</strong> Headlines and read counts on this page are placeholders that show the layout. Real stories replace them once the daily news desk is running.</div>
+</div>
+
+<section aria-label="News and trending" style="max-width: 1232px; margin: 0 auto; padding: 28px 32px 0; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div class="ch-head"><h2 class="ch-h2"><span dc-html="{{newsIcon}}" style="color: #D92D20"></span>Today in {{c.name}}</h2><span style="font-size: 12.5px; color: #5A6470">Updated daily · days with no news are skipped</span></div>
+<sc-if value="{{quietToday}}" hint-placeholder-val="{{ false }}"><div style="padding: 14px 16px; border-radius: 12px; background: #F5F7FA; font-size: 14.5px; color: #5A6470">{{quietText}}</div></sc-if>
+<sc-for list="{{days}}" as="d" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="ch-day">{{d.label}}</span>
+<sc-for list="{{d.items}}" as="n" hint-placeholder-count="2"><dc-import name="Card" post="{{n}}" variant="news" hint-size="100%,110px"></dc-import></sc-for>
+</div>
+</sc-for>
+<a href="{{latestHref}}" class="esme-btn esme-btn--line" style="align-self: flex-start">All news for {{c.name}} →</a>
+</div>
+<aside aria-label="Trending" style="flex: 1 1 320px; min-width: 0; position: sticky; top: 104px">
+<div style="background: #FFFFFF; border: 1px solid #EAECF0; border-radius: 16px; padding: 22px 22px 8px; box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px -16px rgba(16,24,40,.18)">
+<h2 class="ch-h2" style="font-size: 18px"><span dc-html="{{trendIcon}}" style="color: #0F7B6C"></span>Trending in {{c.name}}</h2>
+<p style="margin: 6px 0 4px; font-size: 12.5px; color: #5A6470">Most read this week (sample counts)</p>
+<sc-for list="{{trending}}" as="t" hint-placeholder-count="5">
+<a class="ch-rank" href="{{t.post.href}}">
+<span style="flex: none; width: 30px; font-family: 'Sora', sans-serif; font-size: 28px; font-weight: 800; line-height: 1; color: #D0D5DD">{{t.n}}</span>
+<span style="display: flex; flex-direction: column; gap: 5px; min-width: 0">
+<span style="font-family: 'Sora', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.post.color}}">{{t.post.sectionLabel}}</span>
+<span class="ch-rt" style="font-family: 'Sora', sans-serif; font-size: 14.5px; font-weight: 600; line-height: 1.35">{{t.post.title}}</span>
+<span style="font-size: 12px; color: #5A6470">{{t.views}}</span>
+</span>
+</a>
+</sc-for>
+</div>
+</aside>
+</section>
+
+<section aria-label="By topic" style="max-width: 1232px; margin: 0 auto; padding: 64px 32px 0; display: flex; flex-direction: column; gap: 22px">
+<div class="esme-sechead" style="margin-bottom: 0"><div><p class="esme-eyebrow">By topic</p><h2 class="esme-h2">What {{c.name}}’s SMEs are reading</h2></div></div>
+<div role="group" aria-label="Topics" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="7">
+<button type="button" class="ch-tab" aria-pressed="{{t.on}}" onClick="{{t.pick}}" style="--c: {{t.color}}; --tint: {{t.tint}}"><span class="t" dc-html="{{t.icon}}"></span>{{t.label}}</button>
+</sc-for>
+</div>
+<sc-if value="{{hasTopicNews}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{topicNews}}" as="n" hint-placeholder-count="2"><dc-import name="Card" post="{{n}}" variant="news" hint-size="100%,110px"></dc-import></sc-for>
+</div>
+</sc-if>
+<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}"><div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px"><div class="esme-skel" style="height: 320px"></div><div class="esme-skel" style="height: 320px"></div><div class="esme-skel" style="height: 320px"></div></div></sc-if>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px">
+<sc-for list="{{topicGuides}}" as="p" hint-placeholder-count="3"><dc-import name="Card" post="{{p}}" variant="standard" hint-size="100%,400px"></dc-import></sc-for>
+</div>
+<a href="{{topicHref}}" class="esme-btn esme-btn--blue" style="align-self: flex-start">More {{topicLabel}} for {{c.name}} →</a>
+</section>
+
+<section aria-label="Rules and money" style="background: #F5F7FA; margin-top: 64px; border-top: 1px solid #EAECF0">
+<div style="max-width: 1232px; margin: 0 auto; padding: 56px 32px 72px; display: flex; flex-direction: column; gap: 24px">
+<div class="esme-sechead" style="margin-bottom: 0"><div><p class="esme-eyebrow">Rules &amp; money</p><h2 class="esme-h2">Tools set to {{c.name}}</h2><p class="esme-sub">Each tool opens with {{c.name}} already selected.</p></div></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="4">
+<a class="ch-tool" href="{{t.href}}"><span class="ch-ti" style="background: {{t.tint}}; color: {{t.tone}}" dc-html="{{t.icon}}"></span><span style="display: flex; flex-direction: column; gap: 3px"><strong style="font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 700">{{t.name}}</strong><span style="font-size: 13px; line-height: 1.45; color: #5A6470">{{t.note}}</span></span></a>
+</sc-for>
+</div>
+</div>
+</section>
+</main>
+<footer style="background: #101828; color: #C8CDD6">
+<div style="max-width: 1232px; margin: 0 auto; padding: 28px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px">
+<span>© 2026 European SME Business Magazine</span>
+<nav aria-label="Footer" style="display: flex; gap: 20px"><a href="Main.dc.html" style="color: #C8CDD6">Home</a><a href="Countries.dc.html" style="color: #C8CDD6">Countries</a><a href="Tools.dc.html" style="color: #C8CDD6">Tools</a><a href="https://europeansme.eu/contact-us/" style="color: #C8CDD6">Contact</a></nav>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const code = ESME.country(ESME.param('country')) ? ESME.param('country') : null;
+    this.state = { code: code, geo: null, topic: 'funding', posts: null };
+  }
+  componentDidMount() {
+    ESME.loadPosts().then((posts) => this.setState({ posts })).catch(() => this.setState({ posts: [] }));
+    ESME.detectCountry().then((g) => {
+      if (!this.state.code) this.setState({ code: g ? g.code : 'de', geo: g });
+      else if (g && g.code === this.state.code && g.source !== 'url') this.setState({ geo: g });
+    });
+  }
+  renderVals() {
+    const { geo, topic, posts } = this.state;
+    const code = this.state.code || 'de';
+    const c = ESME.country(code);
+    document.title = c.name + ' — SME news, rules and funding — European SME';
+    const S = ESME.sections;
+    const news = ESME.news.filter((n) => n.country === code || n.country === 'eu').slice(0, 12);
+    const days = ESME.groupByDay(news);
+    const quietToday = !days.length || days[0].label !== 'Today';
+    const guides = (posts || []).filter((p) => p.section === topic).slice(0, 3);
+    const T = { funding: 'FundingFinder.dc.html', compliance: 'Compliance.dc.html?country=' + code, calc: 'Calculators.dc.html?country=' + code, check: 'Checkers.dc.html?country=' + code };
+    const tool = (name, note, icon, tone, href) => ({ name, note, icon: ESME.icon(icon, 22), tone, tint: tone + '1A', href });
+    return {
+      c, countries: ESME.countries, pinIcon: ESME.icon('pin', 15), newsIcon: ESME.icon('news', 22), trendIcon: ESME.icon('trend', 20),
+      switchTo: (e) => { const v = e.target.value; ESME.setCountry(v); this.setState({ code: v, geo: null }); history.replaceState(null, '', '?country=' + v); },
+      fromGeo: !!(geo && geo.code === code), geoNote: geo && geo.source === 'cloudflare' ? 'Opened from your location' : geo && geo.source === 'browser' ? 'Opened from your browser settings' : 'Your saved country',
+      days, quietToday,
+      quietText: c.tier === 'basic' ? 'We don’t run a daily desk for ' + c.name + ' yet, so this page shows EU-wide news that applies there.' : 'No ' + c.name + ' story yet today — here is the most recent news.',
+      latestHref: 'Articles.dc.html?country=' + code + '&type=news',
+      trending: ESME.trending(code, posts),
+      tabs: Object.keys(S).map((k) => ({ label: S[k].label, color: S[k].color, tint: S[k].color + '1A', icon: ESME.icon(k, 17), on: k === topic ? 'true' : 'false', pick: () => this.setState({ topic: k }) })),
+      topicNews: news.filter((n) => n.section === topic).slice(0, 2), hasTopicNews: news.some((n) => n.section === topic),
+      topicGuides: guides, loading: !posts,
+      topicLabel: S[topic].label.toLowerCase(), topicHref: 'Articles.dc.html?country=' + code + '&section=' + topic,
+      tools: [
+        tool('Compliance Calendar', 'Deadlines that apply in ' + c.name, 'calendar', '#14181D', T.compliance),
+        tool('VAT calculator', 'Standard VAT rate for ' + c.name, 'calculator', '#1E4FA8', T.calc),
+        tool('E-invoicing checker', 'Is B2B e-invoicing mandatory in ' + c.name + '?', 'invoice', '#8A3FB8', T.check),
+        tool('EU Funding Finder', 'EU programmes open to ' + c.name + ' SMEs', 'search', '#0B2A6B', T.funding),
+        tool('Cross-border VAT route finder', 'Selling from ' + c.name + ' to other EU countries', 'globe', '#0F7B6C', 'VATRoute.dc.html'),
+        tool('Hiring across the EU', 'Hiring in or into ' + c.name, 'hire', '#C2410C', 'HiringKit.dc.html')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

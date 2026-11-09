@@ -366,13 +366,18 @@
 
   // Line icons (24px grid, stroke = currentColor), used by menus, tool cards and tool pages.
   var ICONS = {
-    funding: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5a4.5 4.5 0 1 0 0 7M7 11h6M7 13.5h6"/>',
-    growth: '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
-    money: '<path d="M4 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z"/><path d="M4 7l11-3v3"/><path d="M16 13.5h.01"/>',
-    marketing: '<path d="M4 10v4a1 1 0 0 0 1 1h3l6 4V5L8 9H5a1 1 0 0 0-1 1z"/><path d="M17.5 9a3.5 3.5 0 0 1 0 6"/>',
+    funding: '<ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v5c0 1.66 3.13 3 7 3s7-1.34 7-3v-5"/><path d="M5 11.5v5c0 1.66 3.13 3 7 3s7-1.34 7-3v-5"/>',
+    growth: '<rect x="4" y="13" width="4" height="7" rx="1"/><rect x="10" y="9" width="4" height="11" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/><path d="M2.5 21h19"/>',
+    money: '<path d="M3 8h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/><path d="M3 8V6.5A2.5 2.5 0 0 1 5.5 4H16v4"/><path d="M16.5 12H21v4h-4.5a2 2 0 0 1 0-4z"/>',
+    marketing: '<path d="M14 5v14l-6-4H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h3l6-4z"/><path d="M18 9.5a3.5 3.5 0 0 1 0 5M8 15l1.5 5"/>',
     people: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"/>',
-    tech: '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M10 10h4v4h-4zM9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
-    policy: '<path d="M3 21h18M5 21V10M19 21V10M9.5 21V10M14.5 21V10"/><path d="M12 3l9 5H3l9-5z"/>',
+    tech: '<rect x="5" y="5" width="14" height="14" rx="2.5"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>',
+    policy: '<path d="M12 3l9 5H3l9-5z"/><path d="M5 10.5v7M9.5 10.5v7M14.5 10.5v7M19 10.5v7M3 21h18M4 18.5h16"/>',
+    all: '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>',
+    news: '<path d="M4 5h13v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z"/><path d="M17 9h3v10a2 2 0 0 1-2 2M7.5 9h6M7.5 12.5h6M7.5 16h4"/>',
+    guide: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5M8 7.5h8M8 11h5"/>',
+    trend: '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
+    pin: '<path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
     search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
     calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h2M14 14h2M8 17h2"/>',
     calculator: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v3M8 18h4"/>',
@@ -388,8 +393,27 @@
     grid: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
     arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>'
   };
+  // Soft fill layer drawn under the outline, giving the topic icons a two-tone look.
+  var DUO = {
+    funding: '<ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 11.5c0 1.66 3.13 3 7 3s7-1.34 7-3v5c0 1.66-3.13 3-7 3s-7-1.34-7-3z"/>',
+    growth: '<rect x="16" y="4" width="4" height="16" rx="1"/><rect x="10" y="9" width="4" height="11" rx="1"/>',
+    money: '<path d="M3 8h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/>',
+    marketing: '<path d="M14 5v14l-6-4H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h3l6-4z"/>',
+    people: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0z"/>',
+    tech: '<rect x="9" y="9" width="6" height="6" rx="1"/><rect x="5" y="5" width="14" height="14" rx="2.5" opacity=".45"/>',
+    policy: '<path d="M12 3l9 5H3l9-5z"/><rect x="4" y="18.5" width="16" height="2.5"/>',
+    all: '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>',
+    news: '<path d="M4 5h13v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z"/>',
+    guide: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15z"/>',
+    pin: '<path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/>',
+    shield: '<path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/>',
+    globe: '<circle cx="12" cy="12" r="9"/>',
+    calendar: '<rect x="3" y="5" width="18" height="5"/>',
+    hire: '<circle cx="10" cy="8" r="3.5"/>'
+  };
   function icon(name, size, width) {
-    return '<svg aria-hidden="true" width="' + (size || 20) + '" height="' + (size || 20) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (width || 1.9) + '" stroke-linecap="round" stroke-linejoin="round" style="display:block">' + (ICONS[name] || ICONS.grid) + '</svg>';
+    var duo = DUO[name] ? '<g fill="currentColor" fill-opacity=".22" stroke="none">' + DUO[name] + '</g>' : '';
+    return '<svg aria-hidden="true" width="' + (size || 20) + '" height="' + (size || 20) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (width || 1.8) + '" stroke-linecap="round" stroke-linejoin="round" style="display:block">' + duo + (ICONS[name] || ICONS.grid) + '</svg>';
   }
   // Every tool on the site, in one list, so the header menu, homepage and Tools page stay in step.
   var TOOLS = [
@@ -401,10 +425,125 @@
     { key: 'calculators', name: 'VAT & late-payment calculators', short: 'Add or remove VAT, claim interest on late invoices', icon: 'calculator', href: 'Calculators.dc.html', tone: '#1E4FA8' },
     { key: 'checkers', name: 'Checkers', short: 'Am I an SME? Do I need e-invoicing?', icon: 'check', href: 'Checkers.dc.html', tone: '#8A3FB8' }
   ];
+
+  // ---- Countries, sample daily news, trending and location detection ----
+  var COUNTRIES = [
+    ['de', 'Germany', 'hub'], ['fr', 'France', 'hub'], ['it', 'Italy', 'hub'], ['es', 'Spain', 'hub'], ['nl', 'Netherlands', 'hub'], ['pl', 'Poland', 'hub'],
+    ['be', 'Belgium', 'light'], ['at', 'Austria', 'light'], ['se', 'Sweden', 'light'], ['ie', 'Ireland', 'light'], ['pt', 'Portugal', 'light'], ['cz', 'Czechia', 'light'],
+    ['dk', 'Denmark', 'light'], ['fi', 'Finland', 'light'], ['ro', 'Romania', 'light'], ['gr', 'Greece', 'light'],
+    ['bg', 'Bulgaria', 'basic'], ['hr', 'Croatia', 'basic'], ['cy', 'Cyprus', 'basic'], ['ee', 'Estonia', 'basic'], ['hu', 'Hungary', 'basic'], ['lv', 'Latvia', 'basic'],
+    ['lt', 'Lithuania', 'basic'], ['lu', 'Luxembourg', 'basic'], ['mt', 'Malta', 'basic'], ['sk', 'Slovakia', 'basic'], ['si', 'Slovenia', 'basic']
+  ].map(function (c, i) {
+    return { code: c[0], name: c[1], tier: c[2], i: i, flag: 'https://flagcdn.com/w80/' + c[0] + '.png',
+      tierLabel: c[2] === 'hub' ? 'Full hub' : c[2] === 'light' ? 'Growing' : 'EU-wide coverage' };
+  });
+  var BY_CODE = {};
+  COUNTRIES.forEach(function (c) { BY_CODE[c.code] = c; });
+
+  // Placeholder headlines for the demo only. Real stories replace these once the news desk is running.
+  var NEWS_TPL = [
+    ['funding', 'New regional grant round opens for small manufacturers in {C}', 'Applications for the next round of support for small manufacturers are open. Here is who can apply and what to prepare.'],
+    ['money', '{C} tax authority publishes new e-invoicing guidance for SMEs', 'The guidance explains formats, timelines and what small businesses should test with their software provider.'],
+    ['people', 'Skills shortage tops SME concerns in {C} chamber survey', 'Finding qualified staff is again the most-cited problem for small firms. What owners are doing about it.'],
+    ['tech', '{C} launches free cyber security check-ups for small firms', 'A new scheme offers small businesses a free review of their basic security set-up. How to book one.'],
+    ['growth', '{C} exporters look to new markets as trade deals take effect', 'Small exporters are reviewing where to sell next. The markets and support programmes worth knowing about.'],
+    ['policy', 'How {C} plans to apply the EU’s latest SME simplification rules', 'What changes for reporting and paperwork, and when the new rules are expected to apply.'],
+    ['marketing', 'Shoppers in {C} shift towards local brands, retail panel finds', 'What the shift means for small consumer brands and how to position against larger rivals.']
+  ];
+  var EU_NEWS = [
+    ['policy', 'Commission sets out next steps on cutting SME reporting burden', 'An overview of the simplification packages and which changes reach small firms first.'],
+    ['funding', 'EU innovation funding: next cut-off dates for SMEs', 'A round-up of open EU calls relevant to small and medium-sized businesses this month.'],
+    ['money', 'Cross-border VAT: what small sellers should check this quarter', 'Thresholds, the One-Stop Shop and the SME exemption — a checklist for the quarter.']
+  ];
+  function dayStart(offset) { var d = new Date(); d.setHours(9, 0, 0, 0); d.setDate(d.getDate() - offset); return d; }
+  function hash(str) { var h = 7; for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 100003; return h; }
+  function newsItem(id, country, tpl, offset, name) {
+    var d = dayStart(offset);
+    d.setHours(8 + (hash(id) % 9), (hash(id + 'm') % 6) * 10);
+    return { id: id, country: country, section: tpl[0], sectionLabel: SECTIONS[tpl[0]].label, color: SECTIONS[tpl[0]].color, type: 'news', sample: true,
+      title: tpl[1].replace('{C}', name), excerpt: tpl[2], at: d.getTime(), mins: 2, author: 'European SME News Desk',
+      date: d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
+      time: d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+      href: 'Post.dc.html?news=' + id };
+  }
+  var NEWS = [];
+  COUNTRIES.forEach(function (c) {
+    // Daily desk: a hub publishes most days, a growing page some days; a day with no story is simply skipped.
+    var days = c.tier === 'hub' ? [0, 0, 1, 2, 2, 4, 5, 6] : c.tier === 'light' ? [0, 3] : [];
+    days.forEach(function (off, k) {
+      var tpl = NEWS_TPL[(c.i + k) % NEWS_TPL.length];
+      NEWS.push(newsItem(c.code + '-' + k, c.code, tpl, off, c.name));
+    });
+  });
+  EU_NEWS.forEach(function (tpl, k) { NEWS.push(newsItem('eu-' + k, 'eu', tpl, k, 'EU')); });
+  NEWS.sort(function (a, b) { return b.at - a.at; });
+  NEWS.forEach(function (n) { n.countryName = n.country === 'eu' ? 'EU-wide' : BY_CODE[n.country].name; n.flag = n.country === 'eu' ? 'https://flagcdn.com/w80/eu.png' : BY_CODE[n.country].flag; });
+
+  function dayLabel(t) {
+    var a = dayStart(0), d = new Date(t); d.setHours(9, 0, 0, 0);
+    var diff = Math.round((a - d) / 86400000);
+    if (diff === 0) return 'Today';
+    if (diff === 1) return 'Yesterday';
+    return new Date(t).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  }
+  function groupByDay(list) {
+    var out = [], cur = null;
+    list.forEach(function (n) {
+      var l = dayLabel(n.at);
+      if (!cur || cur.label !== l) { cur = { label: l, items: [] }; out.push(cur); }
+      cur.items.push(n);
+    });
+    return out;
+  }
+
+  var detectPromise = null;
+  function validCode(c) { c = (c || '').toLowerCase(); return BY_CODE[c] ? c : null; }
+  function detectCountry() {
+    if (detectPromise) return detectPromise;
+    var fromUrl = validCode(new URLSearchParams(location.search).get('country'));
+    if (fromUrl) return (detectPromise = Promise.resolve({ code: fromUrl, source: 'url' }));
+    var saved = null;
+    try { saved = validCode(localStorage.getItem('esme-country')); } catch (e) { /* storage blocked */ }
+    if (saved) return (detectPromise = Promise.resolve({ code: saved, source: 'saved' }));
+    function fromBrowser() {
+      var langs = navigator.languages || [navigator.language || ''];
+      for (var i = 0; i < langs.length; i++) {
+        var m = /-([A-Za-z]{2})$/.exec(langs[i] || '');
+        if (m && validCode(m[1])) return { code: validCode(m[1]), source: 'browser' };
+      }
+      return null;
+    }
+    // On Cloudflare every site answers /cdn-cgi/trace with the visitor's country (loc=XX).
+    detectPromise = fetch('/cdn-cgi/trace', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.text() : ''; })
+      .then(function (t) {
+        var m = /(?:^|\n)loc=([A-Z]{2})/.exec(t || '');
+        var code = m && validCode(m[1]);
+        return code ? { code: code, source: 'cloudflare' } : fromBrowser();
+      })
+      .catch(fromBrowser);
+    return detectPromise;
+  }
+  function setCountry(code) {
+    try { if (code) localStorage.setItem('esme-country', code); else localStorage.removeItem('esme-country'); } catch (e) { /* storage blocked */ }
+    detectPromise = Promise.resolve(code ? { code: code, source: 'saved' } : null);
+  }
   var postsPromise = null;
   window.ESME = {
     sections: SECTIONS,
     icons: ICONS, icon: icon, tools: TOOLS,
+    countries: COUNTRIES, country: function (c) { return BY_CODE[(c || '').toLowerCase()] || null; },
+    news: NEWS, newsById: function (id) { return NEWS.filter(function (n) { return n.id === id; })[0] || null; },
+    newsFor: function (code) { return NEWS.filter(function (n) { return !code || n.country === code; }); },
+    groupByDay: groupByDay, dayLabel: dayLabel,
+    // Demo ranking: stands in for real view counts until analytics are connected.
+    trending: function (code, posts) {
+      var pool = NEWS.filter(function (n) { return n.country === code || n.country === 'eu'; }).concat((posts || []).slice(0, 30));
+      return pool.map(function (p) { return { p: p, v: hash((code || 'eu') + (p.id || p.slug)) % 900 + (p.type === 'news' ? 400 : 0) }; })
+        .sort(function (a, b) { return b.v - a.v; }).slice(0, 5)
+        .map(function (x, i) { return { n: String(i + 1), views: x.v.toLocaleString('en-GB') + ' reads', post: x.p }; });
+    },
+    detectCountry: detectCountry, setCountry: setCountry,
     sectionIcon: function (k) { return icon(k, 18); },
     loadPosts: function () {
       if (postsPromise) return postsPromise;

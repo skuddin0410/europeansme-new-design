@@ -15,6 +15,9 @@
 .esme-hdr{position:sticky;top:-37px;z-index:40;font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif}
 .esme-top a{color:#C8CDD6;display:flex}
 .esme-top a:hover{color:#FFFFFF}
+.esme-geo{display:inline-flex !important;align-items:center;gap:7px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.08);font-weight:600;white-space:nowrap}
+.esme-geo img{width:20px;height:14px;object-fit:cover;border-radius:2px}
+.esme-geo:hover{background:rgba(255,255,255,.16)}
 .esme-bar{background:#FFFFFF;border-bottom:1px solid #E4E7EC;box-shadow:0 1px 2px rgba(16,24,40,.04)}
 .esme-nav{display:flex;align-items:center;gap:2px}
 .esme-nl{display:inline-flex;align-items:center;gap:5px;padding:8px 9px;border-radius:6px;border:none;background:none;font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:600;color:#14181D;cursor:pointer;text-decoration:none;white-space:nowrap}
@@ -47,7 +50,7 @@
 <div class="esme-top" style="background: #101828; color: #C8CDD6; font-size: 12.5px">
 <div style="max-width: 1232px; height: 37px; box-sizing: border-box; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
 <span style="display: flex; align-items: center; gap: 14px; white-space: nowrap; overflow: hidden"><strong style="color: #FFFFFF; font-weight: 600">{{today}}</strong><span aria-hidden="true" style="width: 1px; height: 14px; background: rgba(255,255,255,.25)"></span><span>Europe’s platform for small-business insight</span></span>
-<a href="https://europeansme.eu/" style="color: #C8CDD6; font-weight: 500">europeansme.eu ↗</a>
+<a href="{{geoHref}}" class="esme-geo" title="{{geoTitle}}"><sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}"><img src="{{geoFlag}}" alt="" width="20" height="14"></sc-if><sc-if value="{{noGeo}}" hint-placeholder-val="{{ true }}"><span dc-html="{{pinIcon}}"></span></sc-if><span>{{geoLabel}}</span><span style="opacity: .6">· {{geoAction}}</span></a>
 </div>
 </div>
 <div class="esme-bar">
@@ -78,7 +81,7 @@
 <a class="esme-ddall" href="Tools.dc.html"><span dc-html="{{gridIcon}}"></span>See all tools</a>
 </div></div>
 </div>
-<a class="esme-nl {{countriesOn}}" href="CountryHub.dc.html">Countries</a>
+<a class="esme-nl {{countriesOn}}" href="Countries.dc.html">Countries</a>
 <a class="esme-nl {{policyOn}}" href="Articles.dc.html?section=policy">EU Policy</a>
 </nav>
 <span style="flex: 1 1 0"></span>
@@ -95,6 +98,8 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"active":{"editor":"enum","options":["none","Articles","Funding","Growth","Money","Marketing","Hiring","Tech","Policy","Countries","Tools"],"default":"none"},"$preview":{"width":1440,"height":360}}'>
 class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { geo: null }; }
+  componentDidMount() { if (typeof ESME !== 'undefined') ESME.detectCountry().then((g) => { if (g) this.setState({ geo: g }); }); }
   renderVals() {
     const active = this.props.active ?? 'none';
     const E = typeof ESME !== 'undefined' ? ESME : null;
@@ -106,6 +111,12 @@ class Component extends DCLogic {
       sections,
       tools: E ? E.tools.map((t) => Object.assign({}, t, { icon: E.icon(t.icon, 18), tint: t.tone + '14', isNew: !!t.isNew })) : [],
       gridIcon: E ? E.icon('grid', 15) : '',
+      ...(() => {
+        const g = this.state.geo, c = g && E ? E.country(g.code) : null;
+        return { hasGeo: !!c, noGeo: !c, geoFlag: c ? c.flag : '', geoLabel: c ? c.name : 'Choose your country', geoAction: c ? 'Change' : 'All 27',
+          geoHref: c ? 'Country.dc.html?country=' + c.code : 'Countries.dc.html', pinIcon: E ? E.icon('pin', 14) : '',
+          geoTitle: c ? (g.source === 'cloudflare' ? 'Detected from your location' : g.source === 'browser' ? 'Detected from your browser settings' : 'Your saved country') : 'Pick a country for local news' };
+      })(),
       latestOn: active === 'Articles' ? 'is-on' : '',
       sectionsOn: inSection ? 'is-on' : '',
       toolsOn: active === 'Tools' ? 'is-on' : '',

@@ -79,6 +79,7 @@ a:hover{color:#1E4FA8}
 <option value="{{c.code}}">{{c.name}}</option>
 </sc-for>
 </select>
+<sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12.5px; font-weight: 600; color: #0F7B6C">✓ {{geoNote}}</span></sc-if>
 </div>
 <div style="border-radius: 10px; border: 1px solid #E4E7EC; overflow: hidden">
 <div style="padding: 14px 20px; background: {{eiBg}}; color: {{eiFg}}; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase">{{eiStatus}}</div>
@@ -107,6 +108,12 @@ a:hover{color:#1E4FA8}
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
 class Component extends DCLogic {
   constructor(props) { super(props); this.state = { staff: '35', turnover: '6', balance: '4', ei: 'DE' }; }
+  componentDidMount() {
+    ESME.detectCountry().then((g) => {
+      const v = g && g.code.toUpperCase();
+      if (v && document.querySelector('#ei-country option[value="' + v + '"]')) this.setState({ ei: v, geoFrom: g.source });
+    });
+  }
   renderVals() {
     const s = this.state;
     const st = parseFloat(s.staff) || 0, t = parseFloat(s.turnover) || 0, b = parseFloat(s.balance) || 0;
@@ -130,6 +137,7 @@ class Component extends DCLogic {
     const row = C[s.ei] || C.DE;
     const tone = { now: ['Mandatory now', '#0B2A6B', '#FFFFFF'], phasing: ['Phasing in', '#FFC72C', '#101828'], planned: ['Planned', '#E6ECF7', '#0B2A6B'] }[row[1]];
     return {
+      hasGeo: !!this.state.geoFrom, geoNote: this.state.geoFrom === 'cloudflare' ? 'Set from your location' : this.state.geoFrom === 'browser' ? 'Set from your browser settings' : 'Set to your country',
       staff: s.staff, turnover: s.turnover, balance: s.balance,
       setStaff: (e) => this.setState({ staff: e.target.value }),
       setTurnover: (e) => this.setState({ turnover: e.target.value }),

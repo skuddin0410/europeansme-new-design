@@ -81,13 +81,14 @@ a:hover{color:#1E4FA8}
 <button type="button" class="esme-share" onClick="{{copy}}" aria-label="Copy link"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"></path><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"></path></svg></button>
 </div>
 </div>
-<figure style="margin: 30px 0 0">
+<sc-if value="{{hasImg}}" hint-placeholder-val="{{ true }}"><figure style="margin: 30px 0 0">
 <img src="{{p.imgLarge}}" alt="{{p.alt}}" style="width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: 14px; display: block; background: #E6ECF7">
-</figure>
+</figure></sc-if>
 </div>
 
 <div style="max-width: 1240px; margin: 0 auto; padding: 44px 32px 56px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start">
 <article style="flex: 1 1 600px; min-width: 0; max-width: 720px">
+<sc-if value="{{isSample}}" hint-placeholder-val="{{ false }}"><div style="margin-bottom: 24px; padding: 12px 16px; border-radius: 10px; background: #FFF8E6; border: 1px solid #F5DFA3; font-size: 14px; line-height: 1.55; color: #6B4E00"><strong>Sample story.</strong> This placeholder shows how a daily news item will look. It is not real news.</div></sc-if>
 <div class="esme-prose" dc-html="{{p.content}}"></div>
 <div style="margin-top: 36px; padding: 20px 22px; border-radius: 12px; background: #F5F7FA; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
 <span style="font-size: 14px; color: #5A6470">This demo shows the article live from europeansme.eu.</span>
@@ -141,26 +142,35 @@ class Component extends DCLogic {
     ESME.loadPosts().then((posts) => {
       this.setState({ posts });
       const p = posts.find((x) => x.slug === ESME.param('slug'));
-      if (p) document.title = p.title + ' — European SME';
+      if (p && !ESME.param('news')) document.title = p.title + ' — European SME';
     }).catch(() => this.setState({ failed: true }));
   }
   renderVals() {
     const { posts, failed, copied } = this.state;
     const slug = ESME.param('slug');
-    const p = posts ? posts.find((x) => x.slug === slug) : null;
+    const newsId = ESME.param('news');
+    let p = null;
+    if (newsId && ESME.newsById(newsId)) {
+      const n = ESME.newsById(newsId);
+      p = Object.assign({}, n, { slug: n.id, category: n.countryName, alt: '', imgLarge: '', link: 'Country.dc.html?country=' + (n.country === 'eu' ? '' : n.country),
+        content: '<p>' + n.excerpt + '</p><p>This is a placeholder for a daily news story. In the live version, the news desk writes a short report here: what happened, who it affects, and what a small business should do next — with a link to the official source.</p><h2>What it means for your business</h2><p>Each story ends with practical next steps and links to the related guide and tool, so readers can act on the news straight away.</p>' });
+    } else if (posts) {
+      p = posts.find((x) => x.slug === slug) || null;
+    }
     const navKey = { funding: 'Funding', growth: 'Growth', money: 'Money', marketing: 'Marketing', people: 'Hiring', tech: 'Tech', policy: 'Policy' };
     const base = {
-      loading: !posts && !failed,
-      missing: failed || (!!posts && !p),
+      loading: !p && !posts && !failed,
+      missing: !p && (failed || !!posts),
       missingTitle: failed ? 'We couldn’t load this article' : 'Article not found',
       missingText: failed ? 'The article could not be loaded from europeansme.eu right now. Please refresh the page.' : 'This article may have moved. Browse all articles instead.',
-      ready: !!p, navActive: 'Articles'
+      ready: !!p, navActive: 'Articles', hasImg: !!(p && p.imgLarge), isSample: !!(p && p.sample)
     };
     if (!p) return base;
     const used = {}; used[p.id] = true;
-    const rail = ESME.take(posts, (x) => x.section === p.section, 4, used);
-    let related = ESME.take(posts, (x) => x.section === p.section, 3, used);
-    if (related.length < 3) related = related.concat(ESME.take(posts, null, 3 - related.length, used));
+    const pool = posts || [];
+    const rail = ESME.take(pool, (x) => x.section === p.section, 4, used);
+    let related = ESME.take(pool, (x) => x.section === p.section, 3, used);
+    if (related.length < 3) related = related.concat(ESME.take(pool, null, 3 - related.length, used));
     const initials = p.author.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
     return Object.assign(base, {
       p, navActive: navKey[p.section] || 'Articles',

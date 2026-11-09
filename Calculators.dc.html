@@ -50,6 +50,7 @@ a:hover{color:#1E4FA8}
 <option value="{{c.code}}">{{c.label}}</option>
 </sc-for>
 </select>
+<sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12.5px; font-weight: 600; color: #0F7B6C">✓ {{geoNote}}</span></sc-if>
 </div>
 </div>
 <div style="background: #F5F7FA; border-radius: 10px; padding: 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
@@ -104,6 +105,12 @@ class Component extends DCLogic {
     super(props);
     this.state = { mode: 'add', vatAmount: '1000', country: 'DE', lpAmount: '5000', lpDays: '45', lpRef: '2.15' };
   }
+  componentDidMount() {
+    ESME.detectCountry().then((g) => {
+      const v = g && g.code.toUpperCase();
+      if (v && ['AT','BE','FR','DE','IE','IT','NL','PL','ES','SE','PT','FI','DK','GR','CZ','RO','HU','SK','SI','HR','BG','LU','LT','LV','EE','CY','MT'].indexOf(v) > -1 && document.querySelector('#vat-country option[value="' + v + '"]')) this.setState({ country: v, geoFrom: g.source });
+    });
+  }
   renderVals() {
     const s = this.state;
     const rates = [['AT', 'Austria', 20], ['BE', 'Belgium', 21], ['FR', 'France', 20], ['DE', 'Germany', 19], ['IE', 'Ireland', 23], ['IT', 'Italy', 22], ['NL', 'Netherlands', 21], ['PL', 'Poland', 23], ['ES', 'Spain', 21], ['SE', 'Sweden', 25]];
@@ -121,6 +128,7 @@ class Component extends DCLogic {
     const add = on(s.mode === 'add');
     const rem = on(s.mode === 'remove');
     return {
+      hasGeo: !!this.state.geoFrom, geoNote: this.state.geoFrom === 'cloudflare' ? 'Set from your location' : this.state.geoFrom === 'browser' ? 'Set from your browser settings' : 'Set to your country',
       countries: rates.map(([code, name, r]) => ({ code, label: name + ' — ' + r + '%' })),
       country: s.country,
       setCountry: (e) => this.setState({ country: e.target.value }),

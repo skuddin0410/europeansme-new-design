@@ -18,85 +18,148 @@ a{color:#14181D;text-decoration:none}
 a:hover{color:#1E4FA8}
 .esme-chipbtn{transition:background .15s ease, border-color .15s ease}
 .esme-chipbtn:hover{border-color:#101828}
-.esme-skel{background:linear-gradient(90deg,#EEF1F5 25%,#F6F8FB 50%,#EEF1F5 75%);background-size:200% 100%;animation:esme-sh 1.2s infinite linear;border-radius:12px}
-@keyframes esme-sh{from{background-position:200% 0}to{background-position:-200% 0}}
+.ar-side{position:sticky;top:100px}
+.ar-h{font-family:'Sora',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#5A6470}
+.ar-search{display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #D0D5DD;border-radius:10px;background:#FFFFFF;color:#98A2B3}
+.ar-search:focus-within{border-color:#1E4FA8;box-shadow:0 0 0 3px rgba(30,79,168,.12)}
+.ar-search input{flex:1;min-width:0;border:none;outline:none;background:transparent;font-size:14.5px;color:#14181D}
+.ar-topic{display:flex;align-items:center;gap:12px;width:100%;padding:7px 10px 7px 7px;border:1px solid transparent;border-radius:12px;background:transparent;cursor:pointer;text-align:left;font-family:'Sora',sans-serif;color:#14181D;transition:background-color .15s ease,border-color .15s ease}
+.ar-topic:hover{background:#F5F7FA}
+.ar-topic[aria-pressed="true"]{background:#FFFFFF;border-color:#EAECF0;box-shadow:0 1px 2px rgba(16,24,40,.05),0 6px 16px -10px rgba(16,24,40,.25)}
+.ar-tile{flex:none;width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:var(--tint);color:var(--c);transition:background-color .2s ease,color .2s ease,transform .2s ease}
+.ar-tile svg{width:22px;height:22px}
+.ar-topic:hover .ar-tile{transform:scale(1.05)}
+.ar-topic[aria-pressed="true"] .ar-tile{background:var(--c);color:#FFFFFF;box-shadow:0 6px 14px -6px var(--c)}
+.ar-tl{flex:1;font-size:14px;font-weight:600;line-height:1.25}
+.ar-n{font-size:12px;font-weight:700;color:#667085;background:#F2F4F7;border-radius:999px;padding:2px 8px}
+.ar-topic[aria-pressed="true"] .ar-n{background:var(--tint);color:var(--c)}
+.ar-country{display:flex;align-items:center;gap:10px;height:44px;padding:0 10px;border:1px solid #D0D5DD;border-radius:10px;background:#FFFFFF}
+.ar-country img{border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(16,24,40,.12)}
+.ar-country select{flex:1;border:none;outline:none;background:transparent;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;color:#14181D;cursor:pointer}
+.ar-seg{display:flex;border:1px solid #D0D5DD;border-radius:10px;overflow:hidden}
+.ar-seg button{flex:1;border:none;border-left:1px solid #D0D5DD;background:#FFFFFF;padding:10px 0;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#344054;cursor:pointer}
+.ar-seg button:first-child{border-left:none}
+.ar-seg button[aria-pressed="true"]{background:#0B1B33;color:#FFFFFF}
+.ar-hero{flex:none;width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:var(--c);color:#FFFFFF;box-shadow:0 10px 22px -10px var(--c)}
+.ar-hero svg{width:30px;height:30px}
+.ar-hero img{width:60px;height:60px;border-radius:16px;object-fit:cover}
+.ar-demo{padding:10px 14px;border-radius:10px;background:#FFF8E6;border:1px solid #F5DFA3;font-size:13px;line-height:1.5;color:#6B4E00}
+@media (max-width: 900px){.ar-side{position:static;flex:1 1 100%}}
 </style>
 </helmet>
 <div style="font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; color: #14181D; background: #FFFFFF">
 <dc-import name="SiteHeader" active="{{navActive}}" hint-size="100%,118px"></dc-import>
 
 <main>
-<section aria-label="Introduction" style="background: #F5F7FA; border-bottom: 1px solid #E4E7EC">
-<div style="max-width: 1240px; margin: 0 auto; padding: 44px 32px 32px; display: flex; flex-direction: column; gap: 22px">
-<div style="display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: flex-end; justify-content: space-between">
-<div style="display: flex; flex-direction: column; gap: 10px; max-width: 720px">
-<p class="esme-eyebrow">{{eyebrow}}</p>
-<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(34px, 4.6vw, 50px); line-height: 1.08; font-weight: 700; letter-spacing: -0.03em">{{heading}}</h1>
-<p style="margin: 0; font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.6; color: #5A6470">{{intro}}</p>
+<div class="ar-wrap" style="max-width: 1232px; margin: 0 auto; padding: 36px 32px 72px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<aside class="ar-side" aria-label="Filters" style="flex: 0 0 272px; display: flex; flex-direction: column; gap: 26px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="art-search" class="ar-h">Search</label>
+<div class="ar-search"><span dc-html="{{searchIcon}}"></span><input id="art-search" type="search" placeholder="VAT, hiring, cash flow…" value="{{q}}" onInput="{{setQ}}"></div>
 </div>
-<div style="flex: 0 1 360px; display: flex; flex-direction: column; gap: 6px">
-<label for="art-search" style="font-size: 13px; font-weight: 700">Search articles</label>
-<input id="art-search" type="search" placeholder="e.g. VAT, hiring, cash flow" value="{{q}}" onInput="{{setQ}}" style="height: 48px; padding: 0 16px; border-radius: 8px; border: 1px solid #D0D5DD; font-size: 16px; font-family: inherit; background: #FFFFFF">
-</div>
-</div>
-<div role="group" aria-label="Sections" style="display: flex; flex-wrap: wrap; gap: 8px">
-<sc-for list="{{chips}}" as="c" hint-placeholder-count="8">
-<button type="button" class="esme-chipbtn" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="min-height: 38px; padding: 0 16px; border-radius: 999px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.border}}">
-<span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: {{c.dot}}"></span>{{c.label}}<span style="font-size: 12px; font-weight: 700; opacity: 0.7">{{c.count}}</span>
+<nav aria-label="Topics" style="display: flex; flex-direction: column; gap: 4px">
+<span class="ar-h" style="margin-bottom: 6px">Topics</span>
+<sc-for list="{{topics}}" as="t" hint-placeholder-count="8">
+<button type="button" class="ar-topic" aria-pressed="{{t.on}}" onClick="{{t.pick}}" style="--c: {{t.color}}; --tint: {{t.tint}}">
+<span class="ar-tile" dc-html="{{t.icon}}"></span>
+<span class="ar-tl">{{t.label}}</span>
+<span class="ar-n">{{t.count}}</span>
 </button>
 </sc-for>
+</nav>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="art-country" class="ar-h">Country</label>
+<div class="ar-country">
+<img src="{{countryFlag}}" alt="" width="24" height="16">
+<select id="art-country" value="{{country}}" onChange="{{setCountry}}">
+<option value="all">All of Europe</option>
+<sc-for list="{{countries}}" as="c" hint-placeholder-count="27"><option value="{{c.code}}">{{c.name}}</option></sc-for>
+</select>
+</div>
+<sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: #5A6470"><span dc-html="{{pinIcon}}" style="color: #0F7B6C"></span>{{geoNote}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="ar-h">Type</span>
+<div class="ar-seg" role="group" aria-label="Type">
+<sc-for list="{{types}}" as="y" hint-placeholder-count="3"><button type="button" aria-pressed="{{y.on}}" onClick="{{y.pick}}">{{y.label}}</button></sc-for>
 </div>
 </div>
-</section>
+</aside>
 
-<section aria-label="Articles" style="max-width: 1240px; margin: 0 auto; padding: 36px 32px 72px">
-<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 24px">
-<sc-for list="{{skeletons}}" as="s" hint-placeholder-count="6">
-<div style="display: flex; flex-direction: column; gap: 12px"><div class="esme-skel" style="aspect-ratio: 16 / 10"></div><div class="esme-skel" style="height: 14px; width: 40%"></div><div class="esme-skel" style="height: 22px"></div><div class="esme-skel" style="height: 22px; width: 80%"></div></div>
-</sc-for>
+<div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 16px">
+<span class="ar-hero" style="--c: {{heroColor}}; --tint: {{heroTint}}" dc-html="{{heroIcon}}"></span>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p class="esme-eyebrow">{{eyebrow}}</p>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(30px, 3.8vw, 42px); line-height: 1.1; font-weight: 700; letter-spacing: -0.03em">{{heading}}</h1>
 </div>
-</sc-if>
-
-<sc-if value="{{failed}}" hint-placeholder-val="{{ false }}">
-<div style="padding: 32px; border: 1px solid #E4E7EC; border-radius: 12px; font-size: 16px; color: #5A6470">We couldn't load articles from europeansme.eu right now. Please refresh the page.</div>
-</sc-if>
-
-<sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 24px">
-<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; font-weight: 600; color: #344054">{{countLabel}}</h2>
+</div>
 <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #5A6470">Sort
-<select id="art-sort" value="{{sort}}" onChange="{{setSort}}" style="height: 40px; padding: 0 10px; border-radius: 8px; border: 1px solid #C7CFDC; font-size: 14px; font-family: inherit; background: #FFFFFF">
+<select id="art-sort" value="{{sort}}" onChange="{{setSort}}" style="height: 40px; padding: 0 10px; border-radius: 8px; border: 1px solid #D0D5DD; font-size: 14px; font-family: inherit; background: #FFFFFF">
 <option value="latest">Latest</option>
 <option value="quick">Quickest reads</option>
 <option value="az">A–Z</option>
 </select>
 </label>
 </div>
+<p style="margin: -12px 0 0; font-size: 16px; line-height: 1.6; color: #5A6470; max-width: 720px">{{intro}}</p>
 
-<sc-if value="{{hasLead}}" hint-placeholder-val="{{ true }}">
-<div style="margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid #E4E7EC">
-<dc-import name="Card" post="{{lead}}" variant="row" hint-size="100%,220px"></dc-import>
+<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px">
+<sc-for list="{{skeletons}}" as="s" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="esme-skel" style="aspect-ratio: 16 / 10"></div><div class="esme-skel" style="height: 14px; width: 40%"></div><div class="esme-skel" style="height: 22px"></div></div>
+</sc-for>
 </div>
 </sc-if>
+<sc-if value="{{failed}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 32px; border: 1px solid #E4E7EC; border-radius: 12px; font-size: 16px; color: #5A6470">We couldn't load articles from europeansme.eu right now. Please refresh the page.</div>
+</sc-if>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 24px">
+<sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+<sc-if value="{{showNews}}" hint-placeholder-val="{{ true }}">
+<section aria-label="Daily news" style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; padding-bottom: 10px; border-bottom: 2px solid #101828">
+<h2 style="margin: 0; display: flex; align-items: center; gap: 10px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 20px; font-weight: 700"><span dc-html="{{newsIcon}}" style="color: #D92D20"></span>{{newsTitle}}</h2>
+<span style="font-size: 12.5px; color: #5A6470">Updated daily · days with no news are skipped</span>
+</div>
+<div class="ar-demo"><strong>Sample data.</strong> These headlines are placeholders that show the layout. Your news desk replaces them with real stories.</div>
+<sc-for list="{{newsDays}}" as="d" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #344054">{{d.label}}</span>
+<sc-for list="{{d.items}}" as="n" hint-placeholder-count="2">
+<dc-import name="Card" post="{{n}}" variant="news" hint-size="100%,110px"></dc-import>
+</sc-for>
+</div>
+</sc-for>
+<sc-if value="{{noNews}}" hint-placeholder-val="{{ false }}"><div style="padding: 20px; border: 1px dashed #D0D5DD; border-radius: 12px; font-size: 15px; color: #5A6470">{{noNewsText}}</div></sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{showGuides}}" hint-placeholder-val="{{ true }}">
+<section aria-label="Guides" style="display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; padding-bottom: 10px; border-bottom: 2px solid #101828">
+<h2 style="margin: 0; display: flex; align-items: center; gap: 10px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 20px; font-weight: 700"><span dc-html="{{guideIcon}}" style="color: #1E4FA8"></span>Guides <span style="font-size: 14px; font-weight: 600; color: #5A6470">{{countLabel}}</span></h2>
+<span style="font-size: 12.5px; color: #5A6470">{{guideNote}}</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px">
 <sc-for list="{{shown}}" as="p" hint-placeholder-count="9">
 <dc-import name="Card" post="{{p}}" variant="standard" hint-size="100%,420px"></dc-import>
 </sc-for>
 </div>
-
 <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
-<div style="padding: 40px; border: 1px dashed #C7CFDC; border-radius: 12px; text-align: center; font-size: 16px; color: #5A6470">No articles match “{{q}}”. Try another word or section.</div>
+<div style="padding: 40px; border: 1px dashed #C7CFDC; border-radius: 12px; text-align: center; font-size: 16px; color: #5A6470">No guides match. Try another word or topic.</div>
 </sc-if>
-
 <sc-if value="{{hasMore}}" hint-placeholder-val="{{ false }}">
-<div style="margin-top: 48px; display: flex; justify-content: center">
-<button type="button" onClick="{{more}}" class="esme-btn esme-btn--blue esme-btn--lg">Load more articles ({{remaining}})</button>
+<div style="margin-top: 20px; display: flex; justify-content: center">
+<button type="button" onClick="{{more}}" class="esme-btn esme-btn--blue esme-btn--lg">Load more guides ({{remaining}})</button>
 </div>
 </sc-if>
-</sc-if>
 </section>
+</sc-if>
+</sc-if>
+</div>
+</div>
 
 <section aria-label="Newsletter" style="background: #0B2A6B">
 <div style="max-width: 1240px; margin: 0 auto; padding: 48px 32px; display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: center; justify-content: space-between">
@@ -125,61 +188,67 @@ a:hover{color:#1E4FA8}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    const s = window.ESME && ESME.param('section');
-    this.state = { posts: null, failed: false, section: s && ESME.sections[s] ? s : 'all', q: ESME.param('q') || '', sort: 'latest', limit: 12 };
+    const s = ESME.param('section'), c = ESME.param('country'), t = ESME.param('type');
+    this.state = { posts: null, failed: false, section: s && ESME.sections[s] ? s : 'all', q: ESME.param('q') || '', sort: 'latest', limit: 12,
+      country: ESME.country(c) ? c : 'all', type: ['news', 'guide'].indexOf(t) > -1 ? t : 'all', geo: null };
   }
   componentDidMount() {
     ESME.loadPosts().then((posts) => this.setState({ posts })).catch(() => this.setState({ failed: true }));
+    if (this.state.country === 'all') ESME.detectCountry().then((g) => { if (g && this.state.country === 'all') this.setState({ country: g.code, geo: g }); });
+  }
+  sync(patch) {
+    this.setState(Object.assign({ limit: 12 }, patch));
+    const st = Object.assign({}, this.state, patch), url = new URL(location.href);
+    [['section', st.section], ['country', st.country], ['type', st.type]].forEach(([k, v]) => { if (v === 'all') url.searchParams.delete(k); else url.searchParams.set(k, v); });
+    history.replaceState(null, '', url);
   }
   renderVals() {
-    const { posts, failed, section, q, sort, limit } = this.state;
+    const { posts, failed, section, q, sort, limit, country, type, geo } = this.state;
     const S = ESME.sections;
     const navKey = { funding: 'Funding', growth: 'Growth', money: 'Money', marketing: 'Marketing', people: 'Hiring', tech: 'Tech', policy: 'Policy' };
     const all = posts || [];
     const needle = q.trim().toLowerCase();
-    const matchQ = (p) => !needle || (p.title + ' ' + p.excerpt + ' ' + p.category).toLowerCase().includes(needle);
-    let list = all.filter((p) => (section === 'all' || p.section === section) && matchQ(p));
-    if (sort === 'az') list = list.slice().sort((a, b) => a.title.localeCompare(b.title));
-    if (sort === 'quick') list = list.slice().sort((a, b) => a.mins - b.mins);
-    const useLead = list.length > 3 && !needle && sort === 'latest';
-    const lead = useLead ? list[0] : null;
-    const rest = useLead ? list.slice(1) : list;
-    const shown = rest.slice(0, limit);
-    const count = (key) => all.filter((p) => (key === 'all' || p.section === key) && matchQ(p)).length;
-    const chipKeys = ['all'].concat(Object.keys(S));
-    const pickSection = (key) => {
-      this.setState({ section: key, limit: 12 });
-      const url = new URL(location.href);
-      if (key === 'all') url.searchParams.delete('section'); else url.searchParams.set('section', key);
-      history.replaceState(null, '', url);
-    };
+    const matchQ = (p) => !needle || (p.title + ' ' + p.excerpt + ' ' + (p.category || '')).toLowerCase().includes(needle);
+    const inSec = (p, key) => key === 'all' || p.section === key;
+    const ctry = ESME.country(country);
+    const newsPool = ESME.news.filter((n) => country === 'all' || n.country === country || n.country === 'eu');
+    let guides = all.filter((p) => inSec(p, section) && matchQ(p));
+    if (sort === 'az') guides = guides.slice().sort((a, b) => a.title.localeCompare(b.title));
+    if (sort === 'quick') guides = guides.slice().sort((a, b) => a.mins - b.mins);
+    const news = newsPool.filter((n) => inSec(n, section) && matchQ(n)).slice(0, 14);
+    const shown = guides.slice(0, limit);
+    const count = (key) => all.filter((p) => inSec(p, key) && matchQ(p)).length + newsPool.filter((n) => inSec(n, key) && matchQ(n)).length;
     const sec = section === 'all' ? null : S[section];
+    const topicKeys = ['all'].concat(Object.keys(S));
+    const where = ctry ? ctry.name : 'Europe';
     return {
       navActive: section === 'all' ? 'Articles' : navKey[section],
-      eyebrow: sec ? 'Section' : 'Library',
-      heading: sec ? sec.label : 'All articles',
-      intro: sec ? 'Practical guides from European SME on ' + sec.label.toLowerCase() + ' for small and medium-sized businesses.' : 'Every guide we have published for Europe’s small and medium-sized businesses, in one place.',
-      chips: chipKeys.map((key) => {
-        const on = key === section;
-        return {
-          label: key === 'all' ? 'All' : S[key].label,
-          dot: key === 'all' ? '#FFC72C' : S[key].color,
-          count: posts ? String(count(key)) : '',
-          on: on ? 'true' : 'false',
-          bg: on ? '#0B1B33' : '#FFFFFF', fg: on ? '#FFFFFF' : '#101828', border: on ? '#0B1B33' : '#D0D5DD',
-          pick: () => pickSection(key)
-        };
+      searchIcon: ESME.icon('search', 16), pinIcon: ESME.icon('pin', 15), newsIcon: ESME.icon('news', 22), guideIcon: ESME.icon('guide', 22),
+      topics: topicKeys.map((key) => {
+        const color = key === 'all' ? '#0B1B33' : S[key].color;
+        return { label: key === 'all' ? 'All topics' : S[key].label, color, tint: color + '1A', icon: ESME.icon(key, 22),
+          count: String(count(key)), on: key === section ? 'true' : 'false', pick: () => this.sync({ section: key }) };
       }),
-      q, setQ: (e) => this.setState({ q: e.target.value, limit: 12 }),
+      countries: ESME.countries, country,
+      countryFlag: ctry ? ctry.flag : 'https://flagcdn.com/w80/eu.png',
+      setCountry: (e) => { const v = e.target.value; ESME.setCountry(v === 'all' ? null : v); this.setState({ geo: null }); this.sync({ country: v }); },
+      hasGeo: !!(geo && geo.code === country),
+      geoNote: geo ? (geo.source === 'cloudflare' ? 'Selected from your location' : geo.source === 'browser' ? 'Selected from your browser settings' : 'Your saved country') : '',
+      types: [['all', 'All'], ['news', 'News'], ['guide', 'Guides']].map(([k, l]) => ({ label: l, on: k === type ? 'true' : 'false', pick: () => this.sync({ type: k }) })),
+      heroColor: sec ? sec.color : '#0B1B33', heroTint: sec ? sec.color + '1A' : '#EEF0F3', heroIcon: ESME.icon(section, 30),
+      eyebrow: (ctry ? ctry.name + ' · ' : '') + (sec ? 'Topic' : 'Latest'),
+      heading: sec ? sec.label : (ctry ? 'Latest in ' + ctry.name : 'Latest articles'),
+      intro: (sec ? 'News and practical guides on ' + sec.label.toLowerCase() : 'Daily business news and practical guides') + (ctry ? ' for small businesses in ' + ctry.name + ', plus EU-wide stories that apply there too.' : ' for small and medium-sized businesses across Europe.'),
       sort, setSort: (e) => this.setState({ sort: e.target.value }),
-      loading: !posts && !failed, failed, ready: !!posts,
-      skeletons: [1, 2, 3, 4, 5, 6],
-      countLabel: list.length === 1 ? '1 article' : list.length + ' articles',
-      hasLead: !!lead, lead,
-      shown,
-      empty: !!posts && list.length === 0,
-      hasMore: rest.length > shown.length,
-      remaining: String(rest.length - shown.length),
+      q, setQ: (e) => this.setState({ q: e.target.value, limit: 12 }),
+      loading: !posts && !failed, failed, ready: !!posts, skeletons: [1, 2, 3, 4, 5, 6],
+      showNews: type !== 'guide', showGuides: type !== 'news',
+      newsTitle: 'News · ' + where, newsDays: ESME.groupByDay(news),
+      noNews: news.length === 0, noNewsText: 'No ' + (sec ? sec.label.toLowerCase() + ' ' : '') + 'news for ' + where + ' in the last week. The guides below still apply.',
+      countLabel: guides.length === 1 ? '1 guide' : guides.length + ' guides',
+      guideNote: ctry ? 'EU-wide guides that apply in ' + ctry.name : 'Evergreen guides from europeansme.eu',
+      shown, empty: !!posts && guides.length === 0,
+      hasMore: guides.length > shown.length, remaining: String(guides.length - shown.length),
       more: () => this.setState({ limit: limit + 12 })
     };
   }

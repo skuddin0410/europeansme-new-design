@@ -64,6 +64,33 @@ a:hover{color:#1E4FA8}
 </div>
 </section>
 
+
+<section aria-label="Your country" style="background: #FFFFFF; border-bottom: 1px solid #EAECF0">
+<div style="max-width: 1232px; margin: 0 auto; padding: 40px 32px; display: flex; flex-wrap: wrap; gap: 28px 40px; align-items: flex-start">
+<sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}">
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 14px">
+<span style="display: flex; align-items: center; gap: 14px"><img src="{{geoC.flag}}" alt="" width="60" height="40" style="width: 60px; height: 40px; object-fit: cover; border-radius: 7px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><span style="display: flex; flex-direction: column; gap: 4px"><p class="esme-eyebrow">{{geoNote}}</p><h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em">Today in {{geoC.name}}</h2></span></span>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #5A6470">Daily SME news, trending stories, rules and funding — picked for businesses in {{geoC.name}}.</p>
+<span style="display: flex; flex-wrap: wrap; gap: 10px"><a class="esme-btn esme-btn--navy" href="{{geoHub}}">Open the {{geoC.name}} hub →</a><a class="esme-btn esme-btn--line" href="Countries.dc.html">Change country</a></span>
+</div>
+<div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{geoNews}}" as="n" hint-placeholder-count="3"><dc-import name="Card" post="{{n}}" variant="news" hint-size="100%,110px"></dc-import></sc-for>
+<span style="font-size: 12.5px; color: #6B4E00">Sample headlines for the demo.</span>
+</div>
+</sc-if>
+<sc-if value="{{noGeo}}" hint-placeholder-val="{{ true }}">
+<div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 10px">
+<p class="esme-eyebrow">Your country</p>
+<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em">Get daily news for where you do business</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #5A6470">Pick a country to see its SME news, trending stories, rules and funding.</p>
+</div>
+<div style="flex: 2 1 520px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<sc-for list="{{hubs}}" as="h" hint-placeholder-count="6"><a href="{{h.href}}" onClick="{{h.pick}}" class="esme-chipf" style="height: 44px; padding: 0 16px 0 10px"><img src="{{h.flag}}" alt="" width="26" height="18" style="width: 26px; height: 18px; object-fit: cover; border-radius: 3px">{{h.name}}</a></sc-for>
+<a href="Countries.dc.html" class="esme-btn esme-btn--blue">All 27 countries →</a>
+</div>
+</sc-if>
+</div>
+</section>
 <sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
 <section aria-label="Latest news" style="background: #101828; color: #FFFFFF">
 <div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 18px; padding-bottom: 18px; display: flex; align-items: center; gap: 24px">
@@ -249,15 +276,21 @@ a:hover{color:#1E4FA8}
 class Component extends DCLogic {
   constructor(props) { super(props); this.state = { posts: null, failed: false }; }
   componentDidMount() {
+    ESME.detectCountry().then((g) => { if (g) this.setState({ geo: g }); });
     ESME.loadPosts().then((posts) => this.setState({ posts })).catch(() => this.setState({ failed: true }));
   }
   renderVals() {
     const { posts, failed } = this.state;
+    const geo = this.state.geo, geoC = geo ? ESME.country(geo.code) : null;
     const base = {
+      hasGeo: !!geoC, noGeo: !geoC, geoC: geoC || {}, geoHub: geoC ? 'Country.dc.html?country=' + geoC.code : 'Countries.dc.html',
+      geoNote: geo && geo.source === 'cloudflare' ? 'Based on your location' : geo && geo.source === 'browser' ? 'Based on your browser settings' : 'Your country',
+      geoNews: geoC ? ESME.news.filter((n) => n.country === geoC.code || n.country === 'eu').slice(0, 3) : [],
+      hubs: ESME.countries.filter((c) => c.tier === 'hub').map((c) => ({ name: c.name, flag: c.flag, href: 'Country.dc.html?country=' + c.code, pick: () => ESME.setCountry(c.code) })),
       brand: this.props.brand ?? '#0B2A6B',
       tools: ESME.tools.map((t) => Object.assign({}, t, { iconSvg: ESME.icon(t.icon, 24), tint: t.tone + '14', isNew: !!t.isNew })),
       footCols: [
-        { title: 'Explore', links: [{ label: 'Latest articles', href: 'Articles.dc.html' }, { label: 'SME tools', href: 'Tools.dc.html' }, { label: 'Country guides', href: 'CountryHub.dc.html' }, { label: 'Compliance calendar', href: 'Compliance.dc.html' }, { label: 'Newsletter', href: '#newsletter' }] },
+        { title: 'Explore', links: [{ label: 'Latest articles', href: 'Articles.dc.html' }, { label: 'SME tools', href: 'Tools.dc.html' }, { label: 'Country guides', href: 'Countries.dc.html' }, { label: 'Compliance calendar', href: 'Compliance.dc.html' }, { label: 'Newsletter', href: '#newsletter' }] },
         { title: 'Sections', links: Object.keys(ESME.sections).map((k) => ({ label: ESME.sections[k].label, href: 'Articles.dc.html?section=' + k })) },
         { title: 'Company', links: [{ label: 'About European SME', href: 'https://europeansme.eu/about-us/' }, { label: 'Our authors', href: 'https://europeansme.eu/our-authors/' }, { label: 'Contact us', href: 'https://europeansme.eu/contact-us/' }] },
         { title: 'Work with us', links: [{ label: 'Advertise with us', href: 'https://europeansme.eu/contact-us/' }, { label: 'Become a partner', href: 'https://europeansme.eu/contact-us/' }, { label: 'Submit a story', href: 'https://europeansme.eu/contact-us/' }, { label: 'Subscribe', href: 'https://europeansme.eu/subscription/' }] }

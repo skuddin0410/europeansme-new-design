@@ -27,6 +27,9 @@
 .esme-meta{font-size:12.5px;font-weight:500;color:#5A6470;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .esme-read{flex:none;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;background:#FFC72C;color:#101828;font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-size:12.5px;font-weight:700;box-shadow:0 1px 2px rgba(233,168,0,.4);transition:background-color .15s ease}
 .esme-card:hover .esme-read{background:#FFD24F}
+.esme-nic svg{width:15px;height:15px}
+.esme-newsrow{box-shadow:none}
+.esme-newsrow:hover{transform:translateY(-2px)}
 .esme-card--plain{border:none;box-shadow:none;background:transparent;border-radius:10px}
 .esme-card--plain:hover{transform:none;box-shadow:none}
 </style>
@@ -74,6 +77,24 @@
 </a>
 </sc-if>
 
+<sc-if value="{{isNews}}" hint-placeholder-val="{{ false }}">
+<a class="esme-card esme-newsrow" href="{{p.href}}" style="flex-direction: row; gap: 16px; align-items: flex-start; padding: 16px 18px">
+<span style="flex: none; width: 52px; display: flex; flex-direction: column; align-items: center; gap: 6px; padding-top: 2px">
+<img src="{{p.flag}}" alt="" width="30" height="20" style="width: 30px; height: 20px; object-fit: cover; border-radius: 4px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)">
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 700; color: #344054">{{p.time}}</span>
+</span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: {{p.color}}"><span class="esme-nic" style="color: {{p.color}}" dc-html="{{icon}}"></span>{{p.sectionLabel}}</span>
+<span style="font-size: 12px; color: #5A6470">· {{p.countryName}}</span>
+<sc-if value="{{p.sample}}" hint-placeholder-val="{{ true }}"><span style="padding: 2px 6px; border-radius: 4px; background: #FFF4D6; color: #6B4E00; font-family: 'Sora', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase">Sample</span></sc-if>
+</span>
+<span class="esme-title" style="font-size: 16.5px; line-height: 1.35">{{p.title}}</span>
+<span class="esme-c2" style="font-size: 14px; line-height: 1.55; color: #5A6470">{{p.excerpt}}</span>
+</span>
+</a>
+</sc-if>
+
 <sc-if value="{{isCompact}}" hint-placeholder-val="{{ false }}">
 <a class="esme-card esme-card--plain" href="{{p.href}}" style="flex-direction: row; gap: 14px; align-items: center; padding: 12px 0">
 <sc-if value="{{hasRank}}" hint-placeholder-val="{{ false }}">
@@ -89,7 +110,7 @@
 </a>
 </sc-if>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"post":{"editor":null},"variant":{"editor":"enum","options":["standard","feature","row","compact"],"default":"standard"},"rank":{"editor":"text","default":""},"$preview":{"width":380,"height":420}}'>
+<script type="text/x-dc" data-dc-script data-props='{"post":{"editor":null},"variant":{"editor":"enum","options":["standard","feature","row","compact","news"],"default":"standard"},"rank":{"editor":"text","default":""},"$preview":{"width":380,"height":420}}'>
 class Component extends DCLogic {
   renderVals() {
     const v = this.props.variant || 'standard';
@@ -101,6 +122,7 @@ class Component extends DCLogic {
       p,
       rank: this.props.rank || '',
       hasRank: !!this.props.rank,
+      isNews: v === 'news', icon: (typeof ESME !== 'undefined' && p.section) ? ESME.icon(p.section, 15) : '',
       isFeature: v === 'feature', isStandard: v === 'standard', isRow: v === 'row', isCompact: v === 'compact'
     };
   }

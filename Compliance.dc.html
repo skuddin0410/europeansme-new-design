@@ -41,6 +41,7 @@ a:hover{color:#1E4FA8}
 <button type="button" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.border}}">{{c.label}}</button>
 </sc-for>
 </div>
+<sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}"><span style="flex-basis: 100%; order: 3; font-size: 13px; font-weight: 600; color: #0F7B6C">✓ {{geoNote}}</span></sc-if>
 <div role="group" aria-label="Topic" style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{topicChips}}" as="c" hint-placeholder-count="3">
 <button type="button" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="min-height: 40px; padding: 0 14px; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.border}}">{{c.label}}</button>
@@ -110,6 +111,12 @@ a:hover{color:#1E4FA8}
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2100}}'>
 class Component extends DCLogic {
   constructor(props) { super(props); this.state = { place: 'all', topic: 'all' }; }
+  componentDidMount() {
+    ESME.detectCountry().then((g) => {
+      const v = g && g.code.toUpperCase();
+      if (v && ['BE','FR','DE','PL'].indexOf(v) > -1) this.setState({ place: v, geoFrom: g.source });
+    });
+  }
   renderVals() {
     const { place, topic } = this.state;
     const places = [['all', 'All'], ['EU', 'EU-wide'], ['BE', 'Belgium'], ['FR', 'France'], ['DE', 'Germany'], ['PL', 'Poland']];
@@ -141,6 +148,7 @@ class Component extends DCLogic {
     });
     const events = ev.filter((e) => (place === 'all' || e.p === place) && (topic === 'all' || e.t === topic));
     return {
+      hasGeo: !!this.state.geoFrom && this.state.place !== 'all', geoNote: 'Showing your country first — choose “All” to see every deadline',
       placeChips: places.map(([k, l]) => chip(k, l, place, 'place')),
       topicChips: topics.map(([k, l]) => chip(k, l, topic, 'topic')),
       events,
