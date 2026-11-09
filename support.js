@@ -150,6 +150,7 @@
     for (var i = 0; i < nodes.length; i++) renderNode(nodes[i], scope, parent, svg);
   }
 
+  var renderPass = { counts: {}, cache: {}, mounts: [], redraw: null };
   function renderNode(n, scope, parent, svg) {
     if (n.text !== undefined) {
       parent.appendChild(document.createTextNode(interp(n.text, scope)));
@@ -181,7 +182,23 @@
         if (k === 'name' || k.indexOf('hint-') === 0) continue;
         props[camel(k)] = attrValue(a[k], scope);
       }
-      var inst = new def.Cls(props);
+      // Keep one instance per stateful component slot across redraws so it can
+      // hold state and run componentDidMount once. Stateless ones (no
+      // componentDidMount) are cheap to recreate.
+      var inst, slot = a.name + '#' + (renderPass.counts[a.name] = (renderPass.counts[a.name] || 0) + 1);
+      if (def.Cls.prototype.componentDidMount) {
+        inst = renderPass.cache[slot];
+        if (!inst) {
+          inst = new def.Cls(props);
+          inst._rerender = function () { if (renderPass.redraw) renderPass.redraw(); };
+          renderPass.cache[slot] = inst;
+          renderPass.mounts.push(inst);
+        } else {
+          inst.props = props;
+        }
+      } else {
+        inst = new def.Cls(props);
+      }
       var host = document.createElement('div');
       host.style.display = 'contents';
       renderNodes(def.nodes, inst.renderVals() || {}, host, false);
@@ -285,9 +302,13 @@
           // Build the new tree off-screen, then update the live page in
           // place, so fields being typed in keep their caret and focus.
           var next = document.createElement('div');
+          renderPass.counts = {};
           renderNodes(def.nodes, inst.renderVals() || {}, next, false);
           morph(root, next);
+          var mounts = renderPass.mounts.splice(0);
+          mounts.forEach(function (c) { c.componentDidMount(); });
         };
+        renderPass.redraw = draw;
         inst._rerender = draw;
         if (inst.componentWillMount) inst.componentWillMount();
         draw();
