@@ -17,7 +17,7 @@
 .esme-top a:hover{color:#FFFFFF}
 .esme-bar{background:#FFFFFF;border-bottom:1px solid #E4E7EC;box-shadow:0 1px 2px rgba(16,24,40,.04)}
 .esme-nav{display:flex;align-items:center;gap:2px}
-.esme-nl{display:inline-flex;align-items:center;gap:5px;padding:8px 10px;border-radius:6px;border:none;background:none;font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:600;color:#14181D;cursor:pointer;text-decoration:none;white-space:nowrap}
+.esme-nl{display:inline-flex;align-items:center;gap:5px;padding:8px 9px;border-radius:6px;border:none;background:none;font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:600;color:#14181D;cursor:pointer;text-decoration:none;white-space:nowrap}
 .esme-nl:hover{background:#F2F4F7;color:#14181D;text-decoration:none}
 .esme-nl.is-on{color:#1E4FA8}
 .esme-caret{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;opacity:.75}
@@ -28,11 +28,14 @@
 .esme-ddi{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:500;color:#14181D;text-decoration:none}
 .esme-ddi:hover{background:#F5F7FA;color:#1E4FA8;text-decoration:none}
 .esme-ddi small{display:block;font-size:12.5px;font-weight:400;color:#5A6470;margin-top:2px}
-.esme-search{display:flex;align-items:center;gap:8px;height:40px;width:190px;padding:0 12px;border:1px solid #D0D5DD;border-radius:8px;background:#F9FAFB;color:#667085}
+.esme-search{display:flex;align-items:center;gap:8px;height:40px;width:170px;padding:0 12px;border:1px solid #D0D5DD;border-radius:8px;background:#F9FAFB;color:#667085}
 .esme-search:focus-within{border-color:#1E4FA8;background:#FFFFFF;box-shadow:0 0 0 3px rgba(30,79,168,.12)}
 .esme-search input{flex:1;min-width:0;border:none;background:transparent;outline:none;font-size:14px;color:#14181D}
-@media (max-width: 1180px){.esme-search{display:none}}
-@media (max-width: 900px){.esme-nav{order:3;width:100%;overflow-x:auto}.esme-adv{display:none}}
+.esme-row{flex-wrap:nowrap}
+.esme-row .esme-btn{flex:none}
+@media (max-width: 1300px){.esme-search{display:none}}
+@media (max-width: 1060px){.esme-adv{display:none}}
+@media (max-width: 900px){.esme-row{flex-wrap:wrap}.esme-nav{order:3;width:100%;overflow-x:auto}}
 </style>
 </helmet>
 <header class="esme-hdr">
@@ -48,7 +51,7 @@
 </div>
 </div>
 <div class="esme-bar">
-<div style="max-width: 1232px; min-height: 80px; box-sizing: border-box; margin: 0 auto; padding: 12px 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
+<div class="esme-row" style="max-width: 1232px; min-height: 80px; box-sizing: border-box; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; gap: 12px 14px">
 <a href="Main.dc.html" aria-label="European SME home" style="display: flex; align-items: center; gap: 9px; text-decoration: none; flex: none">
 <svg aria-hidden="true" viewBox="0 0 200 200" style="width: 38px; height: 38px"><circle cx="100" cy="100" r="100" fill="#003399"></circle><g fill="#FFC72C"><path transform="translate(180.0 100.0) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(169.3 140.0) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(140.0 169.3) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(100.0 180.0) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(60.0 169.3) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(30.7 140.0) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(20.0 100.0) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(30.7 60.0) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(60.0 30.7) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(100.0 20.0) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(140.0 30.7) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path><path transform="translate(169.3 60.0) scale(1.55)" d="M0,-7 L1.65,-2.27 L6.66,-2.16 L2.66,0.87 L4.11,5.66 L0,2.8 L-4.11,5.66 L-2.66,0.87 L-6.66,-2.16 L-1.65,-2.27Z"></path></g></svg>
 <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1">
