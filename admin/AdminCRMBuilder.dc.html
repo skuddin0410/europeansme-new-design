@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Admin — CRM builder</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=League+Spartan:wght@800&amp;family=Sora:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FA8}a:hover{color:#003399}
+.adm-nav{flex:1 1 248px;max-width:280px;min-width:230px;display:flex;flex-direction:column;gap:2px;padding:20px 14px 16px;background:#0B1B33;box-sizing:border-box}
+.adm-ng{margin:16px 10px 6px;font-family:'Sora',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6F84AD}
+.adm-ni{display:flex;align-items:center;gap:11px;min-height:40px;padding:0 10px;border-radius:10px;font-family:'Sora',sans-serif;font-size:13.5px;font-weight:600;color:#C8D2E6;text-decoration:none}
+a.adm-ni:hover{background:rgba(255,255,255,.06);color:#FFFFFF}
+.adm-ni.is-on{background:rgba(255,255,255,.1);color:#FFFFFF;box-shadow:inset 3px 0 0 #FFCC00}
+.adm-ni.is-on svg{color:#FFCC00}
+.adm-soon{color:#9AA8C4;cursor:default}
+.adm-soontag{font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 6px;border-radius:5px;background:rgba(255,255,255,.08);color:#B4C0D8}
+.adm-badge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:#FFCC00;color:#0B1B33}
+.adm-site{margin:10px 8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#FFCC00;text-decoration:none}
+.adm-site:hover{color:#FFE27A}
+.adm-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;padding:16px 32px;background:#FFFFFF;border-bottom:1px solid #EAECF0}
+.adm-search{display:flex;align-items:center;gap:8px;height:42px;width:300px;max-width:100%;padding:0 12px;border:1px solid #D0D5DD;border-radius:10px;background:#F9FAFB;color:#667085;box-sizing:border-box}
+.adm-search input{flex:1;min-width:0;border:none;outline:none;background:transparent;font-size:14px;color:#14181D;font-family:inherit}
+.adm-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.adm-kbd{font-family:'Sora',sans-serif;font-size:11px;border:1px solid #E4E7EC;border-radius:5px;padding:1px 5px}
+.adm-sample{font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:6px;background:#FFF4D6;color:#6B4E00}
+.adm-iconbtn{position:relative;width:44px;height:44px;border-radius:10px;border:1px solid #E4E7EC;background:#FFFFFF;color:#344054;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.adm-dot{position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:50%;background:#D92D20;box-shadow:0 0 0 2px #FFFFFF}
+.adm-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid transparent;font-family:'Sora',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap}
+.adm-btn--gold{background:#FFCC00;color:#101828}
+.adm-btn--gold:hover{background:#FFD84D;color:#101828}
+.adm-btn--navy{background:#0B2A6B;color:#FFFFFF}
+.adm-btn--navy:hover{background:#123A8A;color:#FFFFFF}
+.adm-btn--line{background:#FFFFFF;border-color:#D0D5DD;color:#101828}
+.adm-btn--line:hover{border-color:#101828;color:#101828}
+.adm-card{background:#FFFFFF;border:1px solid #EAECF0;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.adm-h2{margin:0;font-family:'Sora',sans-serif;font-size:16px;font-weight:700;color:#101828}
+.adm-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;font-family:'Sora',sans-serif;font-size:11.5px;font-weight:600;white-space:nowrap}
+.adm-table{width:100%;border-collapse:collapse;font-size:14px}
+.adm-table th{padding:11px 14px;text-align:left;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085;background:#F9FAFB;border-bottom:1px solid #EAECF0;white-space:nowrap}
+.adm-table td{padding:12px 14px;border-bottom:1px solid #F2F4F7;color:#344054;vertical-align:middle}
+.adm-table tr:hover td{background:#FAFBFD}
+.adm-field{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#344054}
+.adm-field input,.adm-field select,.adm-field textarea{min-height:44px;padding:10px 12px;border:1px solid #D0D5DD;border-radius:10px;background:#FFFFFF;font-family:inherit;font-size:14px;font-weight:400;color:#14181D;box-sizing:border-box}
+.adm-field textarea{min-height:88px;resize:vertical;line-height:1.5}
+.adm-field input:focus,.adm-field select:focus,.adm-field textarea:focus{outline:none;border-color:#1E4FA8;box-shadow:0 0 0 3px rgba(30,79,168,.14)}
+.adm-tab{min-height:40px;padding:0 14px;border:none;border-radius:9px;background:transparent;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#475467;cursor:pointer;white-space:nowrap}
+.adm-tab:hover{background:#F2F4F7}
+.adm-tab[aria-pressed="true"]{background:#FFFFFF;color:#0B2A6B;box-shadow:0 1px 3px rgba(16,24,40,.12)}
+.cb-obj{min-height:52px;padding:8px 10px;border:none;border-radius:10px;background:transparent;color:#101828;font:inherit;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;width:100%}
+.cb-obj:hover{background:#F2F4F7}
+.cb-obj[aria-pressed="true"]{background:#EEF3FF;box-shadow:inset 3px 0 0 #0B2A6B}
+.cb-sw{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 4px;border:none;background:transparent;cursor:pointer;font:inherit}
+.cb-knob{width:36px;height:20px;border-radius:99px;background:#D0D5DD;position:relative;transition:background .15s}
+.cb-knob::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#FFFFFF;transition:left .15s;box-shadow:0 1px 2px rgba(16,24,40,.2)}
+.cb-sw[aria-checked="true"] .cb-knob{background:#0B2A6B}
+.cb-sw[aria-checked="true"] .cb-knob::after{left:18px}
+.pl-del{width:36px;height:36px;border-radius:9px;border:none;background:transparent;color:#98A2B3;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-size:18px}
+.pl-del:hover{background:#FEE4E2;color:#B42318}
+.cb-in{flex:1 1 220px;min-height:44px;padding:0 12px;border:1.5px solid #D0D5DD;border-radius:10px;font:inherit;font-size:14.5px}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; color: #14181D; background: #F5F7FA; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+<nav aria-label="Admin" class="adm-nav">
+<a href="AdminHome.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 18px; text-decoration: none"><svg aria-hidden="true" viewBox="0 0 100 100" style="width: 34px; height: 34px; flex: none; display: block"><circle cx="50" cy="50" r="47.5" fill="#003399" stroke="#FFCC00" stroke-width="3"></circle><g fill="#FFCC00"><polygon points="81.0,43.8 82.5,48.0 86.9,48.1 83.4,50.8 84.6,55.0 81.0,52.5 77.4,55.0 78.6,50.8 75.1,48.1 79.5,48.0"></polygon><polygon points="76.8,59.3 78.3,63.5 82.7,63.6 79.2,66.3 80.5,70.5 76.8,68.0 73.2,70.5 74.5,66.3 71.0,63.6 75.4,63.5"></polygon><polygon points="65.5,70.6 67.0,74.8 71.4,74.9 67.9,77.6 69.1,81.9 65.5,79.3 61.9,81.9 63.1,77.6 59.6,74.9 64.0,74.8"></polygon><polygon points="50.0,74.8 51.5,79.0 55.9,79.1 52.4,81.8 53.6,86.0 50.0,83.5 46.4,86.0 47.6,81.8 44.1,79.1 48.5,79.0"></polygon><polygon points="34.5,70.6 36.0,74.8 40.4,74.9 36.9,77.6 38.1,81.9 34.5,79.3 30.9,81.9 32.1,77.6 28.6,74.9 33.0,74.8"></polygon><polygon points="23.2,59.3 24.6,63.5 29.0,63.6 25.5,66.3 26.8,70.5 23.2,68.0 19.5,70.5 20.8,66.3 17.3,63.6 21.7,63.5"></polygon><polygon points="19.0,43.8 20.5,48.0 24.9,48.1 21.4,50.8 22.6,55.0 19.0,52.5 15.4,55.0 16.6,50.8 13.1,48.1 17.5,48.0"></polygon><polygon points="23.2,28.3 24.6,32.5 29.0,32.6 25.5,35.3 26.8,39.5 23.2,37.0 19.5,39.5 20.8,35.3 17.3,32.6 21.7,32.5"></polygon><polygon points="34.5,17.0 36.0,21.1 40.4,21.2 36.9,23.9 38.1,28.2 34.5,25.7 30.9,28.2 32.1,23.9 28.6,21.2 33.0,21.1"></polygon><polygon points="50.0,12.8 51.5,17.0 55.9,17.1 52.4,19.8 53.6,24.0 50.0,21.5 46.4,24.0 47.6,19.8 44.1,17.1 48.5,17.0"></polygon><polygon points="65.5,17.0 67.0,21.1 71.4,21.2 67.9,23.9 69.1,28.2 65.5,25.7 61.9,28.2 63.1,23.9 59.6,21.2 64.0,21.1"></polygon><polygon points="76.8,28.3 78.3,32.5 82.7,32.6 79.2,35.3 80.5,39.5 76.8,37.0 73.2,39.5 74.5,35.3 71.0,32.6 75.4,32.5"></polygon></g></svg><span style="display: flex; flex-direction: column; gap: 3px"><span style="font-family: 'League Spartan', 'Sora', 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-size: 19px; line-height: 1; color: #FFFFFF; white-space: nowrap">EUROPEAN<span style="color: #FFCC00; margin-left: 4px">SME</span></span><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; color: #8FA3C7">ADMIN</span></span></a>
+<span class="adm-ng">Overview</span>
+<a class="adm-ni" href="AdminHome.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M4 11l8-7 8 7v8a2 2 0 0 1-2 2h-3v-6H9v6H6a2 2 0 0 1-2-2z"></path></svg><span style="flex: 1">Dashboard</span></a>
+<span class="adm-ng">Publishing</span>
+<a class="adm-ni" href="AdminArticles.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M5 4h11l3 3v13H5z"></path><path d="M8 9h8M8 13h8M8 17h5"></path></svg><span style="flex: 1">Articles</span><span class="adm-badge">12</span></a>
+<a class="adm-ni" href="AdminEditor.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M4 20h4L19 9l-4-4L4 16z"></path><path d="M13.5 6.5l4 4"></path></svg><span style="flex: 1">New article</span></a>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5-8 8"></path></svg><span style="flex: 1">Media library</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><span style="flex: 1">Editorial calendar</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg><span style="flex: 1">Countries and topics</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ng">CRM</span>
+<a class="adm-ni" href="AdminCRM.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"></path></svg><span style="flex: 1">Contacts and companies</span></a>
+<a class="adm-ni" href="AdminPipeline.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="4" width="5" height="16" rx="1.5"></rect><rect x="10" y="4" width="5" height="11" rx="1.5"></rect><rect x="17" y="4" width="4" height="7" rx="1.5"></rect></svg><span style="flex: 1">Deals pipeline</span></a>
+<a class="adm-ni is-on" href="AdminCRMBuilder.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><path d="M17.5 14v7M14 17.5h7"></path></svg><span style="flex: 1">CRM builder</span></a>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span style="flex: 1">Subscribers</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ng">Workspace</span>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg><span style="flex: 1">Settings</span><span class="adm-soontag">Soon</span></span>
+<span style="flex: 1 1 auto"></span>
+<a class="adm-site" href="../template-1/Main.dc.html">View website ↗</a>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 8px 4px; border-top: 1px solid rgba(255,255,255,.1)"><span style="width: 36px; height: 36px; border-radius: 50%; background: #FFCC00; color: #0B1B33; display: flex; align-items: center; justify-content: center; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px">RA</span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Sora', sans-serif; font-size: 13.5px; font-weight: 600; color: #FFFFFF">Raoof</span><span style="font-size: 12px; color: #8FA3C7">Owner · European SME</span></span></div>
+</nav>
+<main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+<header class="adm-top">
+<div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<span style="font-size: 12.5px; color: #667085">Admin · CRM</span>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #101828; white-space: nowrap">CRM builder</h1>
+</div>
+<span style="flex: 1 1 auto"></span>
+<label class="adm-search"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><span class="adm-sr">Search the admin</span><input type="search" placeholder="Search articles, contacts, deals"><span class="adm-kbd">⌘K</span></label>
+<span class="adm-sample">Sample data</span>
+<button type="button" class="adm-iconbtn" aria-label="Notifications"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"></path></svg><span class="adm-dot"></span></button>
+<a class="adm-btn adm-btn--line" href="AdminCRM.dc.html"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"></path></svg>View records</a><button type="button" class="adm-btn adm-btn--gold"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Save schema</button>
+</header>
+<div style="padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+<nav class="adm-card" style="flex: 1 1 220px; max-width: 280px; padding: 14px; display: flex; flex-direction: column; gap: 4px" aria-label="Objects">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #667085; padding: 4px 8px 8px">Objects</span>
+<sc-for list="{{objects}}" as="o" hint-placeholder-count="5"><button type="button" class="cb-obj" aria-pressed="{{o.on}}" onClick="{{o.pick}}"><span style="display: flex; flex-direction: column; gap: 2px; text-align: left"><span style="font-weight: 600">{{o.name}}</span><span style="font-size: 12px; color: #667085">{{o.meta}}</span></span><sc-if value="{{o.custom}}" hint-placeholder-val="{{ false }}"><span class="adm-pill" style="background: #F4EBFF; color: #6941C6">Custom</span></sc-if></button></sc-for>
+<div style="border-top: 1px solid #EAECF0; margin-top: 8px; padding-top: 12px; display: flex; flex-direction: column; gap: 8px">
+<label class="adm-field">New object<input type="text" placeholder="e.g. Event attendees" value="{{newObj}}" onInput="{{setNewObj}}"></label>
+<button type="button" class="adm-btn adm-btn--line" onClick="{{addObj}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M12 5v14M5 12h14"></path></svg>Create object</button>
+</div>
+</nav>
+
+<div style="flex: 999 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<section class="adm-card" style="padding: 20px; display: flex; flex-direction: column; gap: 14px" aria-label="Fields">
+<div style="display: flex; align-items: center; gap: 10px"><h2 class="adm-h2" style="flex: 1">{{objName}} · fields</h2><span style="font-size: 13px; color: #667085">{{fieldCount}} fields</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{fields}}" as="f" hint-placeholder-count="6">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #EAECF0; border-radius: 12px; background: #FFFFFF">
+<span style="color: #98A2B3; display: flex"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="9" cy="6" r="1"></circle><circle cx="15" cy="6" r="1"></circle><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="9" cy="18" r="1"></circle><circle cx="15" cy="18" r="1"></circle></svg></span>
+<span style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; color: #101828">{{f.label}}</span><span style="font-size: 12px; color: #667085">{{f.key}}</span></span>
+<span class="adm-pill" style="background: #E8EEFB; color: #1E4FA8">{{f.type}}</span>
+<button type="button" class="cb-sw" role="switch" aria-checked="{{f.req}}" onClick="{{f.toggle}}"><span class="cb-knob"></span><span style="font-size: 13px; color: #344054">Required</span></button>
+<sc-if value="{{f.system}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #98A2B3; min-width: 36px; text-align: center">System</span></sc-if>
+<sc-if value="{{f.removable}}" hint-placeholder-val="{{ true }}"><button type="button" class="pl-del" aria-label="Delete {{f.label}}" onClick="{{f.del}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"></path></svg></button></sc-if>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; padding: 14px; border: 1.5px dashed #D0D5DD; border-radius: 12px; background: #F9FAFB">
+<label class="adm-field" style="flex: 2 1 200px">Field label<input type="text" placeholder="e.g. VAT number" value="{{nf}}" onInput="{{setNf}}"></label>
+<label class="adm-field" style="flex: 1 1 150px">Type<select value="{{nt}}" onChange="{{setNt}}"><option>Text</option><option>Email</option><option>Phone</option><option>Number</option><option>Currency</option><option>Date</option><option>Dropdown</option><option>Checkbox</option><option>Country</option><option>Link to record</option></select></label>
+<button type="button" class="adm-btn adm-btn--gold" onClick="{{addField}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M12 5v14M5 12h14"></path></svg>Add field</button>
+</div>
+</section>
+
+<section class="adm-card" style="padding: 20px; display: flex; flex-direction: column; gap: 14px" aria-label="Pipeline stages">
+<div style="display: flex; align-items: center"><h2 class="adm-h2" style="flex: 1">Deal stages</h2><a href="AdminPipeline.dc.html" style="font-size: 13.5px; font-weight: 600; color: #0B2A6B">Open pipeline →</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="5"><span style="display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 6px 0 12px; border-radius: 99px; background: #F2F4F7; font-size: 13.5px; font-weight: 600; color: #344054"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{s.dot}}"></span>{{s.name}}<span style="font-weight: 400; color: #667085">{{s.prob}}</span><button type="button" class="pl-del" style="width: 28px; height: 28px" aria-label="Remove {{s.name}}" onClick="{{s.del}}">×</button></span></sc-for>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><input type="text" class="cb-in" placeholder="New stage, e.g. Invoice sent" value="{{ns}}" onInput="{{setNs}}" aria-label="New stage name"><button type="button" class="adm-btn adm-btn--line" onClick="{{addStage}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M12 5v14M5 12h14"></path></svg>Add stage</button></div>
+</section>
+</div>
+
+<aside style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px" aria-label="Form preview">
+<section class="adm-card" style="padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #667085">Live preview</span><h2 class="adm-h2">New {{objSingular}}</h2></div>
+<sc-for list="{{fields}}" as="f" hint-placeholder-count="6">
+<label class="adm-field">{{f.label}}<sc-if value="{{f.reqb}}" hint-placeholder-val="{{ false }}"><span style="color: #B42318"> *</span></sc-if>
+<sc-if value="{{f.isCheck}}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: center; gap: 8px; font-weight: 400"><input type="checkbox" style="width: 20px; height: 20px; min-height: 0">Yes</span></sc-if>
+<sc-if value="{{f.isSelect}}" hint-placeholder-val="{{ false }}"><select><option>{{f.ph}}</option></select></sc-if>
+<sc-if value="{{f.isInput}}" hint-placeholder-val="{{ true }}"><input type="text" placeholder="{{f.ph}}"></sc-if>
+</label>
+</sc-for>
+<button type="button" class="adm-btn adm-btn--navy">Save {{objSingular}}</button>
+</section>
+<section class="adm-card" style="padding: 16px 18px; display: flex; gap: 12px; align-items: flex-start; background: #FFFBEB; border-color: #FDE68A">
+<span style="color: #8A5A00; display: flex; margin-top: 2px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3z"></path></svg></span>
+<span style="font-size: 13.5px; line-height: 1.5; color: #713F12">Changes here update the CRM tables, filters and import mapping. Nothing is saved yet: this is the design prototype.</span>
+</section>
+</aside>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const f = (label, type, req, sys) => ({ id: label.toLowerCase().replace(/[^a-z0-9]+/g, '_'), label, type, req: !!req, sys: !!sys });
+    this.state = {
+      cur: 'contacts', newObj: '', nf: '', nt: 'Text', ns: '', seq: 0,
+      objects: [
+        { id: 'contacts', name: 'Contacts', one: 'contact', custom: false, fields: [f('Full name', 'Text', 1, 1), f('Email', 'Email', 1, 1), f('Phone', 'Phone'), f('Company', 'Link to record'), f('Relationship type', 'Dropdown', 1), f('Market', 'Country'), f('Newsletter opt-in', 'Checkbox')] },
+        { id: 'companies', name: 'Companies', one: 'company', custom: false, fields: [f('Company name', 'Text', 1, 1), f('Website', 'Text'), f('Industry', 'Dropdown'), f('Employees', 'Number'), f('Market', 'Country', 1)] },
+        { id: 'deals', name: 'Deals', one: 'deal', custom: false, fields: [f('Deal name', 'Text', 1, 1), f('Company', 'Link to record', 1), f('Value', 'Currency', 1), f('Deal type', 'Dropdown'), f('Close date', 'Date')] },
+        { id: 'subscribers', name: 'Subscribers', one: 'subscriber', custom: false, fields: [f('Email', 'Email', 1, 1), f('Market', 'Country'), f('Topics', 'Dropdown'), f('Double opt-in', 'Checkbox', 1)] },
+        { id: 'events', name: 'Event attendees', one: 'event attendee', custom: true, fields: [f('Full name', 'Text', 1, 1), f('Email', 'Email', 1), f('Event', 'Dropdown', 1), f('Attended', 'Checkbox')] }
+      ],
+      stages: [['Lead', '#98A2B3', '10%'], ['Contacted', '#1E4FA8', '25%'], ['Proposal sent', '#E0A800', '50%'], ['Negotiation', '#7F56D9', '75%'], ['Won', '#12856F', '100%']]
+    };
+  }
+  upd(fn) { this.setState({ objects: this.state.objects.map((o) => o.id === this.state.cur ? fn(o) : o) }); }
+  renderVals() {
+    const S = this.state;
+    const cur = S.objects.find((o) => o.id === S.cur) || S.objects[0];
+    const PH = { Text: 'Type here', Email: 'name@company.eu', Phone: '+49 …', Number: '0', Currency: '€ 0', Date: 'DD/MM/YYYY', Dropdown: 'Choose…', Checkbox: '', Country: 'Germany', 'Link to record': 'Search records…' };
+    const SEL = ['Dropdown', 'Country', 'Link to record'];
+    return {
+      objects: S.objects.map((o) => ({ name: o.name, meta: o.fields.length + ' fields', custom: o.custom, on: o.id === S.cur ? 'true' : 'false', pick: () => this.setState({ cur: o.id }) })),
+      newObj: S.newObj, setNewObj: (e) => this.setState({ newObj: e.target.value }),
+      addObj: () => { const n = S.newObj.trim(); if (!n) return; const id = 'o' + (S.seq + 1);
+        this.setState({ seq: S.seq + 1, newObj: '', cur: id, objects: S.objects.concat([{ id, name: n, one: n.toLowerCase().replace(/s$/, ''), custom: true, fields: [{ id: 'name', label: 'Name', type: 'Text', req: true, sys: true }] }]) }); },
+      objName: cur.name, objSingular: cur.one, fieldCount: String(cur.fields.length),
+      fields: cur.fields.map((f, i) => ({ label: f.label, key: f.id, type: f.type, req: f.req ? 'true' : 'false', reqb: f.req, system: f.sys, removable: !f.sys,
+        isCheck: f.type === 'Checkbox', isSelect: SEL.includes(f.type), isInput: f.type !== 'Checkbox' && !SEL.includes(f.type), ph: PH[f.type] || '',
+        toggle: () => this.upd((o) => Object.assign({}, o, { fields: o.fields.map((x, j) => j === i ? Object.assign({}, x, { req: !x.req }) : x) })),
+        del: () => this.upd((o) => Object.assign({}, o, { fields: o.fields.filter((x, j) => j !== i) })) })),
+      nf: S.nf, setNf: (e) => this.setState({ nf: e.target.value }), nt: S.nt, setNt: (e) => this.setState({ nt: e.target.value }),
+      addField: () => { const l = S.nf.trim(); if (!l) return; this.upd((o) => Object.assign({}, o, { fields: o.fields.concat([{ id: l.toLowerCase().replace(/[^a-z0-9]+/g, '_'), label: l, type: S.nt, req: false, sys: false }]) })); this.setState({ nf: '' }); },
+      stages: S.stages.map((s, i) => ({ name: s[0], dot: s[1], prob: s[2], del: () => this.setState({ stages: S.stages.filter((x, j) => j !== i) }) })),
+      ns: S.ns, setNs: (e) => this.setState({ ns: e.target.value }),
+      addStage: () => { const n = S.ns.trim(); if (!n) return; const st = S.stages.slice(); st.splice(Math.max(0, st.length - 1), 0, [n, '#C11574', '—']); this.setState({ ns: '', stages: st }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

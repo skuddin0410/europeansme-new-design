@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Admin — dashboard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=League+Spartan:wght@800&amp;family=Sora:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FA8}a:hover{color:#003399}
+.adm-nav{flex:1 1 248px;max-width:280px;min-width:230px;display:flex;flex-direction:column;gap:2px;padding:20px 14px 16px;background:#0B1B33;box-sizing:border-box}
+.adm-ng{margin:16px 10px 6px;font-family:'Sora',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6F84AD}
+.adm-ni{display:flex;align-items:center;gap:11px;min-height:40px;padding:0 10px;border-radius:10px;font-family:'Sora',sans-serif;font-size:13.5px;font-weight:600;color:#C8D2E6;text-decoration:none}
+a.adm-ni:hover{background:rgba(255,255,255,.06);color:#FFFFFF}
+.adm-ni.is-on{background:rgba(255,255,255,.1);color:#FFFFFF;box-shadow:inset 3px 0 0 #FFCC00}
+.adm-ni.is-on svg{color:#FFCC00}
+.adm-soon{color:#9AA8C4;cursor:default}
+.adm-soontag{font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 6px;border-radius:5px;background:rgba(255,255,255,.08);color:#B4C0D8}
+.adm-badge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:#FFCC00;color:#0B1B33}
+.adm-site{margin:10px 8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#FFCC00;text-decoration:none}
+.adm-site:hover{color:#FFE27A}
+.adm-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;padding:16px 32px;background:#FFFFFF;border-bottom:1px solid #EAECF0}
+.adm-search{display:flex;align-items:center;gap:8px;height:42px;width:300px;max-width:100%;padding:0 12px;border:1px solid #D0D5DD;border-radius:10px;background:#F9FAFB;color:#667085;box-sizing:border-box}
+.adm-search input{flex:1;min-width:0;border:none;outline:none;background:transparent;font-size:14px;color:#14181D;font-family:inherit}
+.adm-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.adm-kbd{font-family:'Sora',sans-serif;font-size:11px;border:1px solid #E4E7EC;border-radius:5px;padding:1px 5px}
+.adm-sample{font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:6px;background:#FFF4D6;color:#6B4E00}
+.adm-iconbtn{position:relative;width:44px;height:44px;border-radius:10px;border:1px solid #E4E7EC;background:#FFFFFF;color:#344054;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.adm-dot{position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:50%;background:#D92D20;box-shadow:0 0 0 2px #FFFFFF}
+.adm-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid transparent;font-family:'Sora',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap}
+.adm-btn--gold{background:#FFCC00;color:#101828}
+.adm-btn--gold:hover{background:#FFD84D;color:#101828}
+.adm-btn--navy{background:#0B2A6B;color:#FFFFFF}
+.adm-btn--navy:hover{background:#123A8A;color:#FFFFFF}
+.adm-btn--line{background:#FFFFFF;border-color:#D0D5DD;color:#101828}
+.adm-btn--line:hover{border-color:#101828;color:#101828}
+.adm-card{background:#FFFFFF;border:1px solid #EAECF0;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.adm-h2{margin:0;font-family:'Sora',sans-serif;font-size:16px;font-weight:700;color:#101828}
+.adm-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;font-family:'Sora',sans-serif;font-size:11.5px;font-weight:600;white-space:nowrap}
+.adm-table{width:100%;border-collapse:collapse;font-size:14px}
+.adm-table th{padding:11px 14px;text-align:left;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085;background:#F9FAFB;border-bottom:1px solid #EAECF0;white-space:nowrap}
+.adm-table td{padding:12px 14px;border-bottom:1px solid #F2F4F7;color:#344054;vertical-align:middle}
+.adm-table tr:hover td{background:#FAFBFD}
+.adm-field{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#344054}
+.adm-field input,.adm-field select,.adm-field textarea{min-height:44px;padding:10px 12px;border:1px solid #D0D5DD;border-radius:10px;background:#FFFFFF;font-family:inherit;font-size:14px;font-weight:400;color:#14181D;box-sizing:border-box}
+.adm-field textarea{min-height:88px;resize:vertical;line-height:1.5}
+.adm-field input:focus,.adm-field select:focus,.adm-field textarea:focus{outline:none;border-color:#1E4FA8;box-shadow:0 0 0 3px rgba(30,79,168,.14)}
+.adm-tab{min-height:40px;padding:0 14px;border:none;border-radius:9px;background:transparent;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#475467;cursor:pointer;white-space:nowrap}
+.adm-tab:hover{background:#F2F4F7}
+.adm-tab[aria-pressed="true"]{background:#FFFFFF;color:#0B2A6B;box-shadow:0 1px 3px rgba(16,24,40,.12)}
+.adm-task{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:8px 6px;border:none;border-bottom:1px solid #F2F4F7;background:transparent;cursor:pointer;font-family:inherit;color:#14181D}
+.adm-box{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid #98A2B3;color:transparent;display:flex;align-items:center;justify-content:center}
+.adm-task[aria-pressed="true"] .adm-box{background:#0F7B6C;border-color:#0F7B6C;color:#FFFFFF}
+.adm-tt{font-size:14px;font-weight:600}
+.adm-task[aria-pressed="true"] .adm-tt{color:#667085;text-decoration:line-through}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; color: #14181D; background: #F5F7FA; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+<nav aria-label="Admin" class="adm-nav">
+<a href="AdminHome.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 18px; text-decoration: none"><svg aria-hidden="true" viewBox="0 0 100 100" style="width: 34px; height: 34px; flex: none; display: block"><circle cx="50" cy="50" r="47.5" fill="#003399" stroke="#FFCC00" stroke-width="3"></circle><g fill="#FFCC00"><polygon points="81.0,43.8 82.5,48.0 86.9,48.1 83.4,50.8 84.6,55.0 81.0,52.5 77.4,55.0 78.6,50.8 75.1,48.1 79.5,48.0"></polygon><polygon points="76.8,59.3 78.3,63.5 82.7,63.6 79.2,66.3 80.5,70.5 76.8,68.0 73.2,70.5 74.5,66.3 71.0,63.6 75.4,63.5"></polygon><polygon points="65.5,70.6 67.0,74.8 71.4,74.9 67.9,77.6 69.1,81.9 65.5,79.3 61.9,81.9 63.1,77.6 59.6,74.9 64.0,74.8"></polygon><polygon points="50.0,74.8 51.5,79.0 55.9,79.1 52.4,81.8 53.6,86.0 50.0,83.5 46.4,86.0 47.6,81.8 44.1,79.1 48.5,79.0"></polygon><polygon points="34.5,70.6 36.0,74.8 40.4,74.9 36.9,77.6 38.1,81.9 34.5,79.3 30.9,81.9 32.1,77.6 28.6,74.9 33.0,74.8"></polygon><polygon points="23.2,59.3 24.6,63.5 29.0,63.6 25.5,66.3 26.8,70.5 23.2,68.0 19.5,70.5 20.8,66.3 17.3,63.6 21.7,63.5"></polygon><polygon points="19.0,43.8 20.5,48.0 24.9,48.1 21.4,50.8 22.6,55.0 19.0,52.5 15.4,55.0 16.6,50.8 13.1,48.1 17.5,48.0"></polygon><polygon points="23.2,28.3 24.6,32.5 29.0,32.6 25.5,35.3 26.8,39.5 23.2,37.0 19.5,39.5 20.8,35.3 17.3,32.6 21.7,32.5"></polygon><polygon points="34.5,17.0 36.0,21.1 40.4,21.2 36.9,23.9 38.1,28.2 34.5,25.7 30.9,28.2 32.1,23.9 28.6,21.2 33.0,21.1"></polygon><polygon points="50.0,12.8 51.5,17.0 55.9,17.1 52.4,19.8 53.6,24.0 50.0,21.5 46.4,24.0 47.6,19.8 44.1,17.1 48.5,17.0"></polygon><polygon points="65.5,17.0 67.0,21.1 71.4,21.2 67.9,23.9 69.1,28.2 65.5,25.7 61.9,28.2 63.1,23.9 59.6,21.2 64.0,21.1"></polygon><polygon points="76.8,28.3 78.3,32.5 82.7,32.6 79.2,35.3 80.5,39.5 76.8,37.0 73.2,39.5 74.5,35.3 71.0,32.6 75.4,32.5"></polygon></g></svg><span style="display: flex; flex-direction: column; gap: 3px"><span style="font-family: 'League Spartan', 'Sora', 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-size: 19px; line-height: 1; color: #FFFFFF; white-space: nowrap">EUROPEAN<span style="color: #FFCC00; margin-left: 4px">SME</span></span><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; color: #8FA3C7">ADMIN</span></span></a>
+<span class="adm-ng">Overview</span>
+<a class="adm-ni is-on" href="AdminHome.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M4 11l8-7 8 7v8a2 2 0 0 1-2 2h-3v-6H9v6H6a2 2 0 0 1-2-2z"></path></svg><span style="flex: 1">Dashboard</span></a>
+<span class="adm-ng">Publishing</span>
+<a class="adm-ni" href="AdminArticles.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M5 4h11l3 3v13H5z"></path><path d="M8 9h8M8 13h8M8 17h5"></path></svg><span style="flex: 1">Articles</span><span class="adm-badge">12</span></a>
+<a class="adm-ni" href="AdminEditor.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M4 20h4L19 9l-4-4L4 16z"></path><path d="M13.5 6.5l4 4"></path></svg><span style="flex: 1">New article</span></a>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5-8 8"></path></svg><span style="flex: 1">Media library</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><span style="flex: 1">Editorial calendar</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg><span style="flex: 1">Countries and topics</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ng">CRM</span>
+<a class="adm-ni" href="AdminCRM.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"></path></svg><span style="flex: 1">Contacts and companies</span></a>
+<a class="adm-ni" href="AdminPipeline.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="4" width="5" height="16" rx="1.5"></rect><rect x="10" y="4" width="5" height="11" rx="1.5"></rect><rect x="17" y="4" width="4" height="7" rx="1.5"></rect></svg><span style="flex: 1">Deals pipeline</span></a>
+<a class="adm-ni" href="AdminCRMBuilder.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><path d="M17.5 14v7M14 17.5h7"></path></svg><span style="flex: 1">CRM builder</span></a>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span style="flex: 1">Subscribers</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ng">Workspace</span>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg><span style="flex: 1">Settings</span><span class="adm-soontag">Soon</span></span>
+<span style="flex: 1 1 auto"></span>
+<a class="adm-site" href="../template-1/Main.dc.html">View website ↗</a>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 8px 4px; border-top: 1px solid rgba(255,255,255,.1)"><span style="width: 36px; height: 36px; border-radius: 50%; background: #FFCC00; color: #0B1B33; display: flex; align-items: center; justify-content: center; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px">RA</span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Sora', sans-serif; font-size: 13.5px; font-weight: 600; color: #FFFFFF">Raoof</span><span style="font-size: 12px; color: #8FA3C7">Owner · European SME</span></span></div>
+</nav>
+<main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+<header class="adm-top">
+<div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<span style="font-size: 12.5px; color: #667085">Admin · Overview</span>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #101828; white-space: nowrap">Dashboard</h1>
+</div>
+<span style="flex: 1 1 auto"></span>
+<label class="adm-search"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><span class="adm-sr">Search the admin</span><input type="search" placeholder="Search articles, contacts, deals"><span class="adm-kbd">⌘K</span></label>
+<span class="adm-sample">Sample data</span>
+<button type="button" class="adm-iconbtn" aria-label="Notifications"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"></path></svg><span class="adm-dot"></span></button>
+<a class="adm-btn adm-btn--gold" href="AdminEditor.dc.html"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M12 5v14M5 12h14"></path></svg>New article</a>
+</header>
+<div style="padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #101828">Good evening, Raoof</span><span style="font-size: 15px; color: #5A6470">Tuesday, 10 November 2026 · Here is what needs you today across publishing and the CRM.</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="adm-btn adm-btn--line" href="AdminCRM.dc.html"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"></path></svg>Add contact</a><a class="adm-btn adm-btn--line" href="AdminCRMBuilder.dc.html"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><path d="M17.5 14v7M14 17.5h7"></path></svg>CRM builder</a></div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+<div class="adm-card" style="padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 10px">
+<span style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; color: #5A6470">{{k.label}}<span class="adm-pill" style="background: {{k.deltaBg}}; color: {{k.deltaFg}}">{{k.delta}}</span></span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; color: #101828">{{k.value}}</span>
+<span style="display: flex; align-items: flex-end; gap: 4px; height: 34px"><sc-for list="{{k.bars}}" as="b" hint-placeholder-count="10"><span style="flex: 1; height: {{b.h}}; border-radius: 3px; background: {{b.c}}"></span></sc-for></span>
+<span style="font-size: 12.5px; color: #667085">{{k.note}}</span>
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section class="adm-card" style="flex: 3 1 560px; min-width: 0; overflow: hidden" aria-label="Editorial queue">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; border-bottom: 1px solid #EAECF0"><h2 class="adm-h2">Editorial queue</h2><a href="AdminArticles.dc.html" style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; text-decoration: none">All articles →</a></div>
+<div style="overflow-x: auto"><table class="adm-table"><thead><tr><th>Article</th><th>Market</th><th>Status</th><th>Due</th></tr></thead><tbody>
+<sc-for list="{{queue}}" as="q" hint-placeholder-count="5">
+<tr><td><a href="AdminEditor.dc.html" style="display: flex; flex-direction: column; gap: 3px; text-decoration: none"><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; font-weight: 600; color: #101828">{{q.title}}</span><span style="font-size: 12.5px; color: #667085">{{q.topic}} · {{q.author}}</span></a></td>
+<td><span style="display: flex; align-items: center; gap: 8px; white-space: nowrap"><sc-if value="{{q.isde}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="22" height="15" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="30" height="7" fill="#000"></rect><rect y="7" width="30" height="6" fill="#DD0000"></rect><rect y="13" width="30" height="7" fill="#FFCE00"></rect></svg></sc-if><sc-if value="{{q.isfr}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="22" height="15" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="10" height="20" fill="#002395"></rect><rect x="10" width="10" height="20" fill="#FFFFFF"></rect><rect x="20" width="10" height="20" fill="#ED2939"></rect></svg></sc-if><sc-if value="{{q.isit}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="22" height="15" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="10" height="20" fill="#009246"></rect><rect x="10" width="10" height="20" fill="#FFFFFF"></rect><rect x="20" width="10" height="20" fill="#CE2B37"></rect></svg></sc-if><sc-if value="{{q.ises}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="22" height="15" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="30" height="5" fill="#AA151B"></rect><rect y="5" width="30" height="10" fill="#F1BF00"></rect><rect y="15" width="30" height="5" fill="#AA151B"></rect></svg></sc-if><sc-if value="{{q.iseu}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="22" height="15" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="30" height="20" fill="#003399"></rect><circle cx="21.0" cy="10.0" r="0.9" fill="#FFCC00"></circle><circle cx="20.2" cy="13.0" r="0.9" fill="#FFCC00"></circle><circle cx="18.0" cy="15.2" r="0.9" fill="#FFCC00"></circle><circle cx="15.0" cy="16.0" r="0.9" fill="#FFCC00"></circle><circle cx="12.0" cy="15.2" r="0.9" fill="#FFCC00"></circle><circle cx="9.8" cy="13.0" r="0.9" fill="#FFCC00"></circle><circle cx="9.0" cy="10.0" r="0.9" fill="#FFCC00"></circle><circle cx="9.8" cy="7.0" r="0.9" fill="#FFCC00"></circle><circle cx="12.0" cy="4.8" r="0.9" fill="#FFCC00"></circle><circle cx="15.0" cy="4.0" r="0.9" fill="#FFCC00"></circle><circle cx="18.0" cy="4.8" r="0.9" fill="#FFCC00"></circle><circle cx="20.2" cy="7.0" r="0.9" fill="#FFCC00"></circle></svg></sc-if>{{q.market}}</span></td>
+<td><span class="adm-pill" style="background: {{q.sBg}}; color: {{q.sFg}}"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{q.sFg}}"></span>{{q.status}}</span></td>
+<td style="white-space: nowrap; color: {{q.dueC}}; font-weight: 600">{{q.due}}</td></tr>
+</sc-for>
+</tbody></table></div>
+</section>
+
+<section class="adm-card" style="flex: 2 1 320px; min-width: 0; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px" aria-label="Today's tasks">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px"><h2 class="adm-h2">Today's tasks</h2><span style="font-size: 12.5px; color: #667085">{{doneCount}} of {{taskCount}} done</span></div>
+<sc-for list="{{tasks}}" as="t" hint-placeholder-count="5">
+<button type="button" class="adm-task" aria-pressed="{{t.on}}" onClick="{{t.toggle}}"><span class="adm-box" aria-hidden="true"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px; text-align: left"><span class="adm-tt">{{t.title}}</span><span style="font-size: 12px; color: #667085">{{t.meta}}</span></span><span class="adm-pill" style="background: {{t.tagBg}}; color: {{t.tagFg}}">{{t.tag}}</span></button>
+</sc-for>
+</section>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px">
+<section class="adm-card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 14px" aria-label="Pipeline snapshot">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 class="adm-h2">Pipeline snapshot</h2><a href="AdminPipeline.dc.html" style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; text-decoration: none">Open →</a></div>
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="5">
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between; font-size: 13px"><span style="font-weight: 600; color: #344054">{{s.name}} · {{s.count}}</span><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; color: #101828">{{s.value}}</span></span><span style="height: 8px; border-radius: 999px; background: #F2F4F7; overflow: hidden"><span style="display: block; height: 100%; width: {{s.pct}}; background: {{s.color}}; border-radius: 999px"></span></span></div>
+</sc-for>
+</section>
+<section class="adm-card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 14px" aria-label="Coverage by market">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 class="adm-h2">Coverage by market</h2><span style="font-size: 12.5px; color: #667085">Published · in progress</span></div>
+<sc-for list="{{coverage}}" as="c" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 12px"><sc-if value="{{c.isde}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="26" height="18" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="30" height="7" fill="#000"></rect><rect y="7" width="30" height="6" fill="#DD0000"></rect><rect y="13" width="30" height="7" fill="#FFCE00"></rect></svg></sc-if><sc-if value="{{c.isfr}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="26" height="18" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="10" height="20" fill="#002395"></rect><rect x="10" width="10" height="20" fill="#FFFFFF"></rect><rect x="20" width="10" height="20" fill="#ED2939"></rect></svg></sc-if><sc-if value="{{c.isit}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="26" height="18" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="10" height="20" fill="#009246"></rect><rect x="10" width="10" height="20" fill="#FFFFFF"></rect><rect x="20" width="10" height="20" fill="#CE2B37"></rect></svg></sc-if><sc-if value="{{c.ises}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="26" height="18" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="30" height="5" fill="#AA151B"></rect><rect y="5" width="30" height="10" fill="#F1BF00"></rect><rect y="15" width="30" height="5" fill="#AA151B"></rect></svg></sc-if><sc-if value="{{c.iseu}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="26" height="18" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="30" height="20" fill="#003399"></rect><circle cx="21.0" cy="10.0" r="0.9" fill="#FFCC00"></circle><circle cx="20.2" cy="13.0" r="0.9" fill="#FFCC00"></circle><circle cx="18.0" cy="15.2" r="0.9" fill="#FFCC00"></circle><circle cx="15.0" cy="16.0" r="0.9" fill="#FFCC00"></circle><circle cx="12.0" cy="15.2" r="0.9" fill="#FFCC00"></circle><circle cx="9.8" cy="13.0" r="0.9" fill="#FFCC00"></circle><circle cx="9.0" cy="10.0" r="0.9" fill="#FFCC00"></circle><circle cx="9.8" cy="7.0" r="0.9" fill="#FFCC00"></circle><circle cx="12.0" cy="4.8" r="0.9" fill="#FFCC00"></circle><circle cx="15.0" cy="4.0" r="0.9" fill="#FFCC00"></circle><circle cx="18.0" cy="4.8" r="0.9" fill="#FFCC00"></circle><circle cx="20.2" cy="7.0" r="0.9" fill="#FFCC00"></circle></svg></sc-if><span style="width: 88px; font-size: 13.5px; font-weight: 600; color: #344054">{{c.name}}</span><span style="flex: 1; height: 10px; border-radius: 999px; background: #F2F4F7; display: flex; overflow: hidden"><span style="width: {{c.pubPct}}; background: #0B2A6B"></span><span style="width: {{c.wipPct}}; background: #FFCC00"></span></span><span style="width: 46px; text-align: right; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700">{{c.pub}}·{{c.wip}}</span></div>
+</sc-for>
+</section>
+<section class="adm-card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 12px" aria-label="Recent CRM activity">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 class="adm-h2">Recent CRM activity</h2><a href="AdminCRM.dc.html" style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; text-decoration: none">Contacts →</a></div>
+<sc-for list="{{activity}}" as="a" hint-placeholder-count="5">
+<div style="display: flex; gap: 12px; align-items: flex-start"><span style="flex: none; width: 34px; height: 34px; border-radius: 50%; background: {{a.bg}}; color: {{a.fg}}; display: flex; align-items: center; justify-content: center; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 700">{{a.initials}}</span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13.5px; color: #344054"><strong style="color: #101828">{{a.who}}</strong> {{a.what}}</span><span style="font-size: 12px; color: #667085">{{a.when}}</span></span></div>
+</sc-for>
+</section>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { done: { 1: true } }; }
+  renderVals() {
+    const done = this.state.done;
+    const fl = (c) => ({ isde: c === 'de', isfr: c === 'fr', isit: c === 'it', ises: c === 'es', iseu: c === 'eu' });
+    const bars = (arr, c) => arr.map((v, i) => ({ h: v + '%', c: i === arr.length - 1 ? c : '#E4E7EC' }));
+    const st = { Draft: ['#F2F4F7', '#475467'], 'In review': ['#FFF4D6', '#8A5A00'], Scheduled: ['#E8EEFB', '#1E4FA8'], Published: ['#E7F5F1', '#0B5B50'] };
+    const queue = [
+      ['Germany: how the Mittelstand wins B2B customers online', 'Marketing & Brand', 'Editorial team', 'de', 'Germany', 'In review', 'Today', '#B42318'],
+      ['France: hiring your first employee — contracts, costs and URSSAF', 'People & Leadership', 'Editorial team', 'fr', 'France', 'Draft', 'Tomorrow', '#344054'],
+      ['Italy: e-invoicing through SdI, a practical guide for SMEs', 'Money & Cash Flow', 'Editorial team', 'it', 'Italy', 'Scheduled', '12 Nov', '#344054'],
+      ['Spain: Kit Digital grants — who can still apply', 'Funding & Grants', 'Editorial team', 'es', 'Spain', 'Draft', '13 Nov', '#344054'],
+      ['AI Act: what changes for SMEs in 2027', 'EU Policy', 'SK Uddin', 'eu', 'EU-wide', 'Published', 'Done', '#0B5B50']
+    ].map(([title, topic, author, c, market, status, due, dueC]) => Object.assign({ title, topic, author, market, status, due, dueC, sBg: st[status][0], sFg: st[status][1] }, fl(c)));
+    const T = [
+      ['Review “Mittelstand B2B marketing” draft', 'Publishing · due 18:00', 'Review', '#FFF4D6', '#8A5A00'],
+      ['Send Q1 sponsorship proposal to a German bank lead', 'CRM · Deals', 'Deal', '#E8EEFB', '#1E4FA8'],
+      ['Generate 4 cover images in Canva (EuropeanSME Claude folder)', 'Media', 'Media', '#F3E8FF', '#6B21A8'],
+      ['Approve this week’s newsletter line-up', 'Audience', 'Newsletter', '#E7F5F1', '#0B5B50'],
+      ['Add “Event attendee” object in the CRM builder', 'CRM builder', 'Setup', '#F2F4F7', '#475467']
+    ];
+    const tasks = T.map(([title, meta, tag, tagBg, tagFg], i) => ({ title, meta, tag, tagBg, tagFg, on: done[i] ? 'true' : 'false', toggle: () => this.setState({ done: Object.assign({}, done, { [i]: !done[i] }) }) }));
+    const stages = [['Lead', 9, 64000, '#98A2B3'], ['Contacted', 6, 52000, '#6F84AD'], ['Proposal sent', 4, 41500, '#1E4FA8'], ['Negotiation', 2, 28000, '#0B2A6B'], ['Won this quarter', 3, 33500, '#0F7B6C']];
+    const max = Math.max.apply(null, stages.map((s) => s[2]));
+    return {
+      kpis: [
+        { label: 'Published this week', value: '9', delta: '+3', deltaBg: '#E7F5F1', deltaFg: '#0B5B50', bars: bars([30, 45, 25, 60, 50, 40, 70, 55, 65, 90], '#0B2A6B'), note: 'Across Germany, France, Italy, Spain and EU-wide' },
+        { label: 'Waiting for review', value: '12', delta: '4 due today', deltaBg: '#FFF4D6', deltaFg: '#8A5A00', bars: bars([40, 30, 50, 45, 60, 35, 55, 70, 50, 80], '#FFCC00'), note: 'Drafts and pieces in editing' },
+        { label: 'Newsletter subscribers', value: '4,812', delta: '+186', deltaBg: '#E7F5F1', deltaFg: '#0B5B50', bars: bars([50, 52, 55, 58, 60, 63, 66, 70, 74, 80], '#0F7B6C'), note: 'Last 10 weeks' },
+        { label: 'Open pipeline', value: '€185.5k', delta: '24 deals', deltaBg: '#E8EEFB', deltaFg: '#1E4FA8', bars: bars([20, 35, 30, 45, 55, 50, 65, 60, 75, 85], '#1E4FA8'), note: 'Sponsorships, advertising and partnerships' }
+      ],
+      queue, tasks, taskCount: String(tasks.length), doneCount: String(tasks.filter((t) => t.on === 'true').length),
+      stages: stages.map(([name, count, v, color]) => ({ name, count: String(count), value: '€' + (v / 1000).toFixed(1) + 'k', pct: Math.round(v / max * 100) + '%', color })),
+      coverage: [['de', 'Germany', 14, 6], ['fr', 'France', 9, 5], ['it', 'Italy', 7, 4], ['es', 'Spain', 8, 5], ['eu', 'EU-wide', 31, 3]].map(([c, name, pub, wip]) => Object.assign({ name, pub: String(pub), wip: String(wip), pubPct: Math.round(pub / 40 * 100) + '%', wipPct: Math.round(wip / 40 * 100) + '%' }, fl(c))),
+      activity: [
+        ['LM', 'Lena M.', 'opened the Germany sponsorship proposal', '12 min ago', '#E8EEFB', '#1E4FA8'],
+        ['NB', 'Nordlicht Logistik', 'moved to Negotiation', '1 h ago', '#FFF4D6', '#8A5A00'],
+        ['PR', 'Pablo R.', 'subscribed to the Spain briefing', '2 h ago', '#E7F5F1', '#0B5B50'],
+        ['CF', 'Chiara F.', 'submitted a guest article pitch', 'Yesterday', '#F3E8FF', '#6B21A8'],
+        ['AT', 'Atelier Toulouse', 'booked a newsletter ad slot', 'Yesterday', '#FDEBDF', '#9A3412']
+      ].map(([initials, who, what, when, bg, fg]) => ({ initials, who, what, when, bg, fg }))
+    };
+  }
+}
+</script>
+</body>
+</html>

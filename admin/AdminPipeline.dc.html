@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Admin — deals pipeline</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=League+Spartan:wght@800&amp;family=Sora:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FA8}a:hover{color:#003399}
+.adm-nav{flex:1 1 248px;max-width:280px;min-width:230px;display:flex;flex-direction:column;gap:2px;padding:20px 14px 16px;background:#0B1B33;box-sizing:border-box}
+.adm-ng{margin:16px 10px 6px;font-family:'Sora',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6F84AD}
+.adm-ni{display:flex;align-items:center;gap:11px;min-height:40px;padding:0 10px;border-radius:10px;font-family:'Sora',sans-serif;font-size:13.5px;font-weight:600;color:#C8D2E6;text-decoration:none}
+a.adm-ni:hover{background:rgba(255,255,255,.06);color:#FFFFFF}
+.adm-ni.is-on{background:rgba(255,255,255,.1);color:#FFFFFF;box-shadow:inset 3px 0 0 #FFCC00}
+.adm-ni.is-on svg{color:#FFCC00}
+.adm-soon{color:#9AA8C4;cursor:default}
+.adm-soontag{font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 6px;border-radius:5px;background:rgba(255,255,255,.08);color:#B4C0D8}
+.adm-badge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:#FFCC00;color:#0B1B33}
+.adm-site{margin:10px 8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#FFCC00;text-decoration:none}
+.adm-site:hover{color:#FFE27A}
+.adm-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;padding:16px 32px;background:#FFFFFF;border-bottom:1px solid #EAECF0}
+.adm-search{display:flex;align-items:center;gap:8px;height:42px;width:300px;max-width:100%;padding:0 12px;border:1px solid #D0D5DD;border-radius:10px;background:#F9FAFB;color:#667085;box-sizing:border-box}
+.adm-search input{flex:1;min-width:0;border:none;outline:none;background:transparent;font-size:14px;color:#14181D;font-family:inherit}
+.adm-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.adm-kbd{font-family:'Sora',sans-serif;font-size:11px;border:1px solid #E4E7EC;border-radius:5px;padding:1px 5px}
+.adm-sample{font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:6px;background:#FFF4D6;color:#6B4E00}
+.adm-iconbtn{position:relative;width:44px;height:44px;border-radius:10px;border:1px solid #E4E7EC;background:#FFFFFF;color:#344054;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.adm-dot{position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:50%;background:#D92D20;box-shadow:0 0 0 2px #FFFFFF}
+.adm-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid transparent;font-family:'Sora',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap}
+.adm-btn--gold{background:#FFCC00;color:#101828}
+.adm-btn--gold:hover{background:#FFD84D;color:#101828}
+.adm-btn--navy{background:#0B2A6B;color:#FFFFFF}
+.adm-btn--navy:hover{background:#123A8A;color:#FFFFFF}
+.adm-btn--line{background:#FFFFFF;border-color:#D0D5DD;color:#101828}
+.adm-btn--line:hover{border-color:#101828;color:#101828}
+.adm-card{background:#FFFFFF;border:1px solid #EAECF0;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.adm-h2{margin:0;font-family:'Sora',sans-serif;font-size:16px;font-weight:700;color:#101828}
+.adm-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;font-family:'Sora',sans-serif;font-size:11.5px;font-weight:600;white-space:nowrap}
+.adm-table{width:100%;border-collapse:collapse;font-size:14px}
+.adm-table th{padding:11px 14px;text-align:left;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085;background:#F9FAFB;border-bottom:1px solid #EAECF0;white-space:nowrap}
+.adm-table td{padding:12px 14px;border-bottom:1px solid #F2F4F7;color:#344054;vertical-align:middle}
+.adm-table tr:hover td{background:#FAFBFD}
+.adm-field{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#344054}
+.adm-field input,.adm-field select,.adm-field textarea{min-height:44px;padding:10px 12px;border:1px solid #D0D5DD;border-radius:10px;background:#FFFFFF;font-family:inherit;font-size:14px;font-weight:400;color:#14181D;box-sizing:border-box}
+.adm-field textarea{min-height:88px;resize:vertical;line-height:1.5}
+.adm-field input:focus,.adm-field select:focus,.adm-field textarea:focus{outline:none;border-color:#1E4FA8;box-shadow:0 0 0 3px rgba(30,79,168,.14)}
+.adm-tab{min-height:40px;padding:0 14px;border:none;border-radius:9px;background:transparent;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#475467;cursor:pointer;white-space:nowrap}
+.adm-tab:hover{background:#F2F4F7}
+.adm-tab[aria-pressed="true"]{background:#FFFFFF;color:#0B2A6B;box-shadow:0 1px 3px rgba(16,24,40,.12)}
+.pl-mv{width:34px;height:34px;border-radius:9px;border:1.5px solid #D0D5DD;background:#FFFFFF;color:#344054;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.pl-mv:hover{background:#0B1B33;border-color:#0B1B33;color:#FFFFFF}
+.pl-mv[disabled]{opacity:.35;cursor:default;background:#FFFFFF;color:#344054;border-color:#D0D5DD}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; color: #14181D; background: #F5F7FA; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+<nav aria-label="Admin" class="adm-nav">
+<a href="AdminHome.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 18px; text-decoration: none"><svg aria-hidden="true" viewBox="0 0 100 100" style="width: 34px; height: 34px; flex: none; display: block"><circle cx="50" cy="50" r="47.5" fill="#003399" stroke="#FFCC00" stroke-width="3"></circle><g fill="#FFCC00"><polygon points="81.0,43.8 82.5,48.0 86.9,48.1 83.4,50.8 84.6,55.0 81.0,52.5 77.4,55.0 78.6,50.8 75.1,48.1 79.5,48.0"></polygon><polygon points="76.8,59.3 78.3,63.5 82.7,63.6 79.2,66.3 80.5,70.5 76.8,68.0 73.2,70.5 74.5,66.3 71.0,63.6 75.4,63.5"></polygon><polygon points="65.5,70.6 67.0,74.8 71.4,74.9 67.9,77.6 69.1,81.9 65.5,79.3 61.9,81.9 63.1,77.6 59.6,74.9 64.0,74.8"></polygon><polygon points="50.0,74.8 51.5,79.0 55.9,79.1 52.4,81.8 53.6,86.0 50.0,83.5 46.4,86.0 47.6,81.8 44.1,79.1 48.5,79.0"></polygon><polygon points="34.5,70.6 36.0,74.8 40.4,74.9 36.9,77.6 38.1,81.9 34.5,79.3 30.9,81.9 32.1,77.6 28.6,74.9 33.0,74.8"></polygon><polygon points="23.2,59.3 24.6,63.5 29.0,63.6 25.5,66.3 26.8,70.5 23.2,68.0 19.5,70.5 20.8,66.3 17.3,63.6 21.7,63.5"></polygon><polygon points="19.0,43.8 20.5,48.0 24.9,48.1 21.4,50.8 22.6,55.0 19.0,52.5 15.4,55.0 16.6,50.8 13.1,48.1 17.5,48.0"></polygon><polygon points="23.2,28.3 24.6,32.5 29.0,32.6 25.5,35.3 26.8,39.5 23.2,37.0 19.5,39.5 20.8,35.3 17.3,32.6 21.7,32.5"></polygon><polygon points="34.5,17.0 36.0,21.1 40.4,21.2 36.9,23.9 38.1,28.2 34.5,25.7 30.9,28.2 32.1,23.9 28.6,21.2 33.0,21.1"></polygon><polygon points="50.0,12.8 51.5,17.0 55.9,17.1 52.4,19.8 53.6,24.0 50.0,21.5 46.4,24.0 47.6,19.8 44.1,17.1 48.5,17.0"></polygon><polygon points="65.5,17.0 67.0,21.1 71.4,21.2 67.9,23.9 69.1,28.2 65.5,25.7 61.9,28.2 63.1,23.9 59.6,21.2 64.0,21.1"></polygon><polygon points="76.8,28.3 78.3,32.5 82.7,32.6 79.2,35.3 80.5,39.5 76.8,37.0 73.2,39.5 74.5,35.3 71.0,32.6 75.4,32.5"></polygon></g></svg><span style="display: flex; flex-direction: column; gap: 3px"><span style="font-family: 'League Spartan', 'Sora', 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-size: 19px; line-height: 1; color: #FFFFFF; white-space: nowrap">EUROPEAN<span style="color: #FFCC00; margin-left: 4px">SME</span></span><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; color: #8FA3C7">ADMIN</span></span></a>
+<span class="adm-ng">Overview</span>
+<a class="adm-ni" href="AdminHome.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M4 11l8-7 8 7v8a2 2 0 0 1-2 2h-3v-6H9v6H6a2 2 0 0 1-2-2z"></path></svg><span style="flex: 1">Dashboard</span></a>
+<span class="adm-ng">Publishing</span>
+<a class="adm-ni" href="AdminArticles.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M5 4h11l3 3v13H5z"></path><path d="M8 9h8M8 13h8M8 17h5"></path></svg><span style="flex: 1">Articles</span><span class="adm-badge">12</span></a>
+<a class="adm-ni" href="AdminEditor.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M4 20h4L19 9l-4-4L4 16z"></path><path d="M13.5 6.5l4 4"></path></svg><span style="flex: 1">New article</span></a>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5-8 8"></path></svg><span style="flex: 1">Media library</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><span style="flex: 1">Editorial calendar</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg><span style="flex: 1">Countries and topics</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ng">CRM</span>
+<a class="adm-ni" href="AdminCRM.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"></path></svg><span style="flex: 1">Contacts and companies</span></a>
+<a class="adm-ni" href="AdminPipeline.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="4" width="5" height="16" rx="1.5"></rect><rect x="10" y="4" width="5" height="11" rx="1.5"></rect><rect x="17" y="4" width="4" height="7" rx="1.5"></rect></svg><span style="flex: 1">Deals pipeline</span></a>
+<a class="adm-ni" href="AdminCRMBuilder.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><path d="M17.5 14v7M14 17.5h7"></path></svg><span style="flex: 1">CRM builder</span></a>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span style="flex: 1">Subscribers</span><span class="adm-soontag">Soon</span></span>
+<span class="adm-ng">Workspace</span>
+<span class="adm-ni adm-soon"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg><span style="flex: 1">Settings</span><span class="adm-soontag">Soon</span></span>
+<span style="flex: 1 1 auto"></span>
+<a class="adm-site" href="../template-1/Main.dc.html">View website ↗</a>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 8px 4px; border-top: 1px solid rgba(255,255,255,.1)"><span style="width: 36px; height: 36px; border-radius: 50%; background: #FFCC00; color: #0B1B33; display: flex; align-items: center; justify-content: center; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px">RA</span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Sora', sans-serif; font-size: 13.5px; font-weight: 600; color: #FFFFFF">Raoof</span><span style="font-size: 12px; color: #8FA3C7">Owner · European SME</span></span></div>
+</nav>
+<main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+<header class="adm-top">
+<div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<span style="font-size: 12.5px; color: #667085">Admin · CRM</span>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #101828; white-space: nowrap">Deals pipeline</h1>
+</div>
+<span style="flex: 1 1 auto"></span>
+<label class="adm-search"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><span class="adm-sr">Search the admin</span><input type="search" placeholder="Search articles, contacts, deals"><span class="adm-kbd">⌘K</span></label>
+<span class="adm-sample">Sample data</span>
+<button type="button" class="adm-iconbtn" aria-label="Notifications"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"></path></svg><span class="adm-dot"></span></button>
+<a class="adm-btn adm-btn--line" href="AdminCRMBuilder.dc.html"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><path d="M17.5 14v7M14 17.5h7"></path></svg>Edit stages</a><button type="button" class="adm-btn adm-btn--gold"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M12 5v14M5 12h14"></path></svg>New deal</button>
+</header>
+<div style="padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="4"><div class="adm-card" style="flex: 1 1 200px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 13px; color: #667085">{{k.label}}</span><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: 700; color: #101828">{{k.value}}</span></div></sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center" role="group" aria-label="Filter by deal type">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="4"><button type="button" class="adm-tab" aria-pressed="{{f.on}}" onClick="{{f.pick}}" style="border: 1.5px solid #D0D5DD; background: #FFFFFF">{{f.label}}</button></sc-for>
+<span style="flex: 1"></span><span style="font-size: 13px; color: #667085">Use ‹ › on a card to move it between stages</span>
+</div>
+<div style="display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; align-items: flex-start">
+<sc-for list="{{cols}}" as="c" hint-placeholder-count="5">
+<section style="flex: 0 0 268px; display: flex; flex-direction: column; gap: 10px; padding: 12px; border-radius: 16px; background: #F2F4F7" aria-label="{{c.name}}">
+<div style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; border-radius: 50%; background: {{c.dot}}"></span><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 14.5px; font-weight: 700; color: #101828">{{c.name}}</span><span style="font-size: 13px; color: #667085">{{c.n}}</span><span style="flex: 1"></span><span style="font-size: 13px; font-weight: 700; color: #344054">{{c.total}}</span></div>
+<sc-for list="{{c.deals}}" as="d" hint-placeholder-count="3">
+<article class="adm-card" style="padding: 14px; display: flex; flex-direction: column; gap: 10px; border-left: 4px solid {{c.dot}}">
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; font-weight: 700; color: #101828; line-height: 1.3">{{d.title}}</span><span style="font-size: 12.5px; color: #667085">{{d.company}}</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center"><span class="adm-pill" style="background: #F2F4F7; color: #344054">{{d.kind}}</span><span style="display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: #475467"><sc-if value="{{d.isde}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="22" height="15" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="30" height="7" fill="#000"></rect><rect y="7" width="30" height="6" fill="#DD0000"></rect><rect y="13" width="30" height="7" fill="#FFCE00"></rect></svg></sc-if><sc-if value="{{d.isfr}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="22" height="15" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="10" height="20" fill="#002395"></rect><rect x="10" width="10" height="20" fill="#FFFFFF"></rect><rect x="20" width="10" height="20" fill="#ED2939"></rect></svg></sc-if><sc-if value="{{d.isit}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="22" height="15" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="10" height="20" fill="#009246"></rect><rect x="10" width="10" height="20" fill="#FFFFFF"></rect><rect x="20" width="10" height="20" fill="#CE2B37"></rect></svg></sc-if><sc-if value="{{d.ises}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="22" height="15" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="30" height="5" fill="#AA151B"></rect><rect y="5" width="30" height="10" fill="#F1BF00"></rect><rect y="15" width="30" height="5" fill="#AA151B"></rect></svg></sc-if><sc-if value="{{d.iseu}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" viewBox="0 0 30 20" width="22" height="15" style="flex: none; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><rect width="30" height="20" fill="#003399"></rect><circle cx="21.0" cy="10.0" r="0.9" fill="#FFCC00"></circle><circle cx="20.2" cy="13.0" r="0.9" fill="#FFCC00"></circle><circle cx="18.0" cy="15.2" r="0.9" fill="#FFCC00"></circle><circle cx="15.0" cy="16.0" r="0.9" fill="#FFCC00"></circle><circle cx="12.0" cy="15.2" r="0.9" fill="#FFCC00"></circle><circle cx="9.8" cy="13.0" r="0.9" fill="#FFCC00"></circle><circle cx="9.0" cy="10.0" r="0.9" fill="#FFCC00"></circle><circle cx="9.8" cy="7.0" r="0.9" fill="#FFCC00"></circle><circle cx="12.0" cy="4.8" r="0.9" fill="#FFCC00"></circle><circle cx="15.0" cy="4.0" r="0.9" fill="#FFCC00"></circle><circle cx="18.0" cy="4.8" r="0.9" fill="#FFCC00"></circle><circle cx="20.2" cy="7.0" r="0.9" fill="#FFCC00"></circle></svg></sc-if>{{d.market}}</span></div>
+<div style="display: flex; align-items: center; gap: 8px"><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 16px; font-weight: 700; color: #101828">{{d.value}}</span><span style="flex: 1"></span>
+<button type="button" class="pl-mv" aria-label="Move back" disabled="{{d.first}}" onClick="{{d.back}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M15 6l-6 6 6 6"></path></svg></button><button type="button" class="pl-mv" aria-label="Move forward" disabled="{{d.last}}" onClick="{{d.fwd}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block"><path d="M9 6l6 6-6 6"></path></svg></button></div>
+<span style="font-size: 12px; color: #667085">{{d.next}}</span>
+</article>
+</sc-for>
+<sc-if value="{{c.empty}}" hint-placeholder-val="{{ false }}"><div style="padding: 18px; border: 1.5px dashed #D0D5DD; border-radius: 12px; text-align: center; font-size: 13px; color: #98A2B3">No deals here</div></sc-if>
+</section>
+</sc-for>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { kind: 'All', stage: { d1: 0, d2: 0, d3: 1, d4: 1, d5: 2, d6: 2, d7: 3, d8: 4, d9: 4, d10: 0 } };
+  }
+  renderVals() {
+    const S = this.state;
+    const fl = (c) => ({ isde: c === 'de', isfr: c === 'fr', isit: c === 'it', ises: c === 'es', iseu: c === 'eu' });
+    const MK = { de: 'Germany', fr: 'France', it: 'Italy', es: 'Spain', eu: 'EU-wide' };
+    const STG = [['Lead', '#98A2B3'], ['Contacted', '#1E4FA8'], ['Proposal sent', '#E0A800'], ['Negotiation', '#7F56D9'], ['Won', '#12856F']];
+    const D = [
+      ['d1', 'Germany hub — Q1 banner package', 'Vogel Maschinenbau', 'Advertising', 'de', 18500, 'Follow up by Fri'],
+      ['d2', 'Newsletter sponsorship (Dec)', 'Laurent Logistique', 'Sponsorship', 'fr', 6000, 'Send media kit'],
+      ['d3', 'Funding & Grants section sponsor', 'Banca Regionale', 'Sponsorship', 'it', 25000, 'Call booked Thu'],
+      ['d4', 'Kit Digital webinar partner', 'Ortega Retail', 'Partnership', 'es', 3500, 'Waiting for reply'],
+      ['d5', 'Sponsored guide: export branding', 'Rinaldi Tessuti', 'Sponsored content', 'it', 9000, 'Proposal opened twice'],
+      ['d6', 'Annual partner listing', 'Bpifrance Lab', 'Partnership', 'fr', 0, 'Legal review'],
+      ['d7', 'Cyber checklist co-brand', 'SecureMittelstand', 'Sponsored content', 'de', 14000, 'Price agreed, contract next'],
+      ['d8', 'EU policy briefing series', 'SME association', 'Sponsorship', 'eu', 20000, 'Signed 3 Nov'],
+      ['d9', 'Homepage takeover (Nov)', 'Laurent Logistique', 'Advertising', 'fr', 7500, 'Live until 30 Nov'],
+      ['d10', 'Spain hub launch sponsor', 'Banco Pyme', 'Sponsorship', 'es', 12000, 'Inbound from website']
+    ];
+    const eur = (n) => '€' + n.toLocaleString('en-GB');
+    const kinds = ['All', 'Advertising', 'Sponsorship', 'Sponsored content', 'Partnership'];
+    const vis = D.filter((d) => S.kind === 'All' || d[3] === S.kind);
+    const move = (id, dir) => () => this.setState({ stage: Object.assign({}, S.stage, { [id]: Math.max(0, Math.min(STG.length - 1, S.stage[id] + dir)) }) });
+    const open = vis.filter((d) => S.stage[d[0]] < 4);
+    const won = vis.filter((d) => S.stage[d[0]] === 4);
+    const sum = (a) => a.reduce((s, d) => s + d[5], 0);
+    const weighted = open.reduce((s, d) => s + d[5] * [0.1, 0.25, 0.5, 0.75][S.stage[d[0]]], 0);
+    return {
+      kpis: [['Open pipeline', eur(sum(open))], ['Weighted forecast', eur(Math.round(weighted))], ['Won this month', eur(sum(won))], ['Open deals', String(open.length)]].map((k) => ({ label: k[0], value: k[1] })),
+      filters: kinds.map((k) => ({ label: k, on: S.kind === k ? 'true' : 'false', pick: () => this.setState({ kind: k }) })),
+      cols: STG.map((s, i) => {
+        const ds = vis.filter((d) => S.stage[d[0]] === i);
+        return { name: s[0], dot: s[1], n: String(ds.length), total: eur(sum(ds)), empty: ds.length === 0,
+          deals: ds.map((d) => Object.assign({ title: d[1], company: d[2], kind: d[3], market: MK[d[4]], value: d[5] ? eur(d[5]) : 'Non-cash', next: d[6], first: i === 0, last: i === STG.length - 1, back: move(d[0], -1), fwd: move(d[0], 1) }, fl(d[4]))) };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>
