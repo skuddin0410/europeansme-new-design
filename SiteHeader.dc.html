@@ -37,16 +37,23 @@
 .esme-ddall{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;padding:11px;border-top:1px solid #EAECF0;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;color:#1E4FA8;text-decoration:none;border-radius:0 0 8px 8px}
 .esme-ddall:hover{background:#F5F7FA;text-decoration:none}
 .esme-ddi small{display:block;font-size:12.5px;font-weight:400;color:#5A6470;margin-top:2px}
-.esme-search{display:flex;align-items:center;gap:8px;height:40px;width:170px;padding:0 12px;border:1px solid #D0D5DD;border-radius:8px;background:#F9FAFB;color:#667085}
+.esme-search{display:flex;align-items:center;gap:8px;height:42px;width:160px;padding:0 12px;border:1px solid #D0D5DD;border-radius:8px;background:#F9FAFB;color:#667085}
 .esme-search:focus-within{border-color:#1E4FA8;background:#FFFFFF;box-shadow:0 0 0 3px rgba(30,79,168,.12)}
 .esme-search input{flex:1;min-width:0;border:none;background:transparent;outline:none;font-size:14px;color:#14181D}
 .esme-row{flex-wrap:nowrap}
+.esme-cap{display:flex;align-items:center;gap:14px;flex:none;padding:9px 12px 9px 12px;border-radius:16px;background:#0B1B33;box-shadow:0 14px 30px -18px rgba(11,27,51,.75)}
+.esme-capdiv{width:1px;height:30px;background:rgba(255,255,255,.18)}
+.esme-cap .esme-nl{color:#D7DCE6;padding:9px 11px;border-radius:9px}
+.esme-cap .esme-nl:hover,.esme-cap .esme-dd:focus-within>.esme-nl,.esme-cap .esme-dd:hover>.esme-nl{background:rgba(255,255,255,.08);color:#FFFFFF}
+.esme-cap .esme-nl.is-on{color:#FFFFFF;background:rgba(255,255,255,.1);box-shadow:inset 0 -2px 0 #FFCC00}
+.esme-cap .esme-ddm{padding-top:14px}
 .esme-logo svg{transition:transform .4s ease}
 .esme-logo:hover svg{transform:rotate(30deg)}
 .esme-row .esme-btn{flex:none}
-@media (max-width: 1360px){.esme-search{display:none}}
-@media (max-width: 1200px){.esme-adv{display:none}}
-@media (max-width: 1060px){.esme-logo svg{width:36px !important;height:36px !important}.esme-logo>span{font-size:25px !important}.esme-nl{padding:8px 7px}}
+@media (max-width: 1400px){.esme-search{display:none}}
+@media (max-width: 1240px){.esme-adv{display:none}}
+@media (max-width: 1060px){.esme-logo svg{width:34px !important;height:34px !important}.esme-logo>span{font-size:23px !important}.esme-cap .esme-nl{padding:8px 7px}.esme-cap{gap:8px}}
+@media (max-width: 900px){.esme-cap{flex:1 1 100%;flex-wrap:wrap}.esme-capdiv{display:none}}
 @media (max-width: 900px){.esme-row{flex-wrap:wrap}.esme-nav{order:3;width:100%;overflow-x:auto}}
 </style>
 </helmet>
@@ -58,11 +65,13 @@
 </div>
 </div>
 <div class="esme-bar">
-<div class="esme-row" style="max-width: 1232px; min-height: 80px; box-sizing: border-box; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; gap: 12px 14px">
+<div class="esme-row" style="max-width: 1320px; min-height: 80px; box-sizing: border-box; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; gap: 12px 14px">
+<div class="esme-cap">
 <a href="Main.dc.html" aria-label="European SME home" class="esme-logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; flex: none">
-<svg aria-hidden="true" viewBox="0 0 100 100" style="width: 42px; height: 42px; flex: none"><circle cx="50" cy="50" r="47.5" fill="#003399" stroke="#FFCC00" stroke-width="3"/><g fill="#FFCC00"><polygon points="81.00,43.80 82.47,47.98 86.90,48.08 83.38,50.77 84.64,55.02 81.00,52.50 77.36,55.02 78.62,50.77 75.10,48.08 79.53,47.98"/><polygon points="76.85,59.30 78.32,63.48 82.74,63.58 79.22,66.27 80.49,70.52 76.85,68.00 73.20,70.52 74.47,66.27 70.95,63.58 75.38,63.48"/><polygon points="65.50,70.65 66.97,74.82 71.40,74.93 67.88,77.62 69.14,81.86 65.50,79.35 61.86,81.86 63.12,77.62 59.60,74.93 64.03,74.82"/><polygon points="50.00,74.80 51.47,78.98 55.90,79.08 52.38,81.77 53.64,86.02 50.00,83.50 46.36,86.02 47.62,81.77 44.10,79.08 48.53,78.98"/><polygon points="34.50,70.65 35.97,74.82 40.40,74.93 36.88,77.62 38.14,81.86 34.50,79.35 30.86,81.86 32.12,77.62 28.60,74.93 33.03,74.82"/><polygon points="23.15,59.30 24.62,63.48 29.05,63.58 25.53,66.27 26.80,70.52 23.15,68.00 19.51,70.52 20.78,66.27 17.26,63.58 21.68,63.48"/><polygon points="19.00,43.80 20.47,47.98 24.90,48.08 21.38,50.77 22.64,55.02 19.00,52.50 15.36,55.02 16.62,50.77 13.10,48.08 17.53,47.98"/><polygon points="23.15,28.30 24.62,32.48 29.05,32.58 25.53,35.27 26.80,39.52 23.15,37.00 19.51,39.52 20.78,35.27 17.26,32.58 21.68,32.48"/><polygon points="34.50,16.95 35.97,21.13 40.40,21.24 36.88,23.93 38.14,28.17 34.50,25.65 30.86,28.17 32.12,23.93 28.60,21.24 33.03,21.13"/><polygon points="50.00,12.80 51.47,16.98 55.90,17.08 52.38,19.77 53.64,24.02 50.00,21.50 46.36,24.02 47.62,19.77 44.10,17.08 48.53,16.98"/><polygon points="65.50,16.95 66.97,21.13 71.40,21.24 67.88,23.93 69.14,28.17 65.50,25.65 61.86,28.17 63.12,23.93 59.60,21.24 64.03,21.13"/><polygon points="76.85,28.30 78.32,32.48 82.74,32.58 79.22,35.27 80.49,39.52 76.85,37.00 73.20,39.52 74.47,35.27 70.95,32.58 75.38,32.48"/></g></svg>
-<span style="font-family: 'League Spartan', 'Sora', Arial, sans-serif; font-weight: 800; font-size: 29px; line-height: 1; letter-spacing: -0.005em; padding-top: 4px; white-space: nowrap"><span style="color: #003399">EUROPEAN</span><span style="color: #FFCC00; margin-left: 6px">SME</span></span>
+<svg aria-hidden="true" viewBox="0 0 100 100" style="width: 38px; height: 38px; flex: none"><circle cx="50" cy="50" r="47.5" fill="#003399" stroke="#FFCC00" stroke-width="3"/><g fill="#FFCC00"><polygon points="81.00,43.80 82.47,47.98 86.90,48.08 83.38,50.77 84.64,55.02 81.00,52.50 77.36,55.02 78.62,50.77 75.10,48.08 79.53,47.98"/><polygon points="76.85,59.30 78.32,63.48 82.74,63.58 79.22,66.27 80.49,70.52 76.85,68.00 73.20,70.52 74.47,66.27 70.95,63.58 75.38,63.48"/><polygon points="65.50,70.65 66.97,74.82 71.40,74.93 67.88,77.62 69.14,81.86 65.50,79.35 61.86,81.86 63.12,77.62 59.60,74.93 64.03,74.82"/><polygon points="50.00,74.80 51.47,78.98 55.90,79.08 52.38,81.77 53.64,86.02 50.00,83.50 46.36,86.02 47.62,81.77 44.10,79.08 48.53,78.98"/><polygon points="34.50,70.65 35.97,74.82 40.40,74.93 36.88,77.62 38.14,81.86 34.50,79.35 30.86,81.86 32.12,77.62 28.60,74.93 33.03,74.82"/><polygon points="23.15,59.30 24.62,63.48 29.05,63.58 25.53,66.27 26.80,70.52 23.15,68.00 19.51,70.52 20.78,66.27 17.26,63.58 21.68,63.48"/><polygon points="19.00,43.80 20.47,47.98 24.90,48.08 21.38,50.77 22.64,55.02 19.00,52.50 15.36,55.02 16.62,50.77 13.10,48.08 17.53,47.98"/><polygon points="23.15,28.30 24.62,32.48 29.05,32.58 25.53,35.27 26.80,39.52 23.15,37.00 19.51,39.52 20.78,35.27 17.26,32.58 21.68,32.48"/><polygon points="34.50,16.95 35.97,21.13 40.40,21.24 36.88,23.93 38.14,28.17 34.50,25.65 30.86,28.17 32.12,23.93 28.60,21.24 33.03,21.13"/><polygon points="50.00,12.80 51.47,16.98 55.90,17.08 52.38,19.77 53.64,24.02 50.00,21.50 46.36,24.02 47.62,19.77 44.10,17.08 48.53,16.98"/><polygon points="65.50,16.95 66.97,21.13 71.40,21.24 67.88,23.93 69.14,28.17 65.50,25.65 61.86,28.17 63.12,23.93 59.60,21.24 64.03,21.13"/><polygon points="76.85,28.30 78.32,32.48 82.74,32.58 79.22,35.27 80.49,39.52 76.85,37.00 73.20,39.52 74.47,35.27 70.95,32.58 75.38,32.48"/></g></svg>
+<span style="font-family: 'League Spartan', 'Sora', Arial, sans-serif; font-weight: 800; font-size: 27px; line-height: 1; letter-spacing: -0.005em; padding-top: 4px; white-space: nowrap"><span style="color: #FFFFFF">EUROPEAN</span><span style="color: #FFCC00; margin-left: 6px">SME</span></span>
 </a>
+<span class="esme-capdiv" aria-hidden="true"></span>
 <nav aria-label="Main" class="esme-nav">
 <a class="esme-nl {{latestOn}}" href="Articles.dc.html">Latest</a>
 <div class="esme-dd">
@@ -85,6 +94,7 @@
 <a class="esme-nl {{countriesOn}}" href="Countries.dc.html">Countries</a>
 <a class="esme-nl {{policyOn}}" href="Articles.dc.html?section=policy">EU Policy</a>
 </nav>
+</div>
 <span style="flex: 1 1 0"></span>
 <form class="esme-search" action="Articles.dc.html" method="get" role="search">
 <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
@@ -118,7 +128,7 @@ class Component extends DCLogic {
           geoHref: c ? 'Country.dc.html?country=' + c.code : 'Countries.dc.html', pinIcon: E ? E.icon('pin', 14) : '',
           geoTitle: c ? (g.source === 'cloudflare' ? 'Detected from your location' : g.source === 'browser' ? 'Detected from your browser settings' : 'Your saved country') : 'Pick a country for local news' };
       })(),
-      latestOn: active === 'Articles' ? 'is-on' : '',
+      latestOn: active === 'Articles' || active === 'none' ? 'is-on' : '',
       sectionsOn: inSection ? 'is-on' : '',
       toolsOn: active === 'Tools' ? 'is-on' : '',
       countriesOn: active === 'Countries' ? 'is-on' : '',
