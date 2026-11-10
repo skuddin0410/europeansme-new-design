@@ -605,3 +605,16 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount);
   else mount();
 })();
+
+/* Template switcher badge (review only) */
+(function () {
+  function add() {
+    if (document.getElementById('esme-tpl')) return;
+    var a = document.createElement('div');
+    a.id = 'esme-tpl';
+    a.setAttribute('style', 'position:fixed;left:16px;bottom:16px;z-index:9999;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;background:#101828;color:#fff;font:600 13px Sora,Arial,sans-serif;box-shadow:0 10px 30px -10px rgba(0,0,0,.6)');
+    a.innerHTML = 'Template 2<a href="template-1/Main.dc.html" style="padding:6px 12px;border-radius:999px;background:#FFCC00;color:#101828;text-decoration:none">View Template 1</a><a href="templates.html" style="color:#C8CDD6;text-decoration:none;padding-right:6px">All</a>';
+    document.body.appendChild(a);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', add); else add();
+})();

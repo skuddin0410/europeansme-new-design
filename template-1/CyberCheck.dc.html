@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cyber &amp; AI readiness check — European SME</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
+.cc-q{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding:18px 0;border-bottom:1px solid #EAECF0}
+.cc-seg{display:inline-flex;border:1px solid #D0D5DD;border-radius:9px;overflow:hidden;flex:none}
+.cc-seg button{border:none;border-left:1px solid #D0D5DD;background:#FFFFFF;padding:9px 16px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#344054;cursor:pointer}
+.cc-seg button:first-child{border-left:none}
+.cc-seg button:hover{background:#F5F7FA}
+.cc-seg button[aria-pressed="true"]{background:#0B1B33;color:#FFFFFF}
+.cc-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.18);overflow:hidden}
+.cc-bar span{display:block;height:100%;border-radius:999px;transition:width .4s ease}
+</style>
+</helmet>
+<div style="color: #14181D; background: #FFFFFF">
+<dc-import name="SiteHeader" active="Tools" hint-size="100%,118px"></dc-import>
+
+<main>
+<section aria-label="Introduction" style="background: radial-gradient(800px 420px at 100% 0%, rgba(67,56,202,.16), transparent 60%), #F5F7FA; border-bottom: 1px solid #E4E7EC">
+<div style="max-width: 1232px; margin: 0 auto; padding: 48px 32px 40px; display: flex; flex-direction: column; gap: 14px">
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #5A6470"><a href="Tools.dc.html" style="color: #5A6470">Tools</a> / Cyber &amp; AI readiness</nav>
+<span style="display: flex; align-items: center; gap: 12px"><span style="width: 48px; height: 48px; border-radius: 12px; background: #4338CA; color: #FFFFFF; display: flex; align-items: center; justify-content: center" dc-html="{{shield}}"></span><span class="esme-tag esme-tag--gold">New tool</span></span>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(32px, 4.2vw, 46px); line-height: 1.1; font-weight: 700; letter-spacing: -0.03em">Cyber &amp; AI readiness check</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #5A6470; max-width: 680px">Nearly half of SMEs have little or no digital security in place, according to the OECD’s 2026 SME survey. Ten quick questions show where you stand — and the three fixes that will protect you most.</p>
+</div>
+</section>
+
+<section aria-label="Questions and result" style="max-width: 1232px; margin: 0 auto; padding: 32px 32px 72px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<div style="flex: 1 1 560px; min-width: 0">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+<div style="margin-bottom: 28px">
+<p class="esme-eyebrow" style="margin-top: 12px">{{g.title}}</p>
+<sc-for list="{{g.items}}" as="q" hint-placeholder-count="5">
+<div class="cc-q">
+<span style="flex: 1 1 320px; font-size: 15.5px; line-height: 1.5; font-weight: 500"><span style="font-family: 'Sora', sans-serif; font-weight: 700; color: #4338CA; margin-right: 6px">{{q.n}}</span>{{q.text}}</span>
+<span class="cc-seg" role="group" aria-label="Answer for question {{q.n}}">
+<button type="button" aria-pressed="{{q.yes}}" onClick="{{q.pickYes}}">Yes</button>
+<button type="button" aria-pressed="{{q.no}}" onClick="{{q.pickNo}}">No</button>
+<button type="button" aria-pressed="{{q.unsure}}" onClick="{{q.pickUnsure}}">Not sure</button>
+</span>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+
+<aside aria-label="Your result" style="flex: 1 1 360px; min-width: 0; position: sticky; top: 104px; display: flex; flex-direction: column; gap: 16px">
+<div style="border-radius: 16px; padding: 26px; color: #FFFFFF; background: radial-gradient(500px 300px at 100% 0%, rgba(255,199,44,.16), transparent 60%), linear-gradient(135deg, #0B1B33, #0B2A6B); display: flex; flex-direction: column; gap: 14px">
+<p class="esme-eyebrow is-dark">Your score</p>
+<span style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 56px; font-weight: 800; line-height: 1">{{score}}</span><span style="font-size: 16px; color: rgba(255,255,255,.7)">/ 100</span></span>
+<div class="cc-bar" aria-hidden="true"><span style="width: {{score}}%; background: {{bandColor}}"></span></div>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: 700; color: {{bandColor}}">{{band}}</span>
+<span style="font-size: 14px; line-height: 1.55; color: rgba(255,255,255,.8)">{{bandText}}</span>
+<span style="font-size: 12.5px; color: rgba(255,255,255,.6)">{{answered}} of 10 answered</span>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #EAECF0; border-radius: 14px; padding: 22px; box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px -16px rgba(16,24,40,.18); display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: 700">Your top fixes</h2>
+<sc-if value="{{noFixes}}" hint-placeholder-val="{{ false }}"><span style="font-size: 14.5px; line-height: 1.55; color: #5A6470">{{noFixesText}}</span></sc-if>
+<sc-for list="{{fixes}}" as="f" hint-placeholder-count="3">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 26px; height: 26px; border-radius: 50%; background: #EEF0FC; color: #4338CA; display: flex; align-items: center; justify-content: center; font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 700">{{f.rank}}</span>
+<span style="display: flex; flex-direction: column; gap: 3px"><strong style="font-size: 14.5px; font-weight: 600">{{f.title}}</strong><span style="font-size: 13.5px; line-height: 1.5; color: #5A6470">{{f.how}}</span></span>
+</div>
+</sc-for>
+<button type="button" class="esme-btn esme-btn--line" onClick="{{reset}}" style="align-self: flex-start; margin-top: 4px">Start again</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px">
+<a href="Post.dc.html?slug=cybersecurity-for-smes-the-essentials-that-actually-protect-you" style="font-weight: 600; color: #1E4FA8">Guide: cybersecurity essentials for SMEs →</a>
+<a href="ArticleAIAct.dc.html" style="font-weight: 600; color: #1E4FA8">Guide: what the AI Act means for your business →</a>
+<a href="https://european-digital-innovation-hubs.ec.europa.eu/" target="_blank" rel="noopener" style="font-weight: 600; color: #1E4FA8">Find free help at a European Digital Innovation Hub ↗</a>
+</div>
+</aside>
+</section>
+</main>
+
+<footer style="background: #101828; color: #C8CDD6">
+<div style="max-width: 1232px; margin: 0 auto; padding: 28px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px">
+<span>© 2026 European SME Business Magazine · A self-assessment, not a security audit</span>
+<nav aria-label="Footer" style="display: flex; gap: 20px"><a href="Main.dc.html" style="color: #C8CDD6">Home</a><a href="Articles.dc.html" style="color: #C8CDD6">Articles</a><a href="Tools.dc.html" style="color: #C8CDD6">Tools</a><a href="https://europeansme.eu/contact-us/" style="color: #C8CDD6">Contact</a></nav>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1600}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { a: {} }; }
+  renderVals() {
+    const a = this.state.a;
+    const Q = [
+      { g: 0, p: 1, text: 'Is two-step login (MFA) switched on for email, banking and key business accounts?', fix: 'Turn on two-step login everywhere', how: 'Start with email and banking — most account takeovers begin there.' },
+      { g: 0, p: 1, text: 'Do you keep backups stored separately from your systems, and have you tested restoring one?', fix: 'Set up separate, tested backups', how: 'Keep one copy offline or in a separate account so ransomware cannot reach it.' },
+      { g: 0, p: 2, text: 'Do computers, phones and software install security updates automatically?', fix: 'Switch on automatic updates', how: 'Unpatched software is one of the easiest ways in for attackers.' },
+      { g: 0, p: 2, text: 'Has your team been shown how to spot phishing emails in the last 12 months?', fix: 'Run a short phishing awareness session', how: 'Twenty minutes with real examples cuts the most common attack route.' },
+      { g: 0, p: 3, text: 'Does everyone use a password manager or unique passwords for each account?', fix: 'Roll out a password manager', how: 'Unique passwords stop one leak from opening every account.' },
+      { g: 0, p: 4, text: 'Is antivirus or endpoint protection active on every work device?', fix: 'Protect every work device', how: 'Built-in tools are fine if they are switched on and up to date.' },
+      { g: 0, p: 4, text: 'Do you know who has admin access, and remove access promptly when people leave?', fix: 'Review admin access and leavers', how: 'List who can change settings and remove old accounts the day someone leaves.' },
+      { g: 0, p: 5, text: 'Do you have a simple written plan for what to do if you are hacked?', fix: 'Write a one-page incident plan', how: 'Who to call, how to isolate devices, and how to report to your national CSIRT or data authority.' },
+      { g: 1, p: 3, text: 'Do staff know what company or customer data they must not paste into AI tools?', fix: 'Set clear AI-use rules', how: 'One page on which tools are allowed and which data stays out — this also helps with GDPR.' },
+      { g: 1, p: 6, text: 'Have you checked whether any of your AI use (for example in hiring or credit decisions) falls under the EU AI Act?', fix: 'Map your AI use against the AI Act', how: 'Most everyday uses carry light duties, but AI in hiring or customer scoring can be high-risk.' }
+    ];
+    const set = (i, v) => () => this.setState({ a: Object.assign({}, a, { [i]: v }) });
+    const item = (q, i) => ({ n: i + 1, text: q.text, yes: a[i] === 'yes' ? 'true' : 'false', no: a[i] === 'no' ? 'true' : 'false', unsure: a[i] === 'unsure' ? 'true' : 'false', pickYes: set(i, 'yes'), pickNo: set(i, 'no'), pickUnsure: set(i, 'unsure') });
+    const groups = [
+      { title: 'Security basics', items: Q.map(item).filter((_, i) => Q[i].g === 0) },
+      { title: 'Using AI safely', items: Q.map(item).filter((_, i) => Q[i].g === 1) }
+    ];
+    const answered = Object.keys(a).length;
+    const yes = Object.keys(a).filter((k) => a[k] === 'yes').length;
+    const score = yes * 10;
+    const fixes = Q.map((q, i) => Object.assign({ i }, q)).filter((q) => a[q.i] === 'no' || a[q.i] === 'unsure')
+      .sort((x, y) => x.p - y.p).slice(0, 3).map((q, k) => ({ rank: k + 1, title: q.fix, how: q.how }));
+    let band = 'Not started', bandColor = '#C8CDD6', bandText = 'Answer the questions to see your score.';
+    if (answered > 0) {
+      if (score >= 80) { band = 'Strong'; bandColor = '#4ADE80'; bandText = 'You have the essentials in place. Keep them up and review once a year.'; }
+      else if (score >= 50) { band = 'Getting there'; bandColor = '#FFC72C'; bandText = 'A good base with a few gaps. The fixes below will close the most important ones.'; }
+      else { band = 'At risk'; bandColor = '#F97066'; bandText = 'Several basics are missing. Start with the top fix — most take under an hour.'; }
+    }
+    return {
+      shield: ESME.icon('shield', 26), groups, score, answered, band, bandColor, bandText, fixes,
+      noFixes: fixes.length === 0, noFixesText: answered === 10 ? 'Nothing urgent — every answer is a yes.' : 'Answer “No” or “Not sure” to any question and the most important fixes appear here.',
+      reset: () => this.setState({ a: {} })
+    };
+  }
+}
+</script>
+</body>
+</html>

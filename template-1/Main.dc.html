@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>European SME — Homepage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
+.esme-herocard{transition:background-color .2s ease,border-color .2s ease,transform .2s ease}
+.esme-herocard:hover{background:rgba(255,255,255,.09) !important;border-color:rgba(255,199,44,.5) !important;transform:translateY(-2px);color:#FFFFFF !important;text-decoration:none}
+.esme-ticker::-webkit-scrollbar{display:none}
+.esme-ticker a:hover span{color:#FFC72C}
+.esme-tic{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;transition:transform .2s ease}
+.esme-toolcard:hover .esme-tic{transform:rotate(-6deg) scale(1.06)}
+.esme-toolcard{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.esme-toolcard:hover{transform:translateY(-4px);border-color:#D0D5DD !important;color:#14181D !important;text-decoration:none}
+.esme-flink:hover{color:#FFFFFF !important}
+.yc-ticks{list-style:none;margin:4px 0 6px;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:#344054}
+.yc-ticks li{display:flex;align-items:center;gap:10px}
+.yc-ticks li span{flex:none;width:28px;height:28px;border-radius:8px;background:#E6ECF7;color:#003399;display:flex;align-items:center;justify-content:center}
+.yc-pick{position:relative;display:flex;align-items:center;gap:10px;max-width:420px;height:52px;padding:0 8px 0 12px;border:1.5px solid #D0D5DD;border-radius:12px;background:#FFFFFF;box-shadow:0 1px 2px rgba(16,24,40,.05);transition:border-color .15s ease,box-shadow .15s ease;cursor:pointer}
+.yc-pick:hover,.yc-pick:focus-within{border-color:#003399;box-shadow:0 0 0 4px rgba(0,51,153,.1)}
+.yc-pick-flag img{display:block;width:26px;height:18px;object-fit:cover;border-radius:3px;box-shadow:0 0 0 1px rgba(16,24,40,.12)}
+.yc-pick select{flex:1;min-width:0;height:100%;border:none;outline:none;background:transparent;font-family:'Sora',sans-serif;font-size:14.5px;font-weight:600;color:#14181D;cursor:pointer;appearance:none;-webkit-appearance:none}
+.yc-pick-go{flex:none;width:36px;height:36px;border-radius:9px;background:#003399;color:#FFFFFF;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.yc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.yc-card{position:relative;display:flex;align-items:center;gap:14px;padding:14px 14px 14px 14px;background:#FFFFFF;border:1px solid #EAECF0;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px -18px rgba(16,24,40,.3);color:#14181D;text-decoration:none;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.yc-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#FFCC00;transform:scaleY(0);transition:transform .2s ease}
+.yc-card:hover{transform:translateY(-3px);border-color:#D0D5DD;box-shadow:0 2px 4px rgba(16,24,40,.05),0 18px 32px -18px rgba(16,24,40,.4);color:#14181D;text-decoration:none}
+.yc-card:hover::before{transform:scaleY(1)}
+.yc-card.is-you{border-color:#0F7B6C;box-shadow:0 0 0 3px rgba(15,123,108,.14)}
+.yc-flag{flex:none;width:54px;height:36px;object-fit:cover;border-radius:6px;box-shadow:0 0 0 1px rgba(16,24,40,.12),0 4px 10px -4px rgba(16,24,40,.35)}
+.yc-live{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:#12B76A;box-shadow:0 0 0 3px rgba(18,183,106,.18);vertical-align:1px}
+.yc-go{flex:none;width:32px;height:32px;border-radius:50%;background:#F2F4F7;color:#344054;display:flex;align-items:center;justify-content:center;transition:background-color .2s ease,color .2s ease,transform .2s ease}
+.yc-go svg{width:16px;height:16px}
+.yc-card:hover .yc-go{background:#FFCC00;color:#101828;transform:translateX(2px)}
+.yc-mini{display:flex;flex-wrap:wrap;gap:6px}
+.yc-mini a{display:block;width:30px;height:30px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #FFFFFF,0 0 0 3px #E4E7EC;transition:transform .15s ease,box-shadow .15s ease}
+.yc-mini a:hover{transform:translateY(-2px) scale(1.12);box-shadow:0 0 0 2px #FFFFFF,0 0 0 3px #003399}
+.yc-mini img{width:30px;height:30px;object-fit:cover;display:block}
+.yc-you{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;padding:20px;border-radius:16px;background:radial-gradient(500px 240px at 100% 0%, rgba(255,204,0,.14), transparent 60%),linear-gradient(135deg,#0B1B33,#003399)}
+.yc-you-flag{width:64px;height:43px;object-fit:cover;border-radius:7px;box-shadow:0 0 0 1px rgba(255,255,255,.3)}
+.yc-news{display:flex;align-items:center;gap:14px;padding:11px 14px;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);text-decoration:none;transition:background-color .15s ease}
+.yc-news:hover{background:rgba(255,255,255,.12);text-decoration:none}
+.yc-time{flex:none;font-family:'Sora',sans-serif;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.75)}
+.yc-sample{flex:none;padding:2px 6px;border-radius:4px;background:rgba(255,204,0,.18);color:#FFCC00;font-family:'Sora',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</helmet>
+<div style="color: #14181D; background: #FFFFFF; min-height: 100vh">
+<dc-import name="SiteHeader" active="none" hint-size="100%,118px"></dc-import>
+
+<main>
+<section aria-label="Cover story" style="position: relative; overflow: hidden; color: #FFFFFF; background: radial-gradient(900px 520px at 88% 8%, rgba(255,199,44,.16), transparent 62%), radial-gradient(900px 640px at 0% 100%, rgba(30,79,168,.55), transparent 62%), linear-gradient(135deg, #0B1B33 0%, #0B2A6B 100%)">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 64px; padding-bottom: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px">
+<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<p class="esme-eyebrow is-dark">Cover story · Tech &amp; AI</p>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(38px, 4.6vw, 60px); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; color: #FFFFFF"><a href="ArticleAIAct.dc.html" style="color: inherit; text-decoration: none">AI Act deadlines <span style="color: #FFC72C">pushed back</span>: what the Digital Omnibus means for your business</a></h1>
+<span aria-hidden="true" style="width: 56px; height: 3px; border-radius: 2px; background: #FFC72C"></span>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.82); max-width: 560px">The EU has given companies until December 2027 to meet its strictest AI rules. But some obligations already apply — and most small businesses have homework to do now.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 4px">
+<a class="esme-btn esme-btn--gold esme-btn--lg" href="ArticleAIAct.dc.html">Read the story <span aria-hidden="true">→</span></a>
+<a class="esme-btn esme-btn--ghost esme-btn--lg" href="Articles.dc.html">All articles</a>
+</div>
+</div>
+<a href="ArticleAIAct.dc.html" aria-label="AI Act deadlines pushed back" style="flex: 1 1 480px; min-width: 0; display: block; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.12)"><dc-import name="VisualAIAct" radius="0px" hint-size="100%,330px"></dc-import></a>
+</div>
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-bottom: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 20px">
+<a href="ArticleEInvoicing.dc.html" class="esme-herocard" style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; padding: 12px; border-radius: 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); color: #FFFFFF; text-decoration: none">
+<span style="flex: 0 0 200px; max-width: 100%; border-radius: 9px; overflow: hidden; display: block"><dc-import name="VisualEInvoice" radius="0px" hint-size="200px,112px"></dc-import></span>
+<span style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 9px">
+<span class="esme-tag esme-tag--gold" style="align-self: flex-start">Explainer</span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; line-height: 1.3; font-weight: 700">E-invoicing goes mandatory: where European SMEs must comply in 2026 and 2027</span>
+<span style="font-size: 12.5px; color: rgba(255,255,255,.7)">Money &amp; Cash Flow · 7 min read</span>
+</span>
+</a>
+<a href="ArticleEUInc.dc.html" class="esme-herocard" style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; padding: 12px; border-radius: 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); color: #FFFFFF; text-decoration: none">
+<span style="flex: 0 0 200px; max-width: 100%; border-radius: 9px; overflow: hidden; display: block"><dc-import name="VisualEUInc" radius="0px" hint-size="200px,112px"></dc-import></span>
+<span style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 9px">
+<span class="esme-tag esme-tag--gold" style="align-self: flex-start">Exclusive</span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; line-height: 1.3; font-weight: 700">EU Inc. explained: what the proposed “28th regime” could mean for small businesses</span>
+<span style="font-size: 12.5px; color: rgba(255,255,255,.7)">Startups &amp; Scale-ups · 6 min read</span>
+</span>
+</a>
+</div>
+</section>
+
+
+<section aria-label="Your country" class="yc" style="background: radial-gradient(700px 360px at 100% 0%, rgba(255,204,0,.10), transparent 60%), linear-gradient(180deg, #F5F7FA, #FFFFFF); border-bottom: 1px solid #EAECF0">
+<div style="max-width: 1232px; margin: 0 auto; padding: 52px 32px 48px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: stretch">
+
+<div style="flex: 1 1 330px; display: flex; flex-direction: column; gap: 16px; justify-content: center">
+<p class="esme-eyebrow">{{ycEyebrow}}</p>
+<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(26px, 2.8vw, 34px); line-height: 1.15; font-weight: 700; letter-spacing: -0.025em">{{ycTitle}}</h2>
+<p style="margin: 0; font-size: 15.5px; line-height: 1.65; color: #5A6470; max-width: 420px">{{ycText}}</p>
+<ul class="yc-ticks">
+<li><span dc-html="{{tickNews}}"></span>Daily news, only when something happens</li>
+<li><span dc-html="{{tickTrend}}"></span>What other owners are reading this week</li>
+<li><span dc-html="{{tickTools}}"></span>Rules, deadlines and funding for that country</li>
+</ul>
+<label class="yc-pick">
+<span class="yc-pick-flag"><img src="{{pickFlag}}" alt="" width="26" height="18"></span>
+<select aria-label="Choose any of the 27 EU countries" onChange="{{goCountry}}">
+<option value="">{{pickLabel}}</option>
+<sc-for list="{{allCountries}}" as="o" hint-placeholder-count="27"><option value="{{o.code}}">{{o.name}}</option></sc-for>
+</select>
+<span aria-hidden="true" class="yc-pick-go" dc-html="{{arrowIcon}}"></span>
+</label>
+</div>
+
+<div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}">
+<div class="yc-you">
+<img src="{{geoC.flag}}" alt="" width="64" height="43" class="yc-you-flag">
+<div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #9FE1CB"><span dc-html="{{pinIcon}}"></span>{{geoNote}}</span>
+<strong style="font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700; color: #FFFFFF">Today in {{geoC.name}}</strong>
+</div>
+<a class="esme-btn esme-btn--gold" href="{{geoHub}}">Open the {{geoC.name}} hub →</a>
+<div style="flex-basis: 100%; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{geoNews}}" as="n" hint-placeholder-count="3">
+<a class="yc-news" href="{{n.href}}"><span class="yc-time">{{n.time}}</span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Sora', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #FFCC00">{{n.sectionLabel}} · {{n.countryName}}</span><span style="font-family: 'Sora', sans-serif; font-size: 14.5px; font-weight: 600; line-height: 1.35; color: #FFFFFF">{{n.title}}</span></span><span class="yc-sample">Sample</span></a>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<div class="yc-grid">
+<sc-for list="{{hubs}}" as="h" hint-placeholder-count="6">
+<a class="yc-card {{h.you}}" href="{{h.href}}" onClick="{{h.pick}}">
+<img src="{{h.flag}}" alt="" width="54" height="36" class="yc-flag" loading="lazy">
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+<strong style="font-family: 'Sora', sans-serif; font-size: 15.5px; font-weight: 700">{{h.name}}</strong>
+<span style="font-size: 12.5px; color: #5A6470"><span class="yc-live"></span>{{h.meta}}</span>
+</span>
+<span class="yc-go" aria-hidden="true" dc-html="{{arrowIcon}}"></span>
+</a>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px">
+<span style="font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6470">+ {{othersCount}} more</span>
+<div class="yc-mini">
+<sc-for list="{{others}}" as="o" hint-placeholder-count="21"><a href="{{o.href}}" onClick="{{o.pick}}" title="{{o.name}}" aria-label="{{o.name}}"><img src="{{o.flag}}" alt="" width="30" height="30" loading="lazy"></a></sc-for>
+</div>
+<a href="Countries.dc.html" style="margin-left: auto; font-family: 'Sora', sans-serif; font-size: 13.5px; font-weight: 700; color: #1E4FA8">All 27 countries →</a>
+</div>
+</div>
+</div>
+</section>
+<sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+<section aria-label="Latest news" style="background: #101828; color: #FFFFFF">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 18px; padding-bottom: 18px; display: flex; align-items: center; gap: 24px">
+<span style="flex: none; display: inline-flex; align-items: center; gap: 8px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: rgba(255,255,255,.75)"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #FFC72C; box-shadow: 0 0 0 4px rgba(255,199,44,.18)"></span>LATEST NEWS</span>
+<div class="esme-ticker" style="flex: 1 1 auto; min-width: 0; display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none">
+<sc-for list="{{latest}}" as="l" hint-placeholder-count="5">
+<a href="{{l.href}}" style="flex: 0 0 300px; display: flex; gap: 12px; align-items: center; color: #FFFFFF; text-decoration: none">
+<img src="{{l.thumb}}" alt="" loading="lazy" style="width: 64px; height: 46px; object-fit: cover; border-radius: 6px; flex: none; background: #1D2939">
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13.5px; font-weight: 600; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden">{{l.title}}</span>
+</a>
+</sc-for>
+</div>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 72px; padding-bottom: 72px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px">
+<sc-for list="{{skeletons}}" as="k" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="esme-skel" style="aspect-ratio: 16 / 10"></div><div class="esme-skel" style="height: 18px; width: 60%"></div><div class="esme-skel" style="height: 22px"></div></div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{failed}}" hint-placeholder-val="{{ false }}">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 48px; padding-bottom: 48px; font-size: 16px; color: #5A6470">Live articles from europeansme.eu could not be loaded right now. Please refresh, or <a href="Articles.dc.html" style="color: #1E4FA8; text-decoration: underline">browse all articles</a>.</div>
+</sc-if>
+
+<sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+<section aria-label="Featured stories" style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 80px; padding-bottom: 24px">
+<div class="esme-sechead">
+<div><p class="esme-eyebrow">Editor’s picks</p><h2 class="esme-h2">Featured stories</h2><p class="esme-sub">Picked by our editors for Europe’s small-business community.</p></div>
+
+</div>
+<nav aria-label="Browse by section" style="display: flex; flex-wrap: wrap; gap: 8px; margin: -6px 0 30px">
+<a class="esme-chipf is-on" href="Articles.dc.html">All</a>
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="7">
+<a class="esme-chipf" href="{{c.href}}">{{c.label}}</a>
+</sc-for>
+</nav>
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 6 1 520px; min-width: 0"><dc-import name="Card" post="{{feature}}" variant="feature" hint-size="100%,640px"></dc-import></div>
+<div style="flex: 6 1 420px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px">
+<sc-for list="{{featureSide}}" as="f" hint-placeholder-count="4">
+<dc-import name="Card" post="{{f}}" variant="standard" hint-size="100%,330px"></dc-import>
+</sc-for>
+</div>
+</div>
+</section>
+</sc-if>
+
+<section aria-label="Tools for SMEs" style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 72px; padding-bottom: 8px">
+<div class="esme-sechead">
+<div><p class="esme-eyebrow">Free tools</p><h2 class="esme-h2">Tools for European SMEs</h2><p class="esme-sub">Find funding, track deadlines and run the numbers — checked monthly by our compliance desk.</p></div>
+<a class="esme-btn esme-btn--blue" href="Tools.dc.html">All tools <span aria-hidden="true">→</span></a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="7">
+<a href="{{t.href}}" class="esme-toolcard" style="display: flex; flex-direction: column; gap: 14px; padding: 22px; background: #FFFFFF; border: 1px solid #EAECF0; border-radius: 14px; box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px -16px rgba(16,24,40,.18); color: #14181D; text-decoration: none">
+<span style="display: flex; justify-content: space-between; align-items: flex-start"><span class="esme-tic" style="color: {{t.tone}}; background: {{t.tint}}" dc-html="{{t.iconSvg}}"></span><sc-if value="{{t.isNew}}" hint-placeholder-val="{{ false }}"><span class="esme-tag esme-tag--gold">New</span></sc-if></span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; font-weight: 700">{{t.name}}</span>
+<span style="font-size: 14px; line-height: 1.55; color: #5A6470">{{t.short}}</span>
+<span style="margin-top: auto; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; color: #1E4FA8">Open tool →</span>
+</a>
+</sc-for>
+</div>
+</section>
+
+<sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+<section aria-label="EU Policy and Compliance" style="background: #F5F7FA; margin-top: 72px; border-top: 1px solid #EAECF0; border-bottom: 1px solid #EAECF0">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 72px; padding-bottom: 72px">
+<div class="esme-sechead">
+<div><p class="esme-eyebrow">EU Policy &amp; Compliance</p><h2 class="esme-h2">The rules that shape your business</h2><p class="esme-sub">How Europe’s rules on trade, data, tax and hiring affect small and medium-sized businesses.</p></div>
+<a class="esme-btn esme-btn--blue" href="Articles.dc.html?section=policy">View all policy articles <span aria-hidden="true">→</span></a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px">
+<sc-for list="{{policy}}" as="p" hint-placeholder-count="4">
+<dc-import name="Card" post="{{p}}" variant="standard" hint-size="100%,400px"></dc-import>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section aria-label="Sections" style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 80px; padding-bottom: 16px">
+<div class="esme-sechead">
+<div><p class="esme-eyebrow">By topic</p><h2 class="esme-h2">Grow, fund and market your business</h2></div>
+
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 40px 28px">
+<sc-for list="{{columns}}" as="c" hint-placeholder-count="3">
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid {{c.color}}">
+<h3 style="margin: 0; display: flex; align-items: center; gap: 9px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 20px; font-weight: 700"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: {{c.color}}"></span>{{c.name}}</h3>
+<a href="{{c.href}}" style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; color: #1E4FA8">More →</a>
+</div>
+<dc-import name="Card" post="{{c.lead}}" variant="standard" hint-size="100%,400px"></dc-import>
+<div>
+<sc-for list="{{c.more}}" as="m" hint-placeholder-count="2">
+<div style="border-bottom: 1px solid #EAECF0"><dc-import name="Card" post="{{m}}" variant="compact" hint-size="100%,92px"></dc-import></div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="People, technology and most read" style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 64px; padding-bottom: 32px; display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 8 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 56px">
+<sc-for list="{{duo}}" as="d" hint-placeholder-count="2">
+<div>
+<div class="esme-sechead" style="margin-bottom: 22px">
+<div><p class="esme-eyebrow">{{d.eyebrow}}</p><h2 class="esme-h2" style="font-size: 30px">{{d.name}}</h2></div>
+<a class="esme-btn esme-btn--line" href="{{d.href}}">More in {{d.name}} <span aria-hidden="true">→</span></a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 18px">
+<sc-for list="{{d.items}}" as="i" hint-placeholder-count="2">
+<dc-import name="Card" post="{{i}}" variant="row" hint-size="100%,210px"></dc-import>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+<aside aria-label="Popular" style="flex: 4 1 300px; min-width: 0">
+<div style="position: sticky; top: 104px; background: #FFFFFF; border: 1px solid #EAECF0; border-radius: 14px; padding: 24px 22px 10px; box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px -16px rgba(16,24,40,.18)">
+<p class="esme-eyebrow">Most read</p>
+<h2 style="margin: 10px 0 6px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.01em">Popular this month</h2>
+<ol style="list-style: none; margin: 0; padding: 0">
+<sc-for list="{{popular}}" as="r" hint-placeholder-count="5">
+<li style="border-bottom: 1px solid #EAECF0"><dc-import name="Card" post="{{r.post}}" variant="compact" rank="{{r.n}}" hint-size="100%,92px"></dc-import></li>
+</sc-for>
+</ol>
+</div>
+</aside>
+</section>
+
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 16px; padding-bottom: 88px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid #EAECF0; margin-top: 24px">
+<p style="margin: 24px 0 0; font-size: 15px; color: #5A6470">More practical guides for <strong style="color: #14181D">Europe’s founders and business owners</strong>.</p>
+<a class="esme-btn esme-btn--blue esme-btn--lg" href="Articles.dc.html" style="margin-top: 24px">Browse all {{total}} articles <span aria-hidden="true">→</span></a>
+</div>
+</sc-if>
+
+<section id="newsletter" aria-label="Newsletter" style="color: #FFFFFF; background: radial-gradient(800px 500px at 100% 0%, rgba(255,199,44,.14), transparent 60%), linear-gradient(135deg, #0B1B33 0%, #0B2A6B 100%)">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 72px; padding-bottom: 72px; display: flex; flex-wrap: wrap; gap: 40px 72px; align-items: center">
+<div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 14px">
+<p class="esme-eyebrow is-dark">Free for European business owners</p>
+<h2 class="esme-h2 is-dark" style="margin-top: 4px">Get the Weekly Briefing</h2>
+<p class="esme-sub is-dark" style="font-size: 16px">EU funding calls, rule changes and practical playbooks for founders and managers across the Union — every Tuesday.</p>
+</div>
+<form action="https://europeansme.eu/subscription/" method="get" target="_blank" style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 16px; background: #FFFFFF; color: #14181D; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6)">
+<label for="nl-email" style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 600">Email address</label>
+<input id="nl-email" type="email" placeholder="you@yourbusiness.eu" style="height: 48px; padding: 0 14px; border-radius: 8px; border: 1px solid #D0D5DD; font-size: 15px; color: #14181D">
+<button type="submit" class="esme-btn esme-btn--gold esme-btn--lg" style="width: 100%">Subscribe free</button>
+<p style="margin: 0; font-size: 12.5px; color: #5A6470">No spam. Unsubscribe any time. Opens our subscription page on europeansme.eu.</p>
+</form>
+</div>
+</section>
+</main>
+
+<footer style="background: #101828; color: #C8CDD6">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 64px; padding-bottom: 28px">
+<div style="display: flex; flex-wrap: wrap; gap: 40px 48px; justify-content: space-between">
+<div style="flex: 2 1 300px; display: flex; flex-direction: column; gap: 16px">
+<span style="display: flex; align-items: center; gap: 10px"><svg aria-hidden="true" viewBox="0 0 100 100" style="width: 40px; height: 40px"><circle cx="50" cy="50" r="47.5" fill="#003399" stroke="#FFCC00" stroke-width="3"/><g fill="#FFCC00"><polygon points="81.00,43.80 82.47,47.98 86.90,48.08 83.38,50.77 84.64,55.02 81.00,52.50 77.36,55.02 78.62,50.77 75.10,48.08 79.53,47.98"/><polygon points="76.85,59.30 78.32,63.48 82.74,63.58 79.22,66.27 80.49,70.52 76.85,68.00 73.20,70.52 74.47,66.27 70.95,63.58 75.38,63.48"/><polygon points="65.50,70.65 66.97,74.82 71.40,74.93 67.88,77.62 69.14,81.86 65.50,79.35 61.86,81.86 63.12,77.62 59.60,74.93 64.03,74.82"/><polygon points="50.00,74.80 51.47,78.98 55.90,79.08 52.38,81.77 53.64,86.02 50.00,83.50 46.36,86.02 47.62,81.77 44.10,79.08 48.53,78.98"/><polygon points="34.50,70.65 35.97,74.82 40.40,74.93 36.88,77.62 38.14,81.86 34.50,79.35 30.86,81.86 32.12,77.62 28.60,74.93 33.03,74.82"/><polygon points="23.15,59.30 24.62,63.48 29.05,63.58 25.53,66.27 26.80,70.52 23.15,68.00 19.51,70.52 20.78,66.27 17.26,63.58 21.68,63.48"/><polygon points="19.00,43.80 20.47,47.98 24.90,48.08 21.38,50.77 22.64,55.02 19.00,52.50 15.36,55.02 16.62,50.77 13.10,48.08 17.53,47.98"/><polygon points="23.15,28.30 24.62,32.48 29.05,32.58 25.53,35.27 26.80,39.52 23.15,37.00 19.51,39.52 20.78,35.27 17.26,32.58 21.68,32.48"/><polygon points="34.50,16.95 35.97,21.13 40.40,21.24 36.88,23.93 38.14,28.17 34.50,25.65 30.86,28.17 32.12,23.93 28.60,21.24 33.03,21.13"/><polygon points="50.00,12.80 51.47,16.98 55.90,17.08 52.38,19.77 53.64,24.02 50.00,21.50 46.36,24.02 47.62,19.77 44.10,17.08 48.53,16.98"/><polygon points="65.50,16.95 66.97,21.13 71.40,21.24 67.88,23.93 69.14,28.17 65.50,25.65 61.86,28.17 63.12,23.93 59.60,21.24 64.03,21.13"/><polygon points="76.85,28.30 78.32,32.48 82.74,32.58 79.22,35.27 80.49,39.52 76.85,37.00 73.20,39.52 74.47,35.27 70.95,32.58 75.38,32.48"/></g></svg><span style="font-family: 'League Spartan', 'Sora', Arial, sans-serif; font-weight: 800; font-size: 27px; line-height: 1; padding-top: 4px; color: #FFFFFF">EUROPEAN<span style="color: #FFCC00; margin-left: 6px">SME</span></span></span>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.65; max-width: 340px">Europe’s magazine for small business owners: practical news, guides and stories to help you start, run and grow across the 27 member states.</p>
+</div>
+<sc-for list="{{footCols}}" as="fc" hint-placeholder-count="4">
+<nav aria-label="{{fc.title}}" style="flex: 1 1 150px; display: flex; flex-direction: column; gap: 11px; font-size: 14px">
+<h3 style="margin: 0 0 4px; font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">{{fc.title}}</h3>
+<sc-for list="{{fc.links}}" as="fl" hint-placeholder-count="4">
+<a href="{{fl.href}}" class="esme-flink" style="color: #C8CDD6; text-decoration: none">{{fl.label}}</a>
+</sc-for>
+</nav>
+</sc-for>
+</div>
+<div style="margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(200,205,214,.18); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 13px">
+<span>© 2026 European SME Business Magazine. All rights reserved.</span>
+<span style="display: flex; gap: 18px"><a href="https://europeansme.eu/about-us/" class="esme-flink" style="color: #C8CDD6">About</a><a href="https://europeansme.eu/contact-us/" class="esme-flink" style="color: #C8CDD6">Contact</a><a href="https://europeansme.eu/subscription/" class="esme-flink" style="color: #C8CDD6">Subscribe</a></span>
+</div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#0B2A6B","options":["#0B2A6B","#003399","#14213D","#1E3A8A"]},"$preview":{"width":1440,"height":4000}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { posts: null, failed: false }; }
+  componentDidMount() {
+    ESME.detectCountry().then((g) => { if (g) this.setState({ geo: g }); });
+    ESME.loadPosts().then((posts) => this.setState({ posts })).catch(() => this.setState({ failed: true }));
+  }
+  renderVals() {
+    const { posts, failed } = this.state;
+    const geo = this.state.geo, geoC = geo ? ESME.country(geo.code) : null;
+    const base = {
+      hasGeo: !!geoC, noGeo: !geoC, geoC: geoC || {}, geoHub: geoC ? 'Country.dc.html?country=' + geoC.code : 'Countries.dc.html',
+      geoNote: geo && geo.source === 'cloudflare' ? 'Based on your location' : geo && geo.source === 'browser' ? 'Based on your browser settings' : 'Your country',
+      geoNews: geoC ? ESME.news.filter((n) => n.country === geoC.code || n.country === 'eu').slice(0, 3) : [],
+      ycEyebrow: geoC ? 'Your country · ' + geoC.name : 'Your country',
+      ycTitle: geoC ? 'Your business news, close to home' : 'Get daily news for where you do business',
+      ycText: geoC ? 'We opened ' + geoC.name + ' for you. Switch any time — we remember your choice on this device.' : 'Pick a country to see its small-business news, trending stories, rules and funding in one place.',
+      tickNews: ESME.icon('news', 16), tickTrend: ESME.icon('trend', 16), tickTools: ESME.icon('calendar', 16), arrowIcon: ESME.icon('arrow', 18), pinIcon: ESME.icon('pin', 14),
+      pickFlag: geoC ? geoC.flag : 'https://flagcdn.com/w80/eu.png', pickLabel: geoC ? 'Switch country…' : 'Choose any of the 27 countries…',
+      allCountries: ESME.countries.slice().sort((x, y) => x.name.localeCompare(y.name)),
+      goCountry: (e) => { const v = e.target.value; if (!v) return; ESME.setCountry(v); location.href = 'Country.dc.html?country=' + v; },
+      hubs: ESME.countries.filter((c) => c.tier === 'hub').map((c) => {
+        const n = ESME.news.filter((x) => x.country === c.code && x.at > Date.now() - 7 * 86400000).length;
+        return { name: c.name, flag: c.flag, href: 'Country.dc.html?country=' + c.code, pick: () => ESME.setCountry(c.code), you: geoC && geoC.code === c.code ? 'is-you' : '', meta: n + ' stories this week' };
+      }),
+      others: ESME.countries.filter((c) => c.tier !== 'hub').map((c) => ({ name: c.name, flag: c.flag, href: 'Country.dc.html?country=' + c.code, pick: () => ESME.setCountry(c.code) })),
+      othersCount: String(ESME.countries.filter((c) => c.tier !== 'hub').length),
+      brand: this.props.brand ?? '#0B2A6B',
+      tools: ESME.tools.map((t) => Object.assign({}, t, { iconSvg: ESME.icon(t.icon, 24), tint: t.tone + '14', isNew: !!t.isNew })),
+      footCols: [
+        { title: 'Explore', links: [{ label: 'Latest articles', href: 'Articles.dc.html' }, { label: 'SME tools', href: 'Tools.dc.html' }, { label: 'Country guides', href: 'Countries.dc.html' }, { label: 'Compliance calendar', href: 'Compliance.dc.html' }, { label: 'Newsletter', href: '#newsletter' }] },
+        { title: 'Sections', links: Object.keys(ESME.sections).map((k) => ({ label: ESME.sections[k].label, href: 'Articles.dc.html?section=' + k })) },
+        { title: 'Company', links: [{ label: 'About European SME', href: 'https://europeansme.eu/about-us/' }, { label: 'Our authors', href: 'https://europeansme.eu/our-authors/' }, { label: 'Contact us', href: 'https://europeansme.eu/contact-us/' }] },
+        { title: 'Work with us', links: [{ label: 'Advertise with us', href: 'https://europeansme.eu/contact-us/' }, { label: 'Become a partner', href: 'https://europeansme.eu/contact-us/' }, { label: 'Submit a story', href: 'https://europeansme.eu/contact-us/' }, { label: 'Subscribe', href: 'https://europeansme.eu/subscription/' }] }
+      ],
+      loading: !posts && !failed, failed, ready: !!posts,
+      skeletons: [1, 2, 3, 4], latest: []
+    };
+    if (!posts) return base;
+    const S = ESME.sections;
+    const used = {};
+    const sec = (k) => (p) => p.section === k;
+    const latest = posts.slice(0, 5);
+    const feature = ESME.take(posts, (p) => !!p.imgLarge, 1, used)[0];
+    const featureSide = ESME.take(posts, null, 4, used);
+    const policy = ESME.take(posts, sec('policy'), 4, used);
+    const col = (k) => {
+      const items = ESME.take(posts, sec(k), 3, used);
+      return { name: S[k].label, color: S[k].color, href: 'Articles.dc.html?section=' + k, lead: items[0], more: items.slice(1) };
+    };
+    const columns = ['growth', 'money', 'marketing'].map(col).filter((c) => c.lead);
+    const duo = ['people', 'tech'].map((k) => ({ eyebrow: k === 'people' ? 'Leadership' : 'Digital', name: S[k].label, color: S[k].color, href: 'Articles.dc.html?section=' + k, items: ESME.take(posts, sec(k), 2, used) })).filter((d) => d.items.length);
+    const chips = Object.keys(S).map((k) => ({ label: S[k].label, href: 'Articles.dc.html?section=' + k }));
+    const popular = ESME.take(posts, sec('funding'), 2, used).concat(ESME.take(posts, null, 5, used)).slice(0, 5).map((post, i) => ({ n: String(i + 1), post }));
+    return Object.assign(base, { chips, latest, feature, featureSide, policy, columns, duo, popular, total: posts.length });
+  }
+}
+</script>
+</body>
+</html>

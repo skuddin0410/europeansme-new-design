@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>European SME — Mobile homepage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
+</style>
+</helmet>
+<div style="width: 390px; height: 3000px; overflow: hidden; box-sizing: border-box; font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; color: #14181D; background: #FFFFFF">
+
+<header style="background: #0B2A6B">
+<div style="padding: 10px 12px; display: flex; align-items: center; justify-content: space-between">
+<button type="button" aria-label="Open menu" style="width: 44px; height: 44px; border: none; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+</button>
+<a href="#" aria-label="European SME home" style="font-size: 21px; font-weight: 800; color: #FFFFFF; text-decoration: none">EUROPEAN <span style="color: #FFC72C">SME</span></a>
+<button type="button" aria-label="Search" style="width: 44px; height: 44px; border: none; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+</button>
+</div>
+</header>
+<nav aria-label="Sections" style="border-bottom: 1px solid #E4E7EC; overflow-x: auto; white-space: nowrap; padding: 10px 16px; display: flex; gap: 8px">
+<a href="#" style="flex: none; padding: 9px 14px; border-radius: 999px; background: #14181D; color: #FFFFFF; font-size: 13px; font-weight: 600">Top stories</a>
+<a href="#" style="flex: none; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4E7EC; font-size: 13px; font-weight: 600">Funding</a>
+<a href="#" style="flex: none; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4E7EC; font-size: 13px; font-weight: 600">Growth</a>
+<a href="#" style="flex: none; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4E7EC; font-size: 13px; font-weight: 600">Money</a>
+<a href="#" style="flex: none; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4E7EC; font-size: 13px; font-weight: 600">Marketing</a>
+</nav>
+
+<main style="padding: 20px 16px 0">
+<article style="display: flex; flex-direction: column; gap: 10px">
+<dc-import name="Cover" bg="#0B2A6B" fg="#FFFFFF" ring="#FFC72C" glyph="€" size="34cqw" ratio="4 / 3" radius="8px" hint-size="358px,268px"></dc-import>
+<span style="margin-top: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #1E4FA8">Cover story · Funding &amp; Grants</span>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 31px; line-height: 1.12; font-weight: 600"><a href="#">How to Access EU Grants and Funding for Your SME</a></h1>
+<p style="margin: 0; font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5; color: #5A6470">Billions of euros in EU grants go unclaimed every year because too few small businesses know how to find them.</p>
+<span style="font-size: 13px; color: #5A6470">By SK Uddin · 13 April 2026</span>
+</article>
+
+<div style="margin-top: 24px; display: flex; flex-direction: column">
+<sc-for list="{{secondary}}" as="s" hint-placeholder-count="2">
+<article style="display: flex; gap: 14px; padding: 16px 0; border-top: 1px solid #E4E7EC">
+<div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<span style="font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #1E4FA8">{{s.cat}}</span>
+<a href="#" style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; line-height: 1.25; font-weight: 600">{{s.title}}</a>
+</div>
+<div style="flex: 0 0 104px">
+<dc-import name="Cover" bg="{{s.bg}}" fg="{{s.fg}}" ring="{{s.ring}}" glyph="{{s.glyph}}" size="{{s.size}}" ratio="1 / 1" hint-size="104px,104px"></dc-import>
+</div>
+</article>
+</sc-for>
+</div>
+
+<section aria-label="Newsletter" style="margin: 16px -16px 0; background: #0B2A6B; padding: 28px 20px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFC72C">The Weekly Briefing</span>
+<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 25px; line-height: 1.2; font-weight: 600; color: #FFFFFF">Europe's small-business week, in one email.</h2>
+<label for="nl-m" style="font-size: 13px; font-weight: 600; color: #FFFFFF">Work email</label>
+<input id="nl-m" type="email" placeholder="name@company.eu" style="height: 50px; padding: 0 14px; border-radius: 8px; border: none; font-size: 16px; font-family: inherit">
+<button type="button" style="height: 50px; border-radius: 8px; border: none; background: #FFC72C; color: #101828; font-weight: 700; font-size: 15px; font-family: inherit">Subscribe free</button>
+</section>
+
+<section aria-label="Latest" style="margin-top: 28px">
+<div class="esme-rule" style=" display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Latest</h2>
+<a href="#" style="font-size: 13px; font-weight: 600; color: #1E4FA8">All</a>
+</div>
+<sc-for list="{{latest}}" as="l" hint-placeholder-count="4">
+<div style="padding: 14px 0; border-bottom: 1px solid #E4E7EC; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #1E4FA8">{{l.cat}} · <span style="color: #5A6470">13 Apr</span></span>
+<a href="#" style="font-size: 16px; font-weight: 600; line-height: 1.35">{{l.title}}</a>
+</div>
+</sc-for>
+</section>
+
+<section aria-label="EU Policy and Compliance" style="margin-top: 32px">
+<div class="esme-rule" style=" margin-bottom: 16px">
+<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: 600">EU Policy &amp; Compliance</h2>
+</div>
+<div style="display: flex; gap: 14px; overflow-x: auto; margin-right: -16px; padding-right: 16px">
+<sc-for list="{{policy}}" as="p" hint-placeholder-count="3">
+<article style="flex: 0 0 240px; display: flex; flex-direction: column; gap: 8px">
+<dc-import name="Cover" bg="{{p.bg}}" fg="{{p.fg}}" ring="{{p.ring}}" glyph="{{p.glyph}}" size="{{p.size}}" ratio="4 / 3" hint-size="240px,180px"></dc-import>
+<a href="#" style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; line-height: 1.25; font-weight: 600">{{p.title}}</a>
+</article>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="Most read" style="margin-top: 32px; background: #F5F7FA; border-radius: 10px; padding: 20px">
+<h2 style="margin: 0 0 4px; font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Most read</h2>
+<ol style="list-style: none; margin: 0; padding: 0">
+<sc-for list="{{mostRead}}" as="r" hint-placeholder-count="4">
+<li style="display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #E4E7EC">
+<span aria-hidden="true" style="flex: 0 0 22px; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 26px; font-weight: 600; line-height: 1; color: #1E4FA8">{{r.n}}</span>
+<a href="#" style="font-size: 15px; font-weight: 600; line-height: 1.35">{{r.title}}</a>
+</li>
+</sc-for>
+</ol>
+</section>
+</main>
+
+<footer style="margin-top: 36px; background: #101828; color: #C9D3EA; padding: 32px 20px; display: flex; flex-direction: column; gap: 18px">
+<span style="font-size: 20px; font-weight: 800; color: #FFFFFF">EUROPEAN <span style="color: #FFC72C">SME</span></span>
+<p style="margin: 0; font-size: 14px; line-height: 1.6">Ideas, innovation and leadership shaping small and medium-sized businesses across Europe.</p>
+<nav aria-label="Legal" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; font-size: 14px">
+<a href="#" style="color: #C9D3EA">About us</a>
+<a href="#" style="color: #C9D3EA">Contact</a>
+<a href="#" style="color: #C9D3EA">Advertise</a>
+<a href="#" style="color: #C9D3EA">Write for us</a>
+<a href="#" style="color: #C9D3EA">Privacy policy</a>
+<a href="#" style="color: #C9D3EA">Imprint</a>
+</nav>
+<span style="font-size: 12px; padding-top: 14px; border-top: 1px solid rgba(201,211,234,0.25)">© 2026 European SME</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":3000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const T = {
+      navy: { bg: '#0B2A6B', fg: '#FFFFFF', ring: '#FFC72C' },
+      blue: { bg: '#1E4FA8', fg: '#FFFFFF', ring: '#FFC72C' },
+      pale: { bg: '#E6ECF7', fg: '#0B2A6B', ring: '#1E4FA8' },
+      ink:  { bg: '#14181D', fg: '#FFFFFF', ring: '#FFC72C' }
+    };
+    const s = (title, cat, tone, glyph, size) => Object.assign({ title, cat, glyph, size }, T[tone]);
+    return {
+      secondary: [
+        s('VAT Across EU Borders: What Every SME Needs to Know', 'EU Policy', 'pale', 'VAT', '32cqw'),
+        s('Writing EU Grant Applications That Actually Win', 'Funding', 'blue', 'Apply', '26cqw')
+      ],
+      latest: [
+        { cat: 'Growth', title: 'Supply Chain Resilience: Building a Business That Can Absorb Shocks' },
+        { cat: 'Money', title: 'SEPA Direct Debit: The Cash Flow Tool Most SMEs Are Not Using' },
+        { cat: 'Growth', title: 'Franchising in Europe: Opportunities and Pitfalls' },
+        { cat: 'Marketing', title: 'Building a Brand Identity That Does Commercial Work' }
+      ],
+      policy: [
+        s('The European Accessibility Act: What SMEs Must Do Now', '', 'navy', 'EAA', '28cqw'),
+        s('GDPR in Practice: A Clear Guide for European SMEs', '', 'ink', 'GDPR', '24cqw'),
+        s('EU State Aid Rules: A Practical Guide for SMEs', '', 'blue', '§', '42cqw')
+      ],
+      mostRead: [
+        { n: '1', title: 'How to Write a Business Plan That Actually Gets Funded' },
+        { n: '2', title: 'Digital Transformation on a Budget: A Practical Playbook for SMEs' },
+        { n: '3', title: 'Managing Hybrid and Remote Teams: Leadership in a Distributed World' },
+        { n: '4', title: 'Hiring Your First Senior Leaders: Getting the Transition Right' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

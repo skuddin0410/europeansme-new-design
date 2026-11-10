@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>European SME — EU Funding Finder</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; color: #14181D; background: #FFFFFF">
+<dc-import name="SiteHeader" active="Funding" hint-size="100%,118px"></dc-import>
+
+<main>
+<section aria-label="Introduction" style="background: #0B2A6B; color: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 48px 32px 44px; display: flex; flex-direction: column; gap: 14px">
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #C9D3EA; display: flex; gap: 8px"><a href="Tools.dc.html" style="color: #C9D3EA">Tools</a><span aria-hidden="true">/</span><span>EU Funding Finder</span></nav>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 48px; line-height: 1.08; font-weight: 600">EU Funding Finder</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #C9D3EA; max-width: 720px">EU grants, loans and equity open to small and medium-sized businesses. Filter by what you need; every listing links to the official call and shows when we last checked it.</p>
+<span style="font-size: 13px; color: #FFC72C; font-weight: 600">Compiled by the European SME Editorial Team · Confirm every call on the official site</span>
+</div>
+</section>
+
+<div style="max-width: 1240px; margin: 0 auto; padding: 40px 32px 64px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<aside aria-label="Filters" style="flex: 0 1 300px; min-width: 260px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span id="f-type" style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Type of funding</span>
+<div role="group" aria-labelledby="f-type" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{typeChips}}" as="c" hint-placeholder-count="4">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.border}}">{{c.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span id="f-theme" style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">What it's for</span>
+<div role="group" aria-labelledby="f-theme" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{themeChips}}" as="c" hint-placeholder-count="5">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.border}}">{{c.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-country" style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Your country</label>
+<select id="f-country" style="height: 46px; border-radius: 8px; border: 1px solid #C7CFDC; padding: 0 12px; font-size: 15px; font-family: inherit; background: #FFFFFF">
+<option>All EU member states</option>
+<option>Austria</option><option>Belgium</option><option>France</option><option>Germany</option><option>Ireland</option><option>Italy</option><option>Netherlands</option><option>Poland</option><option>Spain</option><option>Sweden</option>
+</select>
+<span style="font-size: 13px; line-height: 1.5; color: #5A6470">EU-wide programmes are open in every member state. National schemes for your country appear here once added.</span>
+</div>
+<div style="background: #F5F7FA; border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 14px; font-weight: 700">Not sure where to start?</span>
+<span style="font-size: 14px; line-height: 1.5; color: #5A6470">Most SME funding needs you to meet the EU SME definition first.</span>
+<a href="Checkers.dc.html" style="font-size: 14px; font-weight: 700; color: #1E4FA8">Check: am I an SME? →</a>
+</div>
+</aside>
+
+<section aria-label="Results" style="flex: 1 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
+<h2 style="margin: 0; font-size: 18px; font-weight: 700">{{countLabel}}</h2>
+<button type="button" onClick="{{reset}}" style="border: none; background: transparent; color: #1E4FA8; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; min-height: 44px">Clear filters</button>
+</div>
+<sc-for list="{{results}}" as="r" hint-placeholder-count="5">
+<article style="border: 1px solid #E4E7EC; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: flex-start">
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-size: 12px; font-weight: 600; color: #5A6470">{{r.body}}</span>
+<h3 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; line-height: 1.2; font-weight: 600">{{r.name}}</h3>
+</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<span style="font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: #E6ECF7; color: #0B2A6B">{{r.typeLabel}}</span>
+<span style="font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: #F5F7FA; color: #1A2233">{{r.themeLabel}}</span>
+</div>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #1A2233">{{r.desc}}</p>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px 24px">
+<div><dt style="font-size: 12px; font-weight: 700; color: #5A6470">How much</dt><dd style="margin: 2px 0 0; font-size: 14px; font-weight: 600">{{r.amount}}</dd></div>
+<div><dt style="font-size: 12px; font-weight: 700; color: #5A6470">Who can apply</dt><dd style="margin: 2px 0 0; font-size: 14px; font-weight: 600">{{r.who}}</dd></div>
+<div><dt style="font-size: 12px; font-weight: 700; color: #5A6470">Next deadline</dt><dd style="margin: 2px 0 0; font-size: 14px; font-weight: 600; color: #0B2A6B">{{r.deadline}}</dd></div>
+</dl>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 12px; border-top: 1px solid #EEF1F5">
+<span style="font-size: 12px; color: #5A6470">Source: {{r.source}}</span>
+<div style="display: flex; gap: 10px">
+<a href="{{r.guide}}" style="font-size: 14px; font-weight: 700; padding: 10px 16px; border-radius: 8px; border: 1px solid #0B2A6B; color: #0B2A6B">Our guide</a>
+<a href="{{r.url}}" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 700; padding: 10px 16px; border-radius: 8px; background: #0B2A6B; color: #FFFFFF">Official site ↗</a>
+</div>
+</div>
+</article>
+</sc-for>
+<sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 32px; border: 1px dashed #C7CFDC; border-radius: 12px; text-align: center; color: #5A6470; font-size: 15px">No programmes match these filters yet. Try another type, or get funding alerts by email.</div>
+</sc-if>
+<p style="margin: 8px 0 0; font-size: 13px; line-height: 1.6; color: #5A6470">Amounts and rates are summarised from the official programme pages. Always check the current call text before applying — conditions change between calls.</p>
+</section>
+</div>
+</main>
+
+<footer style="background: #101828; color: #C9D3EA">
+<div style="max-width: 1240px; margin: 0 auto; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px">
+<span>© 2026 European SME · General guidance, not financial or legal advice.</span>
+<a href="Tools.dc.html" style="color: #FFFFFF; font-weight: 600">All tools</a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2300}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { type: 'all', theme: 'all' }; }
+  renderVals() {
+    const { type, theme } = this.state;
+    const types = [['all', 'All'], ['grant', 'Grants'], ['loan', 'Loans & guarantees'], ['equity', 'Equity']];
+    const themes = [['all', 'All'], ['innovation', 'Innovation & R&D'], ['digital', 'Digital'], ['green', 'Green'], ['ip', 'IP protection']];
+    const chip = (key, label, current, field) => {
+      const on = key === current;
+      return { label, on: on ? 'true' : 'false', bg: on ? '#0B2A6B' : '#FFFFFF', fg: on ? '#FFFFFF' : '#14181D', border: on ? '#0B2A6B' : '#C7CFDC', pick: () => this.setState({ [field]: key }) };
+    };
+    const all = [
+      { name: 'EIC Accelerator', url: 'https://eic.ec.europa.eu/', guide: 'Post.dc.html?slug=writing-eu-grant-applications-that-actually-win', body: 'European Innovation Council · Horizon Europe', types: ['grant', 'equity'], typeLabel: 'Grant + equity', theme: 'innovation', themeLabel: 'Innovation', desc: 'Blended finance for start-ups and SMEs with breakthrough, high-risk innovations ready to scale.', amount: 'Grant just under €2.5m (70%), plus optional €1m–€10m equity', who: 'Single SME or start-up', deadline: 'Regular cut-offs — see official site', source: 'eic.ec.europa.eu' },
+      { name: 'EIC Transition', url: 'https://eic.ec.europa.eu/', guide: 'Post.dc.html?slug=writing-eu-grant-applications-that-actually-win', body: 'European Innovation Council · Horizon Europe', types: ['grant'], typeLabel: 'Grant', theme: 'innovation', themeLabel: 'Innovation', desc: 'Takes a validated technology from the lab towards a market-ready product and business case.', amount: 'Just under €2.5m, funded at 100%', who: 'Single applicant or 2–5 partners', deadline: 'See the current call', source: 'eic.ec.europa.eu' },
+      { name: 'Digital Europe Programme', url: 'https://digital-strategy.ec.europa.eu/', guide: 'Post.dc.html?slug=digital-transformation-on-a-budget-a-practical-playbook-for-smes', body: 'European Commission', types: ['grant'], typeLabel: 'Grant', theme: 'digital', themeLabel: 'Digital', desc: 'Co-funds projects in AI, cybersecurity, advanced digital skills and digital adoption.', amount: '50% of costs, or 75% for SMEs in SME Support Actions', who: 'Consortia', deadline: 'See the current call', source: 'digital-strategy.ec.europa.eu' },
+      { name: 'InvestEU via your bank', url: 'https://youreurope.europa.eu/business/finance-funding/', guide: 'Post.dc.html?slug=beyond-the-bank-loan-financing-options-for-growing-smes', body: 'European Investment Bank Group', types: ['loan', 'equity'], typeLabel: 'Loans, guarantees, equity', theme: 'all', themeLabel: 'Any growth project', desc: 'EU-backed guarantees help local banks and funds lend to and invest in SMEs. You apply through a partner bank, not to the EU.', amount: 'Set by the lender', who: 'SMEs in any member state', deadline: 'Open — no deadline', source: 'Access2Finance' },
+      { name: 'Eurostars', url: 'https://www.eurekanetwork.org/', guide: 'Post.dc.html?slug=how-to-access-eu-grants-and-funding-for-your-sme', body: 'EUREKA & Horizon Europe', types: ['grant'], typeLabel: 'Grant', theme: 'innovation', themeLabel: 'Innovation', desc: 'Funds international R&D projects led by innovative SMEs working with partners in other countries.', amount: 'Set by each national funding body', who: 'Consortia led by an R&D-performing SME', deadline: 'See the current call', source: 'eurekanetwork.org' },
+      { name: 'SME Fund for intellectual property', url: 'https://www.euipo.europa.eu/', guide: 'Post.dc.html?slug=protecting-your-intellectual-property-across-europe', body: 'EUIPO', types: ['grant'], typeLabel: 'Voucher', theme: 'ip', themeLabel: 'IP protection', desc: 'Vouchers that reimburse part of the fees for registering trade marks, designs and patents.', amount: 'Fixed-value vouchers — see current call', who: 'EU-based SMEs', deadline: 'See the current call', source: 'euipo.europa.eu' },
+      { name: 'LIFE Programme', url: 'https://cinea.ec.europa.eu/', guide: 'Post.dc.html?slug=going-green-how-sustainability-can-cut-costs-and-win-business', body: 'European Commission (CINEA)', types: ['grant'], typeLabel: 'Grant', theme: 'green', themeLabel: 'Green', desc: 'Grants for projects on the environment, nature, climate action and the clean-energy transition.', amount: 'Varies by call', who: 'Companies and organisations, often in partnership', deadline: 'See the current call', source: 'cinea.ec.europa.eu' }
+    ];
+    const results = all.filter((p) => (type === 'all' || p.types.includes(type)) && (theme === 'all' || p.theme === theme || p.theme === 'all'));
+    return {
+      typeChips: types.map(([k, l]) => chip(k, l, type, 'type')),
+      themeChips: themes.map(([k, l]) => chip(k, l, theme, 'theme')),
+      results,
+      empty: results.length === 0,
+      countLabel: results.length === 1 ? '1 programme' : results.length + ' programmes',
+      reset: () => this.setState({ type: 'all', theme: 'all' })
+    };
+  }
+}
+</script>
+</body>
+</html>

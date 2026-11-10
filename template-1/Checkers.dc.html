@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>European SME — Checkers</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; color: #14181D; background: #FFFFFF">
+<dc-import name="SiteHeader" active="Tools" hint-size="100%,118px"></dc-import>
+
+<main>
+<section aria-label="Introduction" style="max-width: 1240px; margin: 0 auto; padding: 44px 32px 12px; display: flex; flex-direction: column; gap: 12px">
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #5A6470; display: flex; gap: 8px"><a href="Tools.dc.html" style="color: #5A6470">Tools</a><span aria-hidden="true">/</span><span>Checkers</span></nav>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 46px; line-height: 1.08; font-weight: 600">Quick checks</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #5A6470; max-width: 680px">Two questions every growing European business needs answered: are you an SME in the EU's eyes, and do you have to send e-invoices?</p>
+</section>
+
+<div style="max-width: 1240px; margin: 0 auto; padding: 28px 32px 64px; display: flex; flex-wrap: wrap; gap: 32px; align-items: stretch">
+
+<section aria-labelledby="sme-h" style="flex: 1 1 520px; min-width: 0; border: 1px solid #E4E7EC; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #1E4FA8">Eligibility</span>
+<h2 id="sme-h" style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 28px; font-weight: 600">Am I an SME?</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5A6470">Based on the EU SME definition (Commission Recommendation 2003/361/EC) — the test most EU funding uses.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="sme-staff" style="font-size: 14px; font-weight: 600">Staff (FTE)</label>
+<input id="sme-staff" type="number" min="0" value="{{staff}}" onInput="{{setStaff}}" style="height: 50px; padding: 0 12px; border-radius: 8px; border: 1px solid #C7CFDC; font-size: 17px; font-family: inherit; min-width: 0">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="sme-turn" style="font-size: 14px; font-weight: 600">Turnover (€m)</label>
+<input id="sme-turn" type="number" min="0" step="0.1" value="{{turnover}}" onInput="{{setTurnover}}" style="height: 50px; padding: 0 12px; border-radius: 8px; border: 1px solid #C7CFDC; font-size: 17px; font-family: inherit; min-width: 0">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="sme-bal" style="font-size: 14px; font-weight: 600">Balance sheet (€m)</label>
+<input id="sme-bal" type="number" min="0" step="0.1" value="{{balance}}" onInput="{{setBalance}}" style="height: 50px; padding: 0 12px; border-radius: 8px; border: 1px solid #C7CFDC; font-size: 17px; font-family: inherit; min-width: 0">
+</div>
+</div>
+<div style="border-radius: 10px; padding: 22px; background: {{resultBg}}; color: {{resultFg}}; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85">Result</span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 30px; font-weight: 600; line-height: 1.15">{{resultTitle}}</span>
+<span style="font-size: 15px; line-height: 1.55">{{resultText}}</span>
+</div>
+<table style="width: 100%; border-collapse: collapse; font-size: 14px">
+<caption style="text-align: left; font-size: 13px; font-weight: 700; padding-bottom: 8px">EU thresholds</caption>
+<thead><tr style="text-align: left; color: #5A6470"><th scope="col" style="padding: 8px 0; border-bottom: 1px solid #E4E7EC">Category</th><th scope="col" style="padding: 8px 0; border-bottom: 1px solid #E4E7EC">Staff</th><th scope="col" style="padding: 8px 0; border-bottom: 1px solid #E4E7EC">Turnover or balance sheet</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 0; border-bottom: 1px solid #EEF1F5; font-weight: 600">Medium</td><td style="padding: 8px 0; border-bottom: 1px solid #EEF1F5">&lt; 250</td><td style="padding: 8px 0; border-bottom: 1px solid #EEF1F5">≤ €50m or ≤ €43m</td></tr>
+<tr><td style="padding: 8px 0; border-bottom: 1px solid #EEF1F5; font-weight: 600">Small</td><td style="padding: 8px 0; border-bottom: 1px solid #EEF1F5">&lt; 50</td><td style="padding: 8px 0; border-bottom: 1px solid #EEF1F5">≤ €10m or ≤ €10m</td></tr>
+<tr><td style="padding: 8px 0; font-weight: 600">Micro</td><td style="padding: 8px 0">&lt; 10</td><td style="padding: 8px 0">≤ €2m or ≤ €2m</td></tr>
+</tbody>
+</table>
+<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #5A6470">Include partner and linked companies in your figures — owning, or being owned by, another business can change the result. Thresholds follow the EU SME definition (Commission Recommendation 2003/361/EC).</p>
+</section>
+
+<section aria-labelledby="ei-h" style="flex: 1 1 520px; min-width: 0; border: 1px solid #E4E7EC; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #1E4FA8">Invoicing</span>
+<h2 id="ei-h" style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 28px; font-weight: 600">Do I have to send e-invoices?</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5A6470">Domestic B2B rules differ by country until EU-wide cross-border e-invoicing arrives on 1 July 2030.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="ei-country" style="font-size: 14px; font-weight: 600">Where is your business established?</label>
+<select id="ei-country" value="{{eiCountry}}" onChange="{{setEiCountry}}" style="height: 50px; padding: 0 12px; border-radius: 8px; border: 1px solid #C7CFDC; font-size: 16px; font-family: inherit; background: #FFFFFF">
+<sc-for list="{{eiList}}" as="c" hint-placeholder-count="10">
+<option value="{{c.code}}">{{c.name}}</option>
+</sc-for>
+</select>
+<sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12.5px; font-weight: 600; color: #0F7B6C">✓ {{geoNote}}</span></sc-if>
+</div>
+<div style="border-radius: 10px; border: 1px solid #E4E7EC; overflow: hidden">
+<div style="padding: 14px 20px; background: {{eiBg}}; color: {{eiFg}}; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase">{{eiStatus}}</div>
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; font-weight: 600; line-height: 1.3">{{eiHeadline}}</span>
+<span style="font-size: 15px; line-height: 1.55; color: #1A2233">{{eiDetail}}</span>
+<span style="font-size: 13px; color: #5A6470">Format / network: <strong style="color: #14181D">{{eiFormat}}</strong></span>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
+<span style="font-size: 12px; color: #5A6470">Source: national tax authority — confirm before relying on it</span>
+<a href="Compliance.dc.html" style="font-size: 14px; font-weight: 700; color: #1E4FA8">See all deadlines →</a>
+</div>
+</section>
+</div>
+</main>
+
+<footer style="background: #101828; color: #C9D3EA">
+<div style="max-width: 1240px; margin: 0 auto; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px">
+<span>© 2026 European SME · General guidance, not legal or tax advice.</span>
+<a href="Tools.dc.html" style="color: #FFFFFF; font-weight: 600">All tools</a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { staff: '35', turnover: '6', balance: '4', ei: 'DE' }; }
+  componentDidMount() {
+    ESME.detectCountry().then((g) => {
+      const v = g && g.code.toUpperCase();
+      if (v && document.querySelector('#ei-country option[value="' + v + '"]')) this.setState({ ei: v, geoFrom: g.source });
+    });
+  }
+  renderVals() {
+    const s = this.state;
+    const st = parseFloat(s.staff) || 0, t = parseFloat(s.turnover) || 0, b = parseFloat(s.balance) || 0;
+    let title, text, bg = '#E6ECF7', fg = '#0B2A6B';
+    if (st < 10 && (t <= 2 || b <= 2)) { title = 'Micro-enterprise'; text = 'You meet the EU definition of a micro-enterprise and can apply to SME-targeted programmes.'; }
+    else if (st < 50 && (t <= 10 || b <= 10)) { title = 'Small enterprise'; text = 'You meet the EU definition of a small enterprise and can apply to SME-targeted programmes.'; }
+    else if (st < 250 && (t <= 50 || b <= 43)) { title = 'Medium-sized enterprise'; text = 'You meet the EU definition of a medium-sized enterprise and can apply to SME-targeted programmes.'; }
+    else { title = 'Not an SME'; text = 'You are above the SME thresholds. Some rules now give companies just above them — “small mid-caps” — lighter treatment.'; bg = '#FFF4D6'; fg = '#5A4100'; }
+    const C = {
+      BE: ['Belgium', 'now', 'Mandatory for all VAT-registered businesses', 'B2B e-invoicing has applied since 1 January 2026. E-reporting of invoice data follows in 2028.', 'Peppol (EN 16931)'],
+      HR: ['Croatia', 'now', 'Mandatory since January 2026', 'Domestic B2B e-invoicing and fiscalisation apply.', 'National system (EN 16931)'],
+      FR: ['France', 'phasing', 'Phasing in from September 2026', 'All businesses must be able to receive e-invoices; the duty to issue them is phased by company size through 2027.', 'Certified platforms (Factur-X, UBL, CII)'],
+      DE: ['Germany', 'phasing', 'Receive now — issuing phased from 2027', 'Every business must be able to receive structured e-invoices since 1 January 2025. The duty to issue them expands from 2027 and applies more broadly from 2028.', 'XRechnung or ZUGFeRD'],
+      IE: ['Ireland', 'planned', 'Planned from November 2028', 'Domestic B2B e-invoicing is planned in line with the EU’s VAT in the Digital Age package.', 'To be confirmed'],
+      IT: ['Italy', 'now', 'Mandatory since 2019', 'All domestic B2B invoices go through the national exchange system.', 'SdI (FatturaPA XML)'],
+      NL: ['Netherlands', 'planned', 'Proposed from 1 January 2030', 'E-invoicing is mandatory for invoices to government (B2G); B2B is proposed for 2030, subject to consultation.', 'Peppol (proposed)'],
+      PL: ['Poland', 'now', 'Mandatory — micro-businesses from 2027', 'KSeF became mandatory for large taxpayers in February 2026 and most others in April 2026. Micro-enterprises join in January 2027.', 'KSeF (national platform)'],
+      RO: ['Romania', 'now', 'Mandatory for VAT-registered businesses', 'Domestic B2B invoices go through the national e-Factura system.', 'RO e-Factura'],
+      ES: ['Spain', 'planned', 'Legislated — start date not yet fixed', 'B2B e-invoicing has been legislated; the start date depends on implementing rules.', 'To be confirmed']
+    };
+    const row = C[s.ei] || C.DE;
+    const tone = { now: ['Mandatory now', '#0B2A6B', '#FFFFFF'], phasing: ['Phasing in', '#FFC72C', '#101828'], planned: ['Planned', '#E6ECF7', '#0B2A6B'] }[row[1]];
+    return {
+      hasGeo: !!this.state.geoFrom, geoNote: this.state.geoFrom === 'cloudflare' ? 'Set from your location' : this.state.geoFrom === 'browser' ? 'Set from your browser settings' : 'Set to your country',
+      staff: s.staff, turnover: s.turnover, balance: s.balance,
+      setStaff: (e) => this.setState({ staff: e.target.value }),
+      setTurnover: (e) => this.setState({ turnover: e.target.value }),
+      setBalance: (e) => this.setState({ balance: e.target.value }),
+      resultTitle: title, resultText: text, resultBg: bg, resultFg: fg,
+      eiList: Object.keys(C).map((k) => ({ code: k, name: C[k][0] })),
+      eiCountry: s.ei,
+      setEiCountry: (e) => this.setState({ ei: e.target.value }),
+      eiStatus: tone[0], eiBg: tone[1], eiFg: tone[2],
+      eiHeadline: row[2], eiDetail: row[3], eiFormat: row[4]
+    };
+  }
+}
+</script>
+</body>
+</html>

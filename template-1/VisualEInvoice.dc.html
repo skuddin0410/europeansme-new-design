@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>E-invoicing map graphic</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>body{margin:0}</style>
+</helmet>
+<figure role="img" aria-label="Status of domestic B2B e-invoicing in selected EU countries: mandatory in Italy, Romania, Belgium, Croatia and Poland; phasing in in France and Germany; planned in Slovakia, Ireland, Spain and the Netherlands; mandatory for cross-border trade EU-wide from July 2030." style="margin: 0; width: 100%; aspect-ratio: 16 / 9; container-type: inline-size; background: #F5F7FA; border-radius: {{radius}}; overflow: hidden; font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; color: #14181D; box-sizing: border-box">
+<div style="width: 100%; height: 100%; box-sizing: border-box; padding: 4.5cqw 5cqw 3.5cqw; display: flex; flex-direction: column; gap: 2.4cqw">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 2cqw">
+<div style="display: flex; flex-direction: column; gap: 0.8cqw">
+<span style="font-size: 1.5cqw; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #1E4FA8">B2B e-invoicing</span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 4.2cqw; line-height: 1.1; font-weight: 600">Who must e-invoice, and when</span>
+</div>
+<div style="display: flex; gap: 1.6cqw; font-size: 1.4cqw; font-weight: 600">
+<span style="display: flex; align-items: center; gap: 0.6cqw"><span aria-hidden="true" style="width: 1.6cqw; height: 1.6cqw; border-radius: 0.3cqw; background: #0B2A6B"></span>Mandatory</span>
+<span style="display: flex; align-items: center; gap: 0.6cqw"><span aria-hidden="true" style="width: 1.6cqw; height: 1.6cqw; border-radius: 0.3cqw; background: #FFC72C"></span>Phasing in</span>
+<span style="display: flex; align-items: center; gap: 0.6cqw"><span aria-hidden="true" style="width: 1.6cqw; height: 1.6cqw; border-radius: 0.3cqw; background: #C9D6EE"></span>Planned</span>
+</div>
+</div>
+<div style="flex: 1 1 auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 1.2cqw">
+<sc-for list="{{tiles}}" as="t" hint-placeholder-count="12">
+<div style="border-radius: 0.8cqw; background: {{t.bg}}; color: {{t.fg}}; padding: 1.4cqw; display: flex; flex-direction: column; justify-content: space-between; min-height: 0">
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 4.2cqw; font-weight: 600; line-height: 1">{{t.code}}</span>
+<span style="display: flex; flex-direction: column; gap: 0.3cqw">
+<span style="font-size: 1.45cqw; font-weight: 700">{{t.name}}</span>
+<span style="font-size: 1.3cqw; opacity: 0.9">{{t.when}}</span>
+</span>
+</div>
+</sc-for>
+</div>
+<span style="font-size: 1.25cqw; color: #5A6470">Domestic B2B mandates, selected countries. Sources: national tax authorities; Council Directive on VAT in the Digital Age (ViDA). Checked 7 Nov 2026.</span>
+</div>
+</figure>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"radius":{"editor":"text","default":"8px"},"$preview":{"width":960,"height":540}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const M = { bg: '#0B2A6B', fg: '#FFFFFF' };
+    const P = { bg: '#FFC72C', fg: '#101828' };
+    const L = { bg: '#C9D6EE', fg: '#0B2A6B' };
+    const t = (code, name, when, s) => Object.assign({ code, name, when }, s);
+    return {
+      radius: this.props.radius ?? '8px',
+      tiles: [
+        t('IT', 'Italy', 'Since 2019', M),
+        t('RO', 'Romania', 'In force', M),
+        t('BE', 'Belgium', 'Since Jan 2026', M),
+        t('HR', 'Croatia', 'Since Jan 2026', M),
+        t('PL', 'Poland', '2026 · micro 2027', M),
+        t('FR', 'France', 'Sep 2026 → 2027', P),
+        t('DE', 'Germany', 'Issue 2027 → 2028', P),
+        t('SK', 'Slovakia', 'From 2027', L),
+        t('IE', 'Ireland', 'Nov 2028', L),
+        t('ES', 'Spain', 'Date to be set', L),
+        t('NL', 'Netherlands', 'Proposed 2030', L),
+        Object.assign(t('EU', 'All 27', 'Cross-border Jul 2030', { bg: '#14181D', fg: '#FFC72C' }))
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

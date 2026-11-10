@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>European SME — EU Compliance Calendar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#14181D;text-decoration:none}
+a:hover{color:#1E4FA8}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; color: #14181D; background: #FFFFFF">
+<dc-import name="SiteHeader" active="Policy" hint-size="100%,118px"></dc-import>
+
+<main>
+<section aria-label="Introduction" style="background: #14181D; color: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 48px 32px 44px; display: flex; flex-wrap: wrap; gap: 24px 48px; justify-content: space-between; align-items: flex-end">
+<div style="flex: 1 1 560px; display: flex; flex-direction: column; gap: 14px">
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #C9D3EA; display: flex; gap: 8px"><a href="Tools.dc.html" style="color: #C9D3EA">Tools</a><span aria-hidden="true">/</span><span>EU Compliance Calendar</span></nav>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 48px; line-height: 1.08; font-weight: 600">EU Compliance Calendar</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #C9D3EA; max-width: 680px">The rule changes coming for small businesses, in date order. Filter to the countries you trade in and add deadlines to your own calendar.</p>
+</div>
+<div style="flex: 0 1 320px; border: 1px solid rgba(201,211,234,0.3); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13px; font-weight: 700; color: #FFC72C">Compiled by the European SME Editorial Team</span>
+<span style="font-size: 13px; line-height: 1.5; color: #C9D3EA">Dates come from the official sources listed. Always confirm before you act.</span>
+</div>
+</div>
+</section>
+
+<div style="max-width: 1240px; margin: 0 auto; padding: 32px 32px 0; display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center">
+<div role="group" aria-label="Where" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{placeChips}}" as="c" hint-placeholder-count="6">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.border}}">{{c.label}}</button>
+</sc-for>
+</div>
+<sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}"><span style="flex-basis: 100%; order: 3; font-size: 13px; font-weight: 600; color: #0F7B6C">✓ {{geoNote}}</span></sc-if>
+<div role="group" aria-label="Topic" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{topicChips}}" as="c" hint-placeholder-count="3">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="min-height: 40px; padding: 0 14px; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.border}}">{{c.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="max-width: 1240px; margin: 0 auto; padding: 28px 32px 64px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<section aria-label="Upcoming deadlines" style="flex: 1 1 640px; min-width: 0">
+<h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Coming up · {{countLabel}}</h2>
+<ol style="list-style: none; margin: 0; padding: 0">
+<sc-for list="{{events}}" as="e" hint-placeholder-count="6">
+<li style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E4E7EC">
+<div style="flex: 0 0 96px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 30px; font-weight: 600; line-height: 1; color: #0B2A6B">{{e.day}}</span>
+<span style="font-size: 14px; font-weight: 700">{{e.month}}</span>
+</div>
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #E6ECF7; color: #0B2A6B">{{e.where}}</span>
+<span style="font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #F5F7FA; color: #1A2233">{{e.topicLabel}}</span>
+</div>
+<h3 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; line-height: 1.25; font-weight: 600">{{e.title}}</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #1A2233"><strong style="font-weight: 700">What to do: </strong>{{e.todo}}</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<span style="font-size: 12px; color: #5A6470">Source: {{e.source}}</span>
+<sc-if value="{{e.hasDate}}" hint-placeholder-val="{{ true }}"><a href="{{e.ics}}" download="{{e.file}}" style="min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1px solid #0B2A6B; background: #FFFFFF; color: #0B2A6B; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none">Add to calendar</a></sc-if><sc-if value="{{e.noDate}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; font-weight: 600; color: #5A6470">Date to be confirmed</span></sc-if>
+</div>
+</div>
+</li>
+</sc-for>
+</ol>
+<sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+<div style="margin-top: 16px; padding: 28px; border: 1px dashed #C7CFDC; border-radius: 12px; text-align: center; color: #5A6470; font-size: 15px">No upcoming deadlines for this filter. See “Already in force” for rules that apply now.</div>
+</sc-if>
+</section>
+
+<aside aria-label="Already in force" style="flex: 0 1 360px; min-width: 280px; display: flex; flex-direction: column; gap: 24px">
+<div style="background: #F5F7FA; border-radius: 12px; padding: 24px">
+<h2 style="margin: 0 0 6px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">Already in force</h2>
+<sc-for list="{{inForce}}" as="f" hint-placeholder-count="5">
+<div style="padding: 14px 0; border-bottom: 1px solid #E4E7EC; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; font-weight: 700; color: #1E4FA8">{{f.since}}</span>
+<span style="font-size: 15px; font-weight: 600; line-height: 1.4">{{f.title}}</span>
+</div>
+</sc-for>
+</div>
+<form action="https://europeansme.eu/subscription/" method="get" target="_blank" style="background: #0B2A6B; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; line-height: 1.25; font-weight: 600; color: #FFFFFF">Get a reminder 30 days before each deadline.</span>
+<label for="cc-email" style="font-size: 13px; font-weight: 600; color: #C9D3EA">Work email</label>
+<input id="cc-email" name="email" type="email" required placeholder="name@company.eu" style="height: 48px; padding: 0 14px; border-radius: 8px; border: none; font-size: 16px; font-family: inherit">
+<button type="submit" style="height: 48px; border-radius: 8px; border: none; background: #FFC72C; color: #101828; font-weight: 700; font-size: 15px; font-family: inherit; cursor: pointer">Get compliance alerts</button>
+</form>
+<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #5A6470">General guidance, not legal advice. Dates can move — the AI Act's high-risk deadlines were postponed in July 2026 — so always check the source.</p>
+</aside>
+</div>
+</main>
+
+<footer style="background: #101828; color: #C9D3EA">
+<div style="max-width: 1240px; margin: 0 auto; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px">
+<span>© 2026 European SME · Spotted an outdated date? <a href="https://europeansme.eu/contact-us/" style="color: #FFFFFF; text-decoration: underline">Tell our editor</a></span>
+<a href="Tools.dc.html" style="color: #FFFFFF; font-weight: 600">All tools</a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { place: 'all', topic: 'all' }; }
+  componentDidMount() {
+    ESME.detectCountry().then((g) => {
+      const v = g && g.code.toUpperCase();
+      if (v && ['BE','FR','DE','PL'].indexOf(v) > -1) this.setState({ place: v, geoFrom: g.source });
+    });
+  }
+  renderVals() {
+    const { place, topic } = this.state;
+    const places = [['all', 'All'], ['EU', 'EU-wide'], ['BE', 'Belgium'], ['FR', 'France'], ['DE', 'Germany'], ['PL', 'Poland']];
+    const topics = [['all', 'All topics'], ['einv', 'E-invoicing & VAT'], ['ai', 'AI Act']];
+    const chip = (key, label, current, field) => {
+      const on = key === current;
+      return { label, on: on ? 'true' : 'false', bg: on ? '#0B2A6B' : '#FFFFFF', fg: on ? '#FFFFFF' : '#14181D', border: on ? '#0B2A6B' : '#C7CFDC', pick: () => this.setState({ [field]: key }) };
+    };
+    const ev = [
+      { day: '1', month: 'Jan 2027', p: 'PL', where: 'Poland', t: 'einv', topicLabel: 'E-invoicing', title: 'Micro-enterprises join Poland’s KSeF e-invoicing system', todo: 'If you are a Polish micro-business, choose KSeF-ready invoicing software and test it before year end.', source: 'Ministry of Finance (KSeF)' },
+      { day: '1', month: 'Jan 2027', p: 'DE', where: 'Germany', t: 'einv', topicLabel: 'E-invoicing', title: 'Germany: obligation to issue B2B e-invoices begins, phased by size', todo: 'Check whether your turnover puts you in the first phase; move to XRechnung or ZUGFeRD formats.', source: 'Federal Ministry of Finance' },
+      { day: 'TBC', month: '2027', p: 'FR', where: 'France', t: 'einv', topicLabel: 'E-invoicing', title: 'France: SMEs and micro-businesses must start issuing e-invoices', todo: 'Pick a certified platform and connect it to your accounting before the date applies to you.', source: 'impots.gouv.fr' },
+      { day: '2', month: 'Dec 2027', p: 'EU', where: 'EU-wide', t: 'ai', topicLabel: 'AI Act', title: 'High-risk AI rules apply (e.g. hiring, credit scoring, education)', todo: 'List the AI tools you use; if any screen candidates or score customers, ask your vendor how they will comply.', source: 'Regulation (EU) 2026/1744' },
+      { day: 'TBC', month: '2028', p: 'BE', where: 'Belgium', t: 'einv', topicLabel: 'E-reporting', title: 'Belgium: e-reporting of invoice data to the tax authority starts', todo: 'Confirm your Peppol provider will handle reporting, not just delivery.', source: 'FPS Finance' },
+      { day: '2', month: 'Aug 2028', p: 'EU', where: 'EU-wide', t: 'ai', topicLabel: 'AI Act', title: 'High-risk AI in regulated products (machinery, medical devices) applies', todo: 'Manufacturers: align AI conformity work with your existing CE-marking process.', source: 'Regulation (EU) 2026/1744' },
+      { day: '1', month: 'Jul 2030', p: 'EU', where: 'EU-wide', t: 'einv', topicLabel: 'VAT in the Digital Age', title: 'Cross-border B2B e-invoicing and digital reporting become mandatory', todo: 'Plan now: any business selling to other member states will need structured e-invoices.', source: 'ViDA package (Council Directive)' }
+    ];
+    const MON = { Jan: '01', Feb: '02', Mar: '03', Apr: '04', May: '05', Jun: '06', Jul: '07', Aug: '08', Sep: '09', Oct: '10', Nov: '11', Dec: '12' };
+    ev.forEach((e, i) => {
+      const m = /^([A-Z][a-z]{2}) (\d{4})$/.exec(e.month);
+      e.hasDate = /^\d+$/.test(e.day) && !!m;
+      e.noDate = !e.hasDate;
+      if (e.hasDate) {
+        const d = m[2] + MON[m[1]] + String(e.day).padStart(2, '0');
+        const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//European SME//Compliance Calendar//EN', 'BEGIN:VEVENT', 'UID:esme-' + d + '-' + i + '@europeansme.eu', 'DTSTAMP:20261109T000000Z', 'DTSTART;VALUE=DATE:' + d, 'SUMMARY:' + e.title.replace(/[,;]/g, ' '), 'DESCRIPTION:' + ('What to do: ' + e.todo + ' Source: ' + e.source).replace(/[,;]/g, ' '), 'BEGIN:VALARM', 'TRIGGER:-P30D', 'ACTION:DISPLAY', 'DESCRIPTION:Reminder', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+        e.ics = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+        e.file = 'european-sme-' + d + '.ics';
+      }
+    });
+    const events = ev.filter((e) => (place === 'all' || e.p === place) && (topic === 'all' || e.t === topic));
+    return {
+      hasGeo: !!this.state.geoFrom && this.state.place !== 'all', geoNote: 'Showing your country first — choose “All” to see every deadline',
+      placeChips: places.map(([k, l]) => chip(k, l, place, 'place')),
+      topicChips: topics.map(([k, l]) => chip(k, l, topic, 'topic')),
+      events,
+      empty: events.length === 0,
+      countLabel: events.length === 1 ? '1 deadline' : events.length + ' deadlines',
+      inForce: [
+        { since: 'Since 2 Aug 2026 · EU', title: 'AI Act transparency duties (e.g. labelling AI-generated content, chatbots)' },
+        { since: 'Since 1 Jan 2026 · Belgium', title: 'Mandatory B2B e-invoicing via Peppol' },
+        { since: 'Since Feb–Apr 2026 · Poland', title: 'KSeF e-invoicing for large and most other businesses' },
+        { since: 'Since 28 Jun 2025 · EU', title: 'European Accessibility Act for products and online services' },
+        { since: 'Since 1 Jan 2025 · Germany', title: 'All businesses must be able to receive e-invoices' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
