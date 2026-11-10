@@ -25,35 +25,54 @@ a:hover{color:#1E4FA8}
 .esme-toolcard{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .esme-toolcard:hover{transform:translateY(-4px);border-color:#D0D5DD !important;color:#14181D !important;text-decoration:none}
 .esme-flink:hover{color:#FFFFFF !important}
-.yc-ticks{list-style:none;margin:4px 0 6px;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:#344054}
-.yc-ticks li{display:flex;align-items:center;gap:10px}
-.yc-ticks li span{flex:none;width:28px;height:28px;border-radius:8px;background:#E6ECF7;color:#003399;display:flex;align-items:center;justify-content:center}
-.yc-pick{position:relative;display:flex;align-items:center;gap:10px;max-width:420px;height:52px;padding:0 8px 0 12px;border:1.5px solid #D0D5DD;border-radius:12px;background:#FFFFFF;box-shadow:0 1px 2px rgba(16,24,40,.05);transition:border-color .15s ease,box-shadow .15s ease;cursor:pointer}
-.yc-pick:hover,.yc-pick:focus-within{border-color:#003399;box-shadow:0 0 0 4px rgba(0,51,153,.1)}
-.yc-pick-flag img{display:block;width:26px;height:18px;object-fit:cover;border-radius:3px;box-shadow:0 0 0 1px rgba(16,24,40,.12)}
-.yc-pick select{flex:1;min-width:0;height:100%;border:none;outline:none;background:transparent;font-family:'Sora',sans-serif;font-size:14.5px;font-weight:600;color:#14181D;cursor:pointer;appearance:none;-webkit-appearance:none}
-.yc-pick-go{flex:none;width:36px;height:36px;border-radius:9px;background:#003399;color:#FFFFFF;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.yc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.yc-card{position:relative;display:flex;align-items:center;gap:14px;padding:14px 14px 14px 14px;background:#FFFFFF;border:1px solid #EAECF0;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px -18px rgba(16,24,40,.3);color:#14181D;text-decoration:none;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-.yc-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#FFCC00;transform:scaleY(0);transition:transform .2s ease}
-.yc-card:hover{transform:translateY(-3px);border-color:#D0D5DD;box-shadow:0 2px 4px rgba(16,24,40,.05),0 18px 32px -18px rgba(16,24,40,.4);color:#14181D;text-decoration:none}
-.yc-card:hover::before{transform:scaleY(1)}
-.yc-card.is-you{border-color:#0F7B6C;box-shadow:0 0 0 3px rgba(15,123,108,.14)}
-.yc-flag{flex:none;width:54px;height:36px;object-fit:cover;border-radius:6px;box-shadow:0 0 0 1px rgba(16,24,40,.12),0 4px 10px -4px rgba(16,24,40,.35)}
-.yc-live{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:#12B76A;box-shadow:0 0 0 3px rgba(18,183,106,.18);vertical-align:1px}
-.yc-go{flex:none;width:32px;height:32px;border-radius:50%;background:#F2F4F7;color:#344054;display:flex;align-items:center;justify-content:center;transition:background-color .2s ease,color .2s ease,transform .2s ease}
-.yc-go svg{width:16px;height:16px}
-.yc-card:hover .yc-go{background:#FFCC00;color:#101828;transform:translateX(2px)}
-.yc-mini{display:flex;flex-wrap:wrap;gap:6px}
-.yc-mini a{display:block;width:30px;height:30px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #FFFFFF,0 0 0 3px #E4E7EC;transition:transform .15s ease,box-shadow .15s ease}
-.yc-mini a:hover{transform:translateY(-2px) scale(1.12);box-shadow:0 0 0 2px #FFFFFF,0 0 0 3px #003399}
-.yc-mini img{width:30px;height:30px;object-fit:cover;display:block}
-.yc-you{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;padding:20px;border-radius:16px;background:radial-gradient(500px 240px at 100% 0%, rgba(255,204,0,.14), transparent 60%),linear-gradient(135deg,#0B1B33,#003399)}
-.yc-you-flag{width:64px;height:43px;object-fit:cover;border-radius:7px;box-shadow:0 0 0 1px rgba(255,255,255,.3)}
-.yc-news{display:flex;align-items:center;gap:14px;padding:11px 14px;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);text-decoration:none;transition:background-color .15s ease}
-.yc-news:hover{background:rgba(255,255,255,.12);text-decoration:none}
-.yc-time{flex:none;font-family:'Sora',sans-serif;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.75)}
+.yc-wrap{max-width:1232px;margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center}
+.yc-left{display:flex;flex-direction:column;gap:18px}
+.yc-ticks{list-style:none;margin:2px 0 4px;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:#344054}
+.yc-ticks li{display:flex;align-items:center;gap:12px}
+.yc-ticks li span{flex:none;width:30px;height:30px;border-radius:9px;background:#E6ECF7;color:#003399;display:flex;align-items:center;justify-content:center}
+.yc-sub{display:flex;flex-direction:column;gap:10px;margin-top:6px;padding:20px;border-radius:16px;background:#FFFFFF;border:1px solid #EAECF0;box-shadow:0 1px 2px rgba(16,24,40,.04),0 12px 28px -20px rgba(16,24,40,.35)}
+.yc-sub-l{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#101828}
+.yc-sub-row{display:flex;gap:10px;flex-wrap:wrap}
+.yc-sub-in{flex:1 1 220px;display:flex;align-items:center;gap:8px;height:50px;padding:0 14px;border:1.5px solid #D0D5DD;border-radius:10px;background:#FFFFFF;transition:border-color .15s ease,box-shadow .15s ease}
+.yc-sub-in:focus-within{border-color:#003399;box-shadow:0 0 0 4px rgba(0,51,153,.1)}
+.yc-sub-in input{flex:1;min-width:0;border:none;outline:none;background:transparent;font-size:15px;color:#14181D}
+.yc-sub-note{display:flex;align-items:center;gap:6px;font-size:12.5px;color:#5A6470}
+.yc-box{display:flex;flex-direction:column;gap:16px;padding:24px;border-radius:22px;color:#FFFFFF;background:radial-gradient(520px 260px at 100% 0%, rgba(255,204,0,.16), transparent 60%),radial-gradient(420px 260px at 0% 100%, rgba(47,91,183,.45), transparent 60%),linear-gradient(140deg,#0B1B33,#0B2A6B 70%,#003399);box-shadow:0 30px 60px -36px rgba(11,27,51,.8),inset 0 0 0 1px rgba(255,255,255,.06)}
+.yc-box-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.yc-box-flag{width:60px;height:40px;object-fit:cover;border-radius:7px;box-shadow:0 0 0 2px rgba(255,255,255,.25),0 10px 20px -10px rgba(0,0,0,.6)}
+.yc-live-l{display:inline-flex;align-items:center;gap:8px;font-family:'Sora',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9FE1CB}
+.yc-pulse{width:8px;height:8px;border-radius:50%;background:#32D583;box-shadow:0 0 0 0 rgba(50,213,131,.6);animation:yc-p 1.8s infinite}
+@keyframes yc-p{0%{box-shadow:0 0 0 0 rgba(50,213,131,.55)}70%{box-shadow:0 0 0 9px rgba(50,213,131,0)}100%{box-shadow:0 0 0 0 rgba(50,213,131,0)}}
+.yc-box-t{font-family:'Sora',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.yc-stats{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.06);font-size:13px;color:rgba(255,255,255,.75)}
+.yc-stats strong{color:#FFFFFF;font-family:'Sora',sans-serif}
+.yc-sep{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.35)}
+.yc-top{display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:16px;background:#FFFFFF;color:#14181D;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.yc-top:hover{transform:translateY(-2px);box-shadow:0 18px 30px -18px rgba(0,0,0,.6);color:#14181D;text-decoration:none}
+.yc-top-k{display:flex;align-items:center;gap:8px;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#344054}
+.yc-top-t{font-family:'Sora',sans-serif;font-size:19px;font-weight:700;line-height:1.3;letter-spacing:-.01em}
+.yc-top:hover .yc-top-t{color:#1E4FA8}
+.yc-top-m{font-size:14px;line-height:1.55;color:#5A6470}
+.yc-top-f{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:#5A6470;padding-top:8px;border-top:1px solid #EAECF0}
+.yc-top .yc-sample{background:#FFF4D6;color:#6B4E00}
+.yc-ic{flex:none;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.yc-ic svg{width:18px;height:18px}
+.yc-row{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#FFFFFF;text-decoration:none;transition:background-color .15s ease,border-color .15s ease}
+.yc-row:hover{background:rgba(255,255,255,.1);border-color:rgba(255,204,0,.45);color:#FFFFFF;text-decoration:none}
+.yc-row .yc-ic{background:rgba(255,255,255,.1) !important;color:#FFCC00 !important}
+.yc-row-k{font-family:'Sora',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.yc-row-t{font-family:'Sora',sans-serif;font-size:14.5px;font-weight:600;line-height:1.35}
+.yc-row-time{flex:none;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;color:rgba(255,255,255,.65)}
+.yc-chev{flex:none;color:rgba(255,255,255,.4);display:flex;transition:transform .15s ease,color .15s ease}
+.yc-row:hover .yc-chev{color:#FFCC00;transform:translateX(2px)}
+.yc-box-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;padding-top:6px;border-top:1px solid rgba(255,255,255,.1);font-family:'Sora',sans-serif;font-size:13px;font-weight:600}
+.yc-box-foot a{color:#FFFFFF;text-decoration:none}
+.yc-box-foot a:hover{color:#FFCC00;text-decoration:none}
+.yc-switch{margin-left:auto;display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);cursor:pointer}
+.yc-switch select{border:none;outline:none;background:transparent;color:#FFFFFF;font-family:'Sora',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer}
+.yc-switch option{color:#14181D}
 .yc-sample{flex:none;padding:2px 6px;border-radius:4px;background:rgba(255,204,0,.18);color:#FFCC00;font-family:'Sora',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+@media (max-width: 960px){.yc-wrap{grid-template-columns:1fr;gap:32px;padding:48px 24px}}
 </style>
 </helmet>
 <div style="color: #14181D; background: #FFFFFF; min-height: 100vh">
@@ -96,64 +115,71 @@ a:hover{color:#1E4FA8}
 
 
 <section aria-label="Your country" class="yc" style="background: radial-gradient(700px 360px at 100% 0%, rgba(255,204,0,.10), transparent 60%), linear-gradient(180deg, #F5F7FA, #FFFFFF); border-bottom: 1px solid #EAECF0">
-<div style="max-width: 1232px; margin: 0 auto; padding: 52px 32px 48px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: stretch">
+<div class="yc-wrap">
 
-<div style="flex: 1 1 330px; display: flex; flex-direction: column; gap: 16px; justify-content: center">
+<div class="yc-left">
 <p class="esme-eyebrow">{{ycEyebrow}}</p>
-<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(26px, 2.8vw, 34px); line-height: 1.15; font-weight: 700; letter-spacing: -0.025em">{{ycTitle}}</h2>
-<p style="margin: 0; font-size: 15.5px; line-height: 1.65; color: #5A6470; max-width: 420px">{{ycText}}</p>
+<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(28px, 3vw, 38px); line-height: 1.12; font-weight: 700; letter-spacing: -0.025em">{{ycTitle}}</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A6470">{{ycText}}</p>
 <ul class="yc-ticks">
 <li><span dc-html="{{tickNews}}"></span>Daily news, only when something happens</li>
 <li><span dc-html="{{tickTrend}}"></span>What other owners are reading this week</li>
-<li><span dc-html="{{tickTools}}"></span>Rules, deadlines and funding for that country</li>
+<li><span dc-html="{{tickTools}}"></span>Rules, deadlines and funding for your country</li>
 </ul>
-<label class="yc-pick">
-<span class="yc-pick-flag"><img src="{{pickFlag}}" alt="" width="26" height="18"></span>
-<select aria-label="Choose any of the 27 EU countries" onChange="{{goCountry}}">
-<option value="">{{pickLabel}}</option>
-<sc-for list="{{allCountries}}" as="o" hint-placeholder-count="27"><option value="{{o.code}}">{{o.name}}</option></sc-for>
-</select>
-<span aria-hidden="true" class="yc-pick-go" dc-html="{{arrowIcon}}"></span>
-</label>
+<form class="yc-sub" action="https://europeansme.eu/subscription/" method="get" target="_blank">
+<label for="yc-email" class="yc-sub-l">{{subLabel}}</label>
+<div class="yc-sub-row">
+<span class="yc-sub-in"><span dc-html="{{mailIcon}}" style="color: #98A2B3; display: flex"></span><input id="yc-email" name="email" type="email" required placeholder="you@yourbusiness.eu"></span>
+<button type="submit" class="esme-btn esme-btn--gold esme-btn--lg">Subscribe free</button>
+</div>
+<span class="yc-sub-note"><span dc-html="{{checkIcon}}" style="color: #12B76A; display: flex"></span>Free weekly briefing · No spam · Unsubscribe any time</span>
+</form>
 </div>
 
-<div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
-<sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}">
-<div class="yc-you">
-<img src="{{geoC.flag}}" alt="" width="64" height="43" class="yc-you-flag">
-<div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
-<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #9FE1CB"><span dc-html="{{pinIcon}}"></span>{{geoNote}}</span>
-<strong style="font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700; color: #FFFFFF">Today in {{geoC.name}}</strong>
+<div class="yc-box">
+<div class="yc-box-head">
+<img src="{{boxFlag}}" alt="" width="60" height="40" class="yc-box-flag">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 5px">
+<span class="yc-live-l"><span class="yc-pulse"></span>{{boxKicker}}</span>
+<strong class="yc-box-t">{{boxTitle}}</strong>
 </div>
-<a class="esme-btn esme-btn--gold" href="{{geoHub}}">Open the {{geoC.name}} hub →</a>
-<div style="flex-basis: 100%; display: flex; flex-direction: column; gap: 8px">
-<sc-for list="{{geoNews}}" as="n" hint-placeholder-count="3">
-<a class="yc-news" href="{{n.href}}"><span class="yc-time">{{n.time}}</span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Sora', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #FFCC00">{{n.sectionLabel}} · {{n.countryName}}</span><span style="font-family: 'Sora', sans-serif; font-size: 14.5px; font-weight: 600; line-height: 1.35; color: #FFFFFF">{{n.title}}</span></span><span class="yc-sample">Sample</span></a>
-</sc-for>
+<a class="esme-btn esme-btn--gold" href="{{boxHub}}">{{boxCta}} <span aria-hidden="true">→</span></a>
 </div>
+<div class="yc-stats">
+<span><strong>{{statToday}}</strong> today</span><span class="yc-sep"></span><span><strong>{{statWeek}}</strong> this week</span><span class="yc-sep"></span><span>Trending: <strong style="color: #FFCC00">{{statTrend}}</strong></span>
 </div>
+<sc-if value="{{hasTop}}" hint-placeholder-val="{{ true }}">
+<a class="yc-top" href="{{top.href}}">
+<span class="yc-top-k"><span class="yc-ic" style="background: {{top.tint}}; color: {{top.color}}" dc-html="{{top.icon}}"></span>Top story · {{top.sectionLabel}}</span>
+<span class="yc-top-t">{{top.title}}</span>
+<span class="yc-top-m">{{top.excerpt}}</span>
+<span class="yc-top-f"><span>{{top.dayLabel}} · {{top.time}} · {{top.countryName}}</span><span class="yc-sample">Sample</span></span>
+</a>
 </sc-if>
-
-<div class="yc-grid">
-<sc-for list="{{hubs}}" as="h" hint-placeholder-count="6">
-<a class="yc-card {{h.you}}" href="{{h.href}}" onClick="{{h.pick}}">
-<img src="{{h.flag}}" alt="" width="54" height="36" class="yc-flag" loading="lazy">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{boxNews}}" as="n" hint-placeholder-count="3">
+<a class="yc-row" href="{{n.href}}">
+<span class="yc-ic" style="background: {{n.tint}}; color: {{n.color}}" dc-html="{{n.icon}}"></span>
 <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
-<strong style="font-family: 'Sora', sans-serif; font-size: 15.5px; font-weight: 700">{{h.name}}</strong>
-<span style="font-size: 12.5px; color: #5A6470"><span class="yc-live"></span>{{h.meta}}</span>
+<span class="yc-row-k">{{n.sectionLabel}} · {{n.countryName}}</span>
+<span class="yc-row-t">{{n.title}}</span>
 </span>
-<span class="yc-go" aria-hidden="true" dc-html="{{arrowIcon}}"></span>
+<span class="yc-row-time">{{n.time}}</span>
+<span class="yc-chev" aria-hidden="true" dc-html="{{chevIcon}}"></span>
 </a>
 </sc-for>
 </div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px">
-<span style="font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6470">+ {{othersCount}} more</span>
-<div class="yc-mini">
-<sc-for list="{{others}}" as="o" hint-placeholder-count="21"><a href="{{o.href}}" onClick="{{o.pick}}" title="{{o.name}}" aria-label="{{o.name}}"><img src="{{o.flag}}" alt="" width="30" height="30" loading="lazy"></a></sc-for>
+<div class="yc-box-foot">
+<a href="{{boxNewsHref}}">All {{boxWhere}} news →</a>
+<a href="{{boxRulesHref}}">Deadlines for {{boxWhere}} →</a>
+<label class="yc-switch"><span dc-html="{{pinIcon}}" style="display: flex"></span>
+<select aria-label="Change country" onChange="{{goCountry}}">
+<option value="">{{pickLabel}}</option>
+<sc-for list="{{allCountries}}" as="o" hint-placeholder-count="27"><option value="{{o.code}}">{{o.name}}</option></sc-for>
+</select></label>
 </div>
-<a href="Countries.dc.html" style="margin-left: auto; font-family: 'Sora', sans-serif; font-size: 13.5px; font-weight: 700; color: #1E4FA8">All 27 countries →</a>
 </div>
-</div>
+
 </div>
 </section>
 <sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
@@ -350,20 +376,33 @@ class Component extends DCLogic {
     const base = {
       hasGeo: !!geoC, noGeo: !geoC, geoC: geoC || {}, geoHub: geoC ? 'Country.dc.html?country=' + geoC.code : 'Countries.dc.html',
       geoNote: geo && geo.source === 'cloudflare' ? 'Based on your location' : geo && geo.source === 'browser' ? 'Based on your browser settings' : 'Your country',
-      geoNews: geoC ? ESME.news.filter((n) => n.country === geoC.code || n.country === 'eu').slice(0, 3) : [],
+      ...(() => {
+        const code = geoC ? geoC.code : null;
+        const pool = ESME.news.filter((n) => !code || n.country === code || n.country === 'eu');
+        const deco = (n) => Object.assign({}, n, { icon: ESME.icon(n.section, 18), tint: n.color + '1A', dayLabel: ESME.dayLabel(n.at) });
+        const today = pool.filter((n) => ESME.dayLabel(n.at) === 'Today').length;
+        const week = pool.filter((n) => n.at > Date.now() - 7 * 86400000).length;
+        const counts = {}; pool.forEach((n) => { counts[n.sectionLabel] = (counts[n.sectionLabel] || 0) + 1; });
+        const trend = Object.keys(counts).sort((x, y) => counts[y] - counts[x])[0] || '';
+        const where = geoC ? geoC.name : 'Europe';
+        return {
+          top: pool[0] ? deco(pool[0]) : {}, hasTop: !!pool[0], boxNews: pool.slice(1, 4).map(deco),
+          boxFlag: geoC ? geoC.flag : 'https://flagcdn.com/w80/eu.png', boxWhere: where,
+          boxKicker: geoC ? (geo.source === 'cloudflare' ? 'Live · based on your location' : geo.source === 'browser' ? 'Live · from your browser settings' : 'Live · your country') : 'Live · EU-wide',
+          boxTitle: 'Today in ' + where, boxHub: geoC ? 'Country.dc.html?country=' + geoC.code : 'Countries.dc.html', boxCta: geoC ? 'Open ' + geoC.name + ' hub' : 'Choose your country',
+          statToday: String(today), statWeek: String(week), statTrend: trend,
+          boxNewsHref: 'Articles.dc.html?type=news' + (geoC ? '&country=' + geoC.code : ''), boxRulesHref: 'Compliance.dc.html' + (geoC ? '?country=' + geoC.code : ''),
+          subLabel: geoC ? 'Get ' + geoC.name + '’s SME news in your inbox' : 'Get Europe’s SME news in your inbox',
+          mailIcon: ESME.icon('news', 18), checkIcon: ESME.icon('check', 15), chevIcon: ESME.icon('arrow', 16)
+        };
+      })(),
       ycEyebrow: geoC ? 'Your country · ' + geoC.name : 'Your country',
-      ycTitle: geoC ? 'Your business news, close to home' : 'Get daily news for where you do business',
-      ycText: geoC ? 'We opened ' + geoC.name + ' for you. Switch any time — we remember your choice on this device.' : 'Pick a country to see its small-business news, trending stories, rules and funding in one place.',
-      tickNews: ESME.icon('news', 16), tickTrend: ESME.icon('trend', 16), tickTools: ESME.icon('calendar', 16), arrowIcon: ESME.icon('arrow', 18), pinIcon: ESME.icon('pin', 14),
-      pickFlag: geoC ? geoC.flag : 'https://flagcdn.com/w80/eu.png', pickLabel: geoC ? 'Switch country…' : 'Choose any of the 27 countries…',
+      ycTitle: geoC ? 'Your business news, close to home' : 'Business news for where you work',
+      ycText: geoC ? 'We opened ' + geoC.name + ' for you, based on where you are. The news, rules and funding below are picked for businesses there.' : 'Daily small-business news, rules and funding — country by country, across all 27 EU member states.',
+      tickNews: ESME.icon('news', 16), tickTrend: ESME.icon('trend', 16), tickTools: ESME.icon('calendar', 16), pinIcon: ESME.icon('pin', 14),
+      pickLabel: geoC ? geoC.name + ' · change' : 'Choose country',
       allCountries: ESME.countries.slice().sort((x, y) => x.name.localeCompare(y.name)),
       goCountry: (e) => { const v = e.target.value; if (!v) return; ESME.setCountry(v); location.href = 'Country.dc.html?country=' + v; },
-      hubs: ESME.countries.filter((c) => c.tier === 'hub').map((c) => {
-        const n = ESME.news.filter((x) => x.country === c.code && x.at > Date.now() - 7 * 86400000).length;
-        return { name: c.name, flag: c.flag, href: 'Country.dc.html?country=' + c.code, pick: () => ESME.setCountry(c.code), you: geoC && geoC.code === c.code ? 'is-you' : '', meta: n + ' stories this week' };
-      }),
-      others: ESME.countries.filter((c) => c.tier !== 'hub').map((c) => ({ name: c.name, flag: c.flag, href: 'Country.dc.html?country=' + c.code, pick: () => ESME.setCountry(c.code) })),
-      othersCount: String(ESME.countries.filter((c) => c.tier !== 'hub').length),
       brand: this.props.brand ?? '#0B2A6B',
       tools: ESME.tools.map((t) => Object.assign({}, t, { iconSvg: ESME.icon(t.icon, 24), tint: t.tone + '14', isNew: !!t.isNew })),
       footCols: [
