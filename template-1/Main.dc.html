@@ -11,7 +11,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
 <link rel="stylesheet" href="esme.css">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
 body{margin:0;background:#FFFFFF}
 a{color:#14181D;text-decoration:none}
@@ -25,35 +24,6 @@ a:hover{color:#1E4FA8}
 .esme-toolcard{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .esme-toolcard:hover{transform:translateY(-4px);border-color:#D0D5DD !important;color:#14181D !important;text-decoration:none}
 .esme-flink:hover{color:#FFFFFF !important}
-.yc-ticks{list-style:none;margin:4px 0 6px;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:#344054}
-.yc-ticks li{display:flex;align-items:center;gap:10px}
-.yc-ticks li span{flex:none;width:28px;height:28px;border-radius:8px;background:#E6ECF7;color:#003399;display:flex;align-items:center;justify-content:center}
-.yc-pick{position:relative;display:flex;align-items:center;gap:10px;max-width:420px;height:52px;padding:0 8px 0 12px;border:1.5px solid #D0D5DD;border-radius:12px;background:#FFFFFF;box-shadow:0 1px 2px rgba(16,24,40,.05);transition:border-color .15s ease,box-shadow .15s ease;cursor:pointer}
-.yc-pick:hover,.yc-pick:focus-within{border-color:#003399;box-shadow:0 0 0 4px rgba(0,51,153,.1)}
-.yc-pick-flag img{display:block;width:26px;height:18px;object-fit:cover;border-radius:3px;box-shadow:0 0 0 1px rgba(16,24,40,.12)}
-.yc-pick select{flex:1;min-width:0;height:100%;border:none;outline:none;background:transparent;font-family:'Sora',sans-serif;font-size:14.5px;font-weight:600;color:#14181D;cursor:pointer;appearance:none;-webkit-appearance:none}
-.yc-pick-go{flex:none;width:36px;height:36px;border-radius:9px;background:#003399;color:#FFFFFF;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.yc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.yc-card{position:relative;display:flex;align-items:center;gap:14px;padding:14px 14px 14px 14px;background:#FFFFFF;border:1px solid #EAECF0;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px -18px rgba(16,24,40,.3);color:#14181D;text-decoration:none;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-.yc-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#FFCC00;transform:scaleY(0);transition:transform .2s ease}
-.yc-card:hover{transform:translateY(-3px);border-color:#D0D5DD;box-shadow:0 2px 4px rgba(16,24,40,.05),0 18px 32px -18px rgba(16,24,40,.4);color:#14181D;text-decoration:none}
-.yc-card:hover::before{transform:scaleY(1)}
-.yc-card.is-you{border-color:#0F7B6C;box-shadow:0 0 0 3px rgba(15,123,108,.14)}
-.yc-flag{flex:none;width:54px;height:36px;object-fit:cover;border-radius:6px;box-shadow:0 0 0 1px rgba(16,24,40,.12),0 4px 10px -4px rgba(16,24,40,.35)}
-.yc-live{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:#12B76A;box-shadow:0 0 0 3px rgba(18,183,106,.18);vertical-align:1px}
-.yc-go{flex:none;width:32px;height:32px;border-radius:50%;background:#F2F4F7;color:#344054;display:flex;align-items:center;justify-content:center;transition:background-color .2s ease,color .2s ease,transform .2s ease}
-.yc-go svg{width:16px;height:16px}
-.yc-card:hover .yc-go{background:#FFCC00;color:#101828;transform:translateX(2px)}
-.yc-mini{display:flex;flex-wrap:wrap;gap:6px}
-.yc-mini a{display:block;width:30px;height:30px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #FFFFFF,0 0 0 3px #E4E7EC;transition:transform .15s ease,box-shadow .15s ease}
-.yc-mini a:hover{transform:translateY(-2px) scale(1.12);box-shadow:0 0 0 2px #FFFFFF,0 0 0 3px #003399}
-.yc-mini img{width:30px;height:30px;object-fit:cover;display:block}
-.yc-you{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;padding:20px;border-radius:16px;background:radial-gradient(500px 240px at 100% 0%, rgba(255,204,0,.14), transparent 60%),linear-gradient(135deg,#0B1B33,#003399)}
-.yc-you-flag{width:64px;height:43px;object-fit:cover;border-radius:7px;box-shadow:0 0 0 1px rgba(255,255,255,.3)}
-.yc-news{display:flex;align-items:center;gap:14px;padding:11px 14px;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);text-decoration:none;transition:background-color .15s ease}
-.yc-news:hover{background:rgba(255,255,255,.12);text-decoration:none}
-.yc-time{flex:none;font-family:'Sora',sans-serif;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.75)}
-.yc-sample{flex:none;padding:2px 6px;border-radius:4px;background:rgba(255,204,0,.18);color:#FFCC00;font-family:'Sora',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 </style>
 </helmet>
 <div style="color: #14181D; background: #FFFFFF; min-height: 100vh">
@@ -95,65 +65,30 @@ a:hover{color:#1E4FA8}
 </section>
 
 
-<section aria-label="Your country" class="yc" style="background: radial-gradient(700px 360px at 100% 0%, rgba(255,204,0,.10), transparent 60%), linear-gradient(180deg, #F5F7FA, #FFFFFF); border-bottom: 1px solid #EAECF0">
-<div style="max-width: 1232px; margin: 0 auto; padding: 52px 32px 48px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: stretch">
-
-<div style="flex: 1 1 330px; display: flex; flex-direction: column; gap: 16px; justify-content: center">
-<p class="esme-eyebrow">{{ycEyebrow}}</p>
-<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(26px, 2.8vw, 34px); line-height: 1.15; font-weight: 700; letter-spacing: -0.025em">{{ycTitle}}</h2>
-<p style="margin: 0; font-size: 15.5px; line-height: 1.65; color: #5A6470; max-width: 420px">{{ycText}}</p>
-<ul class="yc-ticks">
-<li><span dc-html="{{tickNews}}"></span>Daily news, only when something happens</li>
-<li><span dc-html="{{tickTrend}}"></span>What other owners are reading this week</li>
-<li><span dc-html="{{tickTools}}"></span>Rules, deadlines and funding for that country</li>
-</ul>
-<label class="yc-pick">
-<span class="yc-pick-flag"><img src="{{pickFlag}}" alt="" width="26" height="18"></span>
-<select aria-label="Choose any of the 27 EU countries" onChange="{{goCountry}}">
-<option value="">{{pickLabel}}</option>
-<sc-for list="{{allCountries}}" as="o" hint-placeholder-count="27"><option value="{{o.code}}">{{o.name}}</option></sc-for>
-</select>
-<span aria-hidden="true" class="yc-pick-go" dc-html="{{arrowIcon}}"></span>
-</label>
-</div>
-
-<div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<section aria-label="Your country" style="background: #FFFFFF; border-bottom: 1px solid #EAECF0">
+<div style="max-width: 1232px; margin: 0 auto; padding: 40px 32px; display: flex; flex-wrap: wrap; gap: 28px 40px; align-items: flex-start">
 <sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}">
-<div class="yc-you">
-<img src="{{geoC.flag}}" alt="" width="64" height="43" class="yc-you-flag">
-<div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
-<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #9FE1CB"><span dc-html="{{pinIcon}}"></span>{{geoNote}}</span>
-<strong style="font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700; color: #FFFFFF">Today in {{geoC.name}}</strong>
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 14px">
+<span style="display: flex; align-items: center; gap: 14px"><img src="{{geoC.flag}}" alt="" width="60" height="40" style="width: 60px; height: 40px; object-fit: cover; border-radius: 7px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><span style="display: flex; flex-direction: column; gap: 4px"><p class="esme-eyebrow">{{geoNote}}</p><h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em">Today in {{geoC.name}}</h2></span></span>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #5A6470">Daily SME news, trending stories, rules and funding — picked for businesses in {{geoC.name}}.</p>
+<span style="display: flex; flex-wrap: wrap; gap: 10px"><a class="esme-btn esme-btn--navy" href="{{geoHub}}">Open the {{geoC.name}} hub →</a><a class="esme-btn esme-btn--line" href="Countries.dc.html">Change country</a></span>
 </div>
-<a class="esme-btn esme-btn--gold" href="{{geoHub}}">Open the {{geoC.name}} hub →</a>
-<div style="flex-basis: 100%; display: flex; flex-direction: column; gap: 8px">
-<sc-for list="{{geoNews}}" as="n" hint-placeholder-count="3">
-<a class="yc-news" href="{{n.href}}"><span class="yc-time">{{n.time}}</span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Sora', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #FFCC00">{{n.sectionLabel}} · {{n.countryName}}</span><span style="font-family: 'Sora', sans-serif; font-size: 14.5px; font-weight: 600; line-height: 1.35; color: #FFFFFF">{{n.title}}</span></span><span class="yc-sample">Sample</span></a>
-</sc-for>
-</div>
+<div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{geoNews}}" as="n" hint-placeholder-count="3"><dc-import name="Card" post="{{n}}" variant="news" hint-size="100%,110px"></dc-import></sc-for>
+<span style="font-size: 12.5px; color: #6B4E00">Sample headlines for the demo.</span>
 </div>
 </sc-if>
-
-<div class="yc-grid">
-<sc-for list="{{hubs}}" as="h" hint-placeholder-count="6">
-<a class="yc-card {{h.you}}" href="{{h.href}}" onClick="{{h.pick}}">
-<img src="{{h.flag}}" alt="" width="54" height="36" class="yc-flag" loading="lazy">
-<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
-<strong style="font-family: 'Sora', sans-serif; font-size: 15.5px; font-weight: 700">{{h.name}}</strong>
-<span style="font-size: 12.5px; color: #5A6470"><span class="yc-live"></span>{{h.meta}}</span>
-</span>
-<span class="yc-go" aria-hidden="true" dc-html="{{arrowIcon}}"></span>
-</a>
-</sc-for>
+<sc-if value="{{noGeo}}" hint-placeholder-val="{{ true }}">
+<div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 10px">
+<p class="esme-eyebrow">Your country</p>
+<h2 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em">Get daily news for where you do business</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #5A6470">Pick a country to see its SME news, trending stories, rules and funding.</p>
 </div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px">
-<span style="font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6470">+ {{othersCount}} more</span>
-<div class="yc-mini">
-<sc-for list="{{others}}" as="o" hint-placeholder-count="21"><a href="{{o.href}}" onClick="{{o.pick}}" title="{{o.name}}" aria-label="{{o.name}}"><img src="{{o.flag}}" alt="" width="30" height="30" loading="lazy"></a></sc-for>
+<div style="flex: 2 1 520px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<sc-for list="{{hubs}}" as="h" hint-placeholder-count="6"><a href="{{h.href}}" onClick="{{h.pick}}" class="esme-chipf" style="height: 44px; padding: 0 16px 0 10px"><img src="{{h.flag}}" alt="" width="26" height="18" style="width: 26px; height: 18px; object-fit: cover; border-radius: 3px">{{h.name}}</a></sc-for>
+<a href="Countries.dc.html" class="esme-btn esme-btn--blue">All 27 countries →</a>
 </div>
-<a href="Countries.dc.html" style="margin-left: auto; font-family: 'Sora', sans-serif; font-size: 13.5px; font-weight: 700; color: #1E4FA8">All 27 countries →</a>
-</div>
-</div>
+</sc-if>
 </div>
 </section>
 <sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
@@ -317,7 +252,7 @@ a:hover{color:#1E4FA8}
 <div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 64px; padding-bottom: 28px">
 <div style="display: flex; flex-wrap: wrap; gap: 40px 48px; justify-content: space-between">
 <div style="flex: 2 1 300px; display: flex; flex-direction: column; gap: 16px">
-<span style="display: flex; align-items: center; gap: 10px"><svg aria-hidden="true" viewBox="0 0 100 100" style="width: 40px; height: 40px"><circle cx="50" cy="50" r="47.5" fill="#003399" stroke="#FFCC00" stroke-width="3"/><g fill="#FFCC00"><polygon points="81.00,43.80 82.47,47.98 86.90,48.08 83.38,50.77 84.64,55.02 81.00,52.50 77.36,55.02 78.62,50.77 75.10,48.08 79.53,47.98"/><polygon points="76.85,59.30 78.32,63.48 82.74,63.58 79.22,66.27 80.49,70.52 76.85,68.00 73.20,70.52 74.47,66.27 70.95,63.58 75.38,63.48"/><polygon points="65.50,70.65 66.97,74.82 71.40,74.93 67.88,77.62 69.14,81.86 65.50,79.35 61.86,81.86 63.12,77.62 59.60,74.93 64.03,74.82"/><polygon points="50.00,74.80 51.47,78.98 55.90,79.08 52.38,81.77 53.64,86.02 50.00,83.50 46.36,86.02 47.62,81.77 44.10,79.08 48.53,78.98"/><polygon points="34.50,70.65 35.97,74.82 40.40,74.93 36.88,77.62 38.14,81.86 34.50,79.35 30.86,81.86 32.12,77.62 28.60,74.93 33.03,74.82"/><polygon points="23.15,59.30 24.62,63.48 29.05,63.58 25.53,66.27 26.80,70.52 23.15,68.00 19.51,70.52 20.78,66.27 17.26,63.58 21.68,63.48"/><polygon points="19.00,43.80 20.47,47.98 24.90,48.08 21.38,50.77 22.64,55.02 19.00,52.50 15.36,55.02 16.62,50.77 13.10,48.08 17.53,47.98"/><polygon points="23.15,28.30 24.62,32.48 29.05,32.58 25.53,35.27 26.80,39.52 23.15,37.00 19.51,39.52 20.78,35.27 17.26,32.58 21.68,32.48"/><polygon points="34.50,16.95 35.97,21.13 40.40,21.24 36.88,23.93 38.14,28.17 34.50,25.65 30.86,28.17 32.12,23.93 28.60,21.24 33.03,21.13"/><polygon points="50.00,12.80 51.47,16.98 55.90,17.08 52.38,19.77 53.64,24.02 50.00,21.50 46.36,24.02 47.62,19.77 44.10,17.08 48.53,16.98"/><polygon points="65.50,16.95 66.97,21.13 71.40,21.24 67.88,23.93 69.14,28.17 65.50,25.65 61.86,28.17 63.12,23.93 59.60,21.24 64.03,21.13"/><polygon points="76.85,28.30 78.32,32.48 82.74,32.58 79.22,35.27 80.49,39.52 76.85,37.00 73.20,39.52 74.47,35.27 70.95,32.58 75.38,32.48"/></g></svg><span style="font-family: 'League Spartan', 'Sora', Arial, sans-serif; font-weight: 800; font-size: 27px; line-height: 1; padding-top: 4px; color: #FFFFFF">EUROPEAN<span style="color: #FFCC00; margin-left: 6px">SME</span></span></span>
+<span style="font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; color: #FFFFFF; letter-spacing: -0.01em"><span style="font-weight: 500">EUROPEAN</span><span style="font-weight: 700; color: #FFC72C">SME</span></span>
 <p style="margin: 0; font-size: 14.5px; line-height: 1.65; max-width: 340px">Europe’s magazine for small business owners: practical news, guides and stories to help you start, run and grow across the 27 member states.</p>
 </div>
 <sc-for list="{{footCols}}" as="fc" hint-placeholder-count="4">
@@ -351,19 +286,7 @@ class Component extends DCLogic {
       hasGeo: !!geoC, noGeo: !geoC, geoC: geoC || {}, geoHub: geoC ? 'Country.dc.html?country=' + geoC.code : 'Countries.dc.html',
       geoNote: geo && geo.source === 'cloudflare' ? 'Based on your location' : geo && geo.source === 'browser' ? 'Based on your browser settings' : 'Your country',
       geoNews: geoC ? ESME.news.filter((n) => n.country === geoC.code || n.country === 'eu').slice(0, 3) : [],
-      ycEyebrow: geoC ? 'Your country · ' + geoC.name : 'Your country',
-      ycTitle: geoC ? 'Your business news, close to home' : 'Get daily news for where you do business',
-      ycText: geoC ? 'We opened ' + geoC.name + ' for you. Switch any time — we remember your choice on this device.' : 'Pick a country to see its small-business news, trending stories, rules and funding in one place.',
-      tickNews: ESME.icon('news', 16), tickTrend: ESME.icon('trend', 16), tickTools: ESME.icon('calendar', 16), arrowIcon: ESME.icon('arrow', 18), pinIcon: ESME.icon('pin', 14),
-      pickFlag: geoC ? geoC.flag : 'https://flagcdn.com/w80/eu.png', pickLabel: geoC ? 'Switch country…' : 'Choose any of the 27 countries…',
-      allCountries: ESME.countries.slice().sort((x, y) => x.name.localeCompare(y.name)),
-      goCountry: (e) => { const v = e.target.value; if (!v) return; ESME.setCountry(v); location.href = 'Country.dc.html?country=' + v; },
-      hubs: ESME.countries.filter((c) => c.tier === 'hub').map((c) => {
-        const n = ESME.news.filter((x) => x.country === c.code && x.at > Date.now() - 7 * 86400000).length;
-        return { name: c.name, flag: c.flag, href: 'Country.dc.html?country=' + c.code, pick: () => ESME.setCountry(c.code), you: geoC && geoC.code === c.code ? 'is-you' : '', meta: n + ' stories this week' };
-      }),
-      others: ESME.countries.filter((c) => c.tier !== 'hub').map((c) => ({ name: c.name, flag: c.flag, href: 'Country.dc.html?country=' + c.code, pick: () => ESME.setCountry(c.code) })),
-      othersCount: String(ESME.countries.filter((c) => c.tier !== 'hub').length),
+      hubs: ESME.countries.filter((c) => c.tier === 'hub').map((c) => ({ name: c.name, flag: c.flag, href: 'Country.dc.html?country=' + c.code, pick: () => ESME.setCountry(c.code) })),
       brand: this.props.brand ?? '#0B2A6B',
       tools: ESME.tools.map((t) => Object.assign({}, t, { iconSvg: ESME.icon(t.icon, 24), tint: t.tone + '14', isNew: !!t.isNew })),
       footCols: [
