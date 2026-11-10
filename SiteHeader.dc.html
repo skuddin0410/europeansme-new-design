@@ -82,7 +82,15 @@
 <a class="esme-ddall" href="Tools.dc.html"><span dc-html="{{gridIcon}}"></span>See all tools</a>
 </div></div>
 </div>
-<a class="esme-nl {{countriesOn}}" href="Countries.dc.html">Countries</a>
+<div class="esme-dd">
+<button type="button" class="esme-nl {{countriesOn}}" aria-haspopup="true">Key Markets <span class="esme-caret"></span></button>
+<div class="esme-ddm"><div class="esme-ddp" style="min-width: 260px">
+<sc-for list="{{markets}}" as="m" hint-placeholder-count="4">
+<a class="esme-ddi" href="{{m.href}}"><img src="{{m.flag}}" alt="" width="30" height="20" style="width: 30px; height: 20px; object-fit: cover; border-radius: 4px; box-shadow: 0 0 0 1px rgba(16,24,40,.12)"><span><strong style="font-weight: 600">{{m.name}}</strong><small>Daily SME news, rules and funding</small></span></a>
+</sc-for>
+<a class="esme-ddall" href="Countries.dc.html"><span dc-html="{{gridIcon}}"></span>All key markets</a>
+</div></div>
+</div>
 <a class="esme-nl {{policyOn}}" href="Articles.dc.html?section=policy">EU Policy</a>
 </nav>
 <span style="flex: 1 1 0"></span>
@@ -112,9 +120,10 @@ class Component extends DCLogic {
       sections,
       tools: E ? E.tools.map((t) => Object.assign({}, t, { icon: E.icon(t.icon, 18), tint: t.tone + '14', isNew: !!t.isNew })) : [],
       gridIcon: E ? E.icon('grid', 15) : '',
+      markets: E ? E.countries.map((c) => ({ name: c.name, flag: c.flag, href: 'Country.dc.html?country=' + c.code })) : [],
       ...(() => {
         const g = this.state.geo, c = g && E ? E.country(g.code) : null;
-        return { hasGeo: !!c, noGeo: !c, geoFlag: c ? c.flag : '', geoLabel: c ? c.name : 'Choose your country', geoAction: c ? 'Change' : 'All 27',
+        return { hasGeo: !!c, noGeo: !c, geoFlag: c ? c.flag : '', geoLabel: c ? c.name : 'Choose your country', geoAction: c ? 'Change' : 'Key markets',
           geoHref: c ? 'Country.dc.html?country=' + c.code : 'Countries.dc.html', pinIcon: E ? E.icon('pin', 14) : '',
           geoTitle: c ? (g.source === 'cloudflare' ? 'Detected from your location' : g.source === 'browser' ? 'Detected from your browser settings' : 'Your saved country') : 'Pick a country for local news' };
       })(),

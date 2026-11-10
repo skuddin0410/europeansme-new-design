@@ -43,6 +43,12 @@ a:hover{color:#1E4FA8}
 .yc-live-l{display:inline-flex;align-items:center;gap:8px;font-family:'Sora',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9FE1CB}
 .yc-pulse{width:8px;height:8px;border-radius:50%;background:#32D583;box-shadow:0 0 0 0 rgba(50,213,131,.6);animation:yc-p 1.8s infinite}
 @keyframes yc-p{0%{box-shadow:0 0 0 0 rgba(50,213,131,.55)}70%{box-shadow:0 0 0 9px rgba(50,213,131,0)}100%{box-shadow:0 0 0 0 rgba(50,213,131,0)}}
+.yc-live-big{display:inline-flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.01em;color:#9FE1CB}
+.yc-live-big .yc-pulse{width:10px;height:10px}
+.yc-right{display:flex;flex-direction:column;gap:14px}
+.yc-more{display:flex;justify-content:flex-end;gap:22px;font-family:'Sora',sans-serif;font-size:14px;font-weight:700}
+.yc-more a{color:#1E4FA8;text-decoration:none}
+.yc-more a:hover{color:#003399;text-decoration:underline;text-underline-offset:3px}
 .yc-box-t{font-family:'Sora',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
 .yc-stats{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.06);font-size:13px;color:rgba(255,255,255,.75)}
 .yc-stats strong{color:#FFFFFF;font-family:'Sora',sans-serif}
@@ -136,14 +142,11 @@ a:hover{color:#1E4FA8}
 </form>
 </div>
 
+<div class="yc-right">
 <div class="yc-box">
 <div class="yc-box-head">
 <img src="{{boxFlag}}" alt="" width="60" height="40" class="yc-box-flag">
-<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 5px">
-<span class="yc-live-l"><span class="yc-pulse"></span>{{boxKicker}}</span>
-<strong class="yc-box-t">{{boxTitle}}</strong>
-</div>
-<a class="esme-btn esme-btn--gold" href="{{boxHub}}">{{boxCta}} <span aria-hidden="true">→</span></a>
+<span class="yc-live-big"><span class="yc-pulse"></span>Live <span style="color: #FFFFFF">{{boxWhere}}</span></span>
 </div>
 <div class="yc-stats">
 <span><strong>{{statToday}}</strong> today</span><span class="yc-sep"></span><span><strong>{{statWeek}}</strong> this week</span><span class="yc-sep"></span><span>Trending: <strong style="color: #FFCC00">{{statTrend}}</strong></span>
@@ -170,14 +173,15 @@ a:hover{color:#1E4FA8}
 </sc-for>
 </div>
 <div class="yc-box-foot">
-<a href="{{boxNewsHref}}">All {{boxWhere}} news →</a>
 <a href="{{boxRulesHref}}">Deadlines for {{boxWhere}} →</a>
 <label class="yc-switch"><span dc-html="{{pinIcon}}" style="display: flex"></span>
 <select aria-label="Change country" onChange="{{goCountry}}">
 <option value="">{{pickLabel}}</option>
-<sc-for list="{{allCountries}}" as="o" hint-placeholder-count="27"><option value="{{o.code}}">{{o.name}}</option></sc-for>
+<sc-for list="{{allCountries}}" as="o" hint-placeholder-count="4"><option value="{{o.code}}">{{o.name}}</option></sc-for>
 </select></label>
 </div>
+</div>
+<div class="yc-more"><a href="{{boxNewsHref}}">View all news <span aria-hidden="true">→</span></a><a href="Articles.dc.html">View all articles <span aria-hidden="true">→</span></a></div>
 </div>
 
 </div>
@@ -398,7 +402,7 @@ class Component extends DCLogic {
       })(),
       ycEyebrow: geoC ? 'Your country · ' + geoC.name : 'Your country',
       ycTitle: geoC ? 'Your business news, close to home' : 'Business news for where you work',
-      ycText: geoC ? 'We opened ' + geoC.name + ' for you, based on where you are. The news, rules and funding below are picked for businesses there.' : 'Daily small-business news, rules and funding — country by country, across all 27 EU member states.',
+      ycText: geoC ? 'We opened ' + geoC.name + ' for you, based on where you are. The news, rules and funding below are picked for businesses there.' : 'Daily small-business news, rules and funding for Europe’s four biggest markets: Germany, France, Italy and Spain.',
       tickNews: ESME.icon('news', 16), tickTrend: ESME.icon('trend', 16), tickTools: ESME.icon('calendar', 16), pinIcon: ESME.icon('pin', 14),
       pickLabel: geoC ? geoC.name + ' · change' : 'Choose country',
       allCountries: ESME.countries.slice().sort((x, y) => x.name.localeCompare(y.name)),

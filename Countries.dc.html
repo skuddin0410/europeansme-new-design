@@ -29,9 +29,9 @@ a:hover{color:#1E4FA8}
 <section aria-label="Introduction" style="background: radial-gradient(800px 420px at 100% 0%, rgba(255,199,44,.16), transparent 60%), linear-gradient(135deg, #0B1B33, #0B2A6B); color: #FFFFFF">
 <div style="max-width: 1232px; margin: 0 auto; padding: 56px 32px 48px; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-end; justify-content: space-between">
 <div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 14px">
-<p class="esme-eyebrow is-dark">27 member states</p>
-<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(34px, 4.6vw, 52px); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; color: #FFFFFF">Business news for your country</h1>
-<p style="margin: 0; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.8); max-width: 600px">Daily SME news, the rules and deadlines that apply to you, and the funding you can apply for — country by country.</p>
+<p class="esme-eyebrow is-dark">Key markets</p>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(34px, 4.6vw, 52px); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; color: #FFFFFF">Europe’s four biggest markets</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.8); max-width: 600px">Daily SME news, rules, deadlines and funding for Germany, France, Italy and Spain. More countries will follow.</p>
 </div>
 <sc-if value="{{hasGeo}}" hint-placeholder-val="{{ false }}">
 <a href="{{geoHref}}" style="flex: 0 1 380px; display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 14px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); color: #FFFFFF; text-decoration: none">
@@ -95,10 +95,10 @@ class Component extends DCLogic {
       hasGeo: !!gc, geo: gc || {}, geoHref: gc ? 'Country.dc.html?country=' + gc.code : '#',
       geoNote: geo && geo.source === 'cloudflare' ? 'Based on your location' : geo && geo.source === 'browser' ? 'Based on your browser settings' : 'Your country',
       groups: [
-        { title: 'Full country hubs', sub: 'Daily news, trending stories, rules and funding', items: by('hub') },
+        { title: 'Country hubs', sub: 'Daily news, trending stories, rules and funding', items: by('hub') },
         { title: 'Growing coverage', sub: 'News on the days something happens, plus rules and funding', items: by('light') },
         { title: 'EU-wide coverage', sub: 'EU news and the rules that apply in each country', items: by('basic') }
-      ]
+      ].filter((g) => g.items.length)
     };
   }
 }

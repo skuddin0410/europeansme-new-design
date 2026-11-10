@@ -458,6 +458,10 @@
     return { code: c[0], name: c[1], tier: c[2], i: i, flag: 'https://flagcdn.com/w80/' + c[0] + '.png',
       tierLabel: c[2] === 'hub' ? 'Full hub' : c[2] === 'light' ? 'Growing' : 'EU-wide coverage' };
   });
+  // Focus markets for now: Europe's four largest economies. Others stay in the list above, hidden.
+  var FOCUS = ['de', 'fr', 'it', 'es'];
+  COUNTRIES = COUNTRIES.filter(function (c) { return FOCUS.indexOf(c.code) > -1; })
+    .sort(function (a, b) { return FOCUS.indexOf(a.code) - FOCUS.indexOf(b.code); });
   var BY_CODE = {};
   COUNTRIES.forEach(function (c) { BY_CODE[c.code] = c; });
 
