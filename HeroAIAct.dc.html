@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Act — hero timeline</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Sora:wght@500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="esme.css">
+<style>
+body{margin:0}
+.hai{flex:1;min-width:0;display:flex;flex-direction:column;gap:22px;padding:28px 28px 22px;box-sizing:border-box;color:#FFFFFF;font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;background:radial-gradient(520px 300px at 100% 0%,rgba(255,199,44,.14),transparent 60%),linear-gradient(160deg,#0E2F78,#0B2A6B 55%,#0A2260)}
+.hai-k{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#FFC72C}
+.hai-t{margin:4px 0 0;font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-size:24px;line-height:1.15;font-weight:700;letter-spacing:-.02em}
+.hai-pill{flex:none;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-size:12px;font-weight:600;color:#DCE3F2;white-space:nowrap}
+.hai-tl{position:relative;overflow-x:auto;scrollbar-width:none;margin:0 -4px;padding:0 4px}
+.hai-grid{position:relative;min-width:470px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding-top:34px}
+.hai-rail{position:absolute;left:0;right:0;top:44px;height:3px;border-radius:3px;background:rgba(201,211,234,.25)}
+.hai-fill{position:absolute;left:0;top:44px;height:3px;border-radius:3px;background:linear-gradient(90deg,#A9B7D6,#FFFFFF)}
+.hai-today{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none}
+.hai-today b{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:99px;background:#FFFFFF;color:#0B2A6B;font-size:11px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+.hai-today i{width:2px;height:18px;background:#FFFFFF}
+.hai-step{display:flex;flex-direction:column;gap:6px}
+.hai-dot{position:relative;z-index:1;width:16px;height:16px;border-radius:50%;box-sizing:border-box;border:3px solid #0B2A6B}
+.hai-was{font-size:11.5px;color:#8FA0C6;text-decoration:line-through;line-height:1}
+.hai-date{font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-size:15px;font-weight:700;line-height:1.1}
+.hai-lab{font-size:12.5px;line-height:1.35;color:#DCE3F2}
+.hai-tag{align-self:flex-start;display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:6px;font-size:10.5px;font-weight:700;letter-spacing:.02em}
+.hai-low{flex:1;display:flex;flex-wrap:wrap;gap:14px;align-items:stretch}
+.hai-count{flex:1 1 150px;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:16px 18px;border-radius:14px;background:#FFC72C;color:#0B1B33}
+.hai-count strong{font-family:'Sora','Helvetica Neue',Arial,sans-serif;font-size:34px;line-height:1;font-weight:800;letter-spacing:-.02em}
+.hai-hw{flex:2 1 260px;display:flex;flex-direction:column;gap:9px;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.hai-hw li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.4;color:#FFFFFF}
+.hai-ck{flex:none;width:18px;height:18px;margin-top:1px;border-radius:5px;border:1.5px solid rgba(255,255,255,.5);box-sizing:border-box}
+.hai-src{font-size:11.5px;line-height:1.4;color:#A9B7D6}
+</style>
+</helmet>
+<figure class="hai" role="img" aria-label="EU AI Act timeline. In force: banned practices and AI literacy (Feb 2025), general-purpose AI rules (Aug 2025), transparency duties (Aug 2026). Pushed back: high-risk AI from Aug 2026 to Dec 2027, high-risk AI in products from Aug 2027 to Aug 2028. Today is November 2026, 13 months before the high-risk deadline." style="margin: 0">
+
+<div style="display: flex; align-items: flex-start; gap: 12px">
+<div style="flex: 1; min-width: 0"><span class="hai-k">EU AI Act · Digital Omnibus</span><p class="hai-t">What applies now, and what moved</p></div>
+<span class="hai-pill"><span style="width: 7px; height: 7px; border-radius: 50%; background: #FFC72C"></span>Updated Nov 2026</span>
+</div>
+
+<div class="hai-tl">
+<div class="hai-grid">
+<span class="hai-rail" aria-hidden="true"></span>
+<span class="hai-fill" aria-hidden="true" style="width: {{todayPos}}"></span>
+<span class="hai-today" aria-hidden="true" style="left: {{todayPos}}"><b>Today</b><i></i></span>
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+<div class="hai-step">
+<span class="hai-dot" style="background: {{s.dot}}; box-shadow: 0 0 0 2px {{s.dot}}"></span>
+<sc-if value="{{s.moved}}" hint-placeholder-val="{{ false }}"><span class="hai-was">{{s.was}}</span></sc-if>
+<span class="hai-date" style="color: {{s.dateColor}}">{{s.date}}</span>
+<span class="hai-lab">{{s.label}}</span>
+<span class="hai-tag" style="background: {{s.tagBg}}; color: {{s.tagFg}}">{{s.tag}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div class="hai-low">
+<div class="hai-count"><span style="font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase">High-risk deadline</span><strong>13 months</strong><span style="font-size: 13px; font-weight: 600">to go · 2 Dec 2027</span></div>
+<div class="hai-hw">
+<span style="font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #FFC72C">Your homework now</span>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+<li><span class="hai-ck"></span>List every AI tool your team uses</li>
+<li><span class="hai-ck"></span>Give staff basic AI training (required since Feb 2025)</li>
+<li><span class="hai-ck"></span>Label chatbots and AI-made content (since Aug 2026)</li>
+</ul>
+</div>
+</div>
+
+<span class="hai-src">Source: Regulation (EU) 2024/1689, as amended by the Digital Omnibus on AI</span>
+</figure>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":640,"height":520}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const inForce = { dot: '#C9D3EA', dateColor: '#FFFFFF', tag: 'In force', tagBg: 'rgba(18,183,106,.18)', tagFg: '#6CE9A6', moved: false, was: '' };
+    const moved = { dot: '#FFC72C', dateColor: '#FFC72C', tagBg: 'rgba(255,199,44,.16)', tagFg: '#FFC72C', moved: true };
+    return {
+      // Today (Nov 2026) sits between Aug 2026 (column 3) and Dec 2027 (column 4)
+      todayPos: '56%',
+      steps: [
+        Object.assign({ date: 'Feb 2025', label: 'Banned AI uses and staff AI literacy' }, inForce),
+        Object.assign({ date: 'Aug 2025', label: 'General-purpose AI model rules' }, inForce),
+        Object.assign({ date: 'Aug 2026', label: 'Transparency: chatbots, AI content' }, inForce),
+        Object.assign({ date: 'Dec 2027', was: 'Aug 2026', label: 'High-risk AI: hiring, credit, education', tag: '+16 months' }, moved),
+        Object.assign({ date: 'Aug 2028', was: 'Aug 2027', label: 'High-risk AI inside regulated products', tag: '+12 months' }, moved)
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

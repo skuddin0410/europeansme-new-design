@@ -25,8 +25,8 @@ a:hover{color:#1E4FA8}
 .esme-toolcard{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .esme-toolcard:hover{transform:translateY(-4px);border-color:#D0D5DD !important;color:#14181D !important;text-decoration:none}
 .esme-flink:hover{color:#FFFFFF !important}
-.yc-wrap{max-width:1232px;margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center}
-.yc-left{display:flex;flex-direction:column;gap:18px}
+.yc-wrap{max-width:1232px;margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:stretch}
+.yc-left{display:flex;flex-direction:column;gap:18px;padding:24px 0 38px}.yc-left .esme-eyebrow{margin:0}.yc-left>.yc-sub{margin-top:auto}
 .yc-ticks{list-style:none;margin:2px 0 4px;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:#344054}
 .yc-ticks li{display:flex;align-items:center;gap:12px}
 .yc-ticks li span{flex:none;width:30px;height:30px;border-radius:9px;background:#E6ECF7;color:#003399;display:flex;align-items:center;justify-content:center}
@@ -78,7 +78,7 @@ a:hover{color:#1E4FA8}
 .yc-switch select{border:none;outline:none;background:transparent;color:#FFFFFF;font-family:'Sora',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer}
 .yc-switch option{color:#14181D}
 .yc-sample{flex:none;padding:2px 6px;border-radius:4px;background:rgba(255,204,0,.18);color:#FFCC00;font-family:'Sora',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-@media (max-width: 960px){.yc-wrap{grid-template-columns:1fr;gap:32px;padding:48px 24px}}
+@media (max-width: 960px){.yc-wrap{grid-template-columns:1fr;gap:32px;padding:48px 24px}.yc-left{padding:0}}
 </style>
 </helmet>
 <div style="color: #14181D; background: #FFFFFF; min-height: 100vh">
@@ -86,10 +86,10 @@ a:hover{color:#1E4FA8}
 
 <main>
 <section aria-label="Cover story" style="position: relative; overflow: hidden; color: #FFFFFF; background: radial-gradient(900px 520px at 88% 8%, rgba(255,199,44,.16), transparent 62%), radial-gradient(900px 640px at 0% 100%, rgba(30,79,168,.55), transparent 62%), linear-gradient(135deg, #0B1B33 0%, #0B2A6B 100%)">
-<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 64px; padding-bottom: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px">
-<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 64px; padding-bottom: 40px; display: flex; flex-wrap: wrap; align-items: stretch; gap: 48px">
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
 <p class="esme-eyebrow is-dark">Cover story · Tech &amp; AI</p>
-<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(38px, 4.6vw, 60px); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; color: #FFFFFF"><a href="ArticleAIAct.dc.html" style="color: inherit; text-decoration: none">AI Act deadlines <span style="color: #FFC72C">pushed back</span>: what the Digital Omnibus means for your business</a></h1>
+<h1 style="margin: 0; font-family: 'Sora', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(32px, 3.7vw, 50px); line-height: 1.08; font-weight: 700; letter-spacing: -0.03em; color: #FFFFFF"><a href="ArticleAIAct.dc.html" style="color: inherit; text-decoration: none">AI Act deadlines <span style="color: #FFC72C">pushed back</span>: what the Digital Omnibus means for your business</a></h1>
 <span aria-hidden="true" style="width: 56px; height: 3px; border-radius: 2px; background: #FFC72C"></span>
 <p style="margin: 0; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.82); max-width: 560px">The EU has given companies until December 2027 to meet its strictest AI rules. But some obligations already apply — and most small businesses have homework to do now.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 4px">
@@ -97,7 +97,7 @@ a:hover{color:#1E4FA8}
 <a class="esme-btn esme-btn--ghost esme-btn--lg" href="Articles.dc.html">All articles</a>
 </div>
 </div>
-<a href="ArticleAIAct.dc.html" aria-label="AI Act deadlines pushed back" style="flex: 1 1 480px; min-width: 0; display: block; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.12)"><dc-import name="VisualAIAct" radius="0px" hint-size="100%,330px"></dc-import></a>
+<a href="ArticleAIAct.dc.html" aria-label="AI Act deadlines pushed back — see the new timeline" style="flex: 1 1 500px; min-width: 0; display: flex; border-radius: 18px; overflow: hidden; text-decoration: none; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.12)"><dc-import name="HeroAIAct" hint-size="100%,100%"></dc-import></a>
 </div>
 <div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-bottom: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 20px">
 <a href="ArticleEInvoicing.dc.html" class="esme-herocard" style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; padding: 12px; border-radius: 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); color: #FFFFFF; text-decoration: none">
@@ -347,7 +347,7 @@ a:hover{color:#1E4FA8}
 <div style="max-width: 1232px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; padding-top: 64px; padding-bottom: 28px">
 <div style="display: flex; flex-wrap: wrap; gap: 40px 48px; justify-content: space-between">
 <div style="flex: 2 1 300px; display: flex; flex-direction: column; gap: 16px">
-<span style="display: flex; align-items: center; gap: 10px"><svg aria-hidden="true" viewBox="0 0 100 100" style="width: 40px; height: 40px"><circle cx="50" cy="50" r="47.5" fill="#003399" stroke="#FFCC00" stroke-width="3"/><g fill="#FFCC00"><polygon points="81.00,43.80 82.47,47.98 86.90,48.08 83.38,50.77 84.64,55.02 81.00,52.50 77.36,55.02 78.62,50.77 75.10,48.08 79.53,47.98"/><polygon points="76.85,59.30 78.32,63.48 82.74,63.58 79.22,66.27 80.49,70.52 76.85,68.00 73.20,70.52 74.47,66.27 70.95,63.58 75.38,63.48"/><polygon points="65.50,70.65 66.97,74.82 71.40,74.93 67.88,77.62 69.14,81.86 65.50,79.35 61.86,81.86 63.12,77.62 59.60,74.93 64.03,74.82"/><polygon points="50.00,74.80 51.47,78.98 55.90,79.08 52.38,81.77 53.64,86.02 50.00,83.50 46.36,86.02 47.62,81.77 44.10,79.08 48.53,78.98"/><polygon points="34.50,70.65 35.97,74.82 40.40,74.93 36.88,77.62 38.14,81.86 34.50,79.35 30.86,81.86 32.12,77.62 28.60,74.93 33.03,74.82"/><polygon points="23.15,59.30 24.62,63.48 29.05,63.58 25.53,66.27 26.80,70.52 23.15,68.00 19.51,70.52 20.78,66.27 17.26,63.58 21.68,63.48"/><polygon points="19.00,43.80 20.47,47.98 24.90,48.08 21.38,50.77 22.64,55.02 19.00,52.50 15.36,55.02 16.62,50.77 13.10,48.08 17.53,47.98"/><polygon points="23.15,28.30 24.62,32.48 29.05,32.58 25.53,35.27 26.80,39.52 23.15,37.00 19.51,39.52 20.78,35.27 17.26,32.58 21.68,32.48"/><polygon points="34.50,16.95 35.97,21.13 40.40,21.24 36.88,23.93 38.14,28.17 34.50,25.65 30.86,28.17 32.12,23.93 28.60,21.24 33.03,21.13"/><polygon points="50.00,12.80 51.47,16.98 55.90,17.08 52.38,19.77 53.64,24.02 50.00,21.50 46.36,24.02 47.62,19.77 44.10,17.08 48.53,16.98"/><polygon points="65.50,16.95 66.97,21.13 71.40,21.24 67.88,23.93 69.14,28.17 65.50,25.65 61.86,28.17 63.12,23.93 59.60,21.24 64.03,21.13"/><polygon points="76.85,28.30 78.32,32.48 82.74,32.58 79.22,35.27 80.49,39.52 76.85,37.00 73.20,39.52 74.47,35.27 70.95,32.58 75.38,32.48"/></g></svg><span style="font-family: 'League Spartan', 'Sora', Arial, sans-serif; font-weight: 800; font-size: 27px; line-height: 1; padding-top: 4px; color: #FFFFFF">EUROPEAN<span style="color: #FFCC00; margin-left: 6px">SME</span></span></span>
+<a href="Main.dc.html" aria-label="European SME home" style="display: block; align-self: flex-start"><img src="logo-dark.png" alt="European SME Business Magazine" width="764" height="149" style="display: block; height: 52px; width: auto"></a>
 <p style="margin: 0; font-size: 14.5px; line-height: 1.65; max-width: 340px">Europe’s magazine for small business owners: practical news, guides and stories to help you start, run and grow across the 27 member states.</p>
 </div>
 <sc-for list="{{footCols}}" as="fc" hint-placeholder-count="4">
